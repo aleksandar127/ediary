@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>concept_one</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>select,option{display:inline;}
+tr{height:150px;}</style>
+  </head>
+  <body>
+   
+  
+
+    <div class="row">
+       
+        <div class="col"> 
+            <table class="table-sm" style="background-color: rgb(255, 209, 209);">
+            <thead>
+              <tr>
+                <th>Firstname</th>
+                <th>ocene</th>
+                
+                <th>izaberi ocenu</th>
+                <th>dodaj ocenu</th>
+                <th>izbrisi ocenu</th>
+                <th>zakljuci ocenu</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John</td>
+                <td>5,3,2</td>
+               
+               
+                <td><div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" value="">1
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" value="">2
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" value="" >3
+                    </label></div>
+                 <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" value="" >4
+                        </label></div>
+               <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="" >5
+                            </label></div>
+                  </td>
+                  <td><button type="button" class="btn btn-primary">dodaj ocenu</button></td>
+                  <td><button type="button" class="btn btn-danger">izbrisi ocenu</button></td>
+                  <td><button type="button" class="btn btn-success">zakljuci ocenu</button></td>
+                  
+              </tr>
+              <tr>
+                <td>Mary</td>
+                <td>4,2,1</td>
+               
+               
+                <td><div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" value="">1
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" value="">2
+                    </label></div>
+                  </div>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input type="checkbox" class="form-check-input" value="" >3
+                    </label></div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" value="" >4
+                        </label></div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input" value="" >5
+                            </label>
+                  </div></td>
+                  <td><button type="button" class="btn btn-primary">dodaj ocenu</button></td>
+                  <td><button type="button" class="btn btn-danger">izbrisi ocenu</button></td>
+                  <td><button type="button" class="btn btn-success">zakljuci ocenu</button></td>
+             
+              <tr>
+                <td>July</td>
+                <td>1,2,1</td>
+                
+                
+                <td><div class="form-check">
+              <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" value="">1
+               </label>
+                 </div>
+                <div class="form-check">
+             <label class="form-check-label">
+               <input type="checkbox" class="form-check-input" value="">2
+              </label>
+                  </div>
+                 <div class="form-check">
+                 <label class="form-check-label">
+               <input type="checkbox" class="form-check-input" value="" >3
+                 </label></div>
+                <div class="form-check">
+                 <label class="form-check-label">
+                   <input type="checkbox" class="form-check-input" value="" >4
+                  </label></div>
+                        <div class="form-check">
+                           
+                              <input type="checkbox" class="form-check-input" value="" >5
+                            
+                  </div></td>
+                  <td><button type="button" class="btn btn-primary">dodaj ocenu</button></td>
+                  <td><button type="button" class="btn btn-danger">izbrisi ocenu</button></td>
+                  <td><button type="button" class="btn btn-success">zakljuci ocenu</button></td>
+              </tr>
+            </tbody>
+          </table></div>
+        <div class="col"> 
+           
+          <table class="table-sm" style="background-color: rgb(255, 209, 209);">
+            <thead>
+              <tr><th colspan=3>Otvorena vrata svakog petka u 19:00h</th></tr>
+              
+            </thead>
+            <tbody>
+              <td>marko markovic</td>
+            <td><button type="button" class="btn btn-primary">potvrdi</button></td>
+          <td> <button type="button" class="btn btn-danger">odbij</button></td>
+        </tbody>
+        
+        </div>
+        
+        <div class="form-group"><div style="height:100px;background-color:rgb(174, 235, 194) ">Poruke roditelja</div>
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="5" id="comment" placeholder="odgovori roditelju"></textarea>
+            <button type="button" class="btn btn-success">posalji poruku</button>
+          </div>
+        </div>
+        <div class="col"></div>
+      </div>
+  </body>
+</html>

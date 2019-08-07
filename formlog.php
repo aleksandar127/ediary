@@ -27,9 +27,7 @@
 		
 	</form>
 </div>
-  <div class="formlogo">
-  	<img class="logo"  src="images/logoform.jpg" alt="back-to-school" title="back-to-school"/>
- </div>
+ 
 
   </body>
   </html>

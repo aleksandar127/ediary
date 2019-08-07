@@ -1,18 +1,27 @@
 
 body{
+    background: url(images/logoform.jpg) center center / cover fixed;
     margin: 0;
     padding: 0;
-    background-color: aliceblue;
+    background-color: rgb(195, 204, 212);
 }
 .form {
-    background-color: rgb(94, 108, 117);
+    background-color: rgba(94, 108, 117, 0.705);
     margin: auto;
     margin-top: 20px;
     width: 350px;
     padding: 30px;
     border-radius:15px 15px 0px 15px;
     box-shadow: 15px 15px 15px rgb(51, 56, 82);
-}
+   }
+
+   .form {
+     transition-property: background-color;;
+     transition-duration: 5s;
+     transition-timing-function:linear ;
+     transition-delay: 1s;
+  }
+
 .h2 {
     text-align: center;
 }
@@ -36,6 +45,7 @@ form input{
 }
 .logo {
     
-    width: 550px;
+    width: 585px;
     margin: auto;
+    margin-left: 8px;
 }

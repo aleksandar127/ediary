@@ -1,7 +1,5 @@
 <?php 
 
-<?php
-
 //connection database - pdo
 try{
 	$connector= new PDO('mysql:dbname=schooldiary;host=localhost','root','');

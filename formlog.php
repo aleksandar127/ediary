@@ -11,7 +11,9 @@
   
   <body>
   <div class="form">
-  <h2>LOGIN</h2>
+	  <div class="h2">
+        <h2>LOGIN</h2>
+      </div>
   	<form method="POST" action="login.php" name="login_form" id="form" >
 		
 		<p>Username:</p>
@@ -25,8 +27,8 @@
 		
 	</form>
 </div>
-  <div>
-  
+  <div class="formlogo">
+  	<img class="logo"  src="images/logoform.jpg" alt="back-to-school" title="back-to-school"/>
  </div>
 
   </body>

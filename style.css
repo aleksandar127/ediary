@@ -1,23 +1,41 @@
 
 body{
-    background-color: darkolivegreen;
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
 }
 .form {
-    background-color: lightgreen;
+    background-color: rgb(94, 108, 117);
     margin: auto;
-    margin-top: 100px;
-    width: 300px;
-    padding: 50px;
+    margin-top: 20px;
+    width: 350px;
+    padding: 30px;
     border-radius:15px 15px 0px 15px;
+    box-shadow: 15px 15px 15px rgb(51, 56, 82);
 }
-form h2 {
-    width: 50px;
-    margin: auto;
+.h2 {
+    text-align: center;
 }
 form p {
     font-size: 24px;
 }
 form input{
+    width: 300px;
     height: 40px;
     border-radius:15px 15px 0px 15px;
+}
+.formlogo {
+    position: relative;
+    background-color: rgb(94, 108, 117);
+    margin: auto;
+    margin-top: 25px;
+    width: 600px;
+    padding: 20px;
+    border-radius:15px 15px 0px 15px;
+    box-shadow: 15px 15px 15px rgb(51, 56, 82);
+}
+.logo {
+    
+    width: 550px;
+    margin: auto;
 }

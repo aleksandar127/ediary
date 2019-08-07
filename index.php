@@ -1,6 +1,7 @@
 <?php 
 //kjnjkkjbhkhhhh
 ///jhuhigyuftfytt
+//jjhgjhgjhgjhgjhjh
 require('./db.php');	
 
 

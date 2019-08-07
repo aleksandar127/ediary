@@ -52,7 +52,7 @@ a:active {
 	margin: 0 auto;
 	color: #5F5E5E;
 	overflow:hidden;
-	width: 1000px;
+	width: 1350px;
 	text-align: center;
 }
 
@@ -157,3 +157,21 @@ a:active {
 #teachers a:active {
 	color:#CC2A00;
 }
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 5px;
+	font-size: 18px;
+  }
+  
+  td, th {
+	border: 1px solid #000;
+	text-align: left;
+	padding: 8px;
+	width: 70px;
+  }
+  
+  tr:nth-child(even) {
+	background-color:rgba(0, 0, 0, 0.45);
+	color: #FFF;
+  }

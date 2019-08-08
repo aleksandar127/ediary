@@ -26,8 +26,11 @@
 		<input type="submit" name="submit" value="Login" id="submitLog">
 		
 	</form>
+	<div class="imageDiary">
+		<img src="images/diary.png"  alt="diary"  id="diaryImg" title="diaryImage"/>
+	</div>
 </div>
- 
+	
 
   </body>
   </html>

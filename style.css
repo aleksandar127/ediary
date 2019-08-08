@@ -1,6 +1,6 @@
 
 body{
-    background: url(task1/assets/images/logoform.jpg) center center / cover fixed;
+    background: url(task1/assets/images/formlog1.jpg) center center / cover fixed;
     margin: 0;
     padding: 0;
     background-color: rgb(195, 204, 212);
@@ -13,13 +13,13 @@ body{
     padding: 30px;
     border-radius:15px 15px 0px 15px;
     box-shadow: 15px 15px 15px rgb(51, 56, 82);
+    opacity: 0;
+	transition-property: opacity;
+	transition-duration: 1s;
    }
-
-   .form {
-     transition-property: background-color;;
-     transition-duration: 5s;
-     transition-timing-function:linear ;
-     transition-delay: 1s;
+  
+ .form:hover {
+   opacity: 0.7;
   }
 
 .h2 {

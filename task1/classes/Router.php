@@ -14,8 +14,11 @@ class Router
 
 
 		$controller_url_demand = $this->demand->parts_of_url[3];
+		// var_dump($controller_url_demand);
 
-		if (in_array($controller_url_demand, $this->allowed_routes)) {
+		if ($controller_url_demand == "") {
+			$this->pullInController('access');
+		} elseif (in_array($controller_url_demand, $this->allowed_routes)) {
 
 			$this->pullInController($controller_url_demand);
 

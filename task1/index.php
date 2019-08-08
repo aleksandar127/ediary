@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 require('./db.php');	
 
 
@@ -19,4 +21,3 @@ foreach (glob('./classes/*') as $class_name) {
 $demand = new Demand();
 $router = new Router($demand);
 $view = new View();
-// $view->load_view('admin', 'hahah', 'includes','header');

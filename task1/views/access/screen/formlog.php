@@ -1,18 +1,30 @@
+<div class="login">
+		<form action="access/login" method="post">
+			<h2>Login</h2>
 
-	<div class="form">
-		<div class="h2">
-			<h2>LOGIN</h2>
-		</div>
-		<form method="POST" action="login.php" name="login_form" id="form" >
-			
-			<p>Username:</p>
-			<input type="text" name="username" id="username" value="<?php if(!empty($_POST)) echo $_POST['username']; ?>">
-			<span id="spantagu"></span>
-			<p>Password:</p>
-			<input type="password" name="password" id="password" value="<?php if(!empty($_POST)) echo $_POST['password']; ?>"><br>
-			<span id="spantagp"></span>
-			<br>
-			<input type="submit" name="submit" value="Login" id="submitLog">
-			
+			<div class="form-article">
+				<label for="username">Username:</label>
+				<input type="text" name="login_username" id="login_username">
+				<p></p>
+			</div>
+
+
+			<div class="form-article">
+				<label for="password">Password:</label>
+				<input type="password" name="login_password" id="login_password">
+				<p></p>
+			</div>
+			<input type="submit" value="Login" class="btn">
 		</form>
-	</div>
+
+
+		<?php if(isset($_GET['error'])) : ?>
+			<small style="color: red; background-color: transparent;">
+				<?php echo $_GET['error']; ?>	
+			</small>
+		<?php endif; ?>
+
+		<a href="<?php echo DOMAIN; ?>/admin">Continue As Admin</a>
+</div>
+
+

@@ -1,11 +1,17 @@
 <?php 
 
 
-class BaseAccessController
+class BaseAccessController extends MainLogicController
 {
-	public function __construct()
+	public function __construct($demand)
 	{
-		$view = new View();
+		$this->logic($demand);
+	
+	}
+
+	public function index()
+	{
+	    $view = new View();
 		$view->load_view('access', 'screen', 'formlog');
 	}
 }

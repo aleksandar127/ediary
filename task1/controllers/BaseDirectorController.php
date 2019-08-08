@@ -1,6 +1,6 @@
 <?php 
 
-class BaseDirectorController
+class BaseDirectorController extends MainLogicController
 {
 	
 }

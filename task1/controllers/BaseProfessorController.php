@@ -1,6 +1,6 @@
 <?php 
 
-class BaseProfessorController
+class BaseProfessorController extends MainLogicController
 {
 	
 }

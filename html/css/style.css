@@ -175,3 +175,20 @@ table {
 	background-color:rgba(0, 0, 0, 0.45);
 	color: #FFF;
   }
+
+
+  #table a:link,
+  #table a:visited {
+	  text-decoration:none;
+	  color: #000;
+	  font-weight: 700;
+	  text-align: center;
+  }
+  #table a:hover {
+	  color:#AE3D00;
+	  padding: 5px;
+  }
+  #table a:active {
+	  color:#CC2A00;
+  }
+ 

@@ -1,51 +1,48 @@
 
 body{
-    background: url(task1/assets/images/logoform.jpg) center center / cover fixed;
+    background-image: url(images/formlog1.jpg);
     margin: 0;
     padding: 0;
     background-color: rgb(195, 204, 212);
 }
 .form {
-    background-color: rgba(94, 108, 117, 0.705);
+    background-color: rgba(20, 22, 24);
     margin: auto;
     margin-top: 20px;
     width: 350px;
     padding: 30px;
     border-radius:15px 15px 0px 15px;
-    box-shadow: 15px 15px 15px rgb(51, 56, 82);
+    box-shadow: 15px 15px 15px rgb(18, 18, 19);
+    opacity: 0.5;
+	transition-property: opacity, box-shadow;
+	transition-duration: 5s;
    }
-
-   .form {
-     transition-property: background-color;;
-     transition-duration: 5s;
-     transition-timing-function:linear ;
-     transition-delay: 1s;
+  
+ .form:hover {
+   opacity: 0.9;
+   box-shadow: 15px 15px 15px rgb(25, 25, 26);
   }
 
 .h2 {
     text-align: center;
+    color: white;
 }
 form p {
     font-size: 24px;
+    color: white;
 }
 form input{
     width: 300px;
     height: 40px;
     border-radius:15px 15px 0px 15px;
 }
-.formlogo {
-    position: relative;
-    background-color: rgb(94, 108, 117);
-    margin: auto;
-    margin-top: 25px;
-    width: 600px;
-    padding: 20px;
-    border-radius:15px 15px 0px 15px;
-    box-shadow: 15px 15px 15px rgb(51, 56, 82);
+
+#submitLog {
+    font-size: 20px;
 }
-.logo {
-    
-    width: 585px;
-    margin: auto;
-    margin-left: 8px;
+#diaryImg{
+    width: 300px;
+    height: 200px;
+    padding: 25px;
+    margin: 10px;
 }

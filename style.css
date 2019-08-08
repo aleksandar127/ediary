@@ -12,14 +12,15 @@ body{
     width: 350px;
     padding: 30px;
     border-radius:15px 15px 0px 15px;
-    box-shadow: 15px 15px 15px rgb(26, 26, 27);
+    box-shadow: 15px 15px 15px rgb(18, 18, 19);
     opacity: 0.5;
-	transition-property: opacity;
+	transition-property: opacity, box-shadow;
 	transition-duration: 5s;
    }
   
  .form:hover {
    opacity: 0.9;
+   box-shadow: 15px 15px 15px rgb(25, 25, 26);
   }
 
 .h2 {

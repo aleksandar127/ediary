@@ -1,10 +1,10 @@
 <?php 
-include "dbconst.php";
+include "dbconst.php";//doesn't metter for now
 class DB {
 
    
     public static $con;
-
+    //for each instance this class have connection with database
     public function __construct(){
         $this->connect();
     }
@@ -24,6 +24,7 @@ class DB {
 
 	}
 }
+//DB::$con; - we can access through this static field 
 
 
 

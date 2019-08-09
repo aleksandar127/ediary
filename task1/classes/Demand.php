@@ -13,16 +13,15 @@ class Demand
 		$this->post_demand();
 	}
 
-
+//unpacking GET request, disassembling request to divide logic for controllers model, arguments(if there is any),
 	private function get_demand()
 	{
+		// first part of url
 		$url = $_SERVER['REQUEST_URI'];
-
 		$url = explode('?', $url);
-
 		$this->parts_of_url = explode('/', $url[0]);
 
-
+		//second part of url divided to get key_value pairs
 		if (strpos($_SERVER['REQUEST_URI'], '?')) {
 			
 			$parameters = explode('&', explode('?', $_SERVER['REQUEST_URI'])[1]);
@@ -34,6 +33,7 @@ class Demand
 
 	}
 
+//unpacking POST request, we are going to use this later for our forms and work with database
 	private function post_demand()
 	{
 		foreach ($_POST as $name => $value) {

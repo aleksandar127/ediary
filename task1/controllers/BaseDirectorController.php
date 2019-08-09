@@ -1,6 +1,10 @@
 <?php 
 
-class BaseDirectorController extends MainLogicController
+class BaseDirectorController
 {
+    public function index()
+    {
+        
+    }
 	
 }

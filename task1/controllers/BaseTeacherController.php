@@ -1,17 +1,11 @@
 <?php 
 
-class BaseTeacherController extends MainLogicController
+class BaseTeacherController 
 {
 
-	public function __construct($demand)
-	{
-		$this->logic($demand);
-	
-    }
-    
     public function index()
     {
-        
+        var_dump('isidora je kraljica sveta');
     }
 	
 }

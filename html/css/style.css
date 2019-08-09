@@ -170,6 +170,13 @@ td, th{
 	padding:8px;
 	width:70px;
 }
+th{
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	height: 200px;
+	padding: 0px;
+	text-align: center;
+}
   
 tr:nth-child(even){
 	background-color:rgba(0, 0, 0, 0.45);
@@ -204,50 +211,49 @@ tr:nth-child(even){
 	 border:none;
 	 font-size:24px;
  }
- #objects table tr:last-child {
+#objects table tr:last-child {
 	border-bottom: 1px solid #000;
   }
-
-
-
-
-
-  .container {
+#objects th{
+	transform:none;
+	-webkit-transform:none;
+	height:50px;
+	padding: 5px 0;
+}
+#message #sendMessage {
+	width: 665px;
+	padding-right:5px;
+	float: left;
+	margin-top: 5px;
+	
+}
+#message #scroll{
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 450px;
+	padding-right: 10px;
+}
+.container {
 	border: 2px solid #dedede;
 	background-color: #f1f1f1;
 	border-radius: 5px;
 	padding: 10px;
 	margin: 10px 0;
 	text-align: left;
-	width: 675px;
   }
-  
-  .darker {
+ 
+.darker {
 	border-color: #ccc;
 	background-color: #ddd;
 	text-align: right;
   }
   
-  .container::after {
+.container::after {
 	content: "";
 	clear: both;
 	display: table;
   }
-  
-  .container img {
-	float: left;
-	max-width: 60px;
-	width: 100%;
-	margin-right: 20px;
-	border-radius: 50%;
-  }
-  
-  .container img.right {
-	float: right;
-	margin-left: 20px;
-	margin-right:0;
-  }
-  
+
 .time-right{
 	float: right;
 	color: #aaa;
@@ -258,17 +264,25 @@ tr:nth-child(even){
 	color: #999;
 }
 #message #chat{
-	width:675px;
+	margin-top:10px;
+	width: 670px;
 }
 #message #subject{
-	height:200px;
-	width:690px;
+	width: 660px;
+	overflow: hidden;
+	height: 150px;
+	resize: none;
 }
 #message #sendMessage #chat input[type=submit]{
 	float: left;
 	font-size:20px;
+	overflow: hidden;
+	overflow-y: hidden;
 }
-#message #sendMessage{
-	float: left;
-	width:675px;
+#listUsers{
+	float: right;
+	width: 665px;
+	padding-left: 3px;
+	border:1px solid #000;
+	margin-top:5px;
 }

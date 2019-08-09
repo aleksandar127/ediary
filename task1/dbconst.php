@@ -1,6 +1,6 @@
 <?php
 
-define("DBNAME", "schooldiary");
+define("DBNAME", "diary");
 define("HOST", "localhost");
 define("DBUSERNAME", "root");
 define("DBPASS", "");

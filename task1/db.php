@@ -13,9 +13,9 @@ class DB {
 
         try{
 
-            self::$con = new PDO('mysql: host=localhost; dbname=schooldiary','root','');
+            self::$con = new PDO('mysql: host=localhost; dbname=diary','root','');
             self::$con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-			//print_r(PDO::getAvailableDrivers());
+			print_r(PDO::getAvailableDrivers());
         }catch(PDOException $e){
 			echo 'Database connection has failed. Contact system administrator to resolve this issue!<br>';
 			$e->getMessage();
@@ -25,7 +25,7 @@ class DB {
 	}
 }
 //DB::$con; - we can access through this static field 
-
+//$db = new DB(); - just check
 
 
 

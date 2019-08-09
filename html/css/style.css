@@ -276,13 +276,26 @@ tr:nth-child(even){
 #message #sendMessage #chat input[type=submit]{
 	float: left;
 	font-size:20px;
-	overflow: hidden;
-	overflow-y: hidden;
 }
 #listUsers{
 	float: right;
 	width: 665px;
-	padding-left: 3px;
+	padding: 3px;
 	border:1px solid #000;
 	margin-top:5px;
+	height: 450px;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
+#listUsers ul{
+	list-style: none;
+	margin: 5px;
+	padding: 0px;
+	font-size: 20px;
+	text-align: left;
+}
+#listUsers ul li{
+	border-bottom: 1px solid black;
+	padding-top: 5px;
+}
+

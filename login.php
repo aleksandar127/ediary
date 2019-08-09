@@ -1,11 +1,11 @@
 <?php
-
+require "db.php";
+session_start();
 
 $user = $_POST["username"];
 $pass = $_POST["password"];
 echo $user;
-$log=new Users($user, $pass);
-$log->login();
+
 
 
 
@@ -14,10 +14,8 @@ echo "</br>";
 echo "skripta za logovanje";
 echo "</br>";
 
-require "task1/db.php";
-session_start();
-class Users
-{
+
+class Users {
    public $user;
    public $pass;
 
@@ -29,8 +27,9 @@ class Users
    public function login()
    {
         $db = new DB();
+        DB::$con;
 
-    $sql = "SELECT * from students where username = ".$this->user." and password = ".$this->pass;                     
+    $sql = "SELECT * from parents where username = ".$this->user." and password = ".$this->pass;                     
     $query = $db->prepare($sql);
     $stmt = $db->prepare($sql);
     $stmt->execute();
@@ -44,3 +43,5 @@ class Users
     }
   }
 }
+$log=new Users($user, $pass);
+$log->login();

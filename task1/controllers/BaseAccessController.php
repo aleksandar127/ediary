@@ -5,8 +5,6 @@ class BaseAccessController
 {	
 	public function __construct()
 	{
-
-		//you can see how to load from folder view login form, example, this way we are going to load each view just by writing desired names of folder,subfolder and file
 		$view = new View();
 		$view->load_view('access', 'screen', 'formlog');
 		
@@ -19,7 +17,17 @@ class BaseAccessController
 
 	public function login()
 	{
-		var_dump('logovanjee');
+		$username = $_POST['login_username'];
+		$password = $_POST['login_password'];
+
+		$user_model = new Users();
+		$logging = $user_model->login_user($username, $password);
+
+		if($logging){
+			echo 'slaze se sa bazom ime i sifra';
+		} else {
+			echo 'NE slaze se sa bazom ime i sifra';
+		}
 	}
 
 	public function acid()

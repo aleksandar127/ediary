@@ -3,37 +3,37 @@
 
 class BaseAccessController 
 {	
-	public function __construct()
-	{
-		$view = new View();
-		$view->load_view('access', 'screen', 'formlog');
-		
-	}
 
 	public function index()
 	{
-	   var_dump('hahaah index je u pitanu');
+		$view = new View();
+		$view->load_view('access', 'screen', 'formlog');
 	}
-
+	
 	public function login()
 	{
 		$username = $_POST['login_username'];
 		$password = $_POST['login_password'];
-
+		
 		$user_model = new Users();
-		$logging = $user_model->login_user($username, $password);
+		$user = $user_model->login_user($username, $password);
 
-		if($logging){
-			echo 'slaze se sa bazom ime i sifra';
+		var_dump($user);
+		
+		if($user){
+			// echo 'slaze se sa bazom ime i sifra';
+			$cookie_name = $user['role_name'];
+			$cookie_value = $user['password'];
+			$cookie = setcookie($cookie_name, $cookie_value, time() + 84000, "/"); 
+			
+			
+
 		} else {
-			echo 'NE slaze se sa bazom ime i sifra';
+			header('Location: http://localhost/eDiary/task1/access?err=Wrong Credentials!');
+			
 		}
 	}
-
-	public function acid()
-	{
-		var_dump('acidovanje');
-	}
-
-
+	
+	
+	
 }

@@ -18,13 +18,7 @@
 		</form>
 
 
-		<?php if(isset($_GET['error'])) : ?>
-			<small style="color: red; background-color: transparent;">
-				<?php echo $_GET['error']; ?>	
-			</small>
-		<?php endif; ?>
-
-		<a href="<?php echo DOMAIN; ?>/admin">Continue As Admin</a>
+		<a href="#">Continue As Admin</a>
 </div>
 
 

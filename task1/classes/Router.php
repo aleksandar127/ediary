@@ -19,7 +19,6 @@ class Router
 			$controller = $this->pullInController('access');
 
 
-			//here we have to check is there key no.4 in our array parts_of_url, cause its going to give us a notice if we don't write this part of code, so IF ITS NOT IN URL EXCEPT 'TASK1', THIS PART OF CODE IS GOING TO SET CONTROLLER AS ACCESS SCREEN AND METHOD AS INDEX, IF IN URL IS ONLY ACCESS, METHOD IS GOING TO BE INDEX ALSO
 			if (!array_key_exists('4', $this->demand->parts_of_url) || $this->demand->parts_of_url[4] == "") {
 				$method = 'index';
 			} else {
@@ -37,7 +36,7 @@ class Router
 		} elseif (in_array($controller_url_demand, $this->allowed_routes)) {
 			
 			$controller = $this->pullInController($controller_url_demand);
-			if($this->demand->parts_of_url[4] == ""){
+			if(!array_key_exists('4', $this->demand->parts_of_url) || $this->demand->parts_of_url[4] == ""){
 				$method = 'index';
 			} else {
 				$method =  $this->demand->parts_of_url[4];

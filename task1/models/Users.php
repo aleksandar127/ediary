@@ -13,4 +13,12 @@ class Users
 		}
 		return $users;
     }
+
+
+    public static function set_user_cookie($cookie, $id)
+    {
+        $query = 'update users set cookie=? where id=?';
+        $res=  DB::$conn->prepare($query);
+        $res->execute([$cookie, $id]);
+    }
 }

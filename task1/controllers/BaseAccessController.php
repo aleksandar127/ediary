@@ -3,6 +3,7 @@
 
 class BaseAccessController 
 {	
+	private $allowed_roles = array('admin', 'director', 'professor', 'teacher', 'parent');
 
 	public function index()
 	{
@@ -22,18 +23,28 @@ class BaseAccessController
 		
 		if($user){
 			// echo 'slaze se sa bazom ime i sifra';
-			$cookie_name = $user['role_name'];
-			$cookie_value = $user['password'];
-			$cookie = setcookie($cookie_name, $cookie_value, time() + 84000, "/"); 
-			
-			
+			$hash = hash('md5', microtime());
+			$user_id = $user['id'];
+			$cookie_id = setcookie('id', $user_id, time() + 84000, "/"); 
+			$cookie_hash = setcookie('loginhash', $hash, time() + 84000, "/");
+
+			$user_model = Users::set_user_cookie($hash, $user_id);
+
+			header('Location: http://localhost/eDiary/task1/'.$user['role_name']);
 
 		} else {
 			header('Location: http://localhost/eDiary/task1/access?err=Wrong Credentials!');
 			
 		}
 	}
-	
+
+	public static function logout($id, $hash)
+	{
+
+	 setcookie ('id', $id, time() - 3600, "/");
+	 setcookie ('loginhash', $hash, time() - 3600, "/");
+		
+	}
 	
 	
 }

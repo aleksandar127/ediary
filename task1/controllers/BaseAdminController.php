@@ -8,7 +8,7 @@ class BaseAdminController
 	{
 		$view = new View();
 		$view->load_view('admin', 'pages', 'home');
-		// var_dump($_COOKIE['admin']);
+
 	}
 
 	public function logout()
@@ -16,7 +16,7 @@ class BaseAdminController
 		// var_dump($_COOKIE);
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
 		header('Location: http://localhost/eDiary/task1/');
-	
+		die;
 		
 	}
 }

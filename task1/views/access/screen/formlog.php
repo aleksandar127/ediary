@@ -18,7 +18,12 @@
 		</form>
 
 
-		<a href="#">Continue As Admin</a>
+		<?php if(isset($_GET['err'])) : ?>
+			<small style="color: red; background-color: transparent;">
+				<?php echo $_GET['err']; ?>	
+			</small>
+		<?php endif; ?>
+
 </div>
 
 

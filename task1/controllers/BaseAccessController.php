@@ -3,29 +3,48 @@
 
 class BaseAccessController 
 {	
-	public function __construct()
-	{
-
-		//you can see how to load from folder view login form, example, this way we are going to load each view just by writing desired names of folder,subfolder and file
-		$view = new View();
-		$view->load_view('access', 'screen', 'formlog');
-		
-	}
-
 	public function index()
 	{
-	   var_dump('hahaah index je u pitanu');
+		$view = new View();
+		$view->load_view('access', 'screen', 'formlog');
 	}
-
+	
 	public function login()
 	{
-		var_dump('logovanjee');
+		$username = $_POST['login_username'];
+		$password = $_POST['login_password'];
+		
+		$user_model = new Users();
+		$user = $user_model->get_user_by_username_pass($username, $password);
+
+		var_dump($user);
+		
+		if($user){
+			// echo 'slaze se sa bazom ime i sifra';
+			$hash = hash('md5', microtime());
+			$user_id = $user['id'];
+			$cookie_id = setcookie('id', $user_id, time() + 84000, "/"); 
+			$cookie_hash = setcookie('loginhash', $hash, time() + 84000, "/");
+
+			$set_cookie = Users::set_user_cookie($hash, $user_id);
+			
+			header('Location: http://localhost/eDiary/task1/'.$user['role_name']);
+			// $view_cookies_by_role = Users::cookies_by_roles($user['role_id']);
+			// var_dump($view_cookies_by_role);
+
+		} else {
+			header('Location: http://localhost/eDiary/task1/access?err=Wrong Credentials!');
+			
+		}
 	}
 
-	public function acid()
+	public static function logout($id, $hash)
 	{
-		var_dump('acidovanje');
+
+	 setcookie ('id', $id, time() - 3600, "/");
+	 setcookie ('loginhash', $hash, time() - 3600, "/");
+		
 	}
-
-
+	
+	
 }

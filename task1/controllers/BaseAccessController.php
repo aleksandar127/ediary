@@ -3,8 +3,6 @@
 
 class BaseAccessController 
 {	
-	private $allowed_roles = array('admin', 'director', 'professor', 'teacher', 'parent');
-
 	public function index()
 	{
 		$view = new View();
@@ -17,7 +15,7 @@ class BaseAccessController
 		$password = $_POST['login_password'];
 		
 		$user_model = new Users();
-		$user = $user_model->login_user($username, $password);
+		$user = $user_model->get_user_by_username_pass($username, $password);
 
 		var_dump($user);
 		
@@ -28,9 +26,11 @@ class BaseAccessController
 			$cookie_id = setcookie('id', $user_id, time() + 84000, "/"); 
 			$cookie_hash = setcookie('loginhash', $hash, time() + 84000, "/");
 
-			$user_model = Users::set_user_cookie($hash, $user_id);
-
+			$set_cookie = Users::set_user_cookie($hash, $user_id);
+			
 			header('Location: http://localhost/eDiary/task1/'.$user['role_name']);
+			// $view_cookies_by_role = Users::cookies_by_roles($user['role_id']);
+			// var_dump($view_cookies_by_role);
 
 		} else {
 			header('Location: http://localhost/eDiary/task1/access?err=Wrong Credentials!');

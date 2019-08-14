@@ -24,7 +24,6 @@
 			</small>
 		<?php endif; ?>
 
-		<!-- <a href="<?php echo DOMAIN; ?>/admin">Continue As Admin</a> -->
 </div>
 
 

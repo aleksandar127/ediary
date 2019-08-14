@@ -4,7 +4,7 @@ require('./db.php');
 require('./constants.php');
 
 $db = new DB();
-var_dump($_COOKIE);
+
 spl_autoload_register(function($class){
 	require('./controllers/'.$class.'.php');
 });

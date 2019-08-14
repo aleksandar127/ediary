@@ -1,0 +1,12 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+#nav{
+    background-color: lightblue;
+}
+#nav ul li{
+    display: inline;
+    padding: 40px;
+    font-size: 25px;
+}

@@ -13,6 +13,7 @@ class BaseAccessController
 	{
 		$username = $_POST['login_username'];
 		$password = $_POST['login_password'];
+		// $enc_pass = password_hash($password, PASSWORD_BCRYPT);
 		
 		$user_model = new Users();
 		$user = $user_model->get_user_by_username_pass($username, $password);
@@ -29,8 +30,7 @@ class BaseAccessController
 			$set_cookie = Users::set_user_cookie($hash, $user_id);
 			
 			header('Location: http://localhost/eDiary/task1/'.$user['role_name']);
-			// $view_cookies_by_role = Users::cookies_by_roles($user['role_id']);
-			// var_dump($view_cookies_by_role);
+			
 
 		} else {
 			header('Location: http://localhost/eDiary/task1/access?err=Wrong Credentials!');

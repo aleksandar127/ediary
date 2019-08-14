@@ -28,10 +28,12 @@ class BaseAdminController
 	public function edit_user()
 	{	
 		$view = new View();
-		$view->load_view('admin', 'pages', 'edit_users');
 		$user_id = $this->demand->parts_of_url[5];
-		var_dump($user_id);
-		$delete_user = Users::edit($user_id);
+		$spec_user = Users::get_user_by_id($user_id);
+		$view->data['user'] = $spec_user;
+		var_dump($view->data['user']);
+		// $edit_user = Users::edit($user_id);
+		$view->load_view('admin', 'pages', 'edit_users');
 		echo 'edituj ovog korisnika';
 	}
 

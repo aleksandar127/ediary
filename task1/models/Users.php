@@ -21,4 +21,6 @@ class Users
         $res=  DB::$conn->prepare($query);
         $res->execute([$cookie, $id]);
     }
+
+    
 }

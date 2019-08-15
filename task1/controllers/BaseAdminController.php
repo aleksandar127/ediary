@@ -33,8 +33,23 @@ class BaseAdminController
 		$roles = Users::all_roles();
 		$view->data['user'] = $spec_user;
 		$view->data['roles'] = $roles;
-		$edit_user = Users::edit($user_id);
 		$view->load_view('admin', 'pages', 'edit_users');
+	}
+
+	public function save_update()
+	{
+		var_dump($_POST);
+		$user_id = $this->demand->parts_of_url[5];
+		$first_name = $_POST['first_name'];
+		$last_name = $_POST['last_name'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$role = $_POST['role_id'];
+		$edit_user = Users::edit($first_name, $last_name, $username, $password, $role, $user_id);
+		if ($edit_user) {
+			header('Location: http://localhost/eDiary/task1/admin/users');
+		}
+
 	}
 
 	public function delete_user()

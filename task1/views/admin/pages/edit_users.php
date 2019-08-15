@@ -1,24 +1,24 @@
 <div class="container">
-    <form>
+    <form method="post" action="<?php echo 'http://localhost/eDiary/task1/admin/save_update/'.$this->data['user']['id'];?>">
     <div class="form-group">
         <label for="first_name">First Name:</label>
-        <input type="text" class="form-control" id="first_name" value="<?php echo $this->data['user']['first_name']; ?>">
+        <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $this->data['user']['first_name']; ?>">
     </div>
     <div class="form-group">
         <label for="last_name">Last Name:</label>
-        <input type="text" class="form-control" id="last_name" value="<?php echo $this->data['user']['last_name']; ?>">
+        <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo $this->data['user']['last_name']; ?>">
     </div>
     <div class="form-group">
         <label for="username">Username:</label>
-        <input type="text" class="form-control" id="username" value="<?php echo $this->data['user']['username']; ?>">
+        <input type="text" class="form-control" id="username" name="username" value="<?php echo $this->data['user']['username']; ?>">
     </div>
     <div class="form-group">
         <label for="password">Password:</label>
-        <input type="text" class="form-control" id="password" value="<?php echo $this->data['user']['password']; ?>">
+        <input type="text" class="form-control" id="password" name="password" value="<?php echo $this->data['user']['password']; ?>">
     </div>
     <div class="form-group" style="width: 30%;">
           <label for="roles">Role:</label>
-            <select class="custom-select mr-sm-2" id="roles">
+            <select class="custom-select mr-sm-2" id="roles" name="role_id">
             <?php foreach ($this->data['roles'] as $role) : ?>
                 <?php if($this->data['user']['role_id'] == $role['id']): ?>
                     <option value="<?php echo $role['id'];?>" selected><?php echo $role['name'];?></option>

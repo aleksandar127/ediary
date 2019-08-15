@@ -3,6 +3,7 @@
     <div class="form-group">
         <label for="first_name">First Name:</label>
         <input type="text" class="form-control" id="first_name" name="first_name" placeholder="John">
+        <p></p>
     </div>
     <div class="form-group">
         <label for="last_name">Last Name:</label>
@@ -11,14 +12,17 @@
     <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Johnny">
+        <p></p>
     </div>
     <div class="form-group">
         <label for="password">Password:</label>
         <input type="text" class="form-control" id="password" name="password" placeholder="123456">
+        <p></p>
     </div>
     <div class="form-group">
         <label for="password">Re-Type Password:</label>
         <input type="text" class="form-control" id="re_password" name="re_password" placeholder="123456">
+        <p></p>
     </div>
     <div class="form-group" style="width: 30%;">
           <label for="roles">Role:</label>

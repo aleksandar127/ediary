@@ -21,7 +21,8 @@ function validate_form(){
 
         if (i_value == '') {
             field_valid = false;
-            display_error();
+            console.log(input);
+            // display_error(input, 'required');
         }
     });
 }

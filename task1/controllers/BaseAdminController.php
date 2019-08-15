@@ -38,7 +38,6 @@ class BaseAdminController
 
 	public function save_update()
 	{
-		var_dump($_POST);
 		$user_id = $this->demand->parts_of_url[5];
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
@@ -70,5 +69,27 @@ class BaseAdminController
 		header('Location: http://localhost/eDiary/task1/');
 		die;
 		
+	}
+
+
+	public function add_user()
+	{
+		$view = new View();
+		$roles = Users::all_roles();
+		$view->data['roles'] = $roles;
+		$view->load_view('admin', 'pages', 'add_user');
+	}
+
+	public function save_user()
+	{
+		echo 'sacuvaj sad usera';
+		var_dump($_POST);
+		$first_name = $_POST['first_name'];
+		$last_name = $_POST['last_name'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$role = $_POST['role_id'];
+
+		$add_new_user = Users::add_new_user($first_name, $last_name, $username, $password, $role);
 	}
 }

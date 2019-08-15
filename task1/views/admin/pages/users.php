@@ -30,4 +30,5 @@
     <?php endforeach; ?>
   </tbody>
 </table>
+<a href="http://localhost/eDiary/task1/admin/add_user" class="btn btn-success">Add New User</a>
 </div>

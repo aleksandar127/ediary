@@ -57,4 +57,13 @@ class Users
         $roles = $query->fetchAll(PDO::FETCH_ASSOC);
         return $roles;  
     }
+    
+    public static function add_new_user($first_name, $last_name, $username, $password, $role_id)
+    {
+        
+        $query = "insert into users (first_name, last_name, username, password, role_id) values (?,?,?,?,?)";
+        $query= DB::$conn->prepare($query);
+        $res = $query->execute([$first_name, $last_name, $username, $password, $role_id]);
+        return $res;
+    }
 }

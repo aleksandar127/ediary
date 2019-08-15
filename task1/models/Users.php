@@ -36,7 +36,7 @@ class Users
         $users = $query->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
-
+    
     public static function edit($first_name, $last_name, $username, $password, $role, $id)
     {
         $query = 'update users set first_name=?, last_name=?, username=?, password=?, role_id=? where id=?';
@@ -49,5 +49,12 @@ class Users
         $query = 'delete from users where id=? limit 1';
         $res=  DB::$conn->prepare($query);
         return $res->execute([$id]);
+    }
+    
+    public static function all_roles()
+    {
+        $query = DB::$conn->query('select * from role');
+        $roles = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $roles;  
     }
 }

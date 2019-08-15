@@ -30,11 +30,11 @@ class BaseAdminController
 		$view = new View();
 		$user_id = $this->demand->parts_of_url[5];
 		$spec_user = Users::get_user_by_id($user_id);
+		$roles = Users::all_roles();
 		$view->data['user'] = $spec_user;
-		var_dump($view->data['user']);
-		// $edit_user = Users::edit($user_id);
+		$view->data['roles'] = $roles;
+		$edit_user = Users::edit($user_id);
 		$view->load_view('admin', 'pages', 'edit_users');
-		echo 'edituj ovog korisnika';
 	}
 
 	public function delete_user()
@@ -51,7 +51,6 @@ class BaseAdminController
 
 	public function logout()
 	{
-		// var_dump($_COOKIE);
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
 		header('Location: http://localhost/eDiary/task1/');
 		die;

@@ -67,7 +67,7 @@ class BaseAdminController
 	{
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
 		header('Location: http://localhost/eDiary/task1/');
-		die;
+		die();
 		
 	}
 

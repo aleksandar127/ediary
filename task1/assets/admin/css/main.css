@@ -42,3 +42,9 @@ form{
 .form-group label{
     font-weight: bold;
 }
+
+/* ERRORS FOR FORMS */
+
+.err{
+    color: rgb(230, 0, 0);
+}

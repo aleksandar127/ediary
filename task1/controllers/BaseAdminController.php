@@ -60,7 +60,7 @@ class BaseAdminController
 		} else {
 			echo 'ne radi brisanje u bazi';
 		}
-		// echo 'brisi ovog korisnika';
+
 	}
 
 	public function logout()

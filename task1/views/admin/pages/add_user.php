@@ -8,6 +8,7 @@
     <div class="form-group">
         <label for="last_name">Last Name:</label>
         <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Doe">
+        <p></p>
     </div>
     <div class="form-group">
         <label for="username">Username:</label>
@@ -31,6 +32,7 @@
                     <option value="<?php echo $role['id']; ?>"><?php echo $role['name']; ?></option>
                 <?php endforeach; ?>
             </select>
+            <small style="color:rgb(128, 128, 128);">Note: if you don't choose role, it will be set by default.</small>
     </div>
     <button type="submit" class="btn btn-dark">Add User</button>
     </form>

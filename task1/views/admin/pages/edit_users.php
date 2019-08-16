@@ -3,18 +3,22 @@
     <div class="form-group">
         <label for="first_name">First Name:</label>
         <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $this->data['user']['first_name']; ?>">
+        <p></p>
     </div>
     <div class="form-group">
         <label for="last_name">Last Name:</label>
         <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo $this->data['user']['last_name']; ?>">
+        <p></p>
     </div>
     <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" class="form-control" id="username" name="username" value="<?php echo $this->data['user']['username']; ?>">
+        <p></p>
     </div>
     <div class="form-group">
         <label for="password">Password:</label>
         <input type="text" class="form-control" id="password" name="password" value="<?php echo $this->data['user']['password']; ?>">
+        <p></p>
     </div>
     <div class="form-group" style="width: 30%;">
           <label for="roles">Role:</label>
@@ -31,3 +35,5 @@
     <button type="submit" class="btn btn-dark">Update User</button>
     </form>
 </div>
+
+<script src="http://localhost/eDiary/task1/assets/admin/js/add_user.js"></script>

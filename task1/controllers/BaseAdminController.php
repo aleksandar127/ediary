@@ -44,7 +44,10 @@ class BaseAdminController
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		$role = $_POST['role_id'];
-		$edit_user = Users::edit($first_name, $last_name, $username, $password, $role, $user_id);
+
+		$enc_pass = password_hash($password , PASSWORD_BCRYPT);
+
+		$edit_user = Users::edit($first_name, $last_name, $username, $enc_pass, $role, $user_id);
 		if ($edit_user) {
 			header('Location: http://localhost/eDiary/task1/admin/users');
 		}
@@ -90,7 +93,9 @@ class BaseAdminController
 		$password = $_POST['password'];
 		$role = $_POST['role_id'];
 
-		$add_new_user = Users::add_new_user($first_name, $last_name, $username, $password, $role);
+		$enc_pass = password_hash($password , PASSWORD_BCRYPT);
+
+		$add_new_user = Users::add_new_user($first_name, $last_name, $username, $enc_pass, $role);
 		if ($add_new_user) {
 			header('Location: http://localhost/eDiary/task1/admin/add_user?success=Successfully added user!');
 		} else {

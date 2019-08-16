@@ -36,4 +36,18 @@
     </div>
     <button type="submit" class="btn btn-dark">Add User</button>
     </form>
+
+    <?php if(isset($_GET['err'])): ?>
+        <small style="color: rgb(128, 128, 128); margin-top: 5px; ">
+            <?php echo $_GET['err']; ?>
+        </small>
+    <?php endif; ?>
+
+    <?php if(isset($_GET['success'])): ?>
+        <small style="color: green; font-weight: bold; margin-top: 5px; ">
+            <?php echo $_GET['success']; ?>
+        </small>
+    <?php endif; ?>
 </div>
+
+<script src="http://localhost/eDiary/task1/assets/admin/js/add_user.js"></script>

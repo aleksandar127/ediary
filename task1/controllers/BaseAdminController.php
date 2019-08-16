@@ -8,7 +8,7 @@ class BaseAdminController
 	{
 		$this->demand = $demand;
 		
-	}
+	} 
 	public function index()
 	{
 		$view = new View();
@@ -48,7 +48,7 @@ class BaseAdminController
 		if ($edit_user) {
 			header('Location: http://localhost/eDiary/task1/admin/users');
 		}
-
+		
 	}
 
 	public function delete_user()
@@ -78,6 +78,7 @@ class BaseAdminController
 		$roles = Users::all_roles();
 		$view->data['roles'] = $roles;
 		$view->load_view('admin', 'pages', 'add_user');
+		
 	}
 
 	public function save_user()

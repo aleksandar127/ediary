@@ -31,6 +31,7 @@ class BaseAccessController
 			
 			header('Location: http://localhost/eDiary/task1/'.$user['role_name']);
 			
+			
 
 		} else {
 			header('Location: http://localhost/eDiary/task1/access?err=Wrong Credentials!');

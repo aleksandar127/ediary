@@ -91,5 +91,10 @@ class BaseAdminController
 		$role = $_POST['role_id'];
 
 		$add_new_user = Users::add_new_user($first_name, $last_name, $username, $password, $role);
+		if ($add_new_user) {
+			header('Location: http://localhost/eDiary/task1/admin/add_user?success=Successfully added user!');
+		} else {
+			header('Location: http://localhost/eDiary/task1/admin/add_user?err=Something went wrong!');
+		}
 	}
 }

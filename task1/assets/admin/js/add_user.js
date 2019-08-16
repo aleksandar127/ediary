@@ -1,23 +1,21 @@
 window.addEventListener('load', ()=>{
     var form = document.querySelector('form');
     var add_btn = document.querySelector('.btn');
-    // console.log(add_btn);
 
     add_btn.addEventListener('click', (e)=>{
         e.preventDefault();
         validate_form();
+        errors_exists(form);
     });
 });
 
 function validate_form(){
     var inputs = document.querySelectorAll('input');
-    // console.log(inputs);
     inputs.forEach(input => {
 
         var field_valid = true;
         var i_value = input.value.trim();
         var i_name = input.name;
-        // console.log(i_name + ':'+ i_value);
 
         if (i_value == '') {
             field_valid = false;
@@ -45,22 +43,33 @@ function validate_form(){
                         break;
                         
                     case 'username':
-                        console.log('validiraj USERNAME');
-                        
+                        if (i_value.length < 4) {
+                            field_valid = false;
+                            display_error(input, 'minlength');
+                        }
                         break;
-                        case 'password':
-                        console.log('validiraj PASS');
-                        
+                    case 'password':
+                        if (i_value.length < 6) {
+                            field_valid = false;
+                            display_error(input, 'minlength-psw');
+                        }  
                         break;
                         
-                        case 're_password':
-                        console.log('validiraj DA LI su iste sifre');
-
+                    case 're_password':
+                        if (i_value.length < 6) {
+                            field_valid = false;
+                            display_error(input, 'minlength-psw');
+                        } else if (field_valid) {
+                            var psw_value = inputs[3].value;
+                            var re_psw_value = inputs[4].value;
+                            if (re_psw_value !== psw_value) {
+                                display_error(input, 'password-not-match');
+                            } else {
+                                console.log('iste su sifre');
+                            }
+                        }
                         break;
-
-                    default:
-                    // code block
-                } 
+                    } 
                 }
             }
          });
@@ -87,4 +96,11 @@ function remove_error(field) {
     var error_el = document.querySelector('[name="' + field.name + '"] + p');
     error_el.innerText = '';
     error_el.classList.remove('err');
+}
+
+function errors_exists(form_el) {
+    var errors = document.querySelectorAll('p.err');
+    if (errors.length == 0) {
+        form_el.submit();
+    }
 }

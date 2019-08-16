@@ -26,7 +26,7 @@ function validate_form(){
         }
 
         if (field_valid) {
-            if (field_valid) {
+            if (field_valid && i_name != null) {
                 switch (i_name) {
                     case 'first_name':
                         if (i_value.length < 4) {

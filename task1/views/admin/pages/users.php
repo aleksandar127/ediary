@@ -20,7 +20,7 @@
       <td><?php echo $user['first_name']; ?></td>
       <td><?php echo $user['last_name']; ?></td>
       <td><?php echo $user['username']; ?></td>
-      <td><?php echo $user['password']; ?></td>
+      <td><?php echo str_replace($user['password'], str_repeat(' &#9679;', 6) , $user['password']); ?></td>
       <td><?php echo $user['role_name']; ?></td>
       <td><a class="btn btn-dark" href="<?php echo 'http://localhost/eDiary/task1/admin/edit_user/'.$user['id'];?>">edit</a></td>
       <?php if($user['role_name'] !== 'admin'): ?>

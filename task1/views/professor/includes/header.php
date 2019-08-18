@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<title>Admin</title>
+	<title>Professor</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,7 @@
 		<div class="wrapper">
 			<header>
 				<ul class="left_nav">
-					<li><a href="http://localhost/eDiary/task1/professor" >Home</a></li>
+					<li><a href="http://localhost/eDiary/task1/professor" >Pocetna</a></li>
 					<li><a href="http://localhost/eDiary/task1/professor/diary" >Dnevnici</a></li>
 					<li><a href="http://localhost/eDiary/task1/professor/messages" >Poruke</a></li>
 					<li><a href="http://localhost/eDiary/task1/professor/open" >Otvorena vrata</a></li>

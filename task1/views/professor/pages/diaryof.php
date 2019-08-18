@@ -33,9 +33,9 @@ foreach($this->data['diaries'] as $students):
             echo "<span style='color:red;font-size:20px;width:150px;display:inline-block;'>";
     echo ucfirst($students['first_name'])." ".ucfirst($students['first_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "</span>";
-    echo "<input id='z".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
+    echo "<input id='m".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
     echo "&nbsp;";
-    echo "<a   id='f".$br."".$students['id']."' onclick='edit(this.id)' class='btn btn-dark' href='http://localhost/eDiary/task1/professor/edit/".$students['mark']."/".$subject_id."'>Zakljuci</a>";
+    echo "<a href='http://localhost/eDiary/task1/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)' class='btn btn-dark' >Zakljuci</a>";
     echo "&nbsp;&nbsp";
     echo "<input id='o".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
     echo "&nbsp;";
@@ -63,23 +63,5 @@ foreach($this->data['diaries'] as $students):
     
 endforeach;
 ?>
-<script>
-function edit(id){
-var a=document.getElementById(id);
-var student_id = id.substr(2);
-var el=id.substr(1,1)+student_id;
-el="i"+el;
-var i=document.getElementById(el).value;
-a.href+="/"+i;
-}
 
-function newGrade(id){
-var a=document.getElementById(id);
-var student_id = id.substr(2);
-var el=id.substr(1,1)+student_id;
-el="o"+el;
-var i=document.getElementById(el).value;
-a.href+="/"+i;
-
-}
-</script>
+<script src="http://localhost/eDiary/task1/assets/professor/js/diaryof.js"></script>

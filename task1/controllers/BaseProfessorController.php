@@ -61,4 +61,17 @@ class BaseProfessorController
 		}
 		return $grade;
 	}
+
+	public function final_grade(){
+		$id = $this->demand->parts_of_url[5];
+		$final_grade = $this->demand->parts_of_url[7];
+		$subject_id=$this->demand->parts_of_url[6];
+		$grade=Professor::final_grade($id,$subject_id,$final_grade);
+		if (isset($_SERVER["HTTP_REFERER"])) {
+			header("Location: " . $_SERVER["HTTP_REFERER"]);
+		}
+		return $grade;
+
+
+	}
 }

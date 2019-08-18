@@ -62,6 +62,16 @@ class Professor
         $grade=$query->execute([$id,$subject_grade_id]); 
         return $grade;
     }
+    public static function final_grade($id,$subject_id,$grade){
+        $query = DB::$conn->prepare('SELECT id from subjects_has_grades where subjects_id=? and grades=? limit 1');
+        $query->execute([$subject_id,$grade]);
+        $subject = $query->fetch(PDO::FETCH_ASSOC);
+        $subject_grade_id=$subject['id'];
+        
+        $query = DB::$conn->prepare('insert into final_grades  (id,student_id,subject_grade) values (null,?,?)');
+        $grade=$query->execute([$id,$subject_grade_id]); 
+        return $grade;
+    }
 
 
 

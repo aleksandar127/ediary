@@ -12,15 +12,9 @@ class BaseDirectorController
 	{
 		$view = new View();
 		$view->load_view('director', 'pages', 'welcome');
-
-	}
-	public function diary()
-	{
-		$view = new View();
 		$nameDirector = Director::nameDir();
-		$view->data['names'] = $directorName;
-		$view->load_view('director', 'pages', 'welcome');
-
+		$view->data['names'] = $nameDirector;
 	}
+	
     
 }

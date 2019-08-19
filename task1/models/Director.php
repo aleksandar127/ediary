@@ -1,6 +1,6 @@
 <?php
 
-class Profesor{
+class Director{
 
-    
+
 }

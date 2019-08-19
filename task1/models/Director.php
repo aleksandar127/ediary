@@ -9,6 +9,7 @@ class Director{
         $query->execute([$_COOKIE['id']]); 
         $dir_name = $query->fetchAll(PDO::FETCH_ASSOC);
         return $dir_name;
+        
 }
 
 }

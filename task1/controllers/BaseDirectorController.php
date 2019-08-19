@@ -11,9 +11,9 @@ class BaseDirectorController
 	public function index()
 	{
 		$view = new View();
-		$view->load_view('director', 'pages', 'welcome');
 		$nameDirector = Director::nameDir();
-		$view->data['names'] = $nameDirector;
+        $view->data['names'] = $nameDirector;
+        $view->load_view('director', 'pages', 'welcome');
 	}
 	
     

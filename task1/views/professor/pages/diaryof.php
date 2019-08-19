@@ -1,15 +1,25 @@
 <?php
 //print_r($this->data['subject_id']);
+//print_r($this->data['final']);
 //print_r($this->data['diaries']);
-$subject_id=$this->data['subject_id']['id'];
+$count=0;
+$sum=0;
+$students_has_finals=[];
+$subject_id=$this->data['subject_id'];
 $id=0;
 $is_equal=false;
 $br=0;
+foreach($this->data['final'] as $niz):
+    $students_has_finals[$niz['student_id']]=$niz['grades'];
+    $keys=array_keys($students_has_finals);
+    endforeach;
 echo "<br>";
+$array_is_long=0;
 foreach($this->data['diaries'] as $students):
-  
+    $array_is_long++;
     if($id==$students['id']):
         $br++;
+        $count++;
         echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
         echo $students['grades'];
         echo "&nbsp;&nbsp;";
@@ -22,18 +32,34 @@ foreach($this->data['diaries'] as $students):
         echo "&nbsp;&nbsp;";
         $is_equal=true;
         $id=$students['id'];
+        $sum+=$students['grades'];
         
         echo "</div>";
-       
+    
+        if($array_is_long==count($this->data['diaries']))
+        echo substr($sum/$count,0,4);
         continue;
             endif;
-            echo $is_equal?"<br>":"";
-            
+          
+            if(($count>0 && $is_equal==false) || $is_equal ){
+           
+            echo substr($sum/$count,0,4);
+            $sum=0;
+            $count=0;
+            echo "<br>";
+            }
+            //echo $is_equal?"<br>":"";
+            $sum+=$students['grades'];
+            $count++;
             echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
             echo "<span style='color:red;font-size:20px;width:150px;display:inline-block;'>";
     echo ucfirst($students['first_name'])." ".ucfirst($students['first_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "</span>";
-    echo "<input id='m".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
+    $final_grade="";
+    if(in_array($students['id'], $keys)):
+    $final_grade=$students_has_finals[$students['id']];
+        endif;
+    echo "<input id='m".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5' value='".$final_grade."'></input>";
     echo "&nbsp;";
     echo "<a href='http://localhost/eDiary/task1/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)' class='btn btn-dark' >Zakljuci</a>";
     echo "&nbsp;&nbsp";
@@ -54,7 +80,7 @@ foreach($this->data['diaries'] as $students):
    
     endif;
     echo "</div>";
-   
+  
    
   
     

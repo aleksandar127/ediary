@@ -28,6 +28,8 @@ class BaseProfessorController
 		$students=Professor::get_diary($class_id);
 		$view->data['diaries'] = $students;
 		$view->data['subject_id']=Professor::get_subject_id();
+		$subject_id=$view->data['subject_id'];
+		$view->data['final']=Professor::final_grades_show($subject_id,$class_id);
 		$view->load_view('professor', 'pages', 'diaryof');
 	}
 
@@ -72,7 +74,34 @@ class BaseProfessorController
 		}
 		
 		return $grade;
+	}
 
+	public function open(){
+		$view = new View();
+		$open_doors=Professor::open();
+		$view->data['open'] = $open_doors;
+		$view->load_view('professor', 'pages', 'open');
 
 	}
+
+	public function open_yes(){
+		$id = $this->demand->parts_of_url[5];
+		$open_doors=Professor::open_yes($id);
+		if (isset($_SERVER["HTTP_REFERER"])) {
+			header("Location: " . $_SERVER["HTTP_REFERER"]);
+		}
+
+	public function open_no(){
+		$id = $this->demand->parts_of_url[5];
+		$open_doors=Professor::open_no($id);
+		if (isset($_SERVER["HTTP_REFERER"])) {
+			header("Location: " . $_SERVER["HTTP_REFERER"]);
+		}
+		
+
+	}
+
+
+
+
 }

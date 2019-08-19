@@ -33,7 +33,7 @@ class Professor
         $query = DB::$conn->prepare('Select subjects.id from subjects where subjects.users_id=?');
         $query->execute([$_COOKIE['id']]); 
         $subject = $query->fetch(PDO::FETCH_ASSOC);
-        return $subject;
+        return $subject['id'];
     }
 
     public static function delete($id){
@@ -83,13 +83,32 @@ class Professor
         }
     }
 
-   public static function final_grades_show($subject_id){
+   public static function final_grades_show($subject_id,$class_id){
 
-    $query = DB::$conn->prepare('SELECT final_grade.student_id,subjects_has_grades.grades from final_grade join subjects_has_grades on subjects_has_grades.id=final_grade.subject_grade  where subjects_has_grades.subjects_id=?  ');
-    $query->execute([$subject_id]);
-    $final_grades = $query->fetch(PDO::FETCH_ASSOC);
+    $query = DB::$conn->prepare('SELECT final_grade.student_id,subjects_has_grades.grades from final_grade join subjects_has_grades on subjects_has_grades.id=final_grade.subject_grade join students on students.id=final_grade.student_id  where subjects_has_grades.subjects_id=?  and students.class_id=?');
+    $query->execute([$subject_id,$class_id]);
+    $final_grades = $query->fetchAll(PDO::FETCH_ASSOC);
     return $final_grades;
 
+   }
+
+    public static function open(){
+    $query = DB::$conn->prepare('SELECT users.last_name,users.first_name,users_has_open.users_id as parent_id,users_has_open.id as user_open_id,open.id as open_id,open.time  FROM `users_has_open` join open on open.id=users_has_open.open_id join users on users.id=open.users_id WHERE open.users_id=? and users_has_open.accepted=0');
+    $query->execute([$_COOKIE['id']]);
+    $open_doors = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $open_doors;
+
+   }
+
+   public static function open_yes($id){
+    $query = DB::$conn->prepare('');
+    $query->execute([$id]);
+   }
+
+
+   public static function open_no($id){
+    $query = DB::$conn->prepare('');
+    $query->execute([$id]);
    }
 
 }

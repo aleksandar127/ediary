@@ -186,6 +186,9 @@ tr:nth-child(even){
 	color:#FFF;
 }
 
+#table table tr th::first-letter{
+	text-transform: uppercase;
+}
 #table a:link,
 #table a:visited{
 	text-decoration:none;
@@ -354,6 +357,7 @@ tr:nth-child(even){
 #listUsers a:hover {
 	color:rgba(0, 0, 0, 0.60);
 	font-weight: 700;
+	padding: 8px 0;
 }
 #listUsers a:active {
 	color:#515c13;

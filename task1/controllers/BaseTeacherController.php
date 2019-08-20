@@ -13,7 +13,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'home');
     }
 
-    public function subjects(){
+    public function marks(){
         $view = new View();
         $all_subjects = Teacher::get_all_subjects();
         $view->data['subjects'] = $all_subjects;
@@ -21,11 +21,13 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'subjects');
     }
 
-    public function parents(){
+    public function message(){
         $view = new View();
-        $all_parents = Teacher::get_all_parents();
-        $view->data['parents'] = $all_parents;
-        $view->load_view('teacher', 'pages', 'chat');
+        // $all_parents = Teacher::get_all_parents();
+        // $view->data['parents'] = $all_parents;
+        $child = Teacher::get_name_child();
+        $view->data['child'] = $child;
+        $view->load_view('teacher', 'pages', 'message');
     }
     public function objects(){
         $view = new View();

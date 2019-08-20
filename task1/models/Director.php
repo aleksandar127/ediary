@@ -11,11 +11,13 @@ class Director{
         return $dir_name;
       
 }
-    public static function classes(){
-        $query = DB::$conn->prepare('Select first_name, last_name from users where id=? ');
+    public function clasName(){
+        $query = DB::$conn->prepare('Select class.name, subjects.name from class,subjects where class.name = 1');
         $query->execute([$_COOKIE['id']]); 
-        $dir_name = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $dir_name;
+        $classesName = $query->fetchAll(PDO::FETCH_ASSOC);
+          //var_dump($classesName);
+        return $classesName;
     }
 
+    
 }

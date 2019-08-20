@@ -93,7 +93,7 @@ class Professor
    }
 
     public static function open(){
-    $query = DB::$conn->prepare('SELECT users.last_name,users.first_name,users_has_open.users_id as parent_id,users_has_open.id as user_open_id,open.id as open_id,open.time  FROM `users_has_open` join open on open.id=users_has_open.open_id join users on users.id=open.users_id WHERE open.users_id=? and users_has_open.accepted=0');
+    $query = DB::$conn->prepare('SELECT users.last_name,users.first_name,users_has_open.users_id as parent_id,users_has_open.id as user_open_id,open.id as open_id,open.time,users_has_open.accepted  FROM `users_has_open` join open on open.id=users_has_open.open_id join users on users.id=open.users_id WHERE open.users_id=? order by accepted');
     $query->execute([$_COOKIE['id']]);
     $open_doors = $query->fetchAll(PDO::FETCH_ASSOC);
     return $open_doors;
@@ -101,14 +101,40 @@ class Professor
    }
 
    public static function open_yes($id){
-    $query = DB::$conn->prepare('');
+    $query = DB::$conn->prepare('update users_has_open set accepted=1 where id=?');
     $query->execute([$id]);
    }
 
 
    public static function open_no($id){
-    $query = DB::$conn->prepare('');
+    $query = DB::$conn->prepare('update users_has_open set accepted=2 where id=?');
     $query->execute([$id]);
    }
+
+   public static function open_parents(){
+    $query = DB::$conn->prepare('SELECT users.id,users.last_name,users.first_name FROM `users` join users_has_open on users.id=users_has_open.users_id order by accepted ');
+    $query->execute();
+    $open_parents = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $open_parents;
+   }
+
+   public static function schedule(){
+    $query = DB::$conn->prepare('select terms.dan,terms.cas,class.name from terms join subjects on subjects.id=terms.subjects_id join users on users.id=subjects.users_id join schedule on schedule.id=terms.schedule_id join class on class.id=schedule.class_id where users.id=?');
+    $query->execute([$_COOKIE['id']]);
+    $schedule = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $schedule;
+   }
+
+   public static function get_all_messages(){
+    $query = DB::$conn->prepare('select message,date_and_time,is_read from messages where to_user=? ');
+    $query->execute([$_COOKIE['id']]);
+    $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $messages;
+
+   }
+
+
+
+
 
 }

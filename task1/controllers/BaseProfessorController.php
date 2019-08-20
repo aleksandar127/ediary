@@ -78,8 +78,10 @@ class BaseProfessorController
 
 	public function open(){
 		$view = new View();
+		$open_parents=Professor::open_parents();
 		$open_doors=Professor::open();
 		$view->data['open'] = $open_doors;
+		$view->data['open_parents'] = $open_parents;
 		$view->load_view('professor', 'pages', 'open');
 
 	}
@@ -91,6 +93,8 @@ class BaseProfessorController
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
 
+	}
+
 	public function open_no(){
 		$id = $this->demand->parts_of_url[5];
 		$open_doors=Professor::open_no($id);
@@ -100,7 +104,23 @@ class BaseProfessorController
 		
 
 	}
+	public function schedule(){
+		$view = new View();
+		$schedule=Professor::schedule();
+		$view->data['schedule'] = $schedule;
+		$view->load_view('professor', 'pages', 'schedule');
+		
 
+	}
+
+	public function get_all_messages(){
+		$view = new View();
+		$messages=Professor::get_all_messages();
+		$view->data['all_messages'] = $messages;
+		$view->load_view('professor', 'pages', 'messages');
+		
+
+	}
 
 
 

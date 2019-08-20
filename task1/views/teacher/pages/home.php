@@ -1,5 +1,3 @@
-<h1>Pozdrav</h1>
-   
 <div id="teachers">
 		<div class="wrapper">
         	<div id="teacher">
@@ -9,7 +7,7 @@
                 <?php foreach($this->data['students'] as $student): ?>
 
                 <div class="student">
-					<h3 class="title"><a href="#"><span><?php echo $student['id']; ?> </span> <?php echo $student['first_name']; ?></a></h3>
+					<h3 class="title"><a href="#"><span><?php echo $student['id']; ?>. </span> <?php echo $student['first_name']; ?> <span> <?php echo $student['last_name'];?></span></a></h3>
 				</div>
                 <?php endforeach; ?>
 			</div>

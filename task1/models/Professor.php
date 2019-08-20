@@ -125,13 +125,38 @@ class Professor
     return $schedule;
    }
 
-   public static function get_all_messages(){
-    $query = DB::$conn->prepare('select message,date_and_time,is_read from messages where to_user=? ');
+   public static function get_new_messages(){
+    $query = DB::$conn->prepare('select id,message,date_and_time,from_user from messages where to_user=? and is_read=0');
     $query->execute([$_COOKIE['id']]);
     $messages = $query->fetchAll(PDO::FETCH_ASSOC);
     return $messages;
 
    }
+
+   public static function ajax_is_read($id){
+    $query = DB::$conn->prepare('update messages set is_read=1 where id=? ');
+    $query->execute([$id]);
+    return $query->rowCount();
+
+   }
+
+   public static function parents_chat(){
+    $query = DB::$conn->prepare('select users.id,users.first_name,users.last_name,students.id as students_id,students.first_name as students_first_name,students.last_name as students_last_name from users join students on users.id=students.users_id join class on class.id=students.class_id join users_has_class on users_has_class.class_id=class.id where users_has_class.users_id=?');
+    $query->execute([$_COOKIE['id']]);
+    $parents = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $parents;
+
+   }
+
+   public static function ajax_chat($id){
+    $query = DB::$conn->prepare('select * from messages where (from_user=? and to_user=?) or (from_user=? and to_user=?) order by date_and_time desc');
+    $query->execute([$_COOKIE['id'],$id,$id,$_COOKIE['id']]);
+    $parents = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $parents;
+
+   }
+   //'select * from messages where (from_user=4 and to_user=8) or (from_user=8 and to_user=4) order by date_and_time desc'
+  
 
 
 

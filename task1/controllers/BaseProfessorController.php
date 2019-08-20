@@ -113,14 +113,48 @@ class BaseProfessorController
 
 	}
 
-	public function get_all_messages(){
+	public function messages(){
 		$view = new View();
-		$messages=Professor::get_all_messages();
+		$messages=Professor::get_new_messages();
+		$parents=Professor::parents_chat();
 		$view->data['all_messages'] = $messages;
+		$view->data['parents'] = $parents;
 		$view->load_view('professor', 'pages', 'messages');
+		
 		
 
 	}
+	public function ajax(){
+		$messages=Professor::get_new_messages();
+		echo JSON_encode($messages);
+		
+
+	}
+
+	public function ajax_is_read(){
+		
+		$id=$_GET['id'];
+		$messages=Professor::ajax_is_read($id);
+		if($messages)
+		$response=['response'=>true];
+		else
+		$response=['response'=>false];
+		echo JSON_encode($response);
+		
+
+	}
+
+	public function ajax_chat(){
+		
+		$id=$_GET['id'];
+		$messages=Professor::ajax_chat($id);
+		echo JSON_encode($messages);
+
+	}
+
+
+
+
 
 
 

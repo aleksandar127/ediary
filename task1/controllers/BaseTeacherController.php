@@ -23,8 +23,6 @@ class BaseTeacherController{
 
     public function message(){
         $view = new View();
-        // $all_parents = Teacher::get_all_parents();
-        // $view->data['parents'] = $all_parents;
         $child = Teacher::get_name_child();
         $view->data['child'] = $child;
         $view->load_view('teacher', 'pages', 'message');

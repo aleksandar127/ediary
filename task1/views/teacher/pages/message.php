@@ -63,23 +63,6 @@
                     <?php foreach($this->data['child'] as $child): ?>
                     <li><a href="#"><span><?php echo $child['first_name']; ?></span> <span><?php echo $child['last_name']; ?></span> - <?php echo $child['name_students']; ?></a></li>
                     <?php endforeach; ?>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
-                    <li><a href="#">Zoran Stankovic - Nikola</a></li>
                 </ul>
             </div><!-- end #listUsers -->
         </div><!-- end .wrapper -->

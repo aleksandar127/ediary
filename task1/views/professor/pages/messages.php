@@ -1,12 +1,12 @@
 <br>
-<div id="message" style="display:inline-block;width:400px;">
+<div id="message" style="display:inline-block;width:400px;min-height:300px;max-height:300px;overflow:auto;">
      
     </div><!-- end #message -->
-    <div id="parents" style="display:inline-block;">
+    <div id="parents" style="display:inline-block;position:fixed;height:400px;">
     <?php
 foreach($this->data['parents'] as $parents):
     
-   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."' >Roditelj: ".$parents['first_name']." ".$parents['first_name']." Ucenik: ".$parents['students_first_name']." ".$parents['students_first_name']." </div>";
+   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."'  style='background-color:#d1ede8;width:350px;margin-bottom:3px;'>Roditelj: ".$parents['first_name']." ".$parents['first_name']." Ucenik: ".$parents['students_first_name']." ".$parents['students_first_name']."<br> </div>";
 
 endforeach;
 
@@ -15,19 +15,13 @@ endforeach;
     <div id="sendMessage">
                 
                 <div id="chat">
-                    <form action="#">
-                        <textarea id="subject" name="subject" placeholder="Write something.." ></textarea>
+                    
+                        <textarea id="subject"  name="subject" placeholder="Write something.." ></textarea>
                         <button onclick='ajaxSendMessage();'>Posalji</button>
-                    </form>
+                    
                 </div>
             </div><!-- end #sendMessage -->
-            <div id="listUsers">
-                <ul>
-                    
-                    <li><a href="#"><span><?php echo "ime deteta"; ?></span> <span><?php echo "dete"; ?></a></li>
-                    
-                </ul>
-            </div><!-- end #listUsers -->
+          
 
 <?php
 
@@ -38,7 +32,7 @@ echo "<div id='demo'></div>";
 ?>
 
 <script>
-window.addEventListener('load', ajax);
+//window.addEventListener('load', ajax);
 window.addEventListener('load', parents);
 function ajax() {
     var message= document.getElementById("message");
@@ -81,7 +75,7 @@ function isRead(id) {
      if(a['response']){
      var message= document.getElementById(id);
      if(message.style.backgroundColor!="gold")
-     message.style="background-color:silver;border-radius:10px;height:50px;width:200px;margin-top:5px;";
+     message.style="background-color:silver;border-radius:10px;height:50px;width:200px;margin-top:5px;margin-left:70px;";
      }
     }
   };
@@ -91,6 +85,8 @@ function isRead(id) {
 
 function chat(id) {
    id=id.substr(1);
+   var subject= document.getElementById("subject");
+   subject.className =id;
    var message= document.getElementById("message");
    message.innerHTML="";
    var xhttp = new XMLHttpRequest();
@@ -121,7 +117,7 @@ function chat(id) {
             
             }
             div.setAttribute('id','d'+msg_id);
-            message.prepend(div);
+            message.append(div);
            
 			
 			
@@ -133,6 +129,26 @@ function chat(id) {
    xhttp.send();
  }
 
-
+function ajaxSendMessage(){
+  
+  var msg= document.getElementById("subject");
+  var message= document.getElementById("subject").value;
+  var parent=msg.className;
+  var id="a"+parent;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var a=JSON.parse(this.responseText);
+      msg.value='';
+      chat(id);
+      
+    } 
+  };
+  
+  xhttp.open("GET", "http://localhost/eDiary/task1/professor/ajax_send_message?message="+message+"&id="+parent, true);
+  xhttp.send();
+ 
+  
+}
 
 </script>

@@ -153,7 +153,14 @@ class BaseProfessorController
 	}
 
 
-
+	public function ajax_send_message(){
+		$message=$_GET['message'];
+		$id=$_GET['id'];
+		Professor::ajax_send_message($message,$id);
+		$response=['response'=>'da'];
+		echo JSON_encode($response);
+		
+	}
 
 
 

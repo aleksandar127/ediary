@@ -155,7 +155,17 @@ class Professor
     return $parents;
 
    }
-   //'select * from messages where (from_user=4 and to_user=8) or (from_user=8 and to_user=4) order by date_and_time desc'
+
+
+
+   public static function ajax_send_message($message,$id){
+    $query = DB::$conn->prepare('insert into messages (message,from_user,to_user) values (?,?,?) ');
+    $query->execute([$message,$_COOKIE['id'],$id]);
+    return true;
+
+
+   }
+  
   
 
 

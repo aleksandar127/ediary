@@ -16,7 +16,7 @@ class Users
     
     public static function get_user_by_id($id)
     {
-        $query = DB::$conn->prepare('select users.id, users.first_name, users.last_name, users.username, users.password, users.cookie, users.role_id, role.name as role_name from users join role on users.role_id=role.id where users.id=?');
+        $query = DB::$conn->prepare('select users.id, users.first_name, users.last_name, users.username, users.password, users.cookie, users.roles_id, role.name as role_name from users join role on users.roles_id=role.id where users.id=?');
         $query->execute([$id]); 
         $user = $query->fetch(PDO::FETCH_ASSOC);
         return $user;
@@ -24,7 +24,7 @@ class Users
     
     public function get_pass_by_username($username)
     {
-        $query = DB::$conn->prepare('select users.id, users.first_name, users.last_name, users.username, users.password, users.cookie, users.role_id, role.name as role_name from users join role on users.role_id=role.id where users.username=?');
+        $query = DB::$conn->prepare('select users.id, users.first_name, users.last_name, users.username, users.password, users.cookie, users.roles_id, role.name as role_name from users join role on users.roles_id=role.id where users.username=?');
         $query->execute([$username]); 
         $password = $query->fetch(PDO::FETCH_ASSOC);
         return $password;
@@ -40,14 +40,14 @@ class Users
     
     public static function get_all_users()
     {
-        $query = DB::$conn->query('select users.id, users.first_name, users.last_name, users.username, users.password, users.cookie, users.role_id, role.name as role_name from users join role on users.role_id=role.id');
+        $query = DB::$conn->query('select users.id, users.first_name, users.last_name, users.username, users.password, users.cookie, users.roles_id, role.name as role_name from users join role on users.roles_id=role.id');
         $users = $query->fetchAll(PDO::FETCH_ASSOC);
         return $users;
     }
     
     public static function edit($first_name, $last_name, $username, $password, $role, $id)
     {
-        $query = 'update users set first_name=?, last_name=?, username=?, password=?, role_id=? where id=?';
+        $query = 'update users set first_name=?, last_name=?, username=?, password=?, roles_id=? where id=?';
         $res=  DB::$conn->prepare($query);
         return $res->execute([$first_name, $last_name, $username, $password, $role, $id]);
     }
@@ -69,7 +69,7 @@ class Users
     public static function add_new_user($first_name, $last_name, $username, $password, $role_id)
     {
         
-        $query = "insert into users (first_name, last_name, username, password, role_id) values (?,?,?,?,?)";
+        $query = "insert into users (first_name, last_name, username, password, roles_id) values (?,?,?,?,?)";
         $query= DB::$conn->prepare($query);
         $res = $query->execute([$first_name, $last_name, $username, $password, $role_id]);
         return $res;

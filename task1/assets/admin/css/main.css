@@ -48,3 +48,55 @@ form{
 .err{
     color: rgb(230, 0, 0);
 }
+
+/* DELETE_USER POP UP */
+
+.pop-up{
+	text-align: center;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	transition: 200ms ease-in-out;
+	border-radius: 10px;
+	z-index: 10;
+	background-color: rgb(128, 128, 128);
+	height: 200px;
+	width: 300px;
+}
+
+.pop-up.active{
+	transform: translate(-50%, -50%) scale(1);
+}
+
+#overlay{
+	position: fixed;
+	opacity: 0;
+	transition: 200ms ease-in-out;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(245,245,245, 0.5);
+	pointer-events: none;
+}
+
+#overlay.active{
+	opacity: 1;
+	pointer-events: all;
+
+}
+.delete{
+	background: linear-gradient(to bottom left, #000 0%, #d92626 70%);
+    color: #fff;
+}
+.cancel{
+	background-color: #fff;
+	color: #000;
+}
+
+.delete:hover, 
+.cancel:hover{
+    font-size: 25px;
+    text-decoration: none;
+}

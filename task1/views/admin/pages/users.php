@@ -24,7 +24,16 @@
       <td><?php echo $user['role_name']; ?></td>
       <td><a class="btn btn-dark" href="<?php echo 'http://localhost/eDiary/task1/admin/edit_user/'.$user['id'];?>">edit</a></td>
       <?php if($user['role_name'] !== 'admin'): ?>
-        <td><a class="btn btn-danger" href="<?php echo 'http://localhost/eDiary/task1/admin/delete_user/'.$user['id'];?>">delete</a></td>
+        <td><a class="btn btn-danger" href="#">delete</a>
+
+            <div class="pop-up" id="pop-up">
+              <p>Are you sure you want to delete this user?</p>
+              <a class="delete" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_user/'.$user['id'];?>">Delete</a>
+              <a class="cancel">Cancel</a>
+            </div>
+
+            <div id="overlay"></div>
+        </td>
       <?php endif; ?>
     </tr>
     <?php endforeach; ?>
@@ -32,3 +41,7 @@
 </table>
 <a href="http://localhost/eDiary/task1/admin/add_user" class="btn btn-success">Add New User</a>
 </div>
+
+
+
+<script src="http://localhost/eDiary/task1/assets/admin/js/delete_confirm.js"></script>

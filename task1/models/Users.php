@@ -3,17 +3,6 @@
 class Users
 {
     
-    // public function get_user_by_username_pass($username, $password)
-    // {
-    //     $query = 'select users.id, users.first_name, users.last_name, users.username, users.password, users.cookie, users.role_id, role.name as role_name from users join role on users.role_id=role.id  where users.username = "'.$username.'" and users.password = "'.$password.'"';
-    //     $res = DB::$conn->query($query);
-    //     $users = [];
-	// 	while ($user = $res->fetch(PDO::FETCH_ASSOC)) {
-	// 		$users = $user; 
-	// 	}
-	// 	return $users;
-    // }
-    
     public static function get_user_by_id($id)
     {
         $query = DB::$conn->prepare('select users.id, users.first_name, users.last_name, users.username, users.password, users.cookie, users.roles_id, role.name as role_name from users join role on users.roles_id=role.id where users.id=?');

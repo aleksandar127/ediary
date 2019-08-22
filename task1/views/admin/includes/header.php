@@ -15,10 +15,11 @@
 		<div class="wrapper">
 			<header>
 				<ul class="left_nav">
-					<li><a href="http://localhost/eDiary/task1/admin/" >Home</a></li>
-					<li><a href="http://localhost/eDiary/task1/admin/users" >Users</a></li>
+					<li><a href="http://localhost/eDiary/task1/admin/" >Početna strana</a></li>
+					<li><a href="http://localhost/eDiary/task1/admin/users" >Korisnici</a></li>
+					<li><a href="http://localhost/eDiary/task1/admin/subjects" >Predmeti</a></li>
 				</ul>
 				<ul class="right_nav">
-					<li><a href="http://localhost/eDiary/task1/admin/logout">Logout</a></li>
+					<li><a href="http://localhost/eDiary/task1/admin/logout">Izloguj se</a></li>
 				</ul>
 			</header>

@@ -86,8 +86,7 @@ class BaseAdminController
 
 	public function save_user()
 	{
-		echo 'sacuvaj sad usera';
-		var_dump($_POST);
+		// var_dump($_POST);
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
 		$username = $_POST['username'];
@@ -102,5 +101,15 @@ class BaseAdminController
 		} else {
 			header('Location: http://localhost/eDiary/task1/admin/add_user?err=Something went wrong!');
 		}
+	}
+
+	public static function subjects()
+	{
+		$view = new View();
+		$subjects_low = Subjects::all_subjects('0');
+		$subjects_high = Subjects::all_subjects('1');
+		$view->data['subjects_low_grades'] = $subjects_low; 
+		$view->data['subjects_high_grades'] = $subjects_high; 
+		$view->load_view('admin', 'pages', 'subjects');
 	}
 }

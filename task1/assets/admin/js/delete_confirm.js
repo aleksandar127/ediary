@@ -15,7 +15,6 @@ window.addEventListener('load', () => {
 			overlay.classList.add('active');
 
 			var cancel_btn = pop_up_div.querySelector('.cancel');
-			// console.log(cancel_btn);
 
 			if (pop_up_div.classList.contains('active') && overlay.classList.contains('active')) {
 

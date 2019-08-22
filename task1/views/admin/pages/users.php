@@ -4,13 +4,13 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Username</th>
-      <th scope="col">Password</th>
-      <th scope="col">Role</th>
-      <th scope="col">Edit User</th>
-      <th scope="col">Delete User</th>
+      <th scope="col">Ime</th>
+      <th scope="col">Prezime</th>
+      <th scope="col">Korisničko ime</th>
+      <th scope="col">Šifra</th>
+      <th scope="col">Uloga</th>
+      <th scope="col">Izmeni informacije</th>
+      <th scope="col">Izbrisati korisnika</th>
     </tr>
   </thead>
   <tbody>
@@ -22,14 +22,14 @@
       <td><?php echo $user['username']; ?></td>
       <td><?php echo str_replace($user['password'], str_repeat(' &#9679;', 6) , $user['password']); ?></td>
       <td><?php echo $user['role_name']; ?></td>
-      <td><a class="btn btn-dark" href="<?php echo 'http://localhost/eDiary/task1/admin/edit_user/'.$user['id'];?>">edit</a></td>
+      <td><a class="btn btn-dark" href="<?php echo 'http://localhost/eDiary/task1/admin/edit_user/'.$user['id'];?>">Izmeni</a></td>
       <?php if($user['role_name'] !== 'admin'): ?>
-        <td><a class="btn btn-danger" href="#">delete</a>
+        <td><a class="btn btn-danger" href="#">Izbriši korisnika</a>
 
             <div class="pop-up" id="pop-up">
               <p>Are you sure you want to delete this user?</p>
-              <a class="delete" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_user/'.$user['id'];?>">Delete</a>
-              <a class="cancel">Cancel</a>
+              <a class="delete" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_user/'.$user['id'];?>">Izbriši</a>
+              <a class="cancel">Otkaži</a>
             </div>
 
             <div id="overlay"></div>
@@ -39,7 +39,7 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-<a href="http://localhost/eDiary/task1/admin/add_user" class="btn btn-success">Add New User</a>
+<a href="http://localhost/eDiary/task1/admin/add_user" class="btn btn-success">Dodaj novog korisnika</a>
 </div>
 
 

@@ -8,7 +8,7 @@
     <?php
 foreach($this->data['parents'] as $parents):
     
-   echo  "<div  onclick='refresh(this.id)' id='p".$parents['id']."'  style='background-color:#d1ede8;width:350px;margin-bottom:3px;'>Roditelj: ".$parents['first_name']." ".$parents['first_name']." Ucenik: ".$parents['students_first_name']." ".$parents['students_first_name']."<br> </div>";
+   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."'  style='background-color:#d1ede8;width:350px;margin-bottom:3px;'>Roditelj: ".$parents['first_name']." ".$parents['first_name']." Ucenik: ".$parents['students_first_name']." ".$parents['students_first_name']."<br> </div>";
 
 endforeach;
 
@@ -35,7 +35,7 @@ echo "<button onclick='ajax();'>osvezi</button>";
 
 <script>
 
-window.setInterval(alert('jj'),1000);
+
 
 window.addEventListener('load', ajax);
 window.addEventListener('load', parents);
@@ -100,6 +100,7 @@ function isRead(id) {
 
 function chat(id) {
   
+  
    id=id.substr(1);
    var subject= document.getElementById("subject");
    subject.className =id;
@@ -120,7 +121,7 @@ function chat(id) {
             div.innerHTML+=message_body;
             div.innerHTML+=date;      
             div.setAttribute('style',"background-color:silver;border-radius:10px;height:50px;width:200px;margin-top:5px;");
-            //alert(is_read);
+           
             if(a[i]["from_user"]==id){
             div.setAttribute('onclick','isRead(this.id)');
             div.setAttribute('style',"background-color:silver;border-radius:10px;height:50px;width:200px;margin-top:5px;margin-left:70px;");
@@ -136,7 +137,6 @@ function chat(id) {
             message.append(div);
            
 			
-			
         };
      
      }
@@ -144,14 +144,6 @@ function chat(id) {
    xhttp.open("GET", "http://localhost/eDiary/task1/professor/ajax_chat?id="+id, true);
    xhttp.send();
  }
-
- function refresh(id){
-  
-  setInterval(chat(id),1000);
-  //setInterval(alert(id),1000);
-
-}
-
 
 
 function ajaxSendMessage(){

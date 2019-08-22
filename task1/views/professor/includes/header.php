@@ -21,7 +21,7 @@
 					<li><a href="http://localhost/eDiary/task1/professor/messages" >Poruke</a></li>
 					<li><a href="http://localhost/eDiary/task1/professor/open" >Otvorena vrata</a></li>
 					<li><a href="http://localhost/eDiary/task1/professor/schedule" >Raspored</a></li>
-					<li><a href="http://localhost/eDiary/task1/professor/svedocanstva" >Svedocanstva</a></li>
+					<li><a href="http://localhost/eDiary/task1/professor/success" >Svedocanstva</a></li>
 				</ul>
 				<ul class="right_nav">
 					<li><a href="http://localhost/eDiary/task1/admin/logout">Logout</a></li>

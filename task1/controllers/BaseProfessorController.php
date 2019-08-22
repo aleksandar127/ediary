@@ -163,7 +163,11 @@ class BaseProfessorController
 	}
 
 	public function success(){
-		
+		$id= $this->demand->parts_of_url[5];
+		$view = new View();
+		$grades=Professor::success($id);
+		$view->data['grades'] =$grades;
+		$view->load_view('professor', 'pages', 'success');
 		
 	}
 

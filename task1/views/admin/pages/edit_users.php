@@ -22,9 +22,9 @@
     </div>
     <div class="form-group" style="width: 30%;">
           <label for="roles">Role:</label>
-            <select class="custom-select mr-sm-2" id="roles" name="role_id">
+            <select class="custom-select mr-sm-2" id="roles" name="roles_id">
             <?php foreach ($this->data['roles'] as $role) : ?>
-                <?php if($this->data['user']['role_id'] == $role['id']): ?>
+                <?php if($this->data['user']['roles_id'] == $role['id']): ?>
                     <option value="<?php echo $role['id'];?>" selected><?php echo $role['name'];?></option>
                     <?php else : ?>
                     <option value="<?php echo $role['id'];?>"><?php echo $role['name'];?></option>

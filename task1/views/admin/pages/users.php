@@ -1,4 +1,5 @@
 <div class="container">
+    <a href="http://localhost/eDiary/task1/admin/add_user" class="btn btn-success">Dodaj novog korisnika</a>
     <table class="table">
 
   <thead>
@@ -39,7 +40,6 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-<a href="http://localhost/eDiary/task1/admin/add_user" class="btn btn-success">Dodaj novog korisnika</a>
 </div>
 
 

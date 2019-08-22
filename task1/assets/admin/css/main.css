@@ -107,3 +107,19 @@ form{
 .delete:hover{
 	color: rgb(255, 255, 255);
 }
+
+.row{
+	width: 90%;
+	margin: 0 auto !important;
+}
+
+.btn-success{
+	display: block !important;
+	background-color: red;
+	width: 20%;
+	margin: 10 auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	
+	
+}

@@ -1,0 +1,12 @@
+{
+    "name": "grupa1/task1",
+    "authors": [
+        {
+            "name": "aleksandar markovic",
+            "email": "aleksandarmarkoviccrni@gmail.com"
+        }
+    ],
+    "require": {
+        "rospdf/pdf-php": "^0.12.55"
+    }
+}

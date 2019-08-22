@@ -1,4 +1,9 @@
-<?php 
+<?php
+require ('./vendor/autoload.php');
+
+
+
+
 
 require('./db.php');	
 require('./constants.php');

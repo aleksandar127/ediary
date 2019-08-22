@@ -126,7 +126,7 @@ class Professor
    }
 
    public static function get_new_messages(){
-    $query = DB::$conn->prepare('select id,message,date_and_time,from_user from messages where to_user=? and is_read=0');
+    $query = DB::$conn->prepare('select users.id as user,users.last_name,users.first_name,messages.id,messages.message,messages.date_and_time,messages.from_user from messages  join users on users.id=from_user where messages.to_user=? and is_read=0');
     $query->execute([$_COOKIE['id']]);
     $messages = $query->fetchAll(PDO::FETCH_ASSOC);
     return $messages;
@@ -163,6 +163,10 @@ class Professor
     $query->execute([$message,$_COOKIE['id'],$id]);
     return true;
 
+   }
+
+   public static function success(){
+   
 
    }
   

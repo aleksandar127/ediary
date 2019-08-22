@@ -162,6 +162,11 @@ class BaseProfessorController
 		
 	}
 
+	public function success(){
+		
+		
+	}
+
 
 
 

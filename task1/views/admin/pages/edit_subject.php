@@ -8,7 +8,13 @@
             <div class="form-group">
                 <label for="select_prof">Izaberi profesora</label>
                 <select class="form-control" id="select_prof" name="users_id">
-                <option value="<?php echo $this->data['subject']['users_id'];?>"><?php echo $this->data['subject']['first_name'].' '.$this->data['subject']['last_name'];?></option>
+                <?php foreach ($this->data['professors'] as $professor) : ?>
+                <?php if($this->data['subject']['users_id'] == $professor['id']): ?>
+                    <option value="<?php echo $professor['id'];?>" selected><?php echo $professor['first_name'].' '.$professor['last_name'];?></option>
+                    <?php else : ?>
+                    <option value="<?php echo $professor['id'];?>"><?php echo $professor['first_name'].' '.$professor['last_name'];?></option>
+                <?php endif; ?>
+                <?php endforeach;?>
                 </select>
             </div>
         <?php endif; ?>
@@ -22,3 +28,4 @@
        </small>
    <?php endif; ?>
 </div>
+

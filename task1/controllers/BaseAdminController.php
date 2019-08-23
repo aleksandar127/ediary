@@ -119,6 +119,8 @@ class BaseAdminController
 		$view = new View();
 		$subject = Subjects::get_subject_by_id($subject_id);
 		$view->data['subject'] = $subject;
+		$professors = Professor::all_professors();
+		$view->data['professors'] = $professors;
 		$view->load_view('admin', 'pages', 'edit_subject');
 	}
 

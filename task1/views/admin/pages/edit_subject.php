@@ -13,6 +13,12 @@
             </div>
         <?php endif; ?>
         <input type="hidden" name="high_low" value="<?php echo $this->data['subject']['high_low'];?>">
-        <button type="submit" class="btn btn-dark">Izmeni</button>
+        <button type="submit" class="btn btn-dark">Izmeni</button>        
     </form>
+
+    <?php if(isset($_GET['success'])): ?>
+       <small style="color: green; font-weight: bold; margin-top: 5px;">
+           <?php echo $_GET['success']; ?>
+       </small>
+   <?php endif; ?>
 </div>

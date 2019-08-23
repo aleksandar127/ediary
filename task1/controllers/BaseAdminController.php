@@ -127,12 +127,15 @@ class BaseAdminController
 	{
 		$subject_id = $this->demand->parts_of_url[5];
 		$name = $_POST['sub_name'];
-		$prof_id = !empty($_POST['users_id']) ? "'".$_POST['users_id']."'" : "null";
-		var_dump($prof_id);
+		$prof_id = !empty($_POST['users_id']) ? $_POST['users_id'] : null;
 		$high_low = $_POST['high_low'];
 
-		// $edit = Subjects::edit($name, $prof_id, $high_low, $subject_id);
-		// var_dump($edit);
+		$edit = Subjects::edit($name, $prof_id, $high_low, $subject_id);
+		if ($edit) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili informacije o predmetu!');
+		} else {
+			echo 'neuspesno editovanje predmeta u bazi';
+		}
 	}
 
 }

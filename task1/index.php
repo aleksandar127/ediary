@@ -22,6 +22,3 @@ foreach (glob('./classes/*') as $class_name) {
 
 $demand = new Demand();
 $router = new Router($demand);
-
-
-// TODO: finish js validation for adding new user

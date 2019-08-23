@@ -5,9 +5,15 @@ class Professor
     
     public static function diary(){}
 
+    public static function all_professors()
+    {
+        $query = DB::$conn->prepare('select * from users where roles_id=? ');
+        $query->execute([4]); 
+        $professors = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $professors;
+    }
 
     public static function class(){
-        
        
         $query = DB::$conn->prepare('Select class.id,class.name from class join users_has_class on class.id=users_has_class.class_id join users on users.id=users_has_class.users_id where users.id=? ');
         $query->execute([$_COOKIE['id']]); 
@@ -52,7 +58,7 @@ class Professor
         return $deleted;
     }
 
-    public static function new_grade($id,$subject_id,$grade){
+    public static function new_grade($id, $subject_id, $grade){
         $query = DB::$conn->prepare('SELECT id from subjects_has_grades where subjects_id=? and grades=? limit 1');
         $query->execute([$subject_id,$grade]);
         $subject = $query->fetch(PDO::FETCH_ASSOC);
@@ -62,7 +68,7 @@ class Professor
         $grade=$query->execute([$id,$subject_grade_id]); 
         return $grade;
     }
-    public static function final_grade($id,$subject_id,$grade){
+    public static function final_grade($id, $subject_id, $grade){
         $query = DB::$conn->prepare('SELECT id from subjects_has_grades where subjects_id=? and grades=? ');
         $query->execute([$subject_id,$grade]);
         $subject = $query->fetch(PDO::FETCH_ASSOC);
@@ -70,16 +76,16 @@ class Professor
         $query = DB::$conn->prepare('SELECT final_grade.id from final_grade join subjects_has_grades on subjects_has_grades.id=final_grade.subject_grade  where final_grade.student_id=? and subjects_has_grades.subjects_id=?');
         $query->execute([$id, $subject_id]);
         $has_final = $query->fetch(PDO::FETCH_ASSOC);
-       $final= $has_final['id'];
+        $final= $has_final['id'];
         if($final){
             $query = DB::$conn->prepare('update final_grade  set student_id=?,subject_grade=? where id=? limit 1');
             $grade=$query->execute([$id,$subject_grade_id,$final]); 
             return $grade;
         }
         else{ 
-        $query = DB::$conn->prepare('insert into final_grade (id,student_id,subject_grade) values (null,?,?)');
-        $grade=$query->execute([$id,$subject_grade_id]); 
-        return $grade;
+            $query = DB::$conn->prepare('insert into final_grade (id,student_id,subject_grade) values (null,?,?)');
+            $grade=$query->execute([$id,$subject_grade_id]); 
+            return $grade;
         }
     }
 

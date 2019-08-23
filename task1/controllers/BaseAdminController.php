@@ -127,17 +127,12 @@ class BaseAdminController
 	{
 		$subject_id = $this->demand->parts_of_url[5];
 		$name = $_POST['sub_name'];
-		$prof_id = !empty($_POST['users_id']) ? "'".$mysqli->real_escape_string($_POST['users_id'])."'" : "NULL";
-		var_dump($_POST['users_id']);
+		$prof_id = !empty($_POST['users_id']) ? "'".$_POST['users_id']."'" : "null";
+		var_dump($prof_id);
 		$high_low = $_POST['high_low'];
 
-
-	
-		var_dump($subject_id);
-		var_dump($name);
-		var_dump($prof_id);
-		var_dump($high_low);
-		var_dump($_POST);
+		// $edit = Subjects::edit($name, $prof_id, $high_low, $subject_id);
+		// var_dump($edit);
 	}
 
 }

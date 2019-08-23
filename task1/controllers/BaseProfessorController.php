@@ -163,21 +163,83 @@ class BaseProfessorController
 	}
 
 	public function success(){
-		//$id= $this->demand->parts_of_url[5];
+		$id= $this->demand->parts_of_url[5];
 		$view = new View();
-		$grades=Professor::success(1);
+		$grades=Professor::success($id);
+		if($grades==null){
+			if (isset($_SERVER["HTTP_REFERER"])) {
+				header("Location: " . $_SERVER["HTTP_REFERER"]);
+			}
+			exit();
+		}
+	
 		
         $pdf = new Cezpdf();
         $pdf->selectFont('Helvetica');
-		$pdf->ezText('SVEDOCANSTVO',50);
+		
+		$pdf->ezText('      Srednja medicinska skola',35);
+		$pdf->ezSetDy(-10);
+		$pdf->ezText('           Smer: Fizioterapeutski tehnicar',25);
+		$pdf->ezSetDy(-10);
+		$pdf->ezText('   SVEDOCANSTVO',50);
+		$pdf->ezSetDy(-20);
+		$pdf->ezText('         Ucenik: '.ucfirst($grades[0]['first_name']).' '.ucfirst($grades[0]['last_name']).'',25);
 		$pdf->ezSetDy(-15);
-		$pdf->ezText($grades[0]['first_name'].' '.$grades[0]['last_name'],25);
-		$pdf->ezSetDy(-15);
-		foreach($grades as $subject){
+		$sum=0;
+		$count=0;
 
-			$pdf->ezText($subject['name'].' '.$subject['grades'],15);
+		
+		foreach($grades as $subject){
+			$grade;
+			$sum+=$subject['grades'];
+			$count++;
+			switch($subject['grades']){
+				case 1:
+				$grade='nedovoljan';
+				break;
+				case 2:
+				$grade='dovoljan';
+				break;
+				case 3:
+				$grade='dobar';
+				break;
+				case 4:
+				$grade='vrlo dobar';
+				break;
+				case 5:
+				$grade='odlican';
+				break;
+				default:
+				return;
+			}
+	
+		$pdf->setColor (1,0,0,[0]);
+		$pdf->ezText('         - '.$subject['name'].' '.$grade.' ('.$subject['grades'].')',25);
 		$pdf->ezSetDy(-15);
 		}
+		$grade=round($sum/$count);
+		switch($grade){
+			case 1:
+			$grade='nedovoljan';
+			break;
+			case 2:
+			$grade='dovoljan';
+			break;
+			case 3:
+			$grade='dobar';
+			break;
+			case 4:
+			$grade='vrlo dobar';
+			break;
+			case 5:
+			$grade='odlican';
+			break;
+			default:
+			return;
+		}
+		$pdf->setColor (0,0,1,[0]);
+		$pdf->ezText('         - Uspeh: '.$grade.' ('.$sum/$count.')',25);
+		$pdf->ezSetDy(-15);
 		
 		
 		//$pdf->ezText('<c:alink:'. $_SERVER["HTTP_REFERER"].'>Vrati se</c:alink>');
@@ -189,8 +251,5 @@ class BaseProfessorController
 			//$view->load_view('professor', 'pages', 'success');
 		
 	}
-
-
-
 
 }

@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="post" action="<?php echo 'http://localhost/eDiary/task1/admin/save_update/'.$this->data['user']['id'];?>">
+    <form method="POST" action="<?php echo 'http://localhost/eDiary/task1/admin/save_update/'.$this->data['user']['id'];?>">
     <div class="form-group">
         <label for="first_name">First Name:</label>
         <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $this->data['user']['first_name']; ?>">

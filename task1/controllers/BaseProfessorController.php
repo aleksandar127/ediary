@@ -163,11 +163,30 @@ class BaseProfessorController
 	}
 
 	public function success(){
-		$id= $this->demand->parts_of_url[5];
+		//$id= $this->demand->parts_of_url[5];
 		$view = new View();
-		$grades=Professor::success($id);
-		$view->data['grades'] =$grades;
-		$view->load_view('professor', 'pages', 'success');
+		$grades=Professor::success(1);
+		
+        $pdf = new Cezpdf();
+        $pdf->selectFont('Helvetica');
+		$pdf->ezText('SVEDOCANSTVO',50);
+		$pdf->ezSetDy(-15);
+		$pdf->ezText($grades[0]['first_name'].' '.$grades[0]['last_name'],25);
+		$pdf->ezSetDy(-15);
+		foreach($grades as $subject){
+
+			$pdf->ezText($subject['name'].' '.$subject['grades'],15);
+		$pdf->ezSetDy(-15);
+		}
+		
+		
+		//$pdf->ezText('<c:alink:'. $_SERVER["HTTP_REFERER"].'>Vrati se</c:alink>');
+
+		$pdf->ezStream();
+		
+			
+			//$view->data['pdf'] = ;
+			//$view->load_view('professor', 'pages', 'success');
 		
 	}
 

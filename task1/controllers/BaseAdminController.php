@@ -140,4 +140,16 @@ class BaseAdminController
 		}
 	}
 
+	//method for deleting subject from db
+	public function delete_sub()
+	{
+		$subject_id = $this->demand->parts_of_url[5];
+		$delete_sub = Subjects::delete($subject_id);
+		if ($delete_sub) {
+			header('Location: http://localhost/eDiary/task1/admin/subjects');
+		} else {
+			echo 'bezuspesno brisanje predmeta predmeta u bazi';
+		}
+	}
+
 }

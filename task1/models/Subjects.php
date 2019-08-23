@@ -24,5 +24,12 @@ class Subjects
         $res=  DB::$conn->prepare($query);
         return $res->execute([$name, $prof_id, $high_low, $id]);
     }
+
+    public static function delete($id)
+    {
+        $query = 'delete from subjects where id=? limit 1';
+        $res=  DB::$conn->prepare($query);
+        return $res->execute([$id]);
+    }
 }
 

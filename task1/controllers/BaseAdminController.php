@@ -36,6 +36,7 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'edit_users');
 	}
 
+	//method for saving updates for user
 	public function save_update()
 	{
 		$user_id = $this->demand->parts_of_url[5];
@@ -86,7 +87,6 @@ class BaseAdminController
 
 	public function save_user()
 	{
-		// var_dump($_POST);
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
 		$username = $_POST['username'];
@@ -103,7 +103,7 @@ class BaseAdminController
 		}
 	}
 
-	public static function subjects()
+	public function subjects()
 	{
 		$view = new View();
 		$subjects_low = Subjects::all_subjects('0');
@@ -112,4 +112,32 @@ class BaseAdminController
 		$view->data['subjects_high_grades'] = $subjects_high; 
 		$view->load_view('admin', 'pages', 'subjects');
 	}
+
+	public function edit_subject()
+	{
+		$subject_id = $this->demand->parts_of_url[5];
+		$view = new View();
+		$subject = Subjects::get_subject_by_id($subject_id);
+		$view->data['subject'] = $subject;
+		$view->load_view('admin', 'pages', 'edit_subject');
+	}
+
+	//method for saving updates for subject
+	public function save_edit()
+	{
+		$subject_id = $this->demand->parts_of_url[5];
+		$name = $_POST['sub_name'];
+		$prof_id = !empty($_POST['users_id']) ? "'".$mysqli->real_escape_string($_POST['users_id'])."'" : "NULL";
+		var_dump($_POST['users_id']);
+		$high_low = $_POST['high_low'];
+
+
+	
+		var_dump($subject_id);
+		var_dump($name);
+		var_dump($prof_id);
+		var_dump($high_low);
+		var_dump($_POST);
+	}
+
 }

@@ -1,4 +1,4 @@
-<br>
+
 
 
 <div id="message" style="display:inline-block;width:400px;min-height:300px;max-height:300px;overflow:auto;">
@@ -8,7 +8,7 @@
     <?php
 foreach($this->data['parents'] as $parents):
     
-   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."'  style='background-color:#d1ede8;width:350px;margin-bottom:3px;'>Roditelj: ".$parents['first_name']." ".$parents['first_name']." Ucenik: ".$parents['students_first_name']." ".$parents['students_first_name']."<br> </div>";
+   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."'  style='background-color:#d1ede8;width:350px;margin-bottom:3px;'>Roditelj: ".$parents['last_name']." ".$parents['first_name']."<br> </div>";
 
 endforeach;
 
@@ -33,11 +33,4 @@ echo "<button onclick='ajax();'>osvezi</button>";
 
 ?>
 
-
-
-<script src="http://localhost/eDiary/task1/assets/professor/js/messages.js"></script>
-
-
-
-
-
+<script src="http://localhost/eDiary/task1/assets/parent/js/messages.js"></script>

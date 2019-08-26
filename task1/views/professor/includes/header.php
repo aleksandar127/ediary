@@ -24,6 +24,6 @@
 					<li><a href="http://localhost/eDiary/task1/professor/success" >Svedocanstva</a></li>
 				</ul>
 				<ul class="right_nav">
-					<li><a href="http://localhost/eDiary/task1/admin/logout">Logout</a></li>
+					<li><a href="http://localhost/eDiary/task1/professor/logout">Logout</a></li>
 				</ul>
 			</header>

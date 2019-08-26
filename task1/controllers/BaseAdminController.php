@@ -164,7 +164,15 @@ class BaseAdminController
 
 	public function save_sub()
 	{
-		echo 'sad cuvaj predmet';
-		var_dump($_POST);
+		$sub_name = $_POST['subject_name'];
+		$high_low = $_POST['class'];
+		$professor = $_POST['prof_id'];
+
+		var_dump($sub_name);
+		var_dump($professor);
+		var_dump($high_low);
+
+		$add_new_sub = Subjects::add_new($sub_name, $professor, $high_low);
+		var_dump($add_new_sub);
 	}
 }

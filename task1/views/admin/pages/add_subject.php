@@ -2,7 +2,7 @@
     <form method="POST" action="http://localhost/eDiary/task1/admin/save_sub">
         <div class="form-group">
             <label for="subject_name">Ime predmeta</label>
-            <input type="text" class="form-control" id="subject_name" placeholder="Ukucaj naziv nogov predmeta">
+            <input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="Ukucaj naziv nogov predmeta">
         </div>
         <div class="form-group" style="width: 30%;">
             <label for="classes">Izaberi razred:</label>
@@ -14,6 +14,7 @@
         <div class="form-group" style="width: 30%; display: none;">
             <label for="profs">Izaberi profesora za dati predmet:</label>
             <select class="custom-select mr-sm-2" id="profs" name="prof_id">
+                <option value=""></option>
                 <?php foreach($this->data['professors'] as $prof): ?>
                     <option value="<?php echo $prof['id']; ?>"><?php echo $prof['first_name'].' '.$prof['last_name'];?></option>
                 <?php endforeach;?>

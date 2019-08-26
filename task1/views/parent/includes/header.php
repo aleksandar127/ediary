@@ -16,12 +16,11 @@
 		<div class="wrapper">
 			<header>
 				<ul class="left_nav">
-					<li><a href="http://localhost/eDiary/task1/professor" >Pocetna</a></li>
-					<li><a href="http://localhost/eDiary/task1/professor/diary" >Dnevnici</a></li>
-					<li><a href="http://localhost/eDiary/task1/professor/messages" >Poruke</a></li>
-					<li><a href="http://localhost/eDiary/task1/professor/open" >Otvorena vrata</a></li>
-					<li><a href="http://localhost/eDiary/task1/professor/schedule" >Raspored</a></li>
-					<li><a href="http://localhost/eDiary/task1/professor/success" >Svedocanstva</a></li>
+					<li><a href="http://localhost/eDiary/task1/parent" >Ucenik</a></li>
+					<li><a href="http://localhost/eDiary/task1/parent/notifications" >Obavestenja</a></li>
+					<li><a href="http://localhost/eDiary/task1/parent/messages" >Poruke</a></li>
+					<li><a href="http://localhost/eDiary/task1/parent/open" >Otvorena vrata</a></li>
+				
 				</ul>
 				<ul class="right_nav">
 					<li><a href="http://localhost/eDiary/task1/parent/logout">Logout</a></li>

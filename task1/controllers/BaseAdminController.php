@@ -152,4 +152,19 @@ class BaseAdminController
 		}
 	}
 
+	//method for adding new subjecti in db
+	public function add_sub()
+	{
+		$view = new View();
+		$professors = Professor::all_professors();
+		$view->data['professors'] = $professors;
+		$view->load_view('admin', 'pages', 'add_subject');
+		
+	}
+
+	public function save_sub()
+	{
+		echo 'sad cuvaj predmet';
+		var_dump($_POST);
+	}
 }

@@ -1,4 +1,4 @@
-<a  class="btn btn-success sub" href="#">Dodaj novi predmet</a>
+<a  class="btn btn-success sub" href="http://localhost/eDiary/task1/admin/add_sub">Dodaj novi predmet</a>
 <div class="row">
     <h3 class="col">Niži razredi</h3>
     <h3 class="col">Viši razredi</h3>
@@ -20,7 +20,16 @@
                 <th scope="row"><?php echo $low['id'];?></th>
                 <td><?php echo $low['name'];?></td>
                 <td><a class="btn btn-dark" href="<?php echo 'http://localhost/eDiary/task1/admin/edit_subject/'.$low['id']?>">Izmeni predmet</a></td>
-                <td><a class="btn btn-danger" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_sub/'.$low['id'];?>">Izbriši predmet</a></td>
+                <td><a class="btn btn-danger" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_sub/'.$low['id'];?>">Izbriši predmet</a>
+                
+                <div class="pop-up" id="pop-up">
+                    <p>Are you sure you want to delete this user?</p>
+                    <a class="delete" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_sub/'.$low['id'];?>">Izbriši</a>
+                    <a class="cancel">Otkaži</a>
+                </div>
+
+                <div id="overlay"></div>
+                </td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

@@ -5,8 +5,10 @@ window.addEventListener('load', () => {
 
 	pop_up_btn.forEach(delete_user => {
 
+		console.log(delete_user);
 		delete_user.addEventListener('click', (e) => {
 
+			e.preventDefault();
             console.log(e.target);
             var pop_up_div = e.target.nextElementSibling;
 			var overlay = pop_up_div.nextElementSibling;

@@ -2,7 +2,7 @@
 
 class BaseParentController 
 {
-
+//aca
     public function __construct($demand)
     {
 		$this->demand = $demand;
@@ -11,7 +11,7 @@ class BaseParentController
 	public function index()
 	{
         $view = new View();
-        $grades = Parents::index(2);
+        $grades = Parents::index();
 		$view->data['grades'] = $grades;	
 		$view->load_view('parent', 'pages', 'home');
 

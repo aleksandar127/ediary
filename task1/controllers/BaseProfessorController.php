@@ -184,20 +184,34 @@ class BaseProfessorController
 	
 		
         $pdf = new Cezpdf();
-        $pdf->selectFont('Helvetica');
+		$pdf->selectFont('Helvetica');
 		
-		$pdf->ezText('      Srednja medicinska skola',35);
+		$pdf->ezSetMargins(40,40,40,40);
+		
+		$pdf->setLineStyle(1,'round');
+		$pdf->line(72,778,522,778);
+		$pdf->line(72,780,522,780);
+		$pdf->line(72,750,522,750);
+		$pdf->line(144,630,450,630);
+		$pdf->line(144,600,450,600);
+	//	$pdf->line(70,542,350,542);
+	//	$pdf->line(70,570,350,570);
+		
+		$pdf->ezText('                                                       Republika Srbija',13);
 		$pdf->ezSetDy(-10);
-		$pdf->ezText('           Smer: Fizioterapeutski tehnicar',25);
+		$pdf->ezText('                              Srednja medicinska skola "Beograd"',16);
 		$pdf->ezSetDy(-10);
-		$pdf->ezText('   SVEDOCANSTVO',50);
-		$pdf->ezSetDy(-20);
-		$pdf->ezText('         Ucenik: '.ucfirst($grades[0]['first_name']).' '.ucfirst($grades[0]['last_name']).'',25);
+		
+		$pdf->ezText('        <b>SVEDOCANSTVO</b>',40);
+		$pdf->ezSetDy(-46);
+		$pdf->ezText('                                       '.ucfirst($grades[0]['first_name']).' '.ucfirst($grades[0]['last_name']).'',16);
 		$pdf->ezSetDy(-15);
+		$pdf->ezText('                              Smer: Fizioterapeutski tehnicar',15);
+		$pdf->ezSetDy(-35);
 		$sum=0;
 		$count=0;
-
-		
+		$fall=false;
+		$x=550;
 		foreach($grades as $subject){
 			$grade;
 			$sum+=$subject['grades'];
@@ -205,6 +219,7 @@ class BaseProfessorController
 			switch($subject['grades']){
 				case 1:
 				$grade='nedovoljan';
+				$fall=true;
 				break;
 				case 2:
 				$grade='dovoljan';
@@ -222,10 +237,13 @@ class BaseProfessorController
 				return;
 			}
 	
-		$pdf->setColor (1,0,0,[0]);
-		$pdf->ezText('         - '.$subject['name'].' '.$grade.' ('.$subject['grades'].')',25);
+		//$pdf->setColor (1,0,0,[0]);
+		$pdf->ezText('         - '.ucfirst($subject['name']).' <i> '.$grade.' ('.$subject['grades'].')</i>',13);
+		$pdf->line(70,$x,350,$x);
 		$pdf->ezSetDy(-15);
+		$x-=28;
 		}
+		
 		$grade=round($sum/$count);
 		switch($grade){
 			case 1:
@@ -246,8 +264,14 @@ class BaseProfessorController
 			default:
 			return;
 		}
-		$pdf->setColor (0,0,1,[0]);
-		$pdf->ezText('         - Uspeh: '.$grade.' ('.$sum/$count.')',25);
+		//$pdf->setColor (0,0,1,[0]);
+		if($fall){
+			$grade='Nedovoljan';
+		$pdf->ezText('   <b>      - Uspeh: '.$grade.'(1)</b>',13);
+		$pdf->line(70,$x,350,$x);
+		}
+		else
+		$pdf->ezText('     <b>    - Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13);
 		$pdf->ezSetDy(-15);
 		
 		
@@ -258,6 +282,14 @@ class BaseProfessorController
 			
 			//$view->data['pdf'] = ;
 			//$view->load_view('professor', 'pages', 'success');
+		
+	}
+
+	public function logout()
+	{
+		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
+		header('Location: http://localhost/eDiary/task1/');
+		die();
 		
 	}
 

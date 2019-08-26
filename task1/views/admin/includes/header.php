@@ -19,6 +19,16 @@
 					<li><a href="http://localhost/eDiary/task1/admin/users" >Korisnici</a></li>
 					<li><a href="http://localhost/eDiary/task1/admin/subjects" >Predmeti</a></li>
 				</ul>
+				<div class="btn-group">
+				<button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Statistika uspešnosti
+				</button>
+				<div class="dropdown-menu dropdown-menu-right">
+					<button class="dropdown-item" type="button">Action</button>
+					<button class="dropdown-item" type="button">Another action</button>
+					<button class="dropdown-item" type="button">Something else here</button>
+				</div>
+				</div>
 				<ul class="right_nav">
 					<li><a href="http://localhost/eDiary/task1/admin/logout">Izloguj se</a></li>
 				</ul>

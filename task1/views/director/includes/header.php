@@ -15,11 +15,13 @@
 		<body>
 		<div class="wrapper">
 			<header>
-				<ul class="left_nav">
-					<li><a href="http://localhost/eDiary/task1/director" >Pocetna</a></li>
-					
-				</ul>
-				<ul class="right_nav">
-					<li><a href="http://localhost/eDiary/task1/admin/logout">Logout</a></li>
-				</ul>
+				<div class="btn-group">
+					<button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Statistika uspešnosti
+					</button>
+					<div class="dropdown-menu dropdown-menu-right">
+						<button class="dropdown-item" type="button"><a href="#">Statistika uspešnosti odeljenja po predmetima</a></button>
+						<button class="dropdown-item" type="button"><a href="#">Statistika uspešnosti po predmetima	na nivou škole</a></button>
+					</div>
+				</div>
 			</header>

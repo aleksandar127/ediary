@@ -55,6 +55,9 @@ foreach($this->data['diaries'] as $students):
             echo "<span style='color:red;font-size:20px;width:150px;display:inline-block;'>";
     echo ucfirst($students['first_name'])." ".ucfirst($students['first_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "</span>";
+    echo "&nbsp;";
+    echo "<a  class='btn btn-warning' href='http://localhost/eDiary/task1/professor/success/".$students['id']."'>Svedocanstvo</a>";
+    echo "&nbsp;";
     $final_grade="";
     if(in_array($students['id'], $keys)):
     $final_grade=$students_has_finals[$students['id']];

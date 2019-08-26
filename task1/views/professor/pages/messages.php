@@ -1,14 +1,14 @@
 <br>
 
 
-<div id="message" style="display:inline-block;width:400px;min-height:300px;max-height:300px;overflow:auto;">
+<div id="message" style="display:inline-block;width:300px;min-height:400px;max-height:400px;overflow:auto;background-color:#f7fffe;margin-right:20px;margin-left:400px;border:3px solid black;">
      
     </div><!-- end #message -->
-    <div id="parents" style="display:inline-block;position:fixed;height:400px;">
+    <div id="parents" style="display:inline-block;position:fixed;height:400px;min-height:400px;max-height:400px;overflow:auto;">
     <?php
 foreach($this->data['parents'] as $parents):
     
-   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."'  style='background-color:#d1ede8;width:350px;margin-bottom:3px;'>Roditelj: ".$parents['first_name']." ".$parents['first_name']." Ucenik: ".$parents['students_first_name']." ".$parents['students_first_name']."<br> </div>";
+   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."'  style='border:1px solid black;background-color:#d1ede8;width:350px;margin-bottom:3px;'>Roditelj: ".$parents['first_name']." ".$parents['first_name']." Ucenik: ".$parents['students_first_name']." ".$parents['students_first_name']."<br> </div>";
 
 endforeach;
 
@@ -16,10 +16,12 @@ endforeach;
     </div>
     <div id="sendMessage">
                 
-                <div id="chat">
+                <div id="chat" style='margin-left:400px;' >
                     
-                        <textarea id="subject"  name="subject" placeholder="Write something.." ></textarea>
+                        <textarea id="subject"  name="subject" placeholder="Write something.." style="width:300px;"></textarea>
+                        <br>
                         <button onclick='ajaxSendMessage();'>Posalji</button>
+                        <button onclick='ajax();'>Pregled novih poruka</button>
                     
                 </div>
             </div><!-- end #sendMessage -->
@@ -29,7 +31,7 @@ endforeach;
 
 
 
-echo "<button onclick='ajax();'>osvezi</button>";
+
 
 ?>
 
@@ -60,6 +62,7 @@ function ajax() {
 			var first_name=a[i]["first_name"];
             var is_read=a[i]["is_read"];	        
             div.innerHTML+=message_body;
+            div.innerHTML+="<br>";   
             div.innerHTML+=date; 
             div.innerHTML+="<br>";   
             div.innerHTML+=last_name+" "; 
@@ -126,7 +129,7 @@ function chat(id) {
             div.setAttribute('onclick','isRead(this.id)');
             div.setAttribute('style',"background-color:silver;border-radius:10px;height:50px;width:200px;margin-top:5px;margin-left:70px;");
             if(is_read==0){
-            div.setAttribute('style',"background-color:red;border-radius:10px;height:50px;width:200px;margin-top:5px;margin-left:70px;");
+            div.setAttribute('style',"background-color:#44ff3d;border-radius:10px;height:50px;width:200px;margin-top:5px;margin-left:70px;");
             }
             }
             else{

@@ -31,5 +31,14 @@ class Subjects
         $res=  DB::$conn->prepare($query);
         return $res->execute([$id]);
     }
+
+    public static function add_new($sub_name, $prof_id, $high_low)
+    {
+        $query = "insert into subjects (name, users_id, high_low) values (?,?,?)";
+        $query= DB::$conn->prepare($query);
+        $res = $query->execute([$sub_name, $prof_id, $high_low]);
+        return $res;
+
+    }
 }
 

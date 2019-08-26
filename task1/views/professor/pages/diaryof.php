@@ -23,7 +23,6 @@ foreach($this->data['diaries'] as $students):
         echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
         echo $students['grades'];
         echo "&nbsp;&nbsp;";
-        
         echo "<a  class='btn btn-danger' href='http://localhost/eDiary/task1/professor/delete/".$students['mark']."'>Izbrisi</a>";
         echo "&nbsp;";
         echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
@@ -35,6 +34,7 @@ foreach($this->data['diaries'] as $students):
         $sum+=$students['grades'];
         
         echo "</div>";
+        
     
         if($array_is_long==count($this->data['diaries']))
         echo substr($sum/$count,0,4);
@@ -53,17 +53,19 @@ foreach($this->data['diaries'] as $students):
             $count++;
             echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
             echo "<span style='color:red;font-size:20px;width:150px;display:inline-block;'>";
-    echo ucfirst($students['first_name'])." ".ucfirst($students['first_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    echo ucfirst($students['first_name'])." ".ucfirst($students['last_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "</span>";
     echo "&nbsp;";
     echo "<a  class='btn btn-warning' href='http://localhost/eDiary/task1/professor/success/".$students['id']."'>Svedocanstvo</a>";
     echo "&nbsp;";
     $final_grade="";
+    echo "<a  class='btn btn-danger' href='http://localhost/eDiary/task1/professor/success/".$students['id']."'>svedocanstvo</a>";
     if(in_array($students['id'], $keys)):
     $final_grade=$students_has_finals[$students['id']];
         endif;
     echo "<input id='m".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5' value='".$final_grade."'></input>";
     echo "&nbsp;";
+   
     echo "<a href='http://localhost/eDiary/task1/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)' class='btn btn-dark' >Zakljuci</a>";
     echo "&nbsp;&nbsp";
     echo "<input id='o".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
@@ -78,7 +80,7 @@ foreach($this->data['diaries'] as $students):
     echo "&nbsp;";
     echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
     echo "&nbsp;";
-    echo "<a  id='a".$br."".$students['id']."' onclick='edit(this.id)' class='btn btn-success' href='http://localhost/eDiary/task1/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
+    echo "<a  id='a".$br."".$students['id']."' onclick='edit(this.id)'  class='btn btn-success' href='http://localhost/eDiary/task1/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
     echo "&nbsp;&nbsp;";
    
     endif;

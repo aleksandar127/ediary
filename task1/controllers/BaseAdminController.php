@@ -152,4 +152,28 @@ class BaseAdminController
 		}
 	}
 
+	//method for adding new subjecti in db
+	public function add_sub()
+	{
+		$view = new View();
+		$professors = Professor::all_professors();
+		$view->data['professors'] = $professors;
+		$view->load_view('admin', 'pages', 'add_subject');
+		
+	}
+
+	public function save_sub()
+	{
+		$sub_name = $_POST['subject_name'];
+		$high_low = $_POST['class'];
+		$professor = $_POST['prof_id'];
+		$prof_id = !empty($_POST['prof_id']) ? $_POST['prof_id'] : null;
+
+		$add_new_sub = Subjects::add_new($sub_name, $prof_id, $high_low);
+		if ($add_new_sub) {
+			header('Location: http://localhost/eDiary/task1/admin/add_sub?success=Uspešno ste dodali novi predmet!');
+		} else {
+			echo 'nesto je poslo po zlu pri dodavanju predmeta';
+		}
+	}
 }

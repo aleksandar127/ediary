@@ -13,6 +13,15 @@ class BaseProfessorController
 		$view->load_view('professor', 'pages', 'home');
 
 	}
+
+	public function logout()
+	{
+		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
+		header('Location: http://localhost/eDiary/task1/');
+		die();
+		
+	}
+
 	public function diary()
 	{
 		$view = new View();

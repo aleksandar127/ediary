@@ -74,6 +74,24 @@ class BaseParentController
 		echo JSON_encode($response);
 		
 	}
+	public function notifications(){
+		$view = new View();
+		$news=Parents::notifications();
+		$view->data['news'] = $news;
+		$view->load_view('parent', 'pages', 'notifications');
+		
+		
+	}
+
+	public function open(){
+		$view = new View();
+		$news=Parents::open();
+		$view->data['open'] = $news;
+		$view->load_view('parent', 'pages', 'open');
+		
+		
+	}
+
 
 
 

@@ -12,7 +12,7 @@ class Parents{
     }
 
     public static function get_new_messages(){
-        $query = DB::$conn->prepare('select users.id as user,users.last_name,users.first_name,messages.id,messages.message,messages.date_and_time,messages.from_user from messages  join users on users.id=from_user where messages.to_user=? and is_read=0');
+        $query = DB::$conn->prepare('select users.id as user,users.last_name,users.first_name,messages.id,messages.message,messages.date_and_time,messages.from_user from messages  join users on users.id=messages.from_user where messages.to_user=? and messages.is_read=0');
         $query->execute([$_COOKIE['id']]);
         $messages = $query->fetchAll(PDO::FETCH_ASSOC);
         return $messages;
@@ -27,7 +27,7 @@ class Parents{
        }
     
        public static function parents_chat(){
-        $query = DB::$conn->prepare('SELECT distinct users.id,users.first_name,users.last_name from users join subjects on users.id=subjects.users_id join users_has_class on users_has_class.users_id=users.id join class on class.id=users_has_class.class_id join students on students.class_id=class.id where students.users_id=?');
+        $query = DB::$conn->prepare('SELECT distinct users.id,users.first_name,users.last_name,subjects.name from users join subjects on users.id=subjects.users_id join users_has_class on users_has_class.users_id=users.id join class on class.id=users_has_class.class_id join students on students.class_id=class.id where students.users_id=?');
         $query->execute([$_COOKIE['id']]);
         $parents = $query->fetchAll(PDO::FETCH_ASSOC);
         return $parents;
@@ -51,6 +51,23 @@ class Parents{
     
        }
 
+       public static function notifications(){
+        $query = DB::$conn->prepare('select notifications from news');
+        $query->execute([]);
+        $news = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $news;
+    
+       }
+
+       public static function open(){
+        $query = DB::$conn->prepare('');
+        $query->execute([]);
+        $open = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $open;
+    
+       }
+    
+      
 
 
 

@@ -3,6 +3,7 @@
         <div class="form-group">
             <label for="subject_name">Ime predmeta</label>
             <input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="Ukucaj naziv nogov predmeta">
+            <p></p>
         </div>
         <div class="form-group" style="width: 30%;">
             <label for="classes">Izaberi razred:</label>
@@ -22,6 +23,13 @@
         </div>
         <input type="submit" class="btn btn-dark" value="Dodaj!">
     </form> 
+
+    <?php if(isset($_GET['success'])): ?>
+        <small style="color: green; font-weight: bold; margin-top: 5px; ">
+            <?php echo $_GET['success']; ?>
+        </small>
+    <?php endif; ?>
+
 </div>
 
 

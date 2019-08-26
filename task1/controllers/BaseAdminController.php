@@ -167,12 +167,13 @@ class BaseAdminController
 		$sub_name = $_POST['subject_name'];
 		$high_low = $_POST['class'];
 		$professor = $_POST['prof_id'];
+		$prof_id = !empty($_POST['prof_id']) ? $_POST['prof_id'] : null;
 
-		var_dump($sub_name);
-		var_dump($professor);
-		var_dump($high_low);
-
-		$add_new_sub = Subjects::add_new($sub_name, $professor, $high_low);
-		var_dump($add_new_sub);
+		$add_new_sub = Subjects::add_new($sub_name, $prof_id, $high_low);
+		if ($add_new_sub) {
+			header('Location: http://localhost/eDiary/task1/admin/add_sub?success=Uspešno ste dodali novi predmet!');
+		} else {
+			echo 'nesto je poslo po zlu pri dodavanju predmeta';
+		}
 	}
 }

@@ -85,8 +85,10 @@ class BaseParentController
 
 	public function open(){
 		$view = new View();
-		$news=Parents::open();
-		$view->data['open'] = $news;
+		$professors=Parents::open_professors();
+		$open_sent=Parents::open_response();
+		$view->data['open_sent'] = $open_sent;
+		$view->data['professors'] = $professors;
 		$view->load_view('parent', 'pages', 'open');
 		
 		

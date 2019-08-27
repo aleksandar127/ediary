@@ -11,7 +11,7 @@ window.addEventListener('load', () => {
     });
 });
 
-function ajax_call(){
+function ajax_call($high_low){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -20,7 +20,7 @@ function ajax_call(){
         }
     };
 
-    // xhttp.open("GET", "http://localhost/eDiary/task1/professor/ajax_send_message?message=" + message + "&id=" + parent, true);
+    // xhttp.open("GET", "http://localhost/eDiary/task1/admin/fetch_heads?"id=" +, true);
     // xhttp.send();
 
 }

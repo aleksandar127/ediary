@@ -198,4 +198,10 @@ class BaseAdminController
 		// $view->data['professors'] = $professors;
 		$view->load_view('admin', 'pages', 'edit_class');
 	}
+
+	public function fetch_heads()
+	{
+		echo 'ovde sad ajax poziv i dovuci';
+
+	}
 }

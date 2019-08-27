@@ -44,7 +44,7 @@ class BaseAdminController
 		$last_name = $_POST['last_name'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$role = $_POST['role_id'];
+		$role = $_POST['roles_id'];
 
 		$enc_pass = password_hash($password , PASSWORD_BCRYPT);
 
@@ -152,7 +152,7 @@ class BaseAdminController
 		}
 	}
 
-	//method for adding new subjecti in db
+	//method for adding new subject in db
 	public function add_sub()
 	{
 		$view = new View();
@@ -168,7 +168,8 @@ class BaseAdminController
 		$high_low = $_POST['class'];
 		$professor = $_POST['prof_id'];
 		$prof_id = !empty($_POST['prof_id']) ? $_POST['prof_id'] : null;
-
+		
+		
 		$add_new_sub = Subjects::add_new($sub_name, $prof_id, $high_low);
 		if ($add_new_sub) {
 			header('Location: http://localhost/eDiary/task1/admin/add_sub?success=Uspešno ste dodali novi predmet!');

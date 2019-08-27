@@ -2,6 +2,7 @@
 //print_r($this->data['subject_id']);
 //print_r($this->data['final']);
 //print_r($this->data['diaries']);
+
 $count=0;
 $sum=0;
 $students_has_finals=[];
@@ -9,10 +10,13 @@ $subject_id=$this->data['subject_id'];
 $id=0;
 $is_equal=false;
 $br=0;
+$keys=[];
 foreach($this->data['final'] as $niz):
     $students_has_finals[$niz['student_id']]=$niz['grades'];
     $keys=array_keys($students_has_finals);
     endforeach;
+    
+   
 echo "<br>";
 $array_is_long=0;
 foreach($this->data['diaries'] as $students):
@@ -40,26 +44,26 @@ foreach($this->data['diaries'] as $students):
         echo substr($sum/$count,0,4);
         continue;
             endif;
-          
-            if(($count>0 && $is_equal==false) || $is_equal ){
-           
+            if(($count>0 && $is_equal==false) || $is_equal){
+            
             echo substr($sum/$count,0,4);
             $sum=0;
             $count=0;
             echo "<br>";
             }
-            //echo $is_equal?"<br>":"";
+           
+            
             $sum+=$students['grades'];
             $count++;
             echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
             echo "<span style='color:red;font-size:20px;width:150px;display:inline-block;'>";
-    echo ucfirst($students['first_name'])." ".ucfirst($students['last_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    echo ucfirst($students['first_name'])."<br>".ucfirst($students['last_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "</span>";
     echo "&nbsp;";
+    if($this->data['class'] ['id']==$students['class_id'])
     echo "<a  class='btn btn-warning' href='http://localhost/eDiary/task1/professor/success/".$students['id']."'>Svedocanstvo</a>";
     echo "&nbsp;";
     $final_grade="";
-    echo "<a  class='btn btn-danger' href='http://localhost/eDiary/task1/professor/success/".$students['id']."'>svedocanstvo</a>";
     if(in_array($students['id'], $keys)):
     $final_grade=$students_has_finals[$students['id']];
         endif;
@@ -84,6 +88,11 @@ foreach($this->data['diaries'] as $students):
     echo "&nbsp;&nbsp;";
    
     endif;
+    if($array_is_long==count($this->data['diaries'])){
+        $sum=$students['grades'];
+        $count=1;
+    echo substr($sum/$count,0,4);
+    }
     echo "</div>";
   
    

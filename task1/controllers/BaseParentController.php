@@ -94,6 +94,18 @@ class BaseParentController
 		
 	}
 
+	public function open_send_request(){
+
+		$open_id = $this->demand->parts_of_url[5];
+		$open_sent=Parents::open_request($open_id);
+		if (isset($_SERVER["HTTP_REFERER"])) {
+			header("Location: " . $_SERVER["HTTP_REFERER"]);
+		}
+		return true;
+		
+		
+		
+	}
 
 
 

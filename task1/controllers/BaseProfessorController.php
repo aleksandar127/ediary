@@ -10,6 +10,8 @@ class BaseProfessorController
 	public function index()
 	{
 		$view = new View();
+		$class = Professor::index();
+		$view->data['class'] = $class;
 		$view->load_view('professor', 'pages', 'home');
 
 	}
@@ -27,6 +29,8 @@ class BaseProfessorController
 		$view = new View();
 		$all_classes = Professor::class();
 		$view->data['classes'] = $all_classes;
+		$class = Professor::index();
+		$view->data['class'] = $class;
 		$view->load_view('professor', 'pages', 'diary');
 
 	}
@@ -35,6 +39,8 @@ class BaseProfessorController
 		$view = new View();
 		$class_id = $this->demand->parts_of_url[5];
 		$students=Professor::get_diary($class_id);
+		$class = Professor::index();
+		$view->data['class'] = $class;
 		$view->data['diaries'] = $students;
 		$view->data['subject_id']=Professor::get_subject_id();
 		$subject_id=$view->data['subject_id'];
@@ -285,12 +291,6 @@ class BaseProfessorController
 		
 	}
 
-	public function logout()
-	{
-		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
-		header('Location: http://localhost/eDiary/task1/');
-		die();
-		
-	}
+	
 
 }

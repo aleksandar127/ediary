@@ -35,7 +35,6 @@ endforeach;
 
 ?>
 
-<<<<<<< HEAD
 <script>
 
 
@@ -174,13 +173,3 @@ function ajaxSendMessage(){
 }
 
 </script>
-=======
-
-
-<script src="http://localhost/eDiary/task1/assets/professor/js/messages.js"></script>
-
-
-
-
-
->>>>>>> 20bcbea68fdbe4a8fd429c550092dc6e23cbadb4

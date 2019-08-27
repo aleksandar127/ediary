@@ -60,8 +60,6 @@ foreach($this->data['diaries'] as $students):
     echo ucfirst($students['first_name'])."<br>".ucfirst($students['last_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "</span>";
     echo "&nbsp;";
-    if($this->data['class'] ['id']==$students['class_id'])
-    echo "<a  class='btn btn-warning' href='http://localhost/eDiary/task1/professor/success/".$students['id']."'>Svedocanstvo</a>";
     echo "&nbsp;";
     $final_grade="";
     if(in_array($students['id'], $keys)):

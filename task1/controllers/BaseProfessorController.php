@@ -12,6 +12,8 @@ class BaseProfessorController
 		$view = new View();
 		$class = Professor::index();
 		$view->data['class'] = $class;
+		$students = Professor::get_diary_of_my_class();
+		$view->data['students'] = $students;
 		$view->load_view('professor', 'pages', 'home');
 
 	}
@@ -93,10 +95,8 @@ class BaseProfessorController
 
 	public function open(){
 		$view = new View();
-		$open_parents=Professor::open_parents();
 		$open_doors=Professor::open();
 		$view->data['open'] = $open_doors;
-		$view->data['open_parents'] = $open_parents;
 		$view->load_view('professor', 'pages', 'open');
 
 	}

@@ -185,7 +185,17 @@ class BaseAdminController
 		$classes_high = Classes::all_classes('1');
 		$view->data['low_classes'] = $classes_low; 
 		$view->data['high_classes'] = $classes_high;
-		var_dump($view->data['high_classes']);
 		$view->load_view('admin', 'pages', 'classes');
+	}
+
+	public function edit_class()
+	{
+		$class_id = $this->demand->parts_of_url[5];
+		$view = new View();
+		// $subject = Subjects::get_subject_by_id($subject_id);
+		// $view->data['subject'] = $subject;
+		// $professors = Professor::all_professors();
+		// $view->data['professors'] = $professors;
+		$view->load_view('admin', 'pages', 'edit_class');
 	}
 }

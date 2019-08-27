@@ -10,4 +10,12 @@ class Classes
         $classes = $query->fetchAll(PDO::FETCH_ASSOC);
         return $classes;
     }
+
+    public static function get_teachers_or_profs($high_low)
+    {
+        $query = DB::$conn->prepare('');
+        $query->execute([$high_low]); 
+        $heads = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $heads;
+    }
 }

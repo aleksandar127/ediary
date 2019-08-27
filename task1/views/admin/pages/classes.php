@@ -16,13 +16,13 @@
                 </tr>
             </thead>
             <tbody>
- 
+                <?php foreach($this->data['low_classes'] as $low_c): ?>
                 <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td><a class="btn btn-dark" href="#">Izmeni predmet</a></td>
-                <td><a class="btn btn-danger" href="#">Izbriši predmet</a>
+                <th scope="row"><?php echo $low_c['id']?></th>
+                <td><?php echo $low_c['name']; ?></td>
+                <td><?php echo $low_c['first_name'].' '.$low_c['last_name']; ?></td>
+                <td><a class="btn btn-dark" href="<?php echo 'http://localhost/eDiary/task1/admin/edit_class/'.$low_c['id']?>">Izmeni predmet</a></td>
+                <td><a class="btn btn-danger" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_class/'.$low_c['id'];?>">Izbriši predmet</a>
                 
                 <div class="pop-up" id="pop-up">
                     <p>Are you sure you want to delete this user?</p>
@@ -33,6 +33,7 @@
                 <div id="overlay"></div>
                 </td>
                 </tr>
+                <?php endforeach;?>
 
             </tbody>
         </table>
@@ -49,13 +50,13 @@
                 </tr>
             </thead>
             <tbody>
-
+                <?php foreach($this->data['high_classes'] as $high_c): ?>
                 <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td></td>
-                <td><a class="btn btn-dark" href="#">Izmeni predmet</a></td>
-                <td><a class="btn btn-danger" href="#">Izbriši predmet</a>
+                <th scope="row"><?php echo $high_c['id']; ?></th>
+                <td><?php echo $high_c['name']; ?></td>
+                <td><?php echo $high_c['first_name'].' '.$high_c['last_name']; ?></td>
+                <td><a class="btn btn-dark" href="<?php echo 'http://localhost/eDiary/task1/admin/edit_class/'.$high_c['id']?>">Izmeni predmet</a></td>
+                <td><a class="btn btn-danger" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_sub/'.$high_c['id'];?>">Izbriši predmet</a>
 
                 <div class="pop-up" id="pop-up">
                     <p>Are you sure you want to delete this user?</p>
@@ -66,7 +67,7 @@
                 <div id="overlay"></div>
                 
                 </td>
-
+                <?php endforeach;?>
                 </tr>
             </tbody>
         </table>

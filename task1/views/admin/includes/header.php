@@ -18,6 +18,7 @@
 					<li><a href="http://localhost/eDiary/task1/admin/" >Početna strana</a></li>
 					<li><a href="http://localhost/eDiary/task1/admin/users" >Korisnici</a></li>
 					<li><a href="http://localhost/eDiary/task1/admin/subjects" >Predmeti</a></li>
+					<li><a href="http://localhost/eDiary/task1/admin/classes" >Odeljenja</a></li>
 				</ul>
 				<ul class="right_nav">
 					<li><a href="http://localhost/eDiary/task1/admin/logout">Izloguj se</a></li>

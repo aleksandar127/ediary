@@ -177,4 +177,15 @@ class BaseAdminController
 			echo 'nesto je poslo po zlu pri dodavanju predmeta';
 		}
 	}
+
+	public function classes()
+	{
+		$view = new View();
+		$classes_low = Classes::all_classes('0');
+		$classes_high = Classes::all_classes('1');
+		$view->data['low_classes'] = $classes_low; 
+		$view->data['high_classes'] = $classes_high;
+		var_dump($view->data['high_classes']);
+		$view->load_view('admin', 'pages', 'classes');
+	}
 }

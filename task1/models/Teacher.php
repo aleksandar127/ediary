@@ -1,6 +1,7 @@
 <?php
 
-class Teacher{
+class Teacher
+{
 
     public static function get_all_students(){
         $query = DB::$conn->prepare('SELECT * FROM students');
@@ -34,8 +35,6 @@ class Teacher{
         return $child;
     }
 }
-
-
 
 
 ?>

@@ -192,16 +192,58 @@ class BaseAdminController
 	{
 		$class_id = $this->demand->parts_of_url[5];
 		$view = new View();
-		// $subject = Subjects::get_subject_by_id($subject_id);
-		// $view->data['subject'] = $subject;
-		// $professors = Professor::all_professors();
-		// $view->data['professors'] = $professors;
+		$class = Classes::get_class_by_id($class_id);
+		$view->data['class'] = $class;
 		$view->load_view('admin', 'pages', 'edit_class');
 	}
 
 	public function fetch_heads()
 	{
-		echo 'ovde sad ajax poziv i dovuci';
+		if($_GET['high_low'] == 0){
+			$role = 3;
+			$teachers = Classes::get_teachers_or_profs($role);
+			$teachers = json_encode($teachers);
+			echo $teachers;
+		} elseif($_GET['high_low'] == 1){
+			$role = 1;
+			$professors = Classes::get_teachers_or_profs($role);
+			$professors = json_encode($professors);
+			echo $professors;
+		}
+
+	}
+	// validate editing class in db
+	public function save_ed_cl()
+	{
+		$class_id = $this->demand->parts_of_url[5];
+		$class_name = $_POST['class_name'];
+		$high_low = $_POST['high_low'];
+		$class_head = !empty($_POST['users_id']) ? $_POST['users_id'] : $_POST['current_class_head'];
+
+		$edit = Classes::edit_class($class_name, $class_head, $high_low, $class_id);
+		if ($edit) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili informacije o odeljenju! ');
+		} else {
+			echo 'greska pri apdejtovanju informacija o odeljenju';
+		}
+
+	}
+
+	public function delete_class()
+	{
+		$class_id = $this->demand->parts_of_url[5];
+		$delete_class = Classes::delete($class_id);
+		if ($delete_class) {
+			header('Location: http://localhost/eDiary/task1/admin/classes');
+		} else {
+			echo 'ne radi brisanje odeljenja u bazi,check it out honeyh';
+		}
+	}
+
+	public function add_class()
+	{
+		$view = new View();
+		$view->load_view('admin', 'pages', 'add_class');
 
 	}
 }

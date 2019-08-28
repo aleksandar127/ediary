@@ -12,7 +12,7 @@
                     <option value="1">Viši</option>
                 </select>
         </div>
-        <div class="form-group" style="display: block;">
+        <div class="form-group" style="display: none;">
                 <label for="select_head">Izaberi razrednog starešinu:</label>
                 <select class="form-control" id="select_head" name="prof/tec_id">
                     <!-- place for appending prof or teachers with js -->

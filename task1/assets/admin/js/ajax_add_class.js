@@ -10,6 +10,9 @@ window.addEventListener('load', () => {
             ajax_call(0);
         } else {
             //napraviti ovde sad ako se ne izabere visi ili nizi razred da se sakrije seletc razrednog staresinu!
+            var form_select = document.querySelectorAll('.form-group')[2];
+            console.log(form_select);
+            form_select.style = "display : none;";
         }
     });
 });

@@ -1,6 +1,9 @@
+
 window.addEventListener('load', ajax);
 window.addEventListener('load', parents);
 function ajax() {
+  var parents_name= document.getElementById("parents_name");
+  parents_name.innerHTML='';
     var message= document.getElementById("message");
     message.innerHTML="";
   // alert('aaa');
@@ -21,6 +24,7 @@ function ajax() {
 			var first_name=a[i]["first_name"];
             var is_read=a[i]["is_read"];	        
             div.innerHTML+=message_body;
+            div.innerHTML+="<br>";   
             div.innerHTML+=date; 
             div.innerHTML+="<br>";   
             div.innerHTML+=last_name+" "; 
@@ -60,7 +64,10 @@ function isRead(id) {
 
 
 function chat(id) {
-  
+  var parents_name= document.getElementById("parents_name");
+  var parent= document.getElementById(id);
+ if( parent!=null)
+  parents_name.innerHTML=parent.innerHTML;
   
    id=id.substr(1);
    var subject= document.getElementById("subject");
@@ -87,7 +94,7 @@ function chat(id) {
             div.setAttribute('onclick','isRead(this.id)');
             div.setAttribute('style',"background-color:silver;border-radius:10px;height:50px;width:200px;margin-top:5px;margin-left:70px;");
             if(is_read==0){
-            div.setAttribute('style',"background-color:red;border-radius:10px;height:50px;width:200px;margin-top:5px;margin-left:70px;");
+            div.setAttribute('style',"background-color:#44ff3d;border-radius:10px;height:50px;width:200px;margin-top:5px;margin-left:70px;");
             }
             }
             else{
@@ -108,7 +115,10 @@ function chat(id) {
 
 
 function ajaxSendMessage(){
- 
+  var parents_name= document.getElementById("parents_name").innerHTML;
+  if(parents_name==''){
+    alert('Niste izabrali primaoca');
+  return;}
   var msg= document.getElementById("subject");
   var message= document.getElementById("subject").value;
   var parent=msg.className;
@@ -129,3 +139,5 @@ function ajaxSendMessage(){
   
   
 }
+
+

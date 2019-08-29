@@ -32,7 +32,7 @@
                     <option value="<?php echo $role['id']; ?>"><?php echo $role['name']; ?></option>
                 <?php endforeach; ?>
             </select>
-            <small style="color:rgb(128, 128, 128);">Note: if you don't choose role, it will be set by default.</small>
+            <small class="text-muted">Note: if you don't choose role, it will be set by default.</small>
     </div>
     <button type="submit" class="btn btn-dark">Add User</button>
     </form>

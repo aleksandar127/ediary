@@ -280,17 +280,11 @@ class BaseProfessorController
 		$pdf->ezStream();
 		
 			
-			//$view->data['pdf'] = ;
+		//$view->data['pdf'] = ;
 			//$view->load_view('professor', 'pages', 'success');
 		
 	}
 
-	public function logout()
-	{
-		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
-		header('Location: http://localhost/eDiary/task1/');
-		die();
-		
-	}
+ 
 
 }

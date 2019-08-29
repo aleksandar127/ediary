@@ -2,7 +2,7 @@
     <form method="POST" action="http://localhost/eDiary/task1/admin/save_sub">
         <div class="form-group">
             <label for="subject_name">Ime predmeta</label>
-            <input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="Ukucaj naziv nogov predmeta">
+            <input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="Ukucaj naziv novog predmeta">
             <p></p>
         </div>
         <div class="form-group" style="width: 30%;">

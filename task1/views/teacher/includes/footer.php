@@ -19,6 +19,6 @@
                 <a href="#" class="button">Nazad</a>
             </div><!-- end #footerBottom -->
         </div><!-- end .wrapper -->
-    </div><! -- end #footer -->
+    </div><!-- end #footer -->
 </body>
 </html>

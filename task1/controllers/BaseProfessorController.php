@@ -286,6 +286,6 @@ class BaseProfessorController
 		
 	}
 
-	
+ 
 
 }

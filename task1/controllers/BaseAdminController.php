@@ -246,4 +246,11 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'add_class');
 
 	}
+
+	public function save_class()
+	{
+		var_dump($_POST);
+		$res = Classes::make_class($_POST['name_of_class'], '4', $_POST['class'], $_POST['puple'], $_POST['puple_surname'], '9');
+		var_dump($res);
+	}
 }

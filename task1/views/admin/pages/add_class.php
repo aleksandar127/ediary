@@ -23,22 +23,39 @@
         </div>
         <div class="form-group">
             <label for="puple">Unesi ime učenika za dato odeljenje:</label>
-            <input type="text" class="form-control" id="puple" name="puple">
+            <input type="text" class="form-control" id="puple" name="puple" placeholder="Miloš">
             <p></p>
         </div>
         <div class="form-group">
             <label for="puple_s">Unesi prezime učenika za dato odeljenje:</label>
-            <input type="text" class="form-control" id="puple_s" name="puple_surname">
+            <input type="text" class="form-control" id="puple_s" name="puple_surname" placeholder="Milovanović">
             <p></p>
         </div>
         <div class="form-group">
             <label for="parent">Unesi ime roditelja za dato odeljenje:</label>
-            <input type="text" class="form-control" id="parent" name="parent">
+            <input type="text" class="form-control" id="parent" name="parent" placeholder="Milovan">
             <p></p>
         </div>
         <div class="form-group">
             <label for="parent_s">Unesi prezime roditelja za dato odeljenje:</label>
-            <input type="text" class="form-control" id="parent_s" name="parent_surname">
+            <input type="text" class="form-control" id="parent_s" name="parent_surname" placeholder="Milovanović">
+            <p></p>
+        </div>
+        <div class="form-group">
+            <label for="parent_usr">Unesi username koji ce roditelj koristiti:</label>
+            <input type="text" class="form-control" id="parent_usr" name="parent_username" placeholder="mikica">
+            <p></p>
+        </div>
+
+        <div class="form-group">
+            <label for="pass">Generisati šifru roditelja:</label>
+            <input type="text" class="form-control" id="pass" name="parent_pass" placeholder="123456">
+            <p></p>
+        </div>
+
+        <div class="form-group">
+            <label for="re_pass">Potvrditi šifru:</label>
+            <input type="text" class="form-control" id="re_pass" name="parent_re_pass" placeholder="123456">
             <p></p>
         </div>
         <input type="submit" class="btn btn-dark" value="Kreiraj!">

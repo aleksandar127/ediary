@@ -109,11 +109,36 @@ function validate_form(form_el){
                         display_error(input, 'minlength');
                     }
                     break;
-                    break;
                 case 'parent_surname':
                     if (i_value.length < 3) {
                         field_valid = false;
                         display_error(input, 'minlength');
+                    }
+                    break;
+                case 'parent_username':
+                    if (i_value.length < 3) {
+                        field_valid = false;
+                        display_error(input, 'minlength');
+                    }
+                    break;
+                case 'parent_pass':
+                    if (i_value.length < 6) {
+                        field_valid = false;
+                        display_error(input, 'minlength_psw');
+                    }
+                    break;
+                case 'parent_re_pass':
+                    if (i_value.length < 6) {
+                        field_valid = false;
+                        display_error(input, 'minlength-psw');
+                    // } else if (field_valid) {
+                    //     var psw_value = inputs[3].value;
+                    //     var re_psw_value = inputs[4].value;
+                    //     if (re_psw_value !== psw_value) {
+                    //         display_error(input, 'password-not-match');
+                    //     } else {
+                    //         console.log('iste su sifre');
+                    //     }
                     }
                     break;
 
@@ -128,7 +153,9 @@ function display_error(field, key) {
     var errors_lookup = {
         'required': 'Unos ovog polja je obavezan!',
         'minlength': 'Ukucajte najmanje 3 slova!',
-        'not_selected' : 'Morate da izaberete vrstu odeljenja!'
+        'not_selected' : 'Morate da izaberete vrstu odeljenja!',
+        'minlength_psw': 'Šifra mora sadržati najmanje 6 karaktera.',
+        'password-not-match': 'Šifre se ne poklapaju!'
     };
 
     field.style = "border: 1px solid red";

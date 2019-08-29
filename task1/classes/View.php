@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 class View
 {
 	//we are going to use this property later

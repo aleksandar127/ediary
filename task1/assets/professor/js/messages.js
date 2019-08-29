@@ -17,7 +17,7 @@ function ajax() {
             var div=document.createElement("div");
             var id=a[i]["id"];
             var user=a[i]["user"];
-            user="x"+user;
+            user="p"+user;
 			var message_body=a[i]["message"];
 			var date=a[i]["date_and_time"];
       var last_name=a[i]["last_name"];

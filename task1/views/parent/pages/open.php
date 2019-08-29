@@ -6,7 +6,10 @@
 <table  style='border:solid black 3px;display:inline-block;'>
 <tr><th>IME</th><th>PREDMET</th><th>VREME</th><th>ZAKAZI</th></tr>
 <?php
+//print_r($this->data['open_sent']);
 foreach($this->data['professors'] as $open){
+    if($open['title']=='professor' || $open['title']=='teacher')
+    $open['title']='razredni';
    
     echo  '<tr>';
    
@@ -33,7 +36,7 @@ foreach($this->data['open_sent'] as $open){
     $color="silver";
     echo  '<tr>';
     echo  '<td>'.substr($open[0],0,-3).'</td>';
-    echo '<td>'.$open[1].' '.$open[2].'</td>';
+    echo '<td>'.$open[1].' '.$open[2].' '.$open[4].'</td>';
     if($open[3]==1){
     $status="PRIHVACENO";
     $color="green";

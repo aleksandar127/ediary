@@ -249,8 +249,18 @@ class BaseAdminController
 
 	public function save_class()
 	{
+		$class_name = $_POST['name_of_class'];
+		$high_low = $_POST['class'];
+		$puple_name = $_POST['puple'];
+		$puple_surname = $_POST['puple_surname'];
 		var_dump($_POST);
-		$res = Classes::make_class($_POST['name_of_class'], '4', $_POST['class'], $_POST['puple'], $_POST['puple_surname'], '9');
+											//id razrednog ovde							//id roditelja ovde
+		$res = Classes::make_class($class_name, '4', $high_low, $puple_name, $puple_surname, '9');
 		var_dump($res);
+		if ($res) {
+			header('Location: http://localhost/eDiary/task1/admin/add_class?success=Uspešno ste napravili novo odeljenje!');
+		} else {
+			echo 'nesto puca kod upisa odeljenja u bazu';
+		}
 	}
 }

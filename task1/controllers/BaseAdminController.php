@@ -94,13 +94,19 @@ class BaseAdminController
 		$role = $_POST['role_id'];
 
 		$enc_pass = password_hash($password , PASSWORD_BCRYPT);
-
-		$add_new_user = Users::add_new_user($first_name, $last_name, $username, $enc_pass, $role);
-		if ($add_new_user) {
-			header('Location: '.URLROOT.'/admin/add_user?success=Successfully added user!');
+		$username_exists = Users::get_user_by_username($username);
+		
+		if ($username_exists) {
+			header('Location: '.URLROOT.'/admin/add_user?err=Korisnik sa ovim username-om već postoji!');
 		} else {
-			header('Location: '.URLROOT.'/admin/add_user?err=Something went wrong!');
+			$add_new_user = Users::add_new_user($first_name, $last_name, $username, $enc_pass, $role);
+			if ($add_new_user) {
+				header('Location: '.URLROOT.'/admin/add_user?success=Uspešno ste dodali novog korisnika!');
+			} else {
+				header('Location: '.URLROOT.'/admin/add_user?err=Nešto je pošlo po zlu, pokušajte ponovo!');
+			}
 		}
+
 	}
 
 	public function subjects()
@@ -263,14 +269,21 @@ class BaseAdminController
 		$enc_pass = password_hash($parent_password , PASSWORD_BCRYPT);
 		$parent_role = 4;
 
-		// var_dump($_POST);die;
-																					
-		$res = Classes::make_class($class_name, $head_id, $high_low, $parent_name, $parent_surname, $parent_username, $enc_pass, $parent_role, $puple_name, $puple_surname);
-		var_dump($res);
-		if ($res) {
-			header('Location: http://localhost/eDiary/task1/admin/add_class?success=Uspešno ste napravili novo odeljenje!');
+		$user = Users::get_user_by_username($parent_username);
+		$class = Classes::get_class_by_name($class_name);
+		if ($class_name == $class['name']) {
+			header('Location: http://localhost/eDiary/task1/admin/add_class?error=Ovakvo odeljenje već postoji!');
+		} elseif($parent_username == $user['username']) {
+			header('Location: http://localhost/eDiary/task1/admin/add_class?error=Roditelj sa ovakvim username-om već postoji!');
 		} else {
-			echo 'nesto puca kod upisa odeljenja u bazu';
+			$res = Classes::make_class($class_name, $head_id, $high_low, $parent_name, $parent_surname, $parent_username, $enc_pass, $parent_role, $puple_name, $puple_surname);
+			if ($res) {
+				header('Location: http://localhost/eDiary/task1/admin/add_class?success=Uspešno ste napravili novo odeljenje!');
+			} else {
+				echo 'nesto puca kod upisa odeljenja u bazu';
+			}
 		}
+
+		
 	}
 }

@@ -71,4 +71,4 @@
     </div>
   </div>
 
-  <script src="<?php URLROOT; ?>/assets/admin/js/delete_confirm.js"></script>
+  <script src="<?php echo URLROOT; ?>/assets/admin/js/delete_confirm.js"></script>

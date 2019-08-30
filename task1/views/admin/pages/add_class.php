@@ -66,6 +66,12 @@
             <?php echo $_GET['success']; ?>
         </small>
     <?php endif; ?>
+
+    <?php if(isset($_GET['error'])): ?>
+        <small style="color: red; font-weight: bold; margin-top: 5px; ">
+            <?php echo $_GET['error']; ?>
+        </small>
+    <?php endif; ?>
 </div>
 
 <script src="<?php echo URLROOT; ?>/assets/admin/js/ajax_add_class.js"></script>

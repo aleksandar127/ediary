@@ -67,7 +67,6 @@ function validate_form(form_el){
     var select = form_el.querySelector('#cls_h_l');
 
 
-    // console.log(select_group);
 
     if (select.value == 'null') {
         display_error(select, 'not_selected');
@@ -77,9 +76,6 @@ function validate_form(form_el){
         var field_valid = true;
         var i_value = input.value.trim();
         var i_name = input.name;
-
-        // console.log(i_value);
-        // console.log(i_name);
 
         if (i_value == '') {
             field_valid = false;

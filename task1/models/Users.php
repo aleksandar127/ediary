@@ -57,10 +57,17 @@ class Users
     
     public static function add_new_user($first_name, $last_name, $username, $password, $role_id)
     {
-        
         $query = "insert into users (first_name, last_name, username, password, roles_id) values (?,?,?,?,?)";
         $query= DB::$conn->prepare($query);
         $res = $query->execute([$first_name, $last_name, $username, $password, $role_id]);
         return $res;
+    }
+
+    public static function get_user_by_username($username)
+    {
+        $query = DB::$conn->prepare('select * from users where username = ?');
+        $query->execute([$username]);
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        return $user;
     }
 }

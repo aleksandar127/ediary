@@ -27,8 +27,8 @@ switch($parent['accepted']){
 echo '<td style="background-color:#e0cf48;border-radius:15px;min-height:50px;"><span style="display:inline-block;min-width=300px;font-size:20px;">';
 echo $parent['last_name'].' '.$parent['first_name'];
 echo "</span></td>";
-echo "<td><a href='http://localhost/eDiary/task1/professor/open_yes/".$parent['user_open_id']."'  class='btn btn-success' >Potvrdi</a>";
-echo "<a href='http://localhost/eDiary/task1/professor/open_no/".$parent['user_open_id']."'  class='btn btn-danger' >Odbij</a>";
+echo "<td><a href='".URLROOT."/professor/open_yes/".$parent['user_open_id']."'  class='btn btn-success' >Potvrdi</a>";
+echo "<a href='".URLROOT."/professor/open_no/".$parent['user_open_id']."'  class='btn btn-danger' >Odbij</a>";
 echo '</td>';
 
 break;

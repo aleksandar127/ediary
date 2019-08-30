@@ -38,7 +38,7 @@
     </form>
 
     <?php if(isset($_GET['err'])): ?>
-        <small style="color: rgb(128, 128, 128); margin-top: 5px; ">
+        <small style="color: rgb(255,0,0); font-weight: bold; margin-top: 5px; ">
             <?php echo $_GET['err']; ?>
         </small>
     <?php endif; ?>

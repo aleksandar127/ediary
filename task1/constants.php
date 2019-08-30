@@ -5,6 +5,6 @@ define("HOST", "localhost");
 define("DBUSERNAME", "root");
 define("DBPASS", "");
 
-defined('URLROOT') ? Null : define('URLROOT', 'http://localhost/eDiary/task1');
+defined('URLROOT') ? null : define('URLROOT', 'http://localhost/eDiary/task1');
 
 ?>

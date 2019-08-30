@@ -37,6 +37,6 @@ endforeach;
 ?>
 
 
-<script src="http://localhost/eDiary/task1/assets/professor/js/messages.js"></script>
+<script src="<?php echo URLROOT; ?>/assets/professor/js/messages.js"></script>
 
 

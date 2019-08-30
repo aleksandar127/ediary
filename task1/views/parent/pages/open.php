@@ -19,7 +19,7 @@ foreach($this->data['professors'] as $open){
     echo  '<td>'.$open['title'].'</td>';
    
     echo  '<td>'.substr($open['time'],0,-3).'</td>';
-    echo  '<td><a  class="btn btn-success" href="http://localhost/eDiary/task1/parent/open_send_request/'.$open['id'].'">ZAKAZI</a></td>';
+    echo  '<td><a  class="btn btn-success" href="'.URLROOT.'/parent/open_send_request/'.$open['id'].'">ZAKAZI</a></td>';
   
     echo  '</tr>';
 }

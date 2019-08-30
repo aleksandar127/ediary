@@ -3,6 +3,14 @@
 
 class Classes
 {
+    public static function classes_db()
+    {
+        $query = DB::$conn->prepare('select class.id, class.name, class.users_id, class.high_low, users.first_name, users.last_name from class join users on class.users_id = users.id');
+        $query->execute(); 
+        $classes = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $classes;
+    }
+
     public static function all_classes($high_low)
     {
         $query = DB::$conn->prepare('select class.id, class.name, class.users_id, class.high_low, users.first_name, users.last_name from class join users on class.users_id = users.id where class.high_low = ?');
@@ -70,14 +78,22 @@ class Classes
 
     }
 
+<<<<<<< HEAD
 
     public static function get_my_class(){
         $query = DB::$conn->prepare('select id,name from class where users_id=?');
         $query->execute([$_COOKIE['id']]); 
+=======
+    public static function get_class_by_name($class_name)
+    {
+        $query = DB::$conn->prepare('select * from class where name = ?');
+        $query->execute([$class_name]);
+>>>>>>> 18ad4b03afec51d6a1eadaad62672a61f21ca7cc
         $class = $query->fetch(PDO::FETCH_ASSOC);
         return $class;
 
     }
+<<<<<<< HEAD
 
     public static function class_info(){
        
@@ -99,4 +115,6 @@ class Classes
 
 
 
+=======
+>>>>>>> 18ad4b03afec51d6a1eadaad62672a61f21ca7cc
 }

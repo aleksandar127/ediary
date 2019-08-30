@@ -18,7 +18,7 @@ body{
 
 .left_nav li{
     display: inline;
-    padding-right: 40px;
+    padding-right: 30px;
     font-size: 20px; 
 }
 .wrapper > header ul li a{

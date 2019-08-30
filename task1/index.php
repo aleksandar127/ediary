@@ -6,7 +6,7 @@ require('./db.php');
 require('./constants.php');
 
 $db = new DB();
-
+     
 spl_autoload_register(function($class){
 	require('./controllers/'.$class.'.php');
 });

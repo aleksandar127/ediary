@@ -19,6 +19,7 @@
 					<li><a href="<?php echo URLROOT; ?>/admin/users" >Korisnici</a></li>
 					<li><a href="<?php echo URLROOT; ?>/admin/subjects" >Predmeti</a></li>
 					<li><a href="<?php echo URLROOT; ?>/admin/classes" >Odeljenja</a></li>
+					<li><a href="<?php echo URLROOT; ?>/admin/schedule" >Raspored časova</a></li>
 				</ul>
 				<ul class="right_nav">
 					<li><a href="<?php echo URLROOT; ?>/admin/logout">Izloguj se</a></li>

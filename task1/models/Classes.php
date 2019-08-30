@@ -69,4 +69,13 @@ class Classes
         return true;
 
     }
+
+    public static function get_class_by_name($class_name)
+    {
+        $query = DB::$conn->prepare('select * from class where name = ?');
+        $query->execute([$class_name]);
+        $class = $query->fetch(PDO::FETCH_ASSOC);
+        return $class;
+
+    }
 }

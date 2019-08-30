@@ -1,5 +1,6 @@
 <?php 
 
+
 class BaseProfessorController 
 {
     public function __construct($demand)
@@ -168,7 +169,7 @@ class BaseProfessorController
 
 
 	public function ajax_send_message(){
-		$message=$_GET['message'];
+		$message=htmlspecialchars(strip_tags($_GET['message']));
 		$id=$_GET['id'];
 		Professor::ajax_send_message($message,$id);
 		$response=['response'=>'da'];
@@ -183,11 +184,12 @@ class BaseProfessorController
 		if($grades==null){
 			if (isset($_SERVER["HTTP_REFERER"])) {
 				header("Location: " . $_SERVER["HTTP_REFERER"]);
+				$_SESSION['success']="Ucenik nije ocenjen";
 			}
 			exit();
 		}
 	
-		
+		$_SESSION['success']='';
         $pdf = new Cezpdf();
 		$pdf->selectFont('Helvetica');
 		
@@ -269,7 +271,6 @@ class BaseProfessorController
 			default:
 			return;
 		}
-		//$pdf->setColor (0,0,1,[0]);
 		if($fall){
 			$grade='Nedovoljan';
 		$pdf->ezText('   <b>      - Uspeh: '.$grade.'(1)</b>',13);
@@ -278,15 +279,9 @@ class BaseProfessorController
 		else
 		$pdf->ezText('     <b>    - Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13);
 		$pdf->ezSetDy(-15);
-		
-		
-		//$pdf->ezText('<c:alink:'. $_SERVER["HTTP_REFERER"].'>Vrati se</c:alink>');
-
 		$pdf->ezStream();
 		
-			
-		//$view->data['pdf'] = ;
-			//$view->load_view('professor', 'pages', 'success');
+		
 		
 	}
 

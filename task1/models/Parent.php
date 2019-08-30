@@ -76,7 +76,7 @@ class Parents{
         $query->execute([$_COOKIE['id'],$_COOKIE['id']]);
         $all=[];
        while( $open = $query->fetch(PDO::FETCH_ASSOC)){
-           $all[$open['id']]=[$open['time'],$open['last_name'],$open['first_name'],$open['accepted']];
+           $all[$open['id']]=[$open['time'],$open['last_name'],$open['first_name'],$open['accepted'],$open['name']];
        }
        return $all;
        }

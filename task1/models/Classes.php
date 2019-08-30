@@ -40,4 +40,28 @@ class Classes
         $res=  DB::$conn->prepare($query);
         return $res->execute([$id]);
     }
+
+    public static function make_class($class_name, $prof_id, $high_low, $puple_n, $puple_s, $parent_id)
+    {
+       try {  
+            DB::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            DB::$conn->beginTransaction();
+            $query = DB::$conn->prepare("insert into class (name, users_id, high_low) values (?, ?, ?)");
+            $query->execute([$class_name, $prof_id, $high_low]); 
+            $class_id = DB::$conn->lastInsertId(); 
+            var_dump($class_id);
+            $query = DB::$conn->prepare("insert into students (first_name, last_name, class_id, users_id) 
+                values (?, ?, ?, ?)");
+            $query->execute([$puple_n, $puple_s, $class_id, $parent_id]); 
+            DB::$conn->commit();
+        
+        } catch (Exception $e) {
+            DB::$conn->rollBack();
+            echo "Failed: " . $e->getMessage();
+            return false;
+        }
+        return true;
+
+    }
 }

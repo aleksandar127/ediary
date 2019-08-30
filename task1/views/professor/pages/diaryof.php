@@ -78,7 +78,7 @@ foreach($this->data['diaries'] as $students):
             
     echo $students['grades'];
     echo "&nbsp;&nbsp;";
-    echo "<a  class='btn btn-danger' href='http://localhost/eDiary/task1/professor/delete/".$students['mark']."'>Izbrisi</a>";
+    echo "<a  class='btn btn-danger'  href='http://localhost/eDiary/task1/professor/delete/".$students['mark']."'>Izbrisi</a>";
     echo "&nbsp;";
     echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
     echo "&nbsp;";
@@ -103,3 +103,17 @@ endforeach;
 ?>
 
 <script src="http://localhost/eDiary/task1/assets/professor/js/diaryof.js"></script>
+<script>
+document.body.onclick = function( e ) {
+    // Cross-browser handling
+    var evt = e || window.event,
+        target = evt.target || evt.srcElement;
+
+    // If the element clicked is an anchor
+    if ( target.nodeName === 'A' && target.className != 'navProf' ) {
+
+        // Add the confirm box
+        return confirm( 'POTVRDI' );
+    }
+};
+</script>

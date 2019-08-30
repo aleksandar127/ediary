@@ -246,4 +246,25 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'add_class');
 
 	}
+
+	public function save_class()
+	{
+		$class_name = $_POST['name_of_class'];
+		$high_low = $_POST['class'];
+		$puple_name = $_POST['puple'];
+		$puple_surname = $_POST['puple_surname'];
+		$head_id = $_POST['prof/tec_id'];
+
+		// PRVO RODITELJA RESITI I UPISATI U USERE DA BI DOBILAID RODITELJA
+		// $enc_pass = password_hash($password , PASSWORD_BCRYPT);
+		var_dump($_POST);die;
+																					//id roditelja ovde
+		$res = Classes::make_class($class_name, $head_id, $high_low, $puple_name, $puple_surname, '9');
+		var_dump($res);
+		if ($res) {
+			header('Location: http://localhost/eDiary/task1/admin/add_class?success=Uspešno ste napravili novo odeljenje!');
+		} else {
+			echo 'nesto puca kod upisa odeljenja u bazu';
+		}
+	}
 }

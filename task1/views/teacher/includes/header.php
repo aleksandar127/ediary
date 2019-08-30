@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>eDiary</title>
-<link href="http://localhost/eDiary1/task1/assets/teacher/css/style.css" type="text/css" rel="stylesheet">
-<link href="http://localhost/eDiary1/task1/assets/teacher/css/https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
-<link href="http://localhost/eDiary1/task1/assets/teacher/css/fa/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-<link href="http://localhost/eDiary1/task1/assets/teacher/css/web-fonts-with-css/css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
+<link href="http://localhost/eDiary/task1/assets/teacher/css/style.css" type="text/css" rel="stylesheet">
+<link href="http://localhost/eDiary/task1/assets/teacher/css/https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+<link href="http://localhost/eDiary/task1/assets/teacher/css/fa/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link href="http://localhost/eDiary/task1/assets/teacher/css/web-fonts-with-css/css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<div id="headerTop">
@@ -26,13 +26,13 @@
 	<div id="header">
 		<div class="wrapper">
 			<div id="logo">
-				 <img src="http://localhost/eDiary1/task1/assets/teacher/images/logo1.png" alt="logo"> 
+				 <img src="http://localhost/eDiary/task1/assets/teacher/images/logo1.png" alt="logo"> 
 			</div><!-- end #logo -->
 			<div id="class">
 				<?php foreach($this->data['class'] as $class): ?>
 				<p>Odeljenje <span> <?php echo $class['name']; ?> </span> </p>
 				<?php endforeach; ?>
-				<p id="logoutP"><a href="http://localhost/eDiary1/task1/teacher/logout">Logout</a></p>
+				<p id="logoutP"><a href="http://localhost/eDiary/task1/teacher/logout">Logout</a></p>
             </div><!-- end #class -->
         </div><!-- end .wrapper -->
 	</div><!-- end #header -->
@@ -41,11 +41,11 @@
 		<div class="wrapper">
 			<div id="nav">
 				<ul>
-					<li><a href="http://localhost/eDiary1/task1/teacher/grade/">ocene</a></li>
-					<li><a href="http://localhost/eDiary1/task1/teacher">ucenici</a></li>
-					<li><a href="http://localhost/eDiary1/task1/teacher/objects">predmeti</a></li>
-					<li><a href="http://localhost/eDiary1/task1/teacher/schedule">raspored casova</a></li>
-					<li><a href="http://localhost/eDiary1/task1/teacher/message">poruke</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher/grade/">ocene</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher">ucenici</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher/objects">predmeti</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher/schedule">raspored casova</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher/message">poruke</a></li>
 				</ul>
 			</div><!-- end #nav -->
 		</div><!-- end .wrapper -->

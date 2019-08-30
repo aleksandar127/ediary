@@ -47,11 +47,11 @@
                     <td>Prosek ucenika</td>
                     <td id="tdInput">
                     
-                    <a href="<?php echo 'http://localhost/eDiary1/task1/teacher/new_grade/'. $student['id'];?>"><input type="button" onclick="promeni" value="Unesi"></a>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/new_grade/'. $student['id'];?>"><input type="button" onclick="promeni" value="Unesi"></a>
                     
-                    <a href="<?php echo 'http://localhost/eDiary1/task1/teacher/delete_grade/' . $student['id']; ?>"><input type="button" onclick="promeni" value="Obrisi"></a>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/delete_grade/' . $student['id']; ?>"><input type="button" onclick="promeni" value="Obrisi"></a>
                     
-                    <a href="<?php echo 'http://localhost/eDiary1/task1/teacher/final_grade/' . $student['id']; ?>"><input type="button" onclick="promeni" value="Zakljucivanje ocena"></a>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/final_grade/' . $student['id']; ?>"><input type="button" onclick="promeni" value="Zakljucivanje ocena"></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -1,4 +1,4 @@
-<a  class="btn btn-success sub" href="http://localhost/eDiary/task1/admin/add_class">Kreiraj odeljenje</a>
+<a  class="btn btn-success sub" href="<?php echo URLROOT; ?>/admin/add_class">Kreiraj odeljenje</a>
 <div class="row">
     <h3 class="col">Niži razredi</h3>
     <h3 class="col">Viši razredi</h3>
@@ -21,12 +21,12 @@
                 <th scope="row"><?php echo $low_c['id']?></th>
                 <td><?php echo $low_c['name']; ?></td>
                 <td><?php echo $low_c['first_name'].' '.$low_c['last_name']; ?></td>
-                <td><a class="btn btn-dark" href="<?php echo 'http://localhost/eDiary/task1/admin/edit_class/'.$low_c['id']?>">Izmeni odeljenje</a></td>
-                <td><a class="btn btn-danger" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_class/'.$low_c['id'];?>">Izbriši odeljenje</a>
+                <td><a class="btn btn-dark" href="<?php echo URLROOT; ?>/admin/edit_class/<?php echo $low_c['id']; ?>">Izmeni odeljenje</a></td>
+                <td><a class="btn btn-danger" href="<?php echo URLROOT; ?>/admin/delete_class/<?php echo $low_c['id'];?>">Izbriši odeljenje</a>
                 
                 <div class="pop-up" id="pop-up">
                     <p>Are you sure you want to delete this user?</p>
-                    <a class="delete" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_class/'.$low_c['id'];?>">Izbriši</a>
+                    <a class="delete" href="<?php echo URLROOT; ?>/admin/delete_class/<?php echo $low_c['id'];?>">Izbriši</a>
                     <a class="cancel">Otkaži</a>
                 </div>
 
@@ -55,12 +55,12 @@
                 <th scope="row"><?php echo $high_c['id']; ?></th>
                 <td><?php echo $high_c['name']; ?></td>
                 <td><?php echo $high_c['first_name'].' '.$high_c['last_name']; ?></td>
-                <td><a class="btn btn-dark" href="<?php echo 'http://localhost/eDiary/task1/admin/edit_class/'.$high_c['id']?>">Izmeni odeljenje</a></td>
-                <td><a class="btn btn-danger" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_class/'.$high_c['id'];?>">Izbriši odeljenje</a>
+                <td><a class="btn btn-dark" href="<?php echo URLROOT; ?>/admin/edit_class/<?php echo $high_c['id']?>">Izmeni odeljenje</a></td>
+                <td><a class="btn btn-danger" href="<?php echo URLROOT; ?>/admin/delete_class/<?php echo $high_c['id']; ?>">Izbriši odeljenje</a>
 
                 <div class="pop-up" id="pop-up">
                     <p>Da li ste sigurni da želite da izbrišete ovo odeljenje?</p>
-                    <a class="delete" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_class/'.$high_c['id'];?>">Izbriši</a>
+                    <a class="delete" href="<?php  echo URLROOT; ?>/admin/delete_class/<?php echo $high_c['id']; ?>">Izbriši</a>
                     <a class="cancel">Otkaži</a>
                 </div>
 
@@ -74,4 +74,4 @@
     </div>
   </div>
 
-    <script src="http://localhost/eDiary/task1/assets/admin/js/delete_confirm.js"></script>
+    <script src="<?php echo URLROOT; ?>/assets/admin/js/delete_confirm.js"></script>

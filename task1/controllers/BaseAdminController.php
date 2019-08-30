@@ -50,7 +50,7 @@ class BaseAdminController
 
 		$edit_user = Users::edit($first_name, $last_name, $username, $enc_pass, $role, $user_id);
 		if ($edit_user) {
-			header('Location: http://localhost/eDiary/task1/admin/users');
+			header('Location: '.URLROOT.'/admin/users');
 		}
 		
 	}
@@ -60,7 +60,7 @@ class BaseAdminController
 		$user_id = $this->demand->parts_of_url[5];
 		$delete_user = Users::delete($user_id);
 		if ($delete_user) {
-			header('Location: http://localhost/eDiary/task1/admin/users');
+			header('Location: '.URLROOT.'/admin/users');
 		} else {
 			echo 'ne radi brisanje u bazi';
 		}
@@ -70,7 +70,7 @@ class BaseAdminController
 	public function logout()
 	{
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
-		header('Location: http://localhost/eDiary/task1/');
+		header('Location: '.URLROOT.'/');
 		die();
 		
 	}
@@ -97,9 +97,9 @@ class BaseAdminController
 
 		$add_new_user = Users::add_new_user($first_name, $last_name, $username, $enc_pass, $role);
 		if ($add_new_user) {
-			header('Location: http://localhost/eDiary/task1/admin/add_user?success=Successfully added user!');
+			header('Location: '.URLROOT.'/admin/add_user?success=Successfully added user!');
 		} else {
-			header('Location: http://localhost/eDiary/task1/admin/add_user?err=Something went wrong!');
+			header('Location: '.URLROOT.'/admin/add_user?err=Something went wrong!');
 		}
 	}
 
@@ -146,7 +146,7 @@ class BaseAdminController
 		$subject_id = $this->demand->parts_of_url[5];
 		$delete_sub = Subjects::delete($subject_id);
 		if ($delete_sub) {
-			header('Location: http://localhost/eDiary/task1/admin/subjects');
+			header('Location: '.URLROOT.'/admin/subjects');
 		} else {
 			echo 'bezuspesno brisanje predmeta predmeta u bazi';
 		}
@@ -172,7 +172,7 @@ class BaseAdminController
 		
 		$add_new_sub = Subjects::add_new($sub_name, $prof_id, $high_low);
 		if ($add_new_sub) {
-			header('Location: http://localhost/eDiary/task1/admin/add_sub?success=Uspešno ste dodali novi predmet!');
+			header('Location: '.URLROOT.'/admin/add_sub?success=Uspešno ste dodali novi predmet!');
 		} else {
 			echo 'nesto je poslo po zlu pri dodavanju predmeta';
 		}
@@ -234,9 +234,9 @@ class BaseAdminController
 		$class_id = $this->demand->parts_of_url[5];
 		$delete_class = Classes::delete($class_id);
 		if ($delete_class) {
-			header('Location: http://localhost/eDiary/task1/admin/classes');
+			header('Location: '.URLROOT.'/admin/classes');
 		} else {
-			echo 'ne radi brisanje odeljenja u bazi,check it out honeyh';
+			echo 'ne radi brisanje odeljenja u bazi, check it out honey';
 		}
 	}
 

@@ -22,4 +22,4 @@
     </form>
 </div>
 
-<script src="http://localhost/eDiary/task1/assets/admin/js/ajax_add_class.js"></script>
+<script src="<?php echo URLROOT; ?>/assets/admin/js/ajax_add_class.js"></script>

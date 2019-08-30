@@ -21,9 +21,9 @@ class BaseParentController
     public function logout()
 	{
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
-		header('Location: http://localhost/eDiary/task1/');
+		header('Location: '.URLROOT.'/');
 		die();
-		
+
 	}
 
 	public function messages(){

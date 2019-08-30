@@ -261,7 +261,7 @@ class BaseAdminController
 		$puple_surname = $_POST['puple_surname'];
 		$head_id = $_POST['prof/tec_id'];
 
-		//parents of puple
+		//parent of puple
 		$parent_name = $_POST['parent'];
 		$parent_surname = $_POST['parent_surname'];
 		$parent_username = $_POST['parent_username'];
@@ -285,5 +285,24 @@ class BaseAdminController
 		}
 
 		
+	}
+
+	public function schedule()
+	{
+		$view = new View();
+		$all_classes = Classes::classes_db();
+		$view->data['all_classes'] = $all_classes;
+
+		$view->load_view('admin', 'pages', 'schedule');
+
+	}
+
+	public function show_schedule()
+	{
+		$view = new View();
+
+		
+		$view->load_view('admin', 'pages', 'show_schedule');
+
 	}
 }

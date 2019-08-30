@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="POST" action="<?php echo 'http://localhost/eDiary/task1/admin/save_ed_cl/'.$this->data['class']['id'];?>";>
+    <form method="POST" action="<?php echo URLROOT;?>/admin/save_ed_cl/<?php echo $this->data['class']['id'];?>";>
         <div class="form-group">
             <label for="class_n">Naziv odeljenja:</label>
             <input type="text" class="form-control" id="class_n" name="class_name" value="<?php echo $this->data['class']['name']; ?>">
@@ -33,4 +33,4 @@
    <?php endif; ?>
 </div>
 
-<script src="http://localhost/eDiary/task1/assets/admin/js/ajax_class.js"></script>
+<script src="<?php echo URLROOT; ?>/assets/admin/js/ajax_class.js"></script>

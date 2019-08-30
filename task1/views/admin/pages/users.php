@@ -1,5 +1,5 @@
 <div class="container">
-    <a href="http://localhost/eDiary/task1/admin/add_user" class="btn btn-success">Dodaj novog korisnika</a>
+    <a href="<?php echo URLROOT; ?>/admin/add_user" class="btn btn-success">Dodaj novog korisnika</a>
     <table class="table">
 
   <thead>
@@ -23,13 +23,13 @@
       <td><?php echo $user['username']; ?></td>
       <td><?php echo str_replace($user['password'], str_repeat(' &#9679;', 6) , $user['password']); ?></td>
       <td><?php echo $user['role_name']; ?></td>
-      <td><a class="btn btn-dark" href="<?php echo 'http://localhost/eDiary/task1/admin/edit_user/'.$user['id'];?>">Izmeni</a></td>
+      <td><a class="btn btn-dark" href="<?php echo URLROOT; ?>/admin/edit_user/<?php echo $user['id'];?>">Izmeni</a></td>
       <?php if($user['role_name'] !== 'admin'): ?>
         <td><a class="btn btn-danger" href="#">Izbriši korisnika</a>
 
             <div class="pop-up" id="pop-up">
               <p>Are you sure you want to delete this user?</p>
-              <a class="delete" href="<?php  echo 'http://localhost/eDiary/task1/admin/delete_user/'.$user['id'];?>">Izbriši</a>
+              <a class="delete" href="<?php echo URLROOT; ?>/admin/delete_user/<?php echo $user['id'];?>">Izbriši</a>
               <a class="cancel">Otkaži</a>
             </div>
 
@@ -42,4 +42,4 @@
 </table>
 </div>
 
-<script src="http://localhost/eDiary/task1/assets/admin/js/delete_confirm.js"></script>
+<script src="<?php echo URLROOT; ?>/assets/admin/js/delete_confirm.js"></script>

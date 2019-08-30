@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="post" action="http://localhost/eDiary/task1/admin/save_user">
+    <form method="post" action="<?php echo URLROOT; ?>/admin/save_user">
     <div class="form-group">
         <label for="first_name">First Name:</label>
         <input type="text" class="form-control" id="first_name" name="first_name" placeholder="John">
@@ -50,4 +50,4 @@
     <?php endif; ?>
 </div>
 
-<script src="http://localhost/eDiary/task1/assets/admin/js/add_user.js"></script>
+<script src="<?php echo URLROOT; ?>/assets/admin/js/add_user.js"></script>

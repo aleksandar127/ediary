@@ -85,10 +85,10 @@ class BaseTeacherController{
         $add_grade = Teacher::add_new_grade($id_students, $subjects_and_grades);
 
         if($add_grade){
-            header('Location: http://localhost/eDiary1/task1/teacher/grade?success=Uspesno  uneta ocena!');
+            header('Location: http://localhost/eDiary/task1/teacher/grade?success=Uspesno  uneta ocena!');
             
         }else{
-            header('Location:http://localhost/eDiary1/task1/teacher/new_grade?err=Ocena nije uneta!');
+            header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije uneta!');
         }
     }
 
@@ -147,7 +147,7 @@ class BaseTeacherController{
 
     public function logout(){
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
-		header('Location: http://localhost/eDiary1/task1/');
+		header('Location: http://localhost/eDiary/task1/');
 		die();	
 	}
 }

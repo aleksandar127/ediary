@@ -10,7 +10,7 @@ class Teacher{
     }
 
     public static function get_all_subjects(){
-        $query = DB::$conn->prepare('SELECT * FROM subjects');
+        $query = DB::$conn->prepare('SELECT * FROM subjects WHERE high_low = 0');
         $query->execute();
         $subjects = $query->fetchAll(PDO::FETCH_ASSOC);
         return $subjects;
@@ -31,7 +31,7 @@ class Teacher{
     }
 
     public static function get_all_parents(){
-        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, users.role_id FROM users WHERE users.role_id = 5;');
+        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, users.roles_id FROM users WHERE users.roles_id = 4;');
         $query->execute();
         $parents = $query->fetchAll(PDO::FETCH_ASSOC);
         return $parents;

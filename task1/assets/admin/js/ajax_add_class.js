@@ -78,8 +78,8 @@ function validate_form(form_el){
         var i_value = input.value.trim();
         var i_name = input.name;
 
-        console.log(i_value);
-        console.log(i_name);
+        // console.log(i_value);
+        // console.log(i_name);
 
         if (i_value == '') {
             field_valid = false;
@@ -131,14 +131,16 @@ function validate_form(form_el){
                     if (i_value.length < 6) {
                         field_valid = false;
                         display_error(input, 'minlength-psw');
-                    // } else if (field_valid) {
-                    //     var psw_value = inputs[3].value;
-                    //     var re_psw_value = inputs[4].value;
-                    //     if (re_psw_value !== psw_value) {
-                    //         display_error(input, 'password-not-match');
-                    //     } else {
-                    //         console.log('iste su sifre');
-                    //     }
+                    } else if (field_valid) {
+                        var psw_value = document.querySelector('[name="parent_pass"]').value;
+                        var re_psw_value = document.querySelector('[name="parent_re_pass"]').value;
+                        console.log(psw_value);
+                        console.log(re_psw_value);
+                        if (re_psw_value !== psw_value) {
+                            display_error(input, 'password-not-match');
+                        } else {
+                            console.log('iste su sifre');
+                        }
                     }
                     break;
 

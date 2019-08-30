@@ -69,4 +69,34 @@ class Classes
         return true;
 
     }
+
+
+    public static function get_my_class(){
+        $query = DB::$conn->prepare('select id,name from class where users_id=?');
+        $query->execute([$_COOKIE['id']]); 
+        $class = $query->fetch(PDO::FETCH_ASSOC);
+        return $class;
+
+    }
+
+    public static function class_info(){
+       
+        $query = DB::$conn->prepare('Select class.id,class.name from class join users_has_class on class.id=users_has_class.class_id join users on users.id=users_has_class.users_id where users.id=? ');
+        $query->execute([$_COOKIE['id']]); 
+        $classes = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $classes;
+    }
+
+    public static function get_diary_of_my_class()
+    {
+        
+        $query = DB::$conn->prepare('select students.id,first_name,last_name from students join class on students.class_id=class.id where class.users_id=? order by last_name');
+        $query->execute([$_COOKIE['id']]); 
+        $class = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $class;
+
+}
+
+
+
 }

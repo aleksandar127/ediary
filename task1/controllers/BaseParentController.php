@@ -11,7 +11,7 @@ class BaseParentController
 	public function index()
 	{
         $view = new View();
-        $grades = Parents::index();
+        $grades = Student::get_student();
 		$view->data['grades'] = $grades;	
 		$view->load_view('parent', 'pages', 'home');
 
@@ -28,8 +28,8 @@ class BaseParentController
 
 	public function messages(){
 		$view = new View();
-		$messages=Parents::get_new_messages();
-		$parents=Parents::parents_chat();
+		$messages=Messages::get_new_messages();
+		$parents=Messages::professor_chat();
 		$view->data['all_messages'] = $messages;
 		$view->data['parents'] = $parents;
 		$view->load_view('parent', 'pages', 'messages');
@@ -38,7 +38,7 @@ class BaseParentController
 
 	}
 	public function ajax(){
-		$messages=Parents::get_new_messages();
+		$messages=Messages::get_new_messages();
 		echo JSON_encode($messages);
 		
 
@@ -47,7 +47,7 @@ class BaseParentController
 	public function ajax_is_read(){
 		
 		$id=$_GET['id'];
-		$messages=Parents::ajax_is_read($id);
+		$messages=Messages::ajax_is_read($id);
 		if($messages)
 		$response=['response'=>true];
 		else
@@ -60,7 +60,7 @@ class BaseParentController
 	public function ajax_chat(){
 		
 		$id=$_GET['id'];
-		$messages=Parents::ajax_chat($id);
+		$messages=Messages::ajax_chat($id);
 		echo JSON_encode($messages);
 
 	}
@@ -69,14 +69,14 @@ class BaseParentController
 	public function ajax_send_message(){
 		$message=htmlspecialchars(strip_tags($_GET['message']));
 		$id=$_GET['id'];
-		Parents::ajax_send_message($message,$id);
+		Messages::ajax_send_message($message,$id);
 		$response=['response'=>'da'];
 		echo JSON_encode($response);
 		
 	}
 	public function notifications(){
 		$view = new View();
-		$news=Parents::notifications();
+		$news=News::notifications();
 		$view->data['news'] = $news;
 		$view->load_view('parent', 'pages', 'notifications');
 		
@@ -85,8 +85,8 @@ class BaseParentController
 
 	public function open(){
 		$view = new View();
-		$professors=Parents::open_professors();
-		$open_sent=Parents::open_response();
+		$professors=OpenDoor::open_professors();
+		$open_sent=OpenDoor::open_response();
 		$view->data['open_sent'] = $open_sent;
 		$view->data['professors'] = $professors;
 		$view->load_view('parent', 'pages', 'open');
@@ -97,7 +97,7 @@ class BaseParentController
 	public function open_send_request(){
 
 		$open_id = $this->demand->parts_of_url[5];
-		$open_sent=Parents::open_request($open_id);
+		$open_sent=OpenDoor::open_request($open_id);
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
 		}

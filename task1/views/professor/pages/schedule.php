@@ -9,7 +9,7 @@ echo "<tr>";
     for($y=0;$y<6;$y++){
         $ima=false;
         foreach($this->data['schedule'] as $term){
-            if($term['dan']==$y && $term['cas']==$i){
+            if($term['day_in_week']==$y && $term['lesson_no']==$i){
            $dan=$i;
            $cas=$y;
            $class=$term['name'];

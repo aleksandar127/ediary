@@ -48,5 +48,19 @@ class Subjects
         } while ($x < 6);
         return $res;
     }
+
+    public static function get_subject_id(){
+
+        $query = DB::$conn->prepare('Select subjects.id from subjects where subjects.users_id=?');
+        $query->execute([$_COOKIE['id']]); 
+        $subject = $query->fetch(PDO::FETCH_ASSOC);
+        return $subject['id'];
+    }
+
+
+
+
+
+
 }
 

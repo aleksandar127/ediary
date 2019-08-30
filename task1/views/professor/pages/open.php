@@ -1,10 +1,16 @@
 <br>
 <h1>
 <?php
+if($this->data['open']!=null)
 echo 'Otvorena vrata: '.substr($this->data['open'][0]['time'],0,-3).'h';
 ?>
 
 </h1>
+<form action="http://localhost/eDiary/task1/professor/open_create"  method='get'>
+  Zakazi otvorena vrata: <input type="datetime-local" name="date" id="date"><br>
+ 
+  <input type="submit" value="Zakazi">
+</form>
 <table style='border:solid silver 3px;font-size:20px;'>
 <tr style='border:solid silver 3px;text-align:center;padding:2px;'><th>IME</th><th>STATUS</th></tr>
 <?php
@@ -56,3 +62,4 @@ endforeach;
 ?>
 
 </table>
+

@@ -1,9 +1,17 @@
 body{
     margin: 0;
     padding: 0;
-    background-image: url('http://localhost/eDiary/task1/assets/access/images/girl.jpg');
+    /* background-image: url('http://localhost/eDiary/task1/assets/access/images/girl.jpg');
     background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
-	background-size: cover;
+	background-size: cover; */
+}
+form{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
 }

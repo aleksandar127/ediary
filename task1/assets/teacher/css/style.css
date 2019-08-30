@@ -90,9 +90,26 @@ a:active {
 	font-size: 50px;
 	padding: 0 3px;
 	margin: 0;
+	text-align: center;
 }
 #header .wrapper #class p{
 	color:#000;
+	padding-bottom: 8px;
+	
+}
+#header .wrapper #class #logoutP{
+	border-top: 1px solid #000;
+	
+}
+#header .wrapper #class a{
+	color:#000;
+	display: block;
+	padding: 10px 0 2px 0;
+	font-size: 22px;
+	font-weight: normal;
+}
+#header .wrapper #class a:hover{
+	text-decoration: underline;
 }
 #navigation .wrapper{
 	overflow:hidden;
@@ -166,7 +183,70 @@ table{
 	margin-top:5px;
 	font-size:18px;
 }
+#table td, th{
+	border:1px solid #000;
+	text-align:left;
+	padding:8px;
+	width:70px;
+}
+#table th{
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	height: 200px;
+	padding: 0px;
+	text-align: center;
+}
   
+#table tr:nth-child(even){
+	background-color:rgba(0, 0, 0, 0.45);
+	color:#FFF;
+}
+
+#table table tr th::first-letter{
+	text-transform: uppercase;
+}
+#table a:link,
+#table a:visited{
+	text-decoration:none;
+	color: #000;
+	font-weight: 700;
+	text-align: center;
+}
+#table a:hover{
+	color:#AE3D00;
+}
+#table a:active{
+	color:#CC2A00;
+}
+#table input{
+	padding: 5px;
+	margin:5px;
+	border:1px solid #000;
+	color: #fff;
+	background-color:rgba(0,0,0, 0.5);
+}
+#table input:hover{
+	background: #000;
+	border:1px solid #000;
+	margin:5px;
+}
+#table input:active{
+	background:rgba(0,0,0, 0.5);
+	border-collapse: #000;
+}
+#table table .final_grade{
+	font-size: 40px;
+	text-align: center;
+}
+#objects table th{
+	font-size:34px;
+	text-align:center;
+	color:#000;
+	text-transform:uppercase;
+	border-right:none;
+	border-left:none;
+	border-top:none;
+}
 td, th{
 	border:1px solid #000;
 	text-align:left;
@@ -185,32 +265,23 @@ tr:nth-child(even){
 	background-color:rgba(0, 0, 0, 0.45);
 	color:#FFF;
 }
-
-#table table tr th::first-letter{
-	text-transform: uppercase;
+#table td, th{
+	border:1px solid #000;
+	text-align:left;
+	padding:8px;
+	width:70px;
 }
-#table a:link,
-#table a:visited{
-	text-decoration:none;
-	color: #000;
-	font-weight: 700;
+#table th{
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	height: 200px;
+	padding: 0px;
 	text-align: center;
 }
-#table a:hover{
-	color:#AE3D00;
-	padding: 5px;
-}
-#table a:active{
-	color:#CC2A00;
-}
-#objects table th{
-	font-size:34px;
-	text-align:center;
-	color:#000;
-	text-transform:uppercase;
-	border-right:none;
-	border-left:none;
-	border-top:none;
+  
+#table tr:nth-child(even){
+	background-color:rgba(0, 0, 0, 0.45);
+	color:#FFF;
 }
 #objects table td{
 	 text-align:center;
@@ -363,6 +434,64 @@ tr:nth-child(even){
 	color:#515c13;
 	margin: 5px;
 }
+#addGrade form{
+	width: 930px;
+	margin: 0 auto;
+}
+#addGrade form table{
+	font-size: 24px;
+}
+#addGrade tr:nth-child(even){
+	background-color:rgba(0, 0, 0, 0.45);
+	color:#FFF;
+}
+#addGrade tr, td{
+	border:none;
+	text-align:left;
+	padding:10px 5px;
+}
+#addGrade table td input{
+	padding: 10px 2px;
+	border:1px solid #000;
+	font-weight:700;
+}
+#addGrade table #grade select{
+	padding: 5px 10px;
+	border:1px solid #000;	
+	font-weight:700;
+}
+#addGrade table #list_subjects select{
+	font-weight:700;
+}
+#addGrade table #list_subjects select::first-child{
+	text-transform:uppercase;
+}
+#addGrade table #list_subjects select option{
+	font-weight:700;
+}
+#addGrade .tdSubmit{
+	padding: 10px 0;
+	color: #FFF;
+	font-weight:300;
+}
+#addGrade .tdSubmit input{
+	padding: 5px 15px;
+	background: rgba(0, 0, 0, 0.45);
+	font-size: 26px;
+}
+#addGrade .tdSubmit input:hover{
+	background: #FFF;
+	font-size: 26px;
+}
+#addGrade .tdSubmit input:active{
+	background: #FFF;
+	border: 1px solid #000;
+	font-size: 28px;
+}
+#addGrade #list_subjects select{
+	padding: 8px 15px 8px 0;
+	border:1px solid #000;
+}
 #footer{
 	background-color: #000;
 	margin-top: 10px;
@@ -394,11 +523,9 @@ tr:nth-child(even){
     border-radius: 5px;
     color: #000;
 	background:#000;
-    display: inline-block;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 1px;
-    line-height: 1;
     padding: 15px 35px;
 	margin:0 0 20px 0;
     text-transform: uppercase;

@@ -9,7 +9,7 @@
     <?php
 foreach($this->data['parents'] as $parents):
     
-   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."'  style='border:1px solid black;background-color:#d1ede8;width:350px;margin-bottom:3px;'>Profesor: ".$parents['last_name']." ".$parents['first_name']." ".$parents['name']."<br> </div>";
+   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."' class='clickabile' style='border:1px solid black;background-color:#d1ede8;width:350px;margin-bottom:3px;'>Profesor: ".$parents['last_name']." ".$parents['first_name']." ".$parents['name']."<br> </div>";
 
 endforeach;
 

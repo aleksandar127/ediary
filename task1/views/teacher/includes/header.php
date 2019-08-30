@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title>eDiary</title>
-<link href="http://localhost/eDiary/task1/assets/teacher/css/style.css" type="text/css" rel="stylesheet">
-<link href="http://localhost/eDiary/task1/assets/teacher/css/https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
-<link href="http://localhost/eDiary/task1/assets/teacher/css/fa/css/font-awesome.min.css" type="text/css" rel="stylesheet">
-<link href="http://localhost/eDiary/task1/assets/teacher/css/web-fonts-with-css/css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
+<link href="<?php echo URLROOT; ?>/assets/teacher/css/style.css" type="text/css" rel="stylesheet">
+<link href="<?php echo URLROOT; ?>/assets/teacher/css/https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+<link href="<?php echo URLROOT; ?>/assets/teacher/css/fa/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link href="<?php echo URLROOT; ?>/assets/teacher/css/web-fonts-with-css/css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<div id="headerTop">
@@ -26,7 +26,7 @@
 	<div id="header">
 		<div class="wrapper">
 			<div id="logo">
-				 <img src="http://localhost/eDiary/task1/assets/teacher/images/logo1.png" alt="logo"> 
+				 <img src="<?php echo URLROOT; ?>/assets/teacher/images/logo1.png" alt="logo"> 
 			</div><!-- end #logo -->
 			<div id="class">
 				<p>Odeljenje III-3</p>

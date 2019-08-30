@@ -10,7 +10,7 @@
                 <p>Јурија Гагарина 195, 11070 Нови Београд, Република Србија</p>
             </div><!-- end .textFooter -->
             <div class="logoFooter">
-                <img src="http://localhost/eDiary/task1/assets/teacher/images/logo1.png" alt="logo" title="logo">
+                <img src="<?php echo URLROOT; ?>/assets/teacher/images/logo1.png" alt="logo" title="logo">
             </div><!-- end .logoFooter -->
             <div class="copy">
                 <p>@ eDiary</p>

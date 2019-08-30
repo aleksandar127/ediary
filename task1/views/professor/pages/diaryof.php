@@ -27,11 +27,11 @@ foreach($this->data['diaries'] as $students):
         echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
         echo $students['grades'];
         echo "&nbsp;&nbsp;";
-        echo "<a  class='btn btn-danger' href='http://localhost/eDiary/task1/professor/delete/".$students['mark']."'>Izbrisi</a>";
+        echo "<a  class='btn btn-danger' href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
         echo "&nbsp;";
         echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
         echo "&nbsp;";
-        echo "<a   id='a".$br."".$students['id']."' onclick='edit(this.id)' class='btn btn-success' href='http://localhost/eDiary/task1/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
+        echo "<a   id='a".$br."".$students['id']."' onclick='edit(this.id)' class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
         echo "&nbsp;&nbsp;";
         $is_equal=true;
         $id=$students['id'];
@@ -68,21 +68,21 @@ foreach($this->data['diaries'] as $students):
     echo "<input id='m".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5' value='".$final_grade."'></input>";
     echo "&nbsp;";
    
-    echo "<a href='http://localhost/eDiary/task1/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)' class='btn btn-dark' >Zakljuci</a>";
+    echo "<a href='".URLROOT."/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)' class='btn btn-dark' >Zakljuci</a>";
     echo "&nbsp;&nbsp";
     echo "<input id='o".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
     echo "&nbsp;";
-    echo "<a  id='b".$students['id']."' onclick='newGrade(this.id)' class='btn btn-primary' href='http://localhost/eDiary/task1/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
+    echo "<a  id='b".$students['id']."' onclick='newGrade(this.id)' class='btn btn-primary' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
     echo "&nbsp;&nbsp;";
     if($students['mark']!=null):
             
     echo $students['grades'];
     echo "&nbsp;&nbsp;";
-    echo "<a  class='btn btn-danger'  href='http://localhost/eDiary/task1/professor/delete/".$students['mark']."'>Izbrisi</a>";
+    echo "<a  class='btn btn-danger'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
     echo "&nbsp;";
     echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
     echo "&nbsp;";
-    echo "<a  id='a".$br."".$students['id']."' onclick='edit(this.id)'  class='btn btn-success' href='http://localhost/eDiary/task1/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
+    echo "<a  id='a".$br."".$students['id']."' onclick='edit(this.id)'  class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
     echo "&nbsp;&nbsp;";
    
     endif;
@@ -102,7 +102,7 @@ foreach($this->data['diaries'] as $students):
 endforeach;
 ?>
 
-<script src="http://localhost/eDiary/task1/assets/professor/js/diaryof.js"></script>
+<script src="<?php echo URLROOT; ?>/assets/professor/js/diaryof.js"></script>
 <script>
 document.body.onclick = function( e ) {
     // Cross-browser handling

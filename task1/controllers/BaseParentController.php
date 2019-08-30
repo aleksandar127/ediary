@@ -67,7 +67,7 @@ class BaseParentController
 
 
 	public function ajax_send_message(){
-		$message=$_GET['message'];
+		$message=htmlspecialchars(strip_tags($_GET['message']));
 		$id=$_GET['id'];
 		Parents::ajax_send_message($message,$id);
 		$response=['response'=>'da'];
@@ -101,7 +101,7 @@ class BaseParentController
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
-		return true;
+		return;
 		
 		
 		

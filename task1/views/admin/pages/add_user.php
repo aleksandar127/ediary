@@ -21,7 +21,7 @@
         <p></p>
     </div>
     <div class="form-group">
-        <label for="password">Re-Type Password:</label>
+        <label for="re_password">Re-Type Password:</label>
         <input type="text" class="form-control" id="re_password" name="re_password" placeholder="123456">
         <p></p>
     </div>

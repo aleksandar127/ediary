@@ -5,18 +5,17 @@ function ajax() {
   parents_name.innerHTML='';
     var message= document.getElementById("message");
     message.innerHTML="";
-  // alert('aaa');
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
      var a=JSON.parse(this.responseText);
+      
      for(i in a)
 		{ 
-          
             var div=document.createElement("div");
             var id=a[i]["id"];
             var user=a[i]["user"];
-            user="x"+user;
+            user="p"+user;
 			var message_body=a[i]["message"];
 			var date=a[i]["date_and_time"];
       var last_name=a[i]["last_name"];

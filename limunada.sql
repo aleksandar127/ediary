@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 28, 2019 at 10:22 AM
+-- Generation Time: Aug 30, 2019 at 10:09 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.9
 
@@ -36,7 +36,19 @@ CREATE TABLE IF NOT EXISTS `class` (
   `high_low` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_class_users1_idx` (`users_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`id`, `name`, `users_id`, `high_low`) VALUES
+(17, '1/4', 4, 0),
+(19, '1/1', 4, 0),
+(20, '5/1', 4, 1),
+(21, '2/1', 4, 0),
+(22, '6/1', 5, 1),
+(23, '6/2', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -120,7 +132,14 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `class_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_schedule_class1_idx` (`class_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `name`, `class_id`) VALUES
+(1, NULL, 17);
 
 -- --------------------------------------------------------
 
@@ -138,7 +157,18 @@ CREATE TABLE IF NOT EXISTS `students` (
   PRIMARY KEY (`id`),
   KEY `fk_students_class1_idx` (`class_id`),
   KEY `fk_students_users1_idx` (`users_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `first_name`, `last_name`, `class_id`, `users_id`) VALUES
+(11, 'Marko ', 'Mirkovic', 17, 9),
+(13, 'Marko ', 'Ostojic', 19, 9),
+(14, 'Milos', 'Milosevic', 20, 9),
+(15, 'Marko ', 'Ostojic', 21, 9),
+(16, 'Marko ', 'Ostojic', 22, 11);
 
 -- --------------------------------------------------------
 
@@ -154,15 +184,14 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `high_low` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_subjects_users1_idx` (`users_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `subjects`
 --
 
 INSERT INTO `subjects` (`id`, `name`, `users_id`, `high_low`) VALUES
-(49, 'Matematika i drustvo', NULL, 0),
-(50, 'English', 8, 1);
+(51, 'Music', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -177,23 +206,18 @@ CREATE TABLE IF NOT EXISTS `subjects_has_grades` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   KEY `fk_subjects_has_grades_subjects1_idx` (`subjects_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `subjects_has_grades`
 --
 
 INSERT INTO `subjects_has_grades` (`subjects_id`, `grades`, `id`) VALUES
-(49, 1, 31),
-(49, 2, 32),
-(49, 3, 33),
-(49, 4, 34),
-(49, 5, 35),
-(50, 1, 36),
-(50, 2, 37),
-(50, 3, 38),
-(50, 4, 39),
-(50, 5, 40);
+(51, 1, 41),
+(51, 2, 42),
+(51, 3, 43),
+(51, 4, 44),
+(51, 5, 45);
 
 -- --------------------------------------------------------
 
@@ -220,14 +244,21 @@ CREATE TABLE IF NOT EXISTS `subjects_has_grades_has_students` (
 DROP TABLE IF EXISTS `terms`;
 CREATE TABLE IF NOT EXISTS `terms` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `dan` varchar(45) COLLATE utf8_slovenian_ci DEFAULT NULL,
-  `cas` int(1) DEFAULT NULL,
+  `day_in_week` varchar(45) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `lesson_no` int(1) DEFAULT NULL,
   `subjects_id` int(11) NOT NULL,
   `schedule_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_terms_subjects1_idx` (`subjects_id`),
   KEY `fk_terms_schedule1_idx` (`schedule_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+--
+-- Dumping data for table `terms`
+--
+
+INSERT INTO `terms` (`id`, `day_in_week`, `lesson_no`, `subjects_id`, `schedule_id`) VALUES
+(2, '1', 1, 51, 1);
 
 -- --------------------------------------------------------
 
@@ -246,19 +277,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `roles_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_users_roles1_idx` (`roles_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `cookie`, `roles_id`) VALUES
-(3, 'Isidora', 'Nikolic', 'isica', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '390b209a961a55ef64874c42a04156b1', 2),
+(3, 'Isidora', 'Nikolic', 'isica', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '332485f5ca58424078435536d063a1d3', 2),
 (4, 'Aleksandar', 'Miljkovic', 'acika', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 1),
 (5, 'Milica', 'Petrovic', 'picika', '$2y$10$v9Ka975jcA7bYsyWDC4Gk.W7qioLRpt4O8Y4Xb1ypLr51AF5F9pa6', NULL, 1),
 (8, 'AcaMaca', 'Pereca', 'pekica', '$2y$10$WsNtYTuKojOoDNNoXqM.qeXdEWDyOzPOuLfVhEUR0NR4h5eULEQCW', '671fb7404dc322568a201b8f5117c50f', 1),
 (9, 'Milojko', 'Petrovic', 'milojko', '$2y$10$yCDXnAYsvg.Wqu76lqRyPundxe7ARn2aQ8lh6LSNqj8GOwwLcsvN6', NULL, 3),
-(10, 'Aleksandar', 'Peconi', 'arkan', '$2y$10$7AsyyrjGCmKcLd68QTwEk.BL6rTDAYghhZOPkVqmwxbDTKBFFKCdS', '7548daad3e047134e10e3f5cac033cd7', 5);
+(11, 'Silvana', 'silkica', 'silkica', '$2y$10$wTYmlWyjEcvOl7ygm4RrIeRnKdF5AarG94FUI5ukqJ51L7pGdx7qK', NULL, 4),
+(14, 'Silvana', 'Ostojic', 'silkica', '$2y$10$yxmWGGqDIQRbkVbGUahSWOliYrMRDSpjSkPXd1KQE0gOB8eO3p6mq', NULL, 4),
+(15, 'john', 'doeh', 'joniiiii', '$2y$10$2o.JLxSl5K6ub1ScPJ/b8uq8ahunx0AUiY9E4.dtNx7Q/5RjaqaPK', NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -318,8 +351,8 @@ ALTER TABLE `schedule`
 -- Constraints for table `students`
 --
 ALTER TABLE `students`
-  ADD CONSTRAINT `fk_students_class1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_students_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_students_class1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_students_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `subjects`
@@ -351,7 +384,7 @@ ALTER TABLE `terms`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `fk_users_roles1` FOREIGN KEY (`roles_id`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_users_roles1` FOREIGN KEY (`roles_id`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users_has_class`

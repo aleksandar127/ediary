@@ -34,4 +34,4 @@ endforeach;
 
  </div>
 
-<script src="http://localhost/eDiary/task1/assets/parent/js/messages.js"></script>
+<script src="<?php echo URLROOT; ?>/assets/parent/js/messages.js"></script>

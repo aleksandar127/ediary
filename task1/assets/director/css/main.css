@@ -8,3 +8,42 @@ body{
     height: 60px;
     background-color: rgba(0, 0, 0);
 }
+.btn-group{
+    height: 60px !important;
+    font-size: 20px !important;
+}
+
+.dropdown-toggle{
+	background-color: rgb(0, 0, 0) !important;
+	border-color: transparent !important;
+	font-size: 20px !important; 
+}
+
+.dropdown-toggle:active{
+	border: none !important;
+	border-color: transparent !important;
+}
+
+.dropdown-toggle:focus, .dropdown-toggle:active {
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+.right_nav{
+    float: right;
+    height: 100%;
+    line-height: 60px;
+    font-size: 20px; 
+    padding-right: 40px;
+}
+.wrapper > header ul li a{
+    color: rgb(255, 255, 255);
+}
+
+.dropdown-item a{
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+}
+.dropdown-item a:hover{
+    color: rgb(0, 0, 0);
+}

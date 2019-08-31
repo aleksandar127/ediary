@@ -26,9 +26,9 @@ class BaseAccessController
 			$cookie_hash = setcookie('loginhash', $hash, time() + 84000, "/");
 			$set_cookie = Users::set_user_cookie($hash, $user_id);
 			
-			header('Location: http://localhost/eDiary/task1/'.$user['role_name']);	
+			header('Location: ' .URLROOT. '/' .$user['role_name']);	
 		} else {
-			header('Location: http://localhost/eDiary/task1/access?err=Wrong Credentials!');
+			header('Location: '.URLROOT. '/access?err=Wrong Credentials!');
 			
 		}
 	}

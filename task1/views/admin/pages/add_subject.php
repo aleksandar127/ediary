@@ -1,8 +1,8 @@
 <div class="container">
-    <form method="POST" action="http://localhost/eDiary/task1/admin/save_sub">
+    <form method="POST" action="<?php echo URLROOT; ?>/admin/save_sub">
         <div class="form-group">
             <label for="subject_name">Ime predmeta</label>
-            <input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="Ukucaj naziv nogov predmeta">
+            <input type="text" class="form-control" id="subject_name" name="subject_name" placeholder="Ukucaj naziv novog predmeta">
             <p></p>
         </div>
         <div class="form-group" style="width: 30%;">
@@ -33,4 +33,4 @@
 </div>
 
 
-<script src="http://localhost/eDiary/task1/assets/admin/js/add_sub.js"></script>
+<script src="<?php echo URLROOT; ?>/assets/admin/js/add_sub.js"></script>

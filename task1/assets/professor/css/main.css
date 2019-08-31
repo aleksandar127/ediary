@@ -43,3 +43,6 @@ form{
     font-weight: bold;
 }
 
+.clickabile:hover {
+    cursor: pointer;
+}

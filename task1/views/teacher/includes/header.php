@@ -13,7 +13,7 @@
 		<div class="wrapper">
 			<div id="contact">
 				<i class="fas fa-phone"></i> <span>065 854 2515</span>
-				<a href="https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin"><i class="fas fa-envelope"></i> <span>OSBrankoRadicevic@gmail.com</span></a>
+				<a href="https://accounts.google.com/signin/v2/identifier?service=mail&passive=true&rm=false&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ss=1&scc=1&ltmpl=default&ltmplcache=2&emr=1&osid=1&flowName=GlifWebSignIn&flowEntry=ServiceLogin"><i class="fas fa-envelope"></i> <span>OS.BrankoRadicevic@gmail.com</span></a>
 			</div><!-- end #contact -->
 			<div id="network">
 				<a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
@@ -29,7 +29,10 @@
 				 <img src="http://localhost/eDiary/task1/assets/teacher/images/logo1.png" alt="logo"> 
 			</div><!-- end #logo -->
 			<div id="class">
-				<p>Odeljenje III-3</p>
+				<?php foreach($this->data['class'] as $class): ?>
+				<p>Odeljenje <span> <?php echo $class['name']; ?> </span> </p>
+				<?php endforeach; ?>
+				<p id="logoutP"><a href="http://localhost/eDiary/task1/teacher/logout">Logout</a></p>
             </div><!-- end #class -->
         </div><!-- end .wrapper -->
 	</div><!-- end #header -->
@@ -38,11 +41,11 @@
 		<div class="wrapper">
 			<div id="nav">
 				<ul>
-					<li><a href="marks.html">ocene</a></li>
-					<li><a href="#">ucenici</a></li>
-					<li><a href="objects.html">predmeti</a></li>
-					<li><a href="classSchedule.html">raspored casova</a></li>
-					<li><a href="classSchedule.html">poruke</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher/grade/">ocene</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher">ucenici</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher/objects">predmeti</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher/schedule">raspored casova</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher/message">poruke</a></li>
 				</ul>
 			</div><!-- end #nav -->
 		</div><!-- end .wrapper -->

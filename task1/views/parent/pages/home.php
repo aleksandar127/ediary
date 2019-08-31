@@ -2,7 +2,7 @@
 <div style=width:500px;background-color:silver;font-size:22px;margin:auto;padding:20px;>
 
 <?php
-//print_r($this->data['grades']);
+// print_r($this->data['grades']);
 
 
 
@@ -28,10 +28,6 @@ else
     $name=$subject['first_name'];
    
 }
-
-
-
-
 
 ?>
 </div>

@@ -1,5 +1,6 @@
 <?php 
 
+
 class BaseProfessorController 
 {
     public function __construct($demand)
@@ -10,6 +11,10 @@ class BaseProfessorController
 	public function index()
 	{
 		$view = new View();
+		$class = Classes::get_my_class();
+		$view->data['class'] = $class;
+		$students = Classes::get_diary_of_my_class();
+		$view->data['students'] = $students;
 		$view->load_view('professor', 'pages', 'home');
 
 	}
@@ -17,16 +22,17 @@ class BaseProfessorController
 	public function logout()
 	{
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
-		header('Location: http://localhost/eDiary/task1/');
+		header('Location: '.URLROOT.'/');
 		die();
-		
 	}
 
 	public function diary()
 	{
 		$view = new View();
-		$all_classes = Professor::class();
+		$all_classes = Classes::class_info();
 		$view->data['classes'] = $all_classes;
+		$class = Classes::get_my_class();
+		$view->data['class'] = $class;
 		$view->load_view('professor', 'pages', 'diary');
 
 	}
@@ -34,17 +40,19 @@ class BaseProfessorController
 	public function diaryof(){
 		$view = new View();
 		$class_id = $this->demand->parts_of_url[5];
-		$students=Professor::get_diary($class_id);
+		$students=Grades::get_diary($class_id);
+		$class = Classes::get_my_class();
+		$view->data['class'] = $class;
 		$view->data['diaries'] = $students;
-		$view->data['subject_id']=Professor::get_subject_id();
+		$view->data['subject_id']=Subjects::get_subject_id();
 		$subject_id=$view->data['subject_id'];
-		$view->data['final']=Professor::final_grades_show($subject_id,$class_id);
+		$view->data['final']=Grades::final_grades_show($subject_id,$class_id);
 		$view->load_view('professor', 'pages', 'diaryof');
 	}
 
 	public function delete(){
 		$id = $this->demand->parts_of_url[5];
-		$deleted=Professor::delete($id);
+		$deleted=Grades::delete($id);
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
@@ -55,7 +63,7 @@ class BaseProfessorController
 		$id = $this->demand->parts_of_url[5];
 		$new_grade = $this->demand->parts_of_url[7];
 		$subject_id=$this->demand->parts_of_url[6];
-		$edited=Professor::edit($id,$subject_id,$new_grade);
+		$edited=Grades::edit($id,$subject_id,$new_grade);
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
@@ -66,7 +74,7 @@ class BaseProfessorController
 		$id = $this->demand->parts_of_url[5];
 		$new_grade = $this->demand->parts_of_url[7];
 		$subject_id=$this->demand->parts_of_url[6];
-		$grade=Professor::new_grade($id,$subject_id,$new_grade);
+		$grade=Grades::new_grade($id,$subject_id,$new_grade);
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
@@ -77,7 +85,7 @@ class BaseProfessorController
 		$id = $this->demand->parts_of_url[5];
 		$final_grade = $this->demand->parts_of_url[7];
 		$subject_id=$this->demand->parts_of_url[6];
-		$grade=Professor::final_grade($id,$subject_id,$final_grade);
+		$grade=Grades::final_grade($id,$subject_id,$final_grade);
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
@@ -87,17 +95,15 @@ class BaseProfessorController
 
 	public function open(){
 		$view = new View();
-		$open_parents=Professor::open_parents();
-		$open_doors=Professor::open();
+		$open_doors=OpenDoor::open();
 		$view->data['open'] = $open_doors;
-		$view->data['open_parents'] = $open_parents;
 		$view->load_view('professor', 'pages', 'open');
 
 	}
 
 	public function open_yes(){
 		$id = $this->demand->parts_of_url[5];
-		$open_doors=Professor::open_yes($id);
+		$open_doors=OpenDoor::open_yes($id);
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
@@ -106,16 +112,27 @@ class BaseProfessorController
 
 	public function open_no(){
 		$id = $this->demand->parts_of_url[5];
-		$open_doors=Professor::open_no($id);
+		$open_doors=OpenDoor::open_no($id);
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
+	}
+
+		public function open_create(){
+			$time = str_replace('T',' ',$_GET['date']);
+			$time.=":00";
+			
+			$open_create=OpenDoor::open_create($time);
+			if (isset($_SERVER["HTTP_REFERER"])) {
+				header("Location: " . $_SERVER["HTTP_REFERER"]);
+			}
+		
 		
 
 	}
 	public function schedule(){
 		$view = new View();
-		$schedule=Professor::schedule();
+		$schedule=Schedule::get_schedule();
 		$view->data['schedule'] = $schedule;
 		$view->load_view('professor', 'pages', 'schedule');
 		
@@ -124,8 +141,8 @@ class BaseProfessorController
 
 	public function messages(){
 		$view = new View();
-		$messages=Professor::get_new_messages();
-		$parents=Professor::parents_chat();
+		$messages=Messages::get_new_messages();
+		$parents=Messages::parents_chat();
 		$view->data['all_messages'] = $messages;
 		$view->data['parents'] = $parents;
 		$view->load_view('professor', 'pages', 'messages');
@@ -134,7 +151,7 @@ class BaseProfessorController
 
 	}
 	public function ajax(){
-		$messages=Professor::get_new_messages();
+		$messages=Messages::get_new_messages();
 		echo JSON_encode($messages);
 		
 
@@ -143,7 +160,7 @@ class BaseProfessorController
 	public function ajax_is_read(){
 		
 		$id=$_GET['id'];
-		$messages=Professor::ajax_is_read($id);
+		$messages=Messages::ajax_is_read($id);
 		if($messages)
 		$response=['response'=>true];
 		else
@@ -156,16 +173,16 @@ class BaseProfessorController
 	public function ajax_chat(){
 		
 		$id=$_GET['id'];
-		$messages=Professor::ajax_chat($id);
+		$messages=Messages::ajax_chat($id);
 		echo JSON_encode($messages);
 
 	}
 
 
 	public function ajax_send_message(){
-		$message=$_GET['message'];
+		$message=htmlspecialchars(strip_tags($_GET['message']));
 		$id=$_GET['id'];
-		Professor::ajax_send_message($message,$id);
+		Messages::ajax_send_message($message,$id);
 		$response=['response'=>'da'];
 		echo JSON_encode($response);
 		
@@ -174,15 +191,16 @@ class BaseProfessorController
 	public function success(){
 		$id= $this->demand->parts_of_url[5];
 		$view = new View();
-		$grades=Professor::success($id);
+		$grades=Student::success($id);
 		if($grades==null){
 			if (isset($_SERVER["HTTP_REFERER"])) {
 				header("Location: " . $_SERVER["HTTP_REFERER"]);
+				$_SESSION['success']="Ucenik nije ocenjen";
 			}
 			exit();
 		}
 	
-		
+		$_SESSION['success']='';
         $pdf = new Cezpdf();
 		$pdf->selectFont('Helvetica');
 		
@@ -264,7 +282,6 @@ class BaseProfessorController
 			default:
 			return;
 		}
-		//$pdf->setColor (0,0,1,[0]);
 		if($fall){
 			$grade='Nedovoljan';
 		$pdf->ezText('   <b>      - Uspeh: '.$grade.'(1)</b>',13);
@@ -273,24 +290,12 @@ class BaseProfessorController
 		else
 		$pdf->ezText('     <b>    - Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13);
 		$pdf->ezSetDy(-15);
-		
-		
-		//$pdf->ezText('<c:alink:'. $_SERVER["HTTP_REFERER"].'>Vrati se</c:alink>');
-
 		$pdf->ezStream();
 		
-			
-			//$view->data['pdf'] = ;
-			//$view->load_view('professor', 'pages', 'success');
+		
 		
 	}
 
-	public function logout()
-	{
-		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
-		header('Location: http://localhost/eDiary/task1/');
-		die();
-		
-	}
+ 
 
 }

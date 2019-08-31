@@ -1,4 +1,5 @@
 
+
 function edit(id){
 var a=document.getElementById(id);
 var student_id = id.substr(2);
@@ -12,6 +13,7 @@ a.href+="/"+i;
 }
 
 function newGrade(id){
+    
 var a=document.getElementById(id);
 var student_id = id.substr(2);
 var sub=id.length-student_id.length;
@@ -35,4 +37,11 @@ el="m"+el;
 var i=document.getElementById(el).value;
 a.href+="/"+i;
 
+
 }
+
+
+
+
+   
+    

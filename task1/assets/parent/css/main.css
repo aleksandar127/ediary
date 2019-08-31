@@ -112,3 +112,7 @@ form{
 	width: 90%;
 	margin: 0 auto !important;
 }
+
+.clickabile:hover {
+    cursor: pointer;
+}

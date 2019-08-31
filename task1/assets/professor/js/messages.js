@@ -1,6 +1,9 @@
+
 window.addEventListener('load', ajax);
 window.addEventListener('load', parents);
 function ajax() {
+  var parents_name= document.getElementById("parents_name");
+  parents_name.innerHTML='';
     var message= document.getElementById("message");
     message.innerHTML="";
   // alert('aaa');
@@ -12,24 +15,29 @@ function ajax() {
 		{ 
           
             var div=document.createElement("div");
+            var p=document.createElement("p");
             var id=a[i]["id"];
             var user=a[i]["user"];
-            user="x"+user;
+            user="p"+user;
 			var message_body=a[i]["message"];
 			var date=a[i]["date_and_time"];
       var last_name=a[i]["last_name"];
 			var first_name=a[i]["first_name"];
             var is_read=a[i]["is_read"];	        
-            div.innerHTML+=message_body;
-            div.innerHTML+=date; 
-            div.innerHTML+="<br>";   
-            div.innerHTML+=last_name+" "; 
-            div.innerHTML+=first_name;   
-            div.setAttribute('class',user); 
+            p.innerHTML+=message_body;
+            p.innerHTML+="<br>";   
+            p.innerHTML+=date; 
+            p.innerHTML+="<br>";   
+            p.innerHTML+=last_name+" "; 
+            p.innerHTML+=first_name;   
+            div.setAttribute('data-id',user);
+            //div.setAttribute('class',user); 
+            div.setAttribute('class','clickabile'); 
             div.setAttribute('style',"background-color:silver;border-radius:10px;min-height:50px;width:200px;margin-top:5px;");
             div.setAttribute('onclick',"isRead(this.id)");
-            div.setAttribute('onclick',"chat(this.className)");
+            div.setAttribute('onclick',"chat(this.dataset.id)");
             div.setAttribute('id','c'+id);
+            div.append(p);
             message.prepend(div);
 			
 			
@@ -60,7 +68,10 @@ function isRead(id) {
 
 
 function chat(id) {
-  
+  var parents_name= document.getElementById("parents_name");
+  var parent= document.getElementById(id);
+ if( parent!=null)
+  parents_name.innerHTML=parent.innerHTML;
   
    id=id.substr(1);
    var subject= document.getElementById("subject");
@@ -75,26 +86,29 @@ function chat(id) {
 		{  
             
             var div=document.createElement("div");
+            var p=document.createElement("p");
             var msg_id=a[i]["id"];
 		      	var message_body=a[i]["message"];
 		      	var date=a[i]["date_and_time"];
             var is_read=a[i]["is_read"];	        
-            div.innerHTML+=message_body;
-            div.innerHTML+=date;      
-            div.setAttribute('style',"background-color:silver;border-radius:10px;height:50px;width:200px;margin-top:5px;");
+            p.innerHTML+=message_body;
+            p.innerHTML+=date;      
+            div.setAttribute('style',"background-color:silver;border-radius:10px;min-height:50px;width:200px;margin-top:5px; ");
            
             if(a[i]["from_user"]==id){
             div.setAttribute('onclick','isRead(this.id)');
-            div.setAttribute('style',"background-color:silver;border-radius:10px;height:50px;width:200px;margin-top:5px;margin-left:70px;");
+            div.setAttribute('style',"background-color:silver;border-radius:10px;min-height:50px;width:200px;margin-top:5px;margin-left:70px;");
             if(is_read==0){
-            div.setAttribute('style',"background-color:red;border-radius:10px;height:50px;width:200px;margin-top:5px;margin-left:70px;");
+            div.setAttribute('class','clickabile');
+            div.setAttribute('style',"background-color:#44ff3d;border-radius:10px;min-height:50px;width:200px;margin-top:5px;margin-left:70px;");
             }
             }
             else{
-            div.setAttribute('style',"background-color:gold;border-radius:10px;height:50px;width:200px;margin-top:5px;");
+            div.setAttribute('style',"background-color:gold;border-radius:10px;min-height:50px;width:200px;margin-top:5px;");
             
             }
             div.setAttribute('id','d'+msg_id);
+            div.append(p);
             message.append(div);
            
 			
@@ -108,7 +122,10 @@ function chat(id) {
 
 
 function ajaxSendMessage(){
- 
+  var parents_name= document.getElementById("parents_name").innerHTML;
+  if(parents_name==''){
+    alert('Niste izabrali primaoca');
+  return;}
   var msg= document.getElementById("subject");
   var message= document.getElementById("subject").value;
   var parent=msg.className;
@@ -129,3 +146,5 @@ function ajaxSendMessage(){
   
   
 }
+
+

@@ -3,8 +3,8 @@
 class Teacher{
 
     public static function get_all_students(){
-        $query = DB::$conn->prepare('SELECT * FROM students');
-        $query->execute();
+        $query = DB::$conn->prepare('SELECT students.id, students.first_name, students.last_name FROM class JOIN students ON class.id = students.class_id WHERE class.users_id = ?;');
+        $query->execute([$_COOKIE['id']]);
         $students = $query->fetchAll(PDO::FETCH_ASSOC);
         return $students;
     }
@@ -16,15 +16,25 @@ class Teacher{
         return $subjects;
     }
 
+    public static function get_students_id($id){
+        $query = DB::$conn->prepare('SELECT students.id, students.first_name, students.last_name FROM students WHERE students.id = ?;');
+        $query->execute([$id]);
+        $students_id = $query->fetch(PDO::FETCH_ASSOC);
+        return $students_id;
+    }
+
+    public static function get_subjects_id($id){
+        $query = DB::$conn->prepare('SELECT subjects.id, subjects.name FROM subjects WHERE subjects.id = ?');
+        $query->execute([$id]);
+        $subjects_id = $query->fetch(PDO::FETCH_ASSOC);
+        return $subjects_id;
+    }
+
     public static function get_all_parents(){
-        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, users.role_id FROM users WHERE users.role_id=5;');
+        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, users.role_id FROM users WHERE users.role_id = 5;');
         $query->execute();
         $parents = $query->fetchAll(PDO::FETCH_ASSOC);
         return $parents;
-    }
-
-    public static function get_all_class(){
-
     }
 
     public static function get_name_child(){
@@ -33,9 +43,40 @@ class Teacher{
         $child = $query->fetchAll(PDO::FETCH_ASSOC);
         return $child;
     }
+
+    public static function get_class(){
+        $query = DB::$conn->prepare('SELECT name, users_id FROM class WHERE users_id = ?;');
+        $query->execute([$_COOKIE['id']]);
+        $class = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $class;
+    }
+
+    public static function get_id_subjects_grade($subjects_id, $grades){
+        $query = DB::$conn->prepare('SELECT id FROM subjects_has_grades WHERE subjects_id = ? AND grades = ? LIMIT 1');
+        $query->execute([$subjects_id, $grades]);
+        $subject = $query->fetch(PDO::FETCH_ASSOC);
+        return $subject['id'];
+    }
+
+    public static function add_new_grade($id, $subjects_has_grades_id){
+        $query = DB::$conn->prepare('INSERT INTO subjects_has_grades_has_students (students_id, subjects_has_grades_id) VALUES (?, ?)');
+        $new_grade = $query->execute([$id, $subjects_has_grades_id]);
+        return $new_grade;
+    }
+
+    public static function delete($id, $subjects_has_grades_id){
+        $query = DB::$conn->prepare('DELETE FROM subjects_has_grades_has_students where students_id = ? AND subjects_has_grades_id = ? LIMIT 1');
+        $delete_grade = $query->execute([$id, $subjects_has_grades_id]);
+        return $delete_grade;
+    }
+
+    public static function grade_listing(){
+        $query = DB::$conn->prepare('SELECT subjects_has_grades.grades FROM subjects_has_grades_has_students JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id WHERE subjects_has_grades_has_students.students_id = 1 AND subjects_has_grades.subjects_id = 1');
+        $list_grade = $query->execute();
+        $grade_list = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $grade_list;
+    }
+
 }
-
-
-
 
 ?>

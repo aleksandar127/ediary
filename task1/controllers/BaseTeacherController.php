@@ -46,9 +46,18 @@ class BaseTeacherController{
         $view = new View();
         $all_class = Teacher::get_class();
         $view->data['class'] = $all_class;
-        $child = Teacher::get_name_child();
-        $view->data['child'] = $child;
-        $view->load_view('teacher', 'pages', 'message');
+        $class_id = $all_class['0']['id'];
+        if($class_id){
+            $name_parent = Teacher::get_all_parents($class_id);
+            $view->data['parent'] = $name_parent;
+            $view->load_view('teacher', 'pages', 'message');
+        }else{
+            $name_parent = Teacher::get_all_parents($class_id);
+            $view->data['parent'] = $name_parent;
+            $view->load_view('teacher', 'pages', 'message');
+        }
+        
+
     }
 
     public function objects(){
@@ -116,9 +125,9 @@ class BaseTeacherController{
         $grede_delete = Teacher::delete($id_students, $subjects_and_grades);
 
         if($grede_delete){
-            header('Location: http://localhost/eDiary1/task1/teacher/grade?success=Uspesno obrisana ocena!');
+            header('Location: http://localhost/eDiary/task1/teacher/grade?success=Uspesno obrisana ocena!');
         }else{
-            header('Location:http://localhost/eDiary1/task1/teacher/new_grade?err=Ocena nije obrisana! ');
+            header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije obrisana! ');
         }
     }
 

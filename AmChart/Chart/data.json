@@ -1,0 +1,28 @@
+[{
+    "predmet": "Srpski jezik",
+    "prosecna_ocena": 3.9
+  }, {
+    "predmet": "Matematika",
+    "prosecna_ocena": 3.7
+  }, {
+    "predmet": "Fizicko",
+    "prosecna_ocena": 5
+  }, {
+    "predmet": "Hemija",
+    "prosecna_ocena": 3.1
+  }, {
+    "predmet": "Likovno",
+    "prosecna_ocena": 4.4
+  }, {
+    "predmet": "Fizika",
+    "prosecna_ocena": 2.6
+  }, {
+    "predmet": "Geografija",
+    "prosecna_ocena": 3.9
+  }, {
+    "predmet": "Biologija",
+    "prosecna_ocena": 4.1
+  }, {
+    "predmet": "Istorija",
+    "prosecna_ocena": 3.0
+  }]

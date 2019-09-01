@@ -12,7 +12,13 @@
 
 
     <div class="text-center">
+      <?php 
+ $chart = new Chart();
+ // var_dump($chart);
 
+$json = json_encode($chart);
+var_dump($json);
+?>
 
       <h1 class="font-weight-bold">Prosecne ocene za VII/2</h1>
     </div>

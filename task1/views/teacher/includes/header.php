@@ -32,7 +32,7 @@
 				<?php foreach($this->data['class'] as $class): ?>
 				<p>Odeljenje <span> <?php echo $class['name']; ?> </span> </p>
 				<?php endforeach; ?>
-				<p id="logoutP"><a href="http://localhost/eDiary/task1/teacher/logout">Logout</a></p>
+				<p id="logoutP"><a href="http://localhost/eDiary/task1/teacher/logout">Izloguj se</a></p>
             </div><!-- end #class -->
         </div><!-- end .wrapper -->
 	</div><!-- end #header -->

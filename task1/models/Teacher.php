@@ -10,7 +10,7 @@ class Teacher{
     }
 
     public static function get_all_subjects(){
-        $query = DB::$conn->prepare('SELECT * FROM subjects');
+        $query = DB::$conn->prepare('SELECT * FROM subjects WHERE high_low = 0');
         $query->execute();
         $subjects = $query->fetchAll(PDO::FETCH_ASSOC);
         return $subjects;
@@ -30,9 +30,9 @@ class Teacher{
         return $subjects_id;
     }
 
-    public static function get_all_parents(){
-        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, users.role_id FROM users WHERE users.role_id = 5;');
-        $query->execute();
+    public static function get_all_parents($class_id){
+        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, students.first_name AS students_first_name FROM users JOIN students ON users.id = students.users_id WHERE users.roles_id = 4 AND students.class_id = ?');
+        $query->execute([$class_id]);
         $parents = $query->fetchAll(PDO::FETCH_ASSOC);
         return $parents;
     }
@@ -45,7 +45,7 @@ class Teacher{
     }
 
     public static function get_class(){
-        $query = DB::$conn->prepare('SELECT name, users_id FROM class WHERE users_id = ?;');
+        $query = DB::$conn->prepare('SELECT class.id, class.name, users_id FROM class WHERE users_id = ?;');
         $query->execute([$_COOKIE['id']]);
         $class = $query->fetchAll(PDO::FETCH_ASSOC);
         return $class;
@@ -71,7 +71,7 @@ class Teacher{
     }
 
     public static function grade_listing(){
-        $query = DB::$conn->prepare('SELECT subjects_has_grades.grades FROM subjects_has_grades_has_students JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id WHERE subjects_has_grades_has_students.students_id = 1 AND subjects_has_grades.subjects_id = 1');
+        $query = DB::$conn->prepare('SELECT subjects_has_grades.grades FROM subjects_has_grades_has_students JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id WHERE subjects_has_grades_has_students.students_id = 44 AND subjects_has_grades.subjects_id = 52');
         $list_grade = $query->execute();
         $grade_list = $query->fetchAll(PDO::FETCH_ASSOC);
         return $grade_list;

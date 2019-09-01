@@ -24,4 +24,7 @@
 						<button class="dropdown-item" type="button"><a href="#">Statistika uspešnosti po predmetima	na nivou škole</a></button>
 					</div>
 				</div>
+				<ul class="right_nav">
+					<li><a href="#">Izloguj se</a></li>
+				</ul>
 			</header>

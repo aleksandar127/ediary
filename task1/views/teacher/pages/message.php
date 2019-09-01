@@ -60,9 +60,11 @@
             </div><!-- end #sendMessage -->
             <div id="listUsers">
                 <ul>
-                    <?php foreach($this->data['child'] as $child): ?>
-                    <li><a href="#"><span><?php echo $child['first_name']; ?></span> <span><?php echo $child['last_name']; ?></span> - <?php echo $child['name_students']; ?></a></li>
+                    
+                    <?php foreach($this->data['parent'] as $parents): ?>
+                    <li><a href="#"><span><?php echo $parents['first_name']; ?></span> <span><?php echo $parents['last_name']; ?></span> - <?php echo $parents['students_first_name']; ?></a></li>
                     <?php endforeach; ?>
+                   
                     <li><a href="#">Marko</a></li>
                     <li><a href="#">Marko</a></li>
                     <li><a href="#">Marko</a></li>

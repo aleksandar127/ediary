@@ -11,20 +11,58 @@
             <th scope="col">Petak</th>
             </tr>
         </thead>
-        <!-- <tbody>
-        <?php foreach($this->data['class_schedule'] as $schedule):?>
-            <tr>
-            <th scope="row"><?php echo $schedule['lesson_no'];?></th>
-            <?php if($schedule['day_in_week'] == 1): ?>
-                <td><?php echo $schedule['subject'];?></td>
-            <?php endif; ?>
-            <?php if($schedule['day_in_week'] == 2): ?>
-                <td><?php echo $schedule['subject'];?></td>
-            <?php endif; ?>
-            <td>Otto</td>
-            <td>@mdo</td>
-            </tr>
-        <?php endforeach;?>
-        </tbody> -->
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td><?php echo $this->data['monday_schedule']['subject']; ?></td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Matematika</td>
+            <td>Srpski</td>
+            <td>Engleski</td>
+            <td>Muzicko</td>
+            <td>Fizicko</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Matematika</td>
+            <td>Srpski</td>
+            <td>Engleski</td>
+            <td>Muzicko</td>
+            <td>Fizicko</td>
+        </tr>
+        <tr>
+            <th scope="row">4</th>
+            <td>Matematika</td>
+            <td>Srpski</td>
+            <td>Engleski</td>
+            <td>Muzicko</td>
+            <td>Fizicko</td>
+        </tr>
+        <tr>
+            <th scope="row">5</th>
+            <td>Matematika</td>
+            <td>Srpski</td>
+            <td>Engleski</td>
+            <td>Muzicko</td>
+            <td>Fizicko</td>
+        </tr>
+        <tr>
+            <th scope="row">6</th>
+            <td>Matematika</td>
+            <td>Srpski</td>
+            <td>Engleski</td>
+            <td>Muzicko</td>
+            <td>Fizicko</td>
+        </tr>
+        <tr>
+            <th scope="row">7</th>
+            <td>Matematika</td>
+            <td>Srpski</td>
+            <td>Engleski</td>
+            <td>Muzicko</td>
+            <td>Fizicko</td>
+        </tr>
+        </tbody>
     </table>
-</div>

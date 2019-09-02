@@ -23,10 +23,10 @@ class BaseTeacherController{
         $view->data['students'] = $get_students;
         $all_subjects = Teacher::get_all_subjects();
         $view->data['subjects'] = $all_subjects;
-        $listaOcena = Teacher::grade_listing();
-        $view->data['listings'] = $listaOcena;
+        $list_grade = Teacher::grade_listing();
+        $view->data['listings'] = $list_grade;
 
-        var_dump($get_students);
+        var_dump($list_grade);
 
         
         $view->load_view('teacher', 'pages', 'grade');

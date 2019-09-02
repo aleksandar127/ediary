@@ -19,11 +19,11 @@ class Schedule
         return $schedule;
     }
 
-    public static function schedule_by_class($class_id)
+    public static function schedule_by_class($class_id, $day, $lesson_no)
     {
-        $query = DB::$conn->prepare('select schedule.day_in_week, schedule.lesson_no, subjects.name as subject, class.name as class from schedule join subjects on schedule.subjects_id = subjects.id join class on schedule.class_id = class.id where schedule.class_id = ?');
-        $query->execute([$class_id]);
-        $schedule = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = DB::$conn->prepare('select schedule.day_in_week, schedule.lesson_no, subjects.name as subject, class.name as class from schedule join subjects on schedule.subjects_id = subjects.id join class on schedule.class_id = class.id where schedule.class_id = ?and schedule.day_in_week = ? and schedule.lesson_no = ?');
+        $query->execute([$class_id, $day, $lesson_no]);
+        $schedule = $query->fetch(PDO::FETCH_ASSOC);
         return $schedule;
     }
 

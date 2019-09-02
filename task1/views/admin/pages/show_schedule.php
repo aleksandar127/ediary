@@ -1,6 +1,6 @@
 <div class="container">
     <h3>Raspored časova za odeljenje <?php echo $this->data['class']['name']; ?></h3>
-    <?php var_dump($this->data['monday_schedule']);?>
+    <!-- <?php //var_dump($this->data['monday_schedule']);?> -->
     <table class="table">
         <thead>
             <tr>

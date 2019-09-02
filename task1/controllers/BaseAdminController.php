@@ -307,16 +307,13 @@ class BaseAdminController
 
 		$view->data['counter'] = 1;
 		$monday = [];
-		for ($x=1; $x < 8 ; $x++) { 
 
+		for ($x=1; $x < 8 ; $x++) { 
 		
 			$schedule_by_class = Schedule::schedule_by_class($class_id, 1, $x);
 			$monday[] = $schedule_by_class;
-			
-			// $view->data['monday_schedule'] = $schedule_by_class;	
-			
+
 		}
-		var_dump($monday);
 		$view->data['monday_schedule'] = $monday;
 
 		

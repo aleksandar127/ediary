@@ -305,17 +305,20 @@ class BaseAdminController
 		$class = Classes::get_class_by_id($class_id);
 		$view->data['class'] = $class;
 
-
-		for ($x=1; $x < 6 ; $x++) { 
+		$view->data['counter'] = 1;
+		$monday = [];
+		for ($x=1; $x < 8 ; $x++) { 
 
 		
-			$schedule_by_class = Schedule::schedule_by_class($class_id, $x, 1);
-			// var_dump($schedule_by_class);	
+			$schedule_by_class = Schedule::schedule_by_class($class_id, 1, $x);
+			$monday[] = $schedule_by_class;
 			
-			$view->data['monday_schedule'] = $schedule_by_class;	
-			var_dump($view->data['monday_schedule']);
+			// $view->data['monday_schedule'] = $schedule_by_class;	
 			
 		}
+		var_dump($monday);
+		$view->data['monday_schedule'] = $monday;
+
 		
 		
 		$view->load_view('admin', 'pages', 'show_schedule');

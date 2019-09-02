@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 30, 2019 at 10:09 AM
+-- Generation Time: Sep 02, 2019 at 07:32 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.9
 
@@ -128,18 +128,21 @@ INSERT INTO `role` (`id`, `name`) VALUES
 DROP TABLE IF EXISTS `schedule`;
 CREATE TABLE IF NOT EXISTS `schedule` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `day_in_week` varchar(45) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `lesson_no` int(1) DEFAULT NULL,
+  `subjects_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_schedule_class1_idx` (`class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+  KEY `fk_terms_subjects1_idx` (`subjects_id`),
+  KEY `class_id_idx` (`class_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
 -- Dumping data for table `schedule`
 --
 
-INSERT INTO `schedule` (`id`, `name`, `class_id`) VALUES
-(1, NULL, 17);
+INSERT INTO `schedule` (`id`, `day_in_week`, `lesson_no`, `subjects_id`, `class_id`) VALUES
+(2, '1', 1, 51, 1);
 
 -- --------------------------------------------------------
 
@@ -238,31 +241,6 @@ CREATE TABLE IF NOT EXISTS `subjects_has_grades_has_students` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `terms`
---
-
-DROP TABLE IF EXISTS `terms`;
-CREATE TABLE IF NOT EXISTS `terms` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `day_in_week` varchar(45) COLLATE utf8_slovenian_ci DEFAULT NULL,
-  `lesson_no` int(1) DEFAULT NULL,
-  `subjects_id` int(11) NOT NULL,
-  `schedule_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_terms_subjects1_idx` (`subjects_id`),
-  KEY `fk_terms_schedule1_idx` (`schedule_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
-
---
--- Dumping data for table `terms`
---
-
-INSERT INTO `terms` (`id`, `day_in_week`, `lesson_no`, `subjects_id`, `schedule_id`) VALUES
-(2, '1', 1, 51, 1);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -284,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `cookie`, `roles_id`) VALUES
-(3, 'Isidora', 'Nikolic', 'isica', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '332485f5ca58424078435536d063a1d3', 2),
+(3, 'Isidora', 'Nikolic', 'isica', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '51189664e80868a14cceb62f1603949e', 2),
 (4, 'Aleksandar', 'Miljkovic', 'acika', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 1),
 (5, 'Milica', 'Petrovic', 'picika', '$2y$10$v9Ka975jcA7bYsyWDC4Gk.W7qioLRpt4O8Y4Xb1ypLr51AF5F9pa6', NULL, 1),
 (8, 'AcaMaca', 'Pereca', 'pekica', '$2y$10$WsNtYTuKojOoDNNoXqM.qeXdEWDyOzPOuLfVhEUR0NR4h5eULEQCW', '671fb7404dc322568a201b8f5117c50f', 1),
@@ -333,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `users_has_open` (
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `fk_class_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_class_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `open`
@@ -345,7 +323,8 @@ ALTER TABLE `open`
 -- Constraints for table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD CONSTRAINT `fk_schedule_class1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `class_id` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_terms_subjects1` FOREIGN KEY (`subjects_id`) REFERENCES `subjects` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `students`
@@ -372,13 +351,6 @@ ALTER TABLE `subjects_has_grades`
 ALTER TABLE `subjects_has_grades_has_students`
   ADD CONSTRAINT `fk_subjects_has_grades_has_students_students1` FOREIGN KEY (`students_id`) REFERENCES `students` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_subjects_has_grades_has_students_subjects_has_grades1` FOREIGN KEY (`subjects_has_grades_id`) REFERENCES `subjects_has_grades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `terms`
---
-ALTER TABLE `terms`
-  ADD CONSTRAINT `fk_terms_schedule1` FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_terms_subjects1` FOREIGN KEY (`subjects_id`) REFERENCES `subjects` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `users`

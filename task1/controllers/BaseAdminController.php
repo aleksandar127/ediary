@@ -301,7 +301,14 @@ class BaseAdminController
 	{
 		$view = new View();
 
+		$class_id = $this->demand->parts_of_url[5];
+		$class = Classes::get_class_by_id($class_id);
+		$view->data['class'] = $class;
+
+		$schedule_by_class = Schedule::schedule_by_class($class_id);
 		
+		$view->data['class_schedule'] = $schedule_by_class;
+		var_dump($view->data['class_schedule']);
 		$view->load_view('admin', 'pages', 'show_schedule');
 
 	}

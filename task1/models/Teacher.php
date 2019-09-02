@@ -30,9 +30,9 @@ class Teacher{
         return $subjects_id;
     }
 
-    public static function get_all_parents($class_id){
-        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, students.first_name AS students_first_name FROM users JOIN students ON users.id = students.users_id WHERE users.roles_id = 4 AND students.class_id = ?');
-        $query->execute([$class_id]);
+    public static function get_all_parents(){
+        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, students.first_name AS students_first_name,students.last_name AS students_last_name FROM users JOIN students ON users.id = students.users_id join class on class.id=students.class_id where class.users_id=?');
+        $query->execute([$_COOKIE['id']]);
         $parents = $query->fetchAll(PDO::FETCH_ASSOC);
         return $parents;
     }
@@ -71,7 +71,7 @@ class Teacher{
     }
 
     public static function grade_listing(){
-        $query = DB::$conn->prepare('SELECT subjects_has_grades.grades FROM subjects_has_grades_has_students JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id WHERE subjects_has_grades_has_students.students_id = 44 AND subjects_has_grades.subjects_id = 52');
+        $query = DB::$conn->prepare('SELECT subjects_has_grades.grades, subjects_has_grades_has_students.students_id, subjects_has_grades.subjects_id FROM subjects_has_grades_has_students JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id WHERE subjects_has_grades_has_students.students_id = 20 AND subjects_has_grades.subjects_id = 52');
         $list_grade = $query->execute();
         $grade_list = $query->fetchAll(PDO::FETCH_ASSOC);
         return $grade_list;

@@ -193,27 +193,43 @@ class BaseTeacherController{
 
 	}
 
-    
+    public function open(){
+        $view = new View();
+        $all_class = Teacher::get_class();
+        $view->data['class'] = $all_class;
+		$open_doors=OpenDoor::open();
+		$view->data['open'] = $open_doors;
+		$view->load_view('teacher', 'pages', 'open');
 
-    
+	}
 
+	public function open_yes(){
+		$id = $this->demand->parts_of_url[5];
+		$open_doors=OpenDoor::open_yes($id);
+		if (isset($_SERVER["HTTP_REFERER"])) {
+			header("Location: " . $_SERVER["HTTP_REFERER"]);
+		}
 
+	}
 
+	public function open_no(){
+		$id = $this->demand->parts_of_url[5];
+		$open_doors=OpenDoor::open_no($id);
+		if (isset($_SERVER["HTTP_REFERER"])) {
+			header("Location: " . $_SERVER["HTTP_REFERER"]);
+		}
+	}
 
+		public function open_create(){
+			$time = str_replace('T',' ',$_GET['date']);
+			$time.=":00";
+			
+			$open_create=OpenDoor::open_create($time);
+			if (isset($_SERVER["HTTP_REFERER"])) {
+				header("Location: " . $_SERVER["HTTP_REFERER"]);
+			}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
     public function logout(){
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
 		header('Location: http://localhost/eDiary/task1/');

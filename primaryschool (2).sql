@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 02, 2019 at 07:32 AM
+-- Generation Time: Sep 02, 2019 at 08:02 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.9
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `class`
 --
 
-
 DROP TABLE IF EXISTS `class`;
 CREATE TABLE IF NOT EXISTS `class` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -50,6 +49,22 @@ INSERT INTO `class` (`id`, `name`, `users_id`, `high_low`) VALUES
 (21, '2/1', 4, 0),
 (22, '6/1', 5, 1),
 (23, '6/2', 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `final_grade`
+--
+
+DROP TABLE IF EXISTS `final_grade`;
+CREATE TABLE IF NOT EXISTS `final_grade` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL,
+  `subject_grade` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `grade` (`subject_grade`),
+  KEY `student` (`student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -264,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `cookie`, `roles_id`) VALUES
 (3, 'Isidora', 'Nikolic', 'isica', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '51189664e80868a14cceb62f1603949e', 2),
-(4, 'Aleksandar', 'Miljkovic', 'acika', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 1),
+(4, 'Aleksandar', 'Miljkovic', 'acika', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', '137b09ce771699aa9a3383ebaa272cf7', 1),
 (5, 'Milica', 'Petrovic', 'picika', '$2y$10$v9Ka975jcA7bYsyWDC4Gk.W7qioLRpt4O8Y4Xb1ypLr51AF5F9pa6', NULL, 1),
 (8, 'AcaMaca', 'Pereca', 'pekica', '$2y$10$WsNtYTuKojOoDNNoXqM.qeXdEWDyOzPOuLfVhEUR0NR4h5eULEQCW', '671fb7404dc322568a201b8f5117c50f', 1),
 (9, 'Milojko', 'Petrovic', 'milojko', '$2y$10$yCDXnAYsvg.Wqu76lqRyPundxe7ARn2aQ8lh6LSNqj8GOwwLcsvN6', NULL, 3),
@@ -313,6 +328,13 @@ CREATE TABLE IF NOT EXISTS `users_has_open` (
 --
 ALTER TABLE `class`
   ADD CONSTRAINT `fk_class_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `final_grade`
+--
+ALTER TABLE `final_grade`
+  ADD CONSTRAINT `grade` FOREIGN KEY (`subject_grade`) REFERENCES `subjects_has_grades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `student` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `open`

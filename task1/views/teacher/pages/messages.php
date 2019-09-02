@@ -37,6 +37,4 @@ endforeach;
 ?>
 
 
-<script src="<?php echo URLROOT; ?>/assets/professor/js/messages.js"></script>
-
-
+<script src="<?php echo URLROOT; ?>/assets/teacher/js/messages.js"></script>

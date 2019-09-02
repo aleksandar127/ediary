@@ -45,7 +45,7 @@
 					<li><a href="http://localhost/eDiary/task1/teacher">ucenici</a></li>
 					<li><a href="http://localhost/eDiary/task1/teacher/objects">predmeti</a></li>
 					<li><a href="http://localhost/eDiary/task1/teacher/schedule">raspored casova</a></li>
-					<li><a href="http://localhost/eDiary/task1/teacher/message">poruke</a></li>
+					<li><a href="http://localhost/eDiary/task1/teacher/messages">poruke</a></li>
 				</ul>
 			</div><!-- end #nav -->
 		</div><!-- end .wrapper -->

@@ -42,17 +42,74 @@ class BaseTeacherController{
     //    $listaOcena = Teacher::grade_listing($students_id, $subjects_id);;
     // }
 
-    public function message(){
+    //public function message(){
+       // $view = new View();
+        // $all_class = Teacher::get_class();
+        // $view->data['class'] = $all_class;
+        // $class_id = $all_class['0']['id'];
+        // if($class_id){
+        //     $name_parent = Teacher::get_all_parents($class_id);
+        //     $view->data['parent'] = $name_parent;
+        //     $view->load_view('teacher', 'pages', 'message');
+        // }else{
+        //     $name_parent = Teacher::get_all_parents($class_id);
+        //     $view->data['parent'] = $name_parent;
+        //     $view->load_view('teacher', 'pages', 'message');
+        // }
+        
+
+   // }
+
+    public function messages(){
         $view = new View();
         $all_class = Teacher::get_class();
         $view->data['class'] = $all_class;
-        $class_id = $all_class['0']['id'];
-        $name_parent = Teacher::get_all_parents($class_id);
-        $view->data['parent'] = $name_parent;
-        $view->load_view('teacher', 'pages', 'message');
-        
+		$messages=Messages::get_new_messages();
+		$parents=Teacher::get_all_parents();
+		$view->data['all_messages'] = $messages;
+		$view->data['parents'] = $parents;
+		$view->load_view('teacher', 'pages', 'messages');
+		
+		
 
-    }
+	}
+	public function ajax(){
+		$messages=Messages::get_new_messages();
+		echo JSON_encode($messages);
+		
+
+	}
+
+	public function ajax_is_read(){
+		
+		$id=$_GET['id'];
+		$messages=Messages::ajax_is_read($id);
+		if($messages)
+		$response=['response'=>true];
+		else
+		$response=['response'=>false];
+		echo JSON_encode($response);
+		
+
+	}
+
+	public function ajax_chat(){
+		
+		$id=$_GET['id'];
+		$messages=Messages::ajax_chat($id);
+		echo JSON_encode($messages);
+
+	}
+
+
+	public function ajax_send_message(){
+		$message=htmlspecialchars(strip_tags($_GET['message']));
+		$id=$_GET['id'];
+		Messages::ajax_send_message($message,$id);
+		$response=['response'=>'da'];
+		echo JSON_encode($response);
+		
+	}
 
     public function objects(){
         $view = new View();
@@ -125,7 +182,16 @@ class BaseTeacherController{
         }
     }
 
-    
+    public function schedule(){
+        $view = new View();
+        $all_class = Teacher::get_class();
+        $view->data['class'] = $all_class;
+		$schedule=Schedule::get_schedule_for_teacher();
+		$view->data['schedule'] = $schedule;
+		$view->load_view('teacher', 'pages', 'schedule');
+		
+
+	}
 
     
 

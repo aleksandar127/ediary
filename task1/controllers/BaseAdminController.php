@@ -306,10 +306,10 @@ class BaseAdminController
 		$view->data['class'] = $class;
 
 
-		for ($x=1; $x < 8 ; $x++) { 
+		for ($x=1; $x < 6 ; $x++) { 
 
 		
-			$schedule_by_class = Schedule::schedule_by_class($class_id, 1, $x);
+			$schedule_by_class = Schedule::schedule_by_class($class_id, $x, 1);
 			// var_dump($schedule_by_class);	
 			
 			$view->data['monday_schedule'] = $schedule_by_class;	

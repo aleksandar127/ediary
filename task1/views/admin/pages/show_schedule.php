@@ -18,9 +18,9 @@
         </tr>
         <tr>
             <th scope="row">2</th>
-            <td>Matematika</td>
-            <td>Srpski</td>
-            <td>Engleski</td>
+            <td>hahaha</td>
+            <td>heheheh</td>
+            <td>hohoho</td>
             <td>Muzicko</td>
             <td>Fizicko</td>
         </tr>
@@ -66,3 +66,4 @@
         </tr>
         </tbody>
     </table>
+

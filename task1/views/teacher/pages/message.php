@@ -55,7 +55,8 @@
                 <div id="chat">
                     <form action="#">
                         <textarea id="subject" name="subject" placeholder="Write something.." ></textarea>
-                        <input type="submit" value="Posalji">
+                        <input onclick='ajaxSendMessage()'; type="submit" value="Posalji">
+                        <input onclick='ajax();'; type="submit" value="Pregled novih poruka">
                     </form>
                 </div>
             </div><!-- end #sendMessage -->

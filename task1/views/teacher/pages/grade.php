@@ -27,7 +27,7 @@
 
                     <td> 
                     <?php
-                    foreach ($this->data['listings'] as $listing){
+                    foreach($this->data['listings'] as $listing){
                         echo $listing['grades'] . " | ";
                         
                     }?>

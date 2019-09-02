@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 02, 2019 at 08:02 AM
+-- Generation Time: Sep 02, 2019 at 08:06 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.1.9
 
@@ -76,10 +76,10 @@ DROP TABLE IF EXISTS `messages`;
 CREATE TABLE IF NOT EXISTS `messages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `message` text COLLATE utf8_slovenian_ci NOT NULL,
-  `from` varchar(45) COLLATE utf8_slovenian_ci NOT NULL,
-  `to` varchar(45) COLLATE utf8_slovenian_ci NOT NULL,
+  `from_user` varchar(45) COLLATE utf8_slovenian_ci NOT NULL,
+  `to_user` varchar(45) COLLATE utf8_slovenian_ci NOT NULL,
   `date_and_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `read` tinyint(4) DEFAULT '0',
+  `is_read` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
@@ -283,7 +283,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `c
 (5, 'Milica', 'Petrovic', 'picika', '$2y$10$v9Ka975jcA7bYsyWDC4Gk.W7qioLRpt4O8Y4Xb1ypLr51AF5F9pa6', NULL, 1),
 (8, 'AcaMaca', 'Pereca', 'pekica', '$2y$10$WsNtYTuKojOoDNNoXqM.qeXdEWDyOzPOuLfVhEUR0NR4h5eULEQCW', '671fb7404dc322568a201b8f5117c50f', 1),
 (9, 'Milojko', 'Petrovic', 'milojko', '$2y$10$yCDXnAYsvg.Wqu76lqRyPundxe7ARn2aQ8lh6LSNqj8GOwwLcsvN6', NULL, 3),
-(11, 'Silvana', 'silkica', 'silkica', '$2y$10$wTYmlWyjEcvOl7ygm4RrIeRnKdF5AarG94FUI5ukqJ51L7pGdx7qK', NULL, 4),
+(11, 'Silvana', 'silkica', 'silkica', '$2y$10$wTYmlWyjEcvOl7ygm4RrIeRnKdF5AarG94FUI5ukqJ51L7pGdx7qK', '07b51d5472118f4269a74c45b66d1b76', 4),
 (14, 'Silvana', 'Ostojic', 'silkica', '$2y$10$yxmWGGqDIQRbkVbGUahSWOliYrMRDSpjSkPXd1KQE0gOB8eO3p6mq', NULL, 4),
 (15, 'john', 'doeh', 'joniiiii', '$2y$10$2o.JLxSl5K6ub1ScPJ/b8uq8ahunx0AUiY9E4.dtNx7Q/5RjaqaPK', NULL, 3);
 
@@ -314,6 +314,7 @@ CREATE TABLE IF NOT EXISTS `users_has_open` (
   `users_id` int(11) NOT NULL,
   `open_id` int(11) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `accepted` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_users_has_open_open1_idx` (`open_id`),
   KEY `fk_users_has_open_users1_idx` (`users_id`)

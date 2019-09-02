@@ -23,10 +23,10 @@ class BaseTeacherController{
         $view->data['students'] = $get_students;
         $all_subjects = Teacher::get_all_subjects();
         $view->data['subjects'] = $all_subjects;
-        $listaOcena = Teacher::grade_listing();
-        $view->data['listings'] = $listaOcena;
+        $list_grade = Teacher::grade_listing();
+        $view->data['listings'] = $list_grade;
 
-        var_dump($get_students);
+        var_dump($list_grade);
 
         
         $view->load_view('teacher', 'pages', 'grade');
@@ -47,15 +47,9 @@ class BaseTeacherController{
         $all_class = Teacher::get_class();
         $view->data['class'] = $all_class;
         $class_id = $all_class['0']['id'];
-        if($class_id){
-            $name_parent = Teacher::get_all_parents($class_id);
-            $view->data['parent'] = $name_parent;
-            $view->load_view('teacher', 'pages', 'message');
-        }else{
-            $name_parent = Teacher::get_all_parents($class_id);
-            $view->data['parent'] = $name_parent;
-            $view->load_view('teacher', 'pages', 'message');
-        }
+        $name_parent = Teacher::get_all_parents($class_id);
+        $view->data['parent'] = $name_parent;
+        $view->load_view('teacher', 'pages', 'message');
         
 
     }

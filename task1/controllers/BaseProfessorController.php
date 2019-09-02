@@ -132,7 +132,7 @@ class BaseProfessorController
 	}
 	public function schedule(){
 		$view = new View();
-		$schedule=Schedule::get_schedule();
+		$schedule=Schedule::get_schedule_for_professor();
 		$view->data['schedule'] = $schedule;
 		$view->load_view('professor', 'pages', 'schedule');
 		

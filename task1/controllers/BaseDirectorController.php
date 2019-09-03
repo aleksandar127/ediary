@@ -14,10 +14,14 @@ class BaseDirectorController
 		$view->load_view('director', 'pages', 'home');
 	}
 	
-   
+
 	public function avgclass() {
 
 		$view = new View();
+		$grades = Grades::average_class_grades($_GET['class']);
+		$view->data['grades'] = $grades;
+		$view->data['class'] = $_GET['class'];
+		
 		$view->load_view('director', 'pages', 'avgclass');
 	}
 
@@ -25,6 +29,8 @@ class BaseDirectorController
 	public function avgschool() {
 
 		$view = new View();
+		$grades = Grades::average_school_grades();
+		$view->data['grades'] = $grades;
 		$view->load_view('director', 'pages', 'avgschool');
 	}
 

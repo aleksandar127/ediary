@@ -1,21 +1,21 @@
 <?php 
 
-$sql = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(students.id) AS prosecna_ocena, subjects.name AS predmet FROM subjects_has_grades shg
-  JOIN subjects ON shg.subjects_id = subjects.id 
-  JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
-  JOIN students ON shghs.students_id = students.id 
-  JOIN class ON students.class_id = class.id 
-  GROUP BY subjects.name');
-$sql->execute();
-$result = $sql->fetchAll(PDO::FETCH_ASSOC);
-$json = json_encode($result);
+// $sql = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(students.id) AS prosecna_ocena, subjects.name AS predmet FROM subjects_has_grades shg
+//   JOIN subjects ON shg.subjects_id = subjects.id 
+//   JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
+//   JOIN students ON shghs.students_id = students.id 
+//   JOIN class ON students.class_id = class.id 
+//   GROUP BY subjects.name');
+// $sql->execute();
+// $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+// $json = json_encode($result);
 
 ?>
 
   <div class="col-md-12 text-center">
     <h2 class="font-weight-bold">Prosecne ocene na nivou skole</h2>
   </div>
-  <div id="skola" style="height:90vh"></div> 
+  <div id="skola" style="height:80vh"></div> 
 
   <!-- Chart code -->
 <script>
@@ -29,7 +29,7 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("skola", am4charts.XYChart);
 
 // Add data
-chart.data = <?php echo $json; ?>
+chart.data = <?php echo $this->data['grades']; ?>
 
 //console.log(chart.data)
 

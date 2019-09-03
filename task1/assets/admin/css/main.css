@@ -130,3 +130,13 @@ form{
 	width: 15%;
 	margin-left: 5%;
 }
+
+/* heading on show_schedule page */
+.sch_hed{
+	padding: 30px;
+}
+
+/* STYLISH */
+.form-row{
+	margin: 20px;
+}

@@ -58,7 +58,6 @@ class Classes
             $query = DB::$conn->prepare("insert into class (name, users_id, high_low) values (?, ?, ?)");
             $query->execute([$class_name, $prof_id, $high_low]); 
             $class_id = DB::$conn->lastInsertId(); 
-            // var_dump($class_id);
 
             $query =  DB::$conn->prepare("insert into users (first_name, last_name, username, password, roles_id) values (?, ?, ?, ?, ?)");
             $query->execute([$parent_name, $parent_surname, $parent_username, $parent_pass, $role_id]); 
@@ -85,13 +84,13 @@ class Classes
         $class = $query->fetch(PDO::FETCH_ASSOC);
         return $class;
     }
+
     public static function get_class_by_name($class_name)
     {
         $query = DB::$conn->prepare('select * from class where name = ?');
         $query->execute([$class_name]);
         $class = $query->fetch(PDO::FETCH_ASSOC);
         return $class;
-
     }
 
     public static function class_info(){
@@ -109,8 +108,7 @@ class Classes
         $query->execute([$_COOKIE['id']]); 
         $class = $query->fetchAll(PDO::FETCH_ASSOC);
         return $class;
-
-}
+    }
 
 
 

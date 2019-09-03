@@ -11,8 +11,10 @@ class BaseProfessorController
 	public function index()
 	{
 		$view = new View();
+		//method for class name
 		$class = Classes::get_my_class();
 		$view->data['class'] = $class;
+		//get all students from class
 		$students = Classes::get_diary_of_my_class();
 		$view->data['students'] = $students;
 		$view->load_view('professor', 'pages', 'home');
@@ -29,6 +31,7 @@ class BaseProfessorController
 	public function diary()
 	{
 		$view = new View();
+		//get all classes for professor
 		$all_classes = Classes::class_info();
 		$view->data['classes'] = $all_classes;
 		$class = Classes::get_my_class();
@@ -37,19 +40,20 @@ class BaseProfessorController
 
 	}
 	
+	//get diary of class for subject
 	public function diaryof(){
 		$view = new View();
 		$class_id = $this->demand->parts_of_url[5];
-		$students=Grades::get_diary($class_id);
-		$class = Classes::get_my_class();
-		$view->data['class'] = $class;
-		$view->data['diaries'] = $students;
+		$diary=Grades::get_diary($class_id);
+		$view->data['diaries'] = $diary;
 		$view->data['subject_id']=Subjects::get_subject_id();
 		$subject_id=$view->data['subject_id'];
+		//show final grades
 		$view->data['final']=Grades::final_grades_show($subject_id,$class_id);
 		$view->load_view('professor', 'pages', 'diaryof');
 	}
 
+	//delete grade 
 	public function delete(){
 		$id = $this->demand->parts_of_url[5];
 		$deleted=Grades::delete($id);
@@ -58,7 +62,7 @@ class BaseProfessorController
 		}
 		return $deleted;
 	}
-
+    //change grade 
 	public function edit(){
 		$id = $this->demand->parts_of_url[5];
 		$new_grade = $this->demand->parts_of_url[7];
@@ -70,6 +74,7 @@ class BaseProfessorController
 		return $edited;
 	}
 
+	//add new grade
 	public function new_grade(){
 		$id = $this->demand->parts_of_url[5];
 		$new_grade = $this->demand->parts_of_url[7];
@@ -81,6 +86,7 @@ class BaseProfessorController
 		return $grade;
 	}
 
+	//add final grade
 	public function final_grade(){
 		$id = $this->demand->parts_of_url[5];
 		$final_grade = $this->demand->parts_of_url[7];
@@ -93,6 +99,7 @@ class BaseProfessorController
 		return $grade;
 	}
 
+	//display open door page 
 	public function open(){
 		$view = new View();
 		$open_doors=OpenDoor::open();
@@ -101,6 +108,7 @@ class BaseProfessorController
 
 	}
 
+	//confirm appointment
 	public function open_yes(){
 		$id = $this->demand->parts_of_url[5];
 		$open_doors=OpenDoor::open_yes($id);
@@ -109,7 +117,7 @@ class BaseProfessorController
 		}
 
 	}
-
+    //reject appointment
 	public function open_no(){
 		$id = $this->demand->parts_of_url[5];
 		$open_doors=OpenDoor::open_no($id);
@@ -118,6 +126,7 @@ class BaseProfessorController
 		}
 	}
 
+	    //create appointment
 		public function open_create(){
 			$time = str_replace('T',' ',$_GET['date']);
 			$time.=":00";
@@ -126,10 +135,9 @@ class BaseProfessorController
 			if (isset($_SERVER["HTTP_REFERER"])) {
 				header("Location: " . $_SERVER["HTTP_REFERER"]);
 			}
-		
-		
-
 	}
+
+	//show professor schedule
 	public function schedule(){
 		$view = new View();
 		$schedule=Schedule::get_schedule_for_professor();
@@ -139,26 +147,28 @@ class BaseProfessorController
 
 	}
 
+	//display messages view
 	public function messages(){
 		$view = new View();
+		//show new messages
 		$messages=Messages::get_new_messages();
+		//show parents for chat
 		$parents=Messages::parents_chat();
 		$view->data['all_messages'] = $messages;
 		$view->data['parents'] = $parents;
 		$view->load_view('professor', 'pages', 'messages');
 		
-		
-
 	}
+
+    //ajax response for new messages
 	public function ajax(){
 		$messages=Messages::get_new_messages();
 		echo JSON_encode($messages);
 		
-
 	}
 
-	public function ajax_is_read(){
-		
+	//change message status
+	public function ajax_is_read(){	
 		$id=$_GET['id'];
 		$messages=Messages::ajax_is_read($id);
 		if($messages)
@@ -170,15 +180,15 @@ class BaseProfessorController
 
 	}
 
-	public function ajax_chat(){
-		
+	//show all messages from one parent
+	public function ajax_chat(){	
 		$id=$_GET['id'];
 		$messages=Messages::ajax_chat($id);
 		echo JSON_encode($messages);
 
 	}
 
-
+    //send message
 	public function ajax_send_message(){
 		$message=htmlspecialchars(strip_tags($_GET['message']));
 		$id=$_GET['id'];
@@ -188,9 +198,11 @@ class BaseProfessorController
 		
 	}
 
+	//get pdf of student final success R&OS library
 	public function success(){
 		$id= $this->demand->parts_of_url[5];
 		$view = new View();
+		//get all final grades 
 		$grades=Student::success($id);
 		if($grades==null){
 			if (isset($_SERVER["HTTP_REFERER"])) {
@@ -203,18 +215,14 @@ class BaseProfessorController
 		$_SESSION['success']='';
         $pdf = new Cezpdf();
 		$pdf->selectFont('Helvetica');
-		
 		$pdf->ezSetMargins(40,40,40,40);
-		
 		$pdf->setLineStyle(1,'round');
 		$pdf->line(72,778,522,778);
 		$pdf->line(72,780,522,780);
 		$pdf->line(72,750,522,750);
 		$pdf->line(144,630,450,630);
 		$pdf->line(144,600,450,600);
-	//	$pdf->line(70,542,350,542);
-	//	$pdf->line(70,570,350,570);
-		
+		$pdf->line(72,60,522,60);
 		$pdf->ezText('                                                       Republika Srbija',13);
 		$pdf->ezSetDy(-10);
 		$pdf->ezText('                              Srednja medicinska skola "Beograd"',16);

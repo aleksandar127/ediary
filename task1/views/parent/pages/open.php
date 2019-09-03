@@ -12,23 +12,18 @@
 foreach($this->data['professors'] as $open){
     if($open['title']=='professor' || $open['title']=='teacher')
     $open['title']='razredni';
-   
+
     echo  '<tr>';
-   
     echo '<td>'.$open['last_name'].' '.$open['first_name'].'</td>';
     echo  '<td>'.$open['title'].'</td>';
-   
     echo  '<td>'.substr($open['time'],0,-3).'</td>';
     echo  '<td><a  class="btn btn-success" href="'.URLROOT.'/parent/open_send_request/'.$open['id'].'">ZAKAZI</a></td>';
-  
     echo  '</tr>';
 }
 
 ?>
-
-
-
 </table>
+
 
 <table style='margin-left:500px;border:solid black 3px;display:inline-block;'>
 <tr><th>VREME</th><th>IME</th><th>STATUS</th></tr>
@@ -40,36 +35,20 @@ foreach($this->data['open_sent'] as $open){
     echo  '<td>'.substr($open[0],0,-3).'</td>';
     echo '<td>'.$open[1].' '.$open[2].' '.$open[4].'</td>';
     if($open[3]==1){
-    $status="PRIHVACENO";
-    $color="green";
+        $status="PRIHVACENO";
+        $color="green";
     }
     if($open[3]==2){
-    $status="ODBIJENO";
-    $color="red";
+        $status="ODBIJENO";
+        $color="red";
     }
     echo  '<td style="background-color:'.$color.';">'.$status.'</td>';
-    
     echo  '</tr>';
 }
 
-?>
+echo  '</table>';
 
-
-
-<?php
 
 //print_r($this->data['open_sent']);
-
 //print_r($this->data['professors']);
-
-
-
-
-
-
-
-
-
-
-
 ?>

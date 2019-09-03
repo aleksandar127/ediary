@@ -24,15 +24,23 @@
                 <?php foreach($this->data['students'] as $student): ?>
                 <tr>
                     <td><a href="<?php echo $student['id'];?>"><span> <?php echo $student['first_name'];?> </span> <span> <?php echo $student['last_name'];?> </span> </a></td>
-
                     <td> 
-                    <?php
-                    foreach ($this->data['listings'] as $listing){
-                        echo $listing['grades'] . " | ";
-                        
-                    }?>
+                        <?php
+                            foreach ($this->data['listings'] as $listing){
+                                if($student['id']  == $listing['students_id']){
+                                    echo $listing['grades'] . " | ";
+                            }
+                        } ?>
                     </td>
-                    
+                    <td class="final_grade"> # </td>
+                    <td> 
+                        <?php
+                            foreach ($this->data['listings'] as $listing){
+                                if($student['id']  == $listing['students_id'] && $listing['subjects_id']){
+                                    echo $listing['grades'] . " | ";
+                            }
+                        } ?>
+                    </td>
                     <td class="final_grade"> # </td>
                     <td> # </td>
                     <td class="final_grade"> # </td>
@@ -45,7 +53,6 @@
                     <td> # </td>
                     <td class="final_grade"> # </td>
                     <td>Prosek ucenika</td>
-                    
                     <td id="tdInput">
                     <a href="<?php echo 'http://localhost/eDiary/task1/teacher/new_grade/'. $student['id'];?>"><input type="button" value="Unesi"></a>
                     <a href="<?php echo 'http://localhost/eDiary/task1/teacher/delete_grade/' . $student['id']; ?>"><input type="button" value="Obrisi"></a>

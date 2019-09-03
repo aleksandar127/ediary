@@ -4,7 +4,7 @@ class Professor
 {
     
     
-
+    //get all professors
     public static function all_professors()
     {
         $query = DB::$conn->prepare('select * from users where roles_id=?');

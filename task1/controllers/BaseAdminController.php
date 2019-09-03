@@ -305,20 +305,66 @@ class BaseAdminController
 		$class = Classes::get_class_by_id($class_id);
 		$view->data['class'] = $class;
 
+		$view->data['counter'] = 1;
+		$first_week_classes = [];
+		$second_week_classes = [];
+		$third_week_classes = [];
+		$fourth_week_classes = [];
+		$fifth_week_classes = [];
+		$sixth_week_classes = [];
+		$seventh_week_classes = [];
 
 		for ($x=1; $x < 6 ; $x++) { 
-
 		
 			$schedule_by_class = Schedule::schedule_by_class($class_id, $x, 1);
-			// var_dump($schedule_by_class);	
-			
-			$view->data['monday_schedule'] = $schedule_by_class;	
-			var_dump($view->data['monday_schedule']);
-			
+			$first_week_classes[] = $schedule_by_class;
+
+			$sec_sch = Schedule::schedule_by_class($class_id, $x, 2);
+			$second_week_classes[] = $sec_sch;
+
+			$thi_sch = Schedule::schedule_by_class($class_id, $x, 3);
+			$third_week_classes[] = $thi_sch;
+
+			$four_sch = Schedule::schedule_by_class($class_id, $x, 4);
+			$fourth_week_classes[] = $four_sch;
+
+			$fif_sch = Schedule::schedule_by_class($class_id, $x, 5);
+			$fifth_week_classes[] = $fif_sch;
+
+			$six_sch = Schedule::schedule_by_class($class_id, $x, 6);
+			$sixth_week_classes[] = $six_sch;
+
+			$sev_sch = Schedule::schedule_by_class($class_id, $x, 7);
+			$seventh_week_classes[] = $sev_sch;
+
 		}
-		
+		$view->data['first_classes'] = $first_week_classes;
+		$view->data['second_classes'] = $second_week_classes;
+		$view->data['third_classes'] = $third_week_classes;
+		$view->data['fourth_classes'] = $fourth_week_classes;
+		$view->data['fifth_classes'] = $fifth_week_classes;
+		$view->data['sixth_classes'] = $sixth_week_classes;
+		$view->data['seventh_classes'] = $seventh_week_classes;
 		
 		$view->load_view('admin', 'pages', 'show_schedule');
+
+	}
+
+	//method for making new schedule
+	public function make_schedule()
+	{
+		$view = new View();
+
+		$avl_classes = Classes::classes_db();
+		$view->data['available_classes'] = $avl_classes;
+
+
+
+		$view->load_view('admin', 'pages', 'make_sch');
+	}
+
+	public function fetch_spec_subs()
+	{
 
 	}
 }

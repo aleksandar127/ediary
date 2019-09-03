@@ -108,6 +108,19 @@ class BaseParentController
 		
 	}
 
+	public function excuse(){
+		$view = new View();
+		//$id = $this->demand->parts_of_url[5];
+		$students=Student::get_child_student();
+		$view->data['students'] = $students;
+		$view->load_view('parent', 'pages', 'excuse');
+		
+		
+		
+		
+	}
+
+
 
 
 

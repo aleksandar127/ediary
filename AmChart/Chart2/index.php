@@ -14,7 +14,7 @@
 <body>
 
   <div class="col-md-12 text-center">
-    <h2 class="font-weight-bold">Prosecne Ocene za VII/2</h2>
+    <h2 class="font-weight-bold">Prosecne Ocene za 7/1</h2>
   </div>
   <div id="chartdiv"></div> 
 

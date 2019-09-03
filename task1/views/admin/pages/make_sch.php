@@ -9,101 +9,40 @@
                 <?php endforeach;?>
             </select>
         </div>
-    <div class="form-row">
-        <div class="col">
-            <div>Ponedeljak</div>
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <div>Utorak</div>
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <div>Sreda</div>
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <div>Četvrtak</div>
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <div>Petak</div>
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col">
-        <select class="form-control" id="exampleFormControlSelect1">
-           <!-- fill here with specific data -->
-        </select>
-        </div>
-    </div>
-   
-    <input type="submit" class="btn btn-dark" value="Sačuvaj raspored!">
+    
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td><select class="form-control" id="exampleFormControlSelect1">
+                <!-- fill here with specific data -->
+            </select></td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
     </form>
 </div>
 
-<script src="http://localhost/eDiary/task1/assets/admin/js/ajax_make_sch.js"></script>
+<script src="http://localhost/eDiary/task1/assets/admin/js/make_schedule.js"></script>

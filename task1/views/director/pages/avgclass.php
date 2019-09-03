@@ -1,43 +1,23 @@
-<?php 
-
-require_once '../../task1/db.php';
-require_once '../../task1/constants.php';
-
-$db = new DB();
-
-// $param = '3/1';
+<?php
+$param = '7/1';
 
 $sql = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(students.id) AS prosecna_ocena, subjects.name AS predmet FROM subjects_has_grades shg
   JOIN subjects ON shg.subjects_id = subjects.id 
   JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
   JOIN students ON shghs.students_id = students.id 
   JOIN class ON students.class_id = class.id 
-  GROUP BY subjects.name');
-$sql->execute();
+  WHERE class.name = ? GROUP BY subjects.name');
+$sql->execute([$param]);
 $result = $sql->fetchAll(PDO::FETCH_ASSOC);
 $json = json_encode($result);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Chart</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
-    <!-- Resources -->
-  <script src="https://www.amcharts.com/lib/4/core.js"></script>
-  <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-</head>
-<body>
 
   <div class="col-md-12 text-center">
-    <h2 class="font-weight-bold">Prosecne ocene na nivou skole</h2>
+    <h2 class="font-weight-bold">Prosecne Ocene za <?php echo $param; ?></h2>
   </div>
-  <div id="skola"></div> 
+  <div id="razred" style="height:90vh"></div> 
 
   <!-- Chart code -->
 <script>
@@ -48,7 +28,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 // Create chart instance
-var chart = am4core.create("skola", am4charts.XYChart);
+var chart = am4core.create("razred", am4charts.XYChart);
 
 // Add data
 chart.data = <?php echo $json; ?>
@@ -95,7 +75,3 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 });
 }); // end am4core.ready()
 </script>
-
-</body>
-</html>
-

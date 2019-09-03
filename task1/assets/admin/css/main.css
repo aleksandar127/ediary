@@ -136,7 +136,11 @@ form{
 	padding: 30px;
 }
 
-/* STYLISH */
+/* STYLISH FORM FOR MAKING NEW SCHEDULE*/
 .form-row{
 	margin: 20px;
+}
+.form-row > .col > div{
+	text-align: center;
+    font-weight: bold;
 }

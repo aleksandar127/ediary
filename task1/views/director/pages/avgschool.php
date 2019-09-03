@@ -1,12 +1,5 @@
 <?php 
 
-require_once '../../task1/db.php';
-require_once '../../task1/constants.php';
-
-$db = new DB();
-
-// $param = '3/1';
-
 $sql = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(students.id) AS prosecna_ocena, subjects.name AS predmet FROM subjects_has_grades shg
   JOIN subjects ON shg.subjects_id = subjects.id 
   JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
@@ -19,25 +12,10 @@ $json = json_encode($result);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Chart</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
-    <!-- Resources -->
-  <script src="https://www.amcharts.com/lib/4/core.js"></script>
-  <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
-  <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-</head>
-<body>
-
   <div class="col-md-12 text-center">
     <h2 class="font-weight-bold">Prosecne ocene na nivou skole</h2>
   </div>
-  <div id="skola"></div> 
+  <div id="skola" style="height:90vh"></div> 
 
   <!-- Chart code -->
 <script>
@@ -95,7 +73,3 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 });
 }); // end am4core.ready()
 </script>
-
-</body>
-</html>
-

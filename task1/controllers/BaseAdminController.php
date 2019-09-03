@@ -358,20 +358,13 @@ class BaseAdminController
 		$avl_classes = Classes::classes_db();
 		$view->data['available_classes'] = $avl_classes;
 
-		$days_in_week = array(
-			"1" => 'Ponedeljak',
-			"2" => 'Utorak',
-			"3" => 'Sreda',
-			"4" => 'Četvrtak',
-			"5" => 'Petak'
-		);
-		$view->data['avl_days'] = $days_in_week;
-
-
-
-
 
 
 		$view->load_view('admin', 'pages', 'make_sch');
+	}
+
+	public function fetch_spec_subs()
+	{
+
 	}
 }

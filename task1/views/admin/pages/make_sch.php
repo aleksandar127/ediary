@@ -5,7 +5,7 @@
             <select class="form-control" id="class_sch" name="class_sch">
                 <option></option>   
                 <?php foreach($this->data['available_classes'] as $avl_cls): ?>
-                    <option value="<?php echo $avl_cls['id']; ?>"><?php echo $avl_cls['name']; ?></option>
+                    <option value="<?php echo $avl_cls['id'].','.$avl_cls['high_low']; ?>"><?php echo $avl_cls['name']; ?></option>
                 <?php endforeach;?>
             </select>
         </div>

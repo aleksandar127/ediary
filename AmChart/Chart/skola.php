@@ -1,3 +1,25 @@
+<?php 
+
+require_once '../../task1/db.php';
+require_once '../../task1/constants.php';
+
+$db = new DB();
+
+$param = '7/1';
+
+$sql = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(students.id) AS prosecna_ocena, subjects.name AS predmet FROM subjects_has_grades shg
+  JOIN subjects ON shg.subjects_id = subjects.id 
+  JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
+  JOIN students ON shghs.students_id = students.id 
+  JOIN class ON students.class_id = class.id 
+  WHERE class.name = ? GROUP BY subjects.name');
+$sql->execute([$param]);
+$result = $sql->fetchAll(PDO::FETCH_ASSOC);
+$json = json_encode($result);
+var_dump($json);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +38,7 @@
   <div class="col-md-12 text-center">
     <h2 class="font-weight-bold">Prosecne Ocene za 7/1</h2>
   </div>
-  <div id="chartdiv"></div> 
+  <div id="razred"></div> 
 
   <!-- Chart code -->
 <script>
@@ -28,11 +50,18 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 // Create chart instance
-var chart = am4core.create("chartdiv", am4charts.XYChart);
+var chart = am4core.create("razred", am4charts.XYChart);
 chart.scrollbarX = new am4core.Scrollbar();
 
 // Add data
-chart.dataSource.url = "data.json";
+
+
+chart.data = <?php echo $json; ?>
+
+// chart.dataSource.url = 'index.php';
+// chart.dataSource.parser = new am4core.JSONParser(<?php // echo $json ?>);
+
+  
 
 // Create axes
 var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());

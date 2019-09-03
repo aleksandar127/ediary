@@ -78,13 +78,14 @@ class Classes
 
     }
 
-
+    //get professor's class
     public static function get_my_class(){
         $query = DB::$conn->prepare('select id,name from class where users_id=?');
         $query->execute([$_COOKIE['id']]); 
         $class = $query->fetch(PDO::FETCH_ASSOC);
         return $class;
     }
+
     public static function get_class_by_name($class_name)
     {
         $query = DB::$conn->prepare('select * from class where name = ?');
@@ -94,23 +95,22 @@ class Classes
 
     }
 
+    //get all classes for professor
     public static function class_info(){
-       
         $query = DB::$conn->prepare('Select class.id,class.name from class join users_has_class on class.id=users_has_class.class_id join users on users.id=users_has_class.users_id where users.id=? ');
         $query->execute([$_COOKIE['id']]); 
         $classes = $query->fetchAll(PDO::FETCH_ASSOC);
         return $classes;
     }
 
+    //get diary of professors's class
     public static function get_diary_of_my_class()
     {
-        
         $query = DB::$conn->prepare('select students.id,first_name,last_name from students join class on students.class_id=class.id where class.users_id=? order by last_name');
         $query->execute([$_COOKIE['id']]); 
         $class = $query->fetchAll(PDO::FETCH_ASSOC);
         return $class;
-
-}
+    }
 
 
 

@@ -2,6 +2,7 @@
 
 class Grades{
 
+//get diary of selected class    
 public static function get_diary($class_id)
     {
         
@@ -17,11 +18,14 @@ public static function get_diary($class_id)
 
 }
 
+//delete grade
 public static function delete($id){
     $query = DB::$conn->prepare('delete from subjects_has_grades_has_students where id=? limit 1');
     $deleted=$query->execute([$id]); 
     return $deleted;
 }
+
+//change grade
 public static function edit($id,$subject_id,$grade){
     $query = DB::$conn->prepare('select id from subjects_has_grades where subjects_id=? and grades=? limit 1');
     $query->execute([$subject_id,$grade]);
@@ -33,16 +37,18 @@ public static function edit($id,$subject_id,$grade){
     return $deleted;
 }
 
+//add new grade
 public static function new_grade($id, $subject_id, $grade){
     $query = DB::$conn->prepare('SELECT id from subjects_has_grades where subjects_id=? and grades=? limit 1');
     $query->execute([$subject_id,$grade]);
     $subject = $query->fetch(PDO::FETCH_ASSOC);
     $subject_grade_id=$subject['id'];
-    
     $query = DB::$conn->prepare('insert into subjects_has_grades_has_students  (students_id,subjects_has_grades_id) values (?,?)');
     $grade=$query->execute([$id,$subject_grade_id]); 
     return $grade;
 }
+
+//add final grade
 public static function final_grade($id, $subject_id, $grade){
     $query = DB::$conn->prepare('SELECT id from subjects_has_grades where subjects_id=? and grades=? ');
     $query->execute([$subject_id,$grade]);
@@ -52,6 +58,7 @@ public static function final_grade($id, $subject_id, $grade){
     $query->execute([$id, $subject_id]);
     $has_final = $query->fetch(PDO::FETCH_ASSOC);
     $final= $has_final['id'];
+    //if final grade exist update that row,else make new row
     if($final){
         $query = DB::$conn->prepare('update final_grade  set student_id=?,subject_grade=? where id=? limit 1');
         $grade=$query->execute([$id,$subject_grade_id,$final]); 
@@ -64,8 +71,8 @@ public static function final_grade($id, $subject_id, $grade){
     }
 }
 
+//get final grade for selected subject 
 public static function final_grades_show($subject_id,$class_id){
-
 $query = DB::$conn->prepare('SELECT final_grade.student_id,subjects_has_grades.grades from final_grade join subjects_has_grades on subjects_has_grades.id=final_grade.subject_grade join students on students.id=final_grade.student_id  where subjects_has_grades.subjects_id=?  and students.class_id=?');
 $query->execute([$subject_id,$class_id]);
 $final_grades = $query->fetchAll(PDO::FETCH_ASSOC);

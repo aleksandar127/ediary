@@ -21,6 +21,15 @@ public static function success($student_id){
 
 }
 
+public static function get_child_student(){
+    $query = DB::$conn->prepare('SELECT students.id,students.first_name,students.last_name from students
+    WHERE students.users_id=?');
+    $query->execute([$_COOKIE['id']]); 
+    $childs = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $childs;
+
+}
+
 
 
 }

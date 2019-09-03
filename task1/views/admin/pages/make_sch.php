@@ -9,51 +9,148 @@
                 <?php endforeach;?>
             </select>
         </div>
-    
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-      <th scope="col">Handle</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td><select class="form-control" id="exampleFormControlSelect1">
+        <div class="form-row">
+        <div class="col">
+            <div>Ponedeljak</div>
+            <select class="form-control" id="exampleFormControlSelect1">
                 <!-- fill here with specific data -->
-            </select></td>
-      <td><select class="form-control" id="exampleFormControlSelect1">
+            </select>
+        </div>
+        <div class="col">
+            <div>Utorak</div>
+            <select class="form-control" id="exampleFormControlSelect1">
                 <!-- fill here with specific data -->
-            </select></td>
-      <td><select class="form-control" id="exampleFormControlSelect1">
+            </select>
+        </div>
+        <div class="col">
+            <div>Sreda</div>
+            <select class="form-control" id="exampleFormControlSelect1">
                 <!-- fill here with specific data -->
-            </select></td>
-      <td><select class="form-control" id="exampleFormControlSelect1">
+            </select>
+        </div>
+        <div class="col">
+            <div>Četvrtak</div>
+            <select class="form-control" id="exampleFormControlSelect1">
                 <!-- fill here with specific data -->
-            </select></td>
-      <td><select class="form-control" id="exampleFormControlSelect1">
+            </select>
+        </div>
+        <div class="col">
+            <div>Petak</div>
+            <select class="form-control" id="exampleFormControlSelect1">
                 <!-- fill here with specific data -->
-            </select></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" id="exampleFormControlSelect1">
+            <!-- fill here with specific data -->
+            </select>
+        </div>
+        <div class="col">
+        <select class="form-control" id="exampleFormControlSelect1">
+           <!-- fill here with specific data -->
+        </select>
+        </div>
+    </div>
+   
+    <input type="submit" class="btn btn-dark" value="Sačuvaj raspored!">
     </form>
 </div>
 

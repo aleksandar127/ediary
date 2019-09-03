@@ -18,15 +18,6 @@ window.addEventListener('load', () => {
 });
 
 
-
-function make_table_form(){
-    var table = document.createElement("TABLE");
-    console.log(table);
-}
-
-
-
-
 // function ajax_call(high_low){
 //     var select_prof = document.getElementById('select_prof');
 //     var is_children = select_prof.children;

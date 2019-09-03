@@ -19,8 +19,9 @@ window.addEventListener('load', () => {
 
 
 
-make_table_form(){
-    var 
+function make_table_form(){
+    var table = document.createElement("TABLE");
+    console.log(table);
 }
 
 

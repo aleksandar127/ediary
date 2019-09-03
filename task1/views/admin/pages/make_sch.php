@@ -17,6 +17,8 @@
       <th scope="col">First</th>
       <th scope="col">Last</th>
       <th scope="col">Handle</th>
+      <th scope="col">Handle</th>
+      <th scope="col">Handle</th>
     </tr>
   </thead>
   <tbody>
@@ -25,8 +27,18 @@
       <td><select class="form-control" id="exampleFormControlSelect1">
                 <!-- fill here with specific data -->
             </select></td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td><select class="form-control" id="exampleFormControlSelect1">
+                <!-- fill here with specific data -->
+            </select></td>
+      <td><select class="form-control" id="exampleFormControlSelect1">
+                <!-- fill here with specific data -->
+            </select></td>
+      <td><select class="form-control" id="exampleFormControlSelect1">
+                <!-- fill here with specific data -->
+            </select></td>
+      <td><select class="form-control" id="exampleFormControlSelect1">
+                <!-- fill here with specific data -->
+            </select></td>
     </tr>
     <tr>
       <th scope="row">2</th>

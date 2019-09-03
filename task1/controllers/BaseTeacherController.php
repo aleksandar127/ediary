@@ -21,12 +21,27 @@ class BaseTeacherController{
         $view->data['class'] = $all_class;
         $get_students =  Teacher::get_all_students();
         $view->data['students'] = $get_students;
+        $id_students = [];
+        foreach($get_students as $students){
+            $id_students []  = $students ['id'];
+        }
         $all_subjects = Teacher::get_all_subjects();
         $view->data['subjects'] = $all_subjects;
-        $list_grade = Teacher::grade_listing();
-        $view->data['listings'] = $list_grade;
+        $list_gradee = Teacher::grade_listing();
+        $view->data['listings'] = $list_gradee;
 
-        var_dump($list_grade);
+
+        // echo "<pre>";
+        // echo "LISTA PREDMETA: "; var_dump($all_subjects);
+        // echo "</pre>";
+
+        // echo "<pre>";
+        // echo "LISTING OCENA: "; var_dump($list_gradee);
+        // echo "</pre>";
+        
+        
+
+        
 
         
         $view->load_view('teacher', 'pages', 'grade');
@@ -35,49 +50,41 @@ class BaseTeacherController{
         $view = new View();
         $all_class = Teacher::get_class();
         $view->data['class'] = $all_class;
-		$messages=Messages::get_new_messages();
-		$parents=Teacher::get_all_parents();
+		$messages = Messages::get_new_messages();
+		$parents = Teacher::get_all_parents();
 		$view->data['all_messages'] = $messages;
 		$view->data['parents'] = $parents;
 		$view->load_view('teacher', 'pages', 'messages');
-		
-		
-
-	}
+    }
+    
 	public function ajax(){
-		$messages=Messages::get_new_messages();
+		$messages = Messages::get_new_messages();
 		echo JSON_encode($messages);
 	}
 
 	public function ajax_is_read(){
-		
 		$id = $_GET['id'];
 		$messages = Messages::ajax_is_read($id);
 		if($messages)
-		$response=['response'=>true];
+		$response = ['response'=>true];
 		else
-		$response=['response'=>false];
+		$response = ['response'=>false];
 		echo JSON_encode($response);
-		
-
 	}
 
-	public function ajax_chat(){
-		
-		$id=$_GET['id'];
-		$messages=Messages::ajax_chat($id);
-		echo JSON_encode($messages);
-
+	public function ajax_chat() {
+        $id = $_GET['id'];
+        $messages = Messages::ajax_chat($id);
+        echo JSON_encode($messages);
 	}
 
 
 	public function ajax_send_message(){
-		$message=htmlspecialchars(strip_tags($_GET['message']));
-		$id=$_GET['id'];
+		$message = htmlspecialchars(strip_tags($_GET['message']));
+		$id = $_GET['id'];
 		Messages::ajax_send_message($message,$id);
-		$response=['response'=>'da'];
+		$response = ['response'=>'da'];
 		echo JSON_encode($response);
-		
 	}
 
     public function objects(){
@@ -155,7 +162,7 @@ class BaseTeacherController{
         $view = new View();
         $all_class = Teacher::get_class();
         $view->data['class'] = $all_class;
-		$schedule=Schedule::get_schedule_for_teacher();
+		$schedule = Teacher::get_schedule_for_teacher();
 		$view->data['schedule'] = $schedule;
 		$view->load_view('teacher', 'pages', 'schedule');
 		
@@ -166,19 +173,17 @@ class BaseTeacherController{
         $view = new View();
         $all_class = Teacher::get_class();
         $view->data['class'] = $all_class;
-		$open_doors=OpenDoor::open();
+		$open_doors = OpenDoor::open();
 		$view->data['open'] = $open_doors;
 		$view->load_view('teacher', 'pages', 'open');
-
 	}
 
 	public function open_yes(){
 		$id = $this->demand->parts_of_url[5];
-		$open_doors=OpenDoor::open_yes($id);
-		if (isset($_SERVER["HTTP_REFERER"])) {
-			header("Location: " . $_SERVER["HTTP_REFERER"]);
+		$open_doors = OpenDoor::open_yes($id);
+		if(isset($_SERVER["HTTP_REFERER"])) {
+			header ("Location:" . $_SERVER["HTTP_REFERER"]);
 		}
-
 	}
 
 	public function open_no(){
@@ -189,16 +194,15 @@ class BaseTeacherController{
 		}
 	}
 
-		public function open_create(){
-			$time = str_replace('T',' ',$_GET['date']);
-			$time.=":00";
-			
-			$open_create=OpenDoor::open_create($time);
-			if (isset($_SERVER["HTTP_REFERER"])) {
-				header("Location: " . $_SERVER["HTTP_REFERER"]);
-			}
+	public function open_create(){
+		$time = str_replace('T',' ',$_GET['date']);
+		$time .= ":00";
+		$open_create = OpenDoor::open_create($time);
+		if(isset($_SERVER["HTTP_REFERER"])) {
+			header ("Location: " . $_SERVER["HTTP_REFERER"]);
+		}
+    }
 
-        }
     public function logout(){
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
 		header('Location: http://localhost/eDiary/task1/');

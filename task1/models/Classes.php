@@ -58,7 +58,6 @@ class Classes
             $query = DB::$conn->prepare("insert into class (name, users_id, high_low) values (?, ?, ?)");
             $query->execute([$class_name, $prof_id, $high_low]); 
             $class_id = DB::$conn->lastInsertId(); 
-            // var_dump($class_id);
 
             $query =  DB::$conn->prepare("insert into users (first_name, last_name, username, password, roles_id) values (?, ?, ?, ?, ?)");
             $query->execute([$parent_name, $parent_surname, $parent_username, $parent_pass, $role_id]); 
@@ -92,7 +91,6 @@ class Classes
         $query->execute([$class_name]);
         $class = $query->fetch(PDO::FETCH_ASSOC);
         return $class;
-
     }
 
     //get all classes for professor

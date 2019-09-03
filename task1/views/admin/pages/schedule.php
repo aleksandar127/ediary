@@ -1,4 +1,5 @@
 <div class="container">
+    <a href="http://localhost/eDiary/task1/admin/make_schedule" class="btn btn-success">Napravi raspored!</a>
     <table class="table">
   <thead>
     <tr>

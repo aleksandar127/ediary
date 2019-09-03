@@ -31,18 +31,15 @@ class BaseTeacherController{
         $view->data['listings'] = $list_gradee;
 
 
-        echo "<pre>";
-        echo "1. "; var_dump($id_students);
-        echo "</pre>";
+        // echo "<pre>";
+        // echo "LISTA PREDMETA: "; var_dump($all_subjects);
+        // echo "</pre>";
 
-        echo "<pre>";
-        echo "2. "; var_dump($students);
-        echo "</pre>";
+        // echo "<pre>";
+        // echo "LISTING OCENA: "; var_dump($list_gradee);
+        // echo "</pre>";
         
         
-        echo "<pre>";
-        echo "3. "; var_dump($list_gradee);
-        echo "</pre>";
 
         
 

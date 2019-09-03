@@ -27,10 +27,19 @@
                     <td> 
                         <?php
                             foreach ($this->data['listings'] as $listing){
-                                if($student['id'] == $listing['students_id']){
+                                if($student['id']  == $listing['students_id']){
                                     echo $listing['grades'] . " | ";
                             }
-                        }?>
+                        } ?>
+                    </td>
+                    <td class="final_grade"> # </td>
+                    <td> 
+                        <?php
+                            foreach ($this->data['listings'] as $listing){
+                                if($student['id']  == $listing['students_id'] && $listing['subjects_id']){
+                                    echo $listing['grades'] . " | ";
+                            }
+                        } ?>
                     </td>
                     <td class="final_grade"> # </td>
                     <td> # </td>

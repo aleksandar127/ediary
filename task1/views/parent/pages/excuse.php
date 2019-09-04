@@ -22,13 +22,4 @@
   <button type="submit"  class="btn btn-primary" onclick="return(validateForm())">Submit</button>
 </form>
 
-<script>
-function validateForm() {
-  var x = document.forms["myForm"]["student"].value;
-  var y = document.forms["myForm"]["excuse"].value;
-  if (x == "" || y=="") {
-    alert("Morate izabrati sliku i ucenika");
-    return false;
-  }
-}
-</script>
+<script src="<?php echo URLROOT; ?>/assets/parent/js/excuse.js"></script>

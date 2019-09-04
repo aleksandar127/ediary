@@ -36,35 +36,35 @@
                
             <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                 <li class="dropdown-item">
-                	<a class="nav-link" href="<?php echo URLROOT; ?>/director/avgschool">Statistika uspešnosti na nivou škole</a>
+                	<a class="nav-link drop" href="<?php echo URLROOT; ?>/director/avgschool">Statistika uspešnosti na nivou škole</a>
                 </li>
                                 <li class="dropdown-divider"></li>
                 <li class="dropdown-submenu">
-                  <a class="dropdown-item" tabindex="-1" href="#">Statistika uspešnosti odeljenja</a>
+                  <a class="dropdown-item ml-2" tabindex="-1" href="#">Statistika uspešnosti odeljenja</a>
                   <ul class="dropdown-menu">
                     <li class="dropdown-item">
-                    	<a class="nav-link" tabindex="-1" href="<?php echo URLROOT; ?>/director/avgclass?class=1/1">Odeljenje 1/1</a>
+                    	<a class="nav-link drop-link" tabindex="-1" href="<?php echo URLROOT; ?>/director/avgclass?class=1/1&high_low=0">Odeljenje <span class="drop-grade">1/1</span></a>
                     </li>
                     <li class="dropdown-item">
-                    	<a class="nav-link" href="<?php echo URLROOT; ?>/director/avgclass?class=2/1">Odeljenje 2/1</a>
+                    	<a class="nav-link drop-link" href="<?php echo URLROOT; ?>/director/avgclass?class=2/1&high_low=0">Odeljenje 2/1</a>
                     </li>
                     <li class="dropdown-item">
-                    	<a class="nav-link" href="<?php echo URLROOT; ?>/director/avgclass?class=3/1">Odeljenje 3/1</a>
+                    	<a class="nav-link drop-link" href="<?php echo URLROOT; ?>/director/avgclass?class=3/1&high_low=0">Odeljenje 3/1</a>
                     </li>
                     <li class="dropdown-item">
-                    	<a class="nav-link" href="<?php echo URLROOT; ?>/director/avgclass?class=4/1">Odeljenje 4/1</a>
+                    	<a class="nav-link drop-link" href="<?php echo URLROOT; ?>/director/avgclass?class=4/1&high_low=0">Odeljenje 4/1</a>
                     </li>
                     <li class="dropdown-item">
-                    	<a class="nav-link" href="<?php echo URLROOT; ?>/director/avgclass?class=5/1">Odeljenje 5/1</a>
+                    	<a class="nav-link drop-link" href="<?php echo URLROOT; ?>/director/avgclass?class=5/1&high_low=1">Odeljenje 5/1</a>
                     </li>
                     <li class="dropdown-item">
-                    	<a class="nav-link" href="<?php echo URLROOT; ?>/director/avgclass?class=6/1">Odeljenje 6/1</a>
+                    	<a class="nav-link drop-link" href="<?php echo URLROOT; ?>/director/avgclass?class=6/1&high_low=1">Odeljenje 6/1</a>
                     </li>
                     <li class="dropdown-item">
-                    	<a class="nav-link" href="<?php echo URLROOT; ?>/director/avgclass?class=7/1">Odeljenje 7/1</a>
+                    	<a class="nav-link drop-link" href="<?php echo URLROOT; ?>/director/avgclass?class=7/1&high_low=1">Odeljenje 7/1</a>
                     </li>
                     <li class="dropdown-item">
-                    	<a class="nav-link" href="<?php echo URLROOT; ?>/director/avgclass?class=8/1">Odeljenje 8/1</a>
+                    	<a class="nav-link drop-link" href="<?php echo URLROOT; ?>/director/avgclass?class=8/1&high_low=1">Odeljenje 8/1</a>
                     </li>
 
                   </ul>

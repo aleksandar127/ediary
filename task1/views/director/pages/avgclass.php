@@ -17,18 +17,20 @@
 ?>
 
 
-  <div class="col-md-12 text-center">
-    <h2 class="font-weight-bold mt-2">Prosecne ocene za <span class="text-danger"><?php echo isset($this->data['class']) ? $this->data['class'] : null; ?></span> odeljenje</h2>
+  <div class="col-md-12 text-center my-4">
+    <h1 class="font-weight-bold">Prosek ocena za <span class="text-black"><?php echo isset($this->data['class']) ? $this->data['class'] : null; ?></span></h1>
   </div>
 
 <?php if($this->data['grades'] == '[]'): ?>
   <div class="col mt-5">
     <h2 class="text-danger font-weight-bold text-center">Ovaj razred jos nema ocena!</h2>
   </div>
-<?php endif; ?>
+<?php else: ?>
 
 
-  <div id="razred" style="height:80vh"></div> 
+<div class="row mt-5 tabela" style="height:80vh">
+    <div class="col-md-11 mx-auto mb-4" id="razred"></div>
+</div>  
 
   <!-- Chart code -->
 <script>
@@ -86,3 +88,4 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 });
 }); // end am4core.ready()
 </script>
+<?php endif; ?>

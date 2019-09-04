@@ -386,8 +386,7 @@ class BaseAdminController
 		var_dump($supergl);
 		foreach ($supergl as $key => $value) {
 
-			var_dump($key.':'.$value);
-
+			
 			$day_in_week = substr($key, 0, -1);
 			if ($day_in_week == 'monday') {
 				$day_in_week = "1";
@@ -400,13 +399,15 @@ class BaseAdminController
 			} elseif($day_in_week == 'friday'){
 				$day_in_week = "5";
 			}
+			
 			$lesson_num = substr($key, -1);
 			$subject_id = $value;
 			var_dump($day_in_week);
 			var_dump($lesson_num);
-			var_dump($value);die;	
-			$make_sch = Schedule::make_schedule($day_in_week, $lesson_num, $subject_id, $class_id);
-			var_dump($make_sch);
+			var_dump('class_id: '.$class_id);
+			die;	
+			// $make_sch = Schedule::make_schedule($day_in_week, $lesson_num, $subject_id, $class_id);
+			// var_dump($make_sch);
 		}
 	}
 }

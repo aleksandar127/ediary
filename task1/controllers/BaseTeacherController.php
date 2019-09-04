@@ -27,8 +27,24 @@ class BaseTeacherController{
         }
         $all_subjects = Teacher::get_all_subjects();
         $view->data['subjects'] = $all_subjects;
+        $id_subjects = [];
+        foreach($all_subjects as $subjects){
+            $id_subjects []  = $subjects ['id'];
+        }
         $list_gradee = Teacher::grade_listing();
         $view->data['listings'] = $list_gradee;
+
+        echo "<pre>";
+        print_r($all_subjects);
+        echo "</pre>";
+
+        echo "<pre>";
+        print_r($id_students);
+        echo "</pre>";
+
+        echo "<pre>";
+        print_r($id_subjects);
+        echo "</pre>";
 
         echo "<pre>";
         print_r($list_gradee);
@@ -148,6 +164,18 @@ class BaseTeacherController{
         }else{
             header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije obrisana! ');
         }
+    }
+
+    public function final_grade(){
+        $view = new View();
+        $all_class = Teacher::get_class();
+        $view->data['class'] = $all_class;
+        $all_subjects = Teacher::get_all_subjects();
+        $view->data['subjects'] = $all_subjects;
+        $id_students = $this->demand->parts_of_url[5];
+        $students_id = Teacher::get_students_id($id_students);
+        $view->data['id_students'] = $students_id;
+        $view->load_view('teacher', 'pages', 'final_grade');
     }
 
     public function schedule(){

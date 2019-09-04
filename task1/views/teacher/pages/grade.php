@@ -27,24 +27,14 @@
                    
                     <td>
                     <?php 
-                        foreach($this->data['listings'] as $students => $students_id){
-                            if($student['id']  == $students){
-                                echo "<pre>";
-                                print_r($students_id);
-                                echo "</pre>"; 
-                            }
-                        }?>
+                        foreach($this->data['listings'] as $students_id => $vredostID)
+                            
+                        ?>
                     </td>
                     <td class="final_grade"> # </td>
                     
                     
                     <td> # </td>
-                        <?php
-                        //     foreach ($this->data['listings'] as $listing){
-                        //         if($student['id']  == $listing['students_id']){
-                        //             echo $listing['grades'] . " | ";
-                        //     }
-                        // } ?>
                     <td class="final_grade"> # </td>
                     <td> # </td>
                     <td class="final_grade"> # </td>

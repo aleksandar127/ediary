@@ -376,8 +376,37 @@ class BaseAdminController
 
 	public function save_sch()
 	{
-		var_dump($_POST);
-		$class_id = explode(',', $_POST['class_sch'])[0];
+		// var_dump($_POST);	
 		
+		$class_id = explode(',', $_POST['class_sch'])[0];
+
+		//shift first value of array
+		$supergl = $_POST;
+		$new_arr = array_shift($supergl);
+		var_dump($supergl);
+		foreach ($supergl as $key => $value) {
+
+			var_dump($key.':'.$value);
+
+			$day_in_week = substr($key, 0, -1);
+			if ($day_in_week == 'monday') {
+				$day_in_week = "1";
+			} elseif($day_in_week == 'tuesday'){
+				$day_in_week = "2";
+			} elseif($day_in_week == 'wednesday'){
+				$day_in_week = "3";
+			} elseif($day_in_week == 'thursday'){
+				$day_in_week = "4";
+			} elseif($day_in_week == 'friday'){
+				$day_in_week = "5";
+			}
+			$lesson_num = substr($key, -1);
+			$subject_id = $value;
+			var_dump($day_in_week);
+			var_dump($lesson_num);
+			var_dump($value);die;	
+			$make_sch = Schedule::make_schedule($day_in_week, $lesson_num, $subject_id, $class_id);
+			var_dump($make_sch);
+		}
 	}
 }

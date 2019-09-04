@@ -1,5 +1,5 @@
 body{
-    margin: 0;
+    margin: 70px 0 0 0;
     padding: 0;
 }
 
@@ -8,7 +8,7 @@ body{
 .wrapper > header{
     width: 100%;
     height: 60px;
-    background-color: rgba(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.85);
 }
 .left_nav{
     float: left;
@@ -33,6 +33,15 @@ body{
     display: inline;
     padding-right: 40px;
     font-size: 20px; 
+}
+
+.menu-link:hover {
+	text-decoration: none;
+	color: #EEE;
+}
+
+.menu-link:hover>span {
+	color: orange;
 }
 
 
@@ -118,7 +127,6 @@ form{
 
 .btn-success{
 	display: block !important;
-	background-color: red;
 	width: 20%;
 	margin: 10 auto;
 	margin-top: 20px;

@@ -1,5 +1,5 @@
 
-<div style=width:500px;background-color:silver;font-size:22px;margin:auto;padding:20px;>
+<div style='width:500px;background-color:silver;font-size:22px;margin:auto;padding:20px;'>
 
 <?php
 

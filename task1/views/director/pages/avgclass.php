@@ -17,19 +17,19 @@
 ?>
 
 
-  <div class="col-md-12 text-center my-4">
+  <div class="col-md-12 text-center my-3">
     <h1 class="font-weight-bold">Prosek ocena za <span class="text-black"><?php echo isset($this->data['class']) ? $this->data['class'] : null; ?></span></h1>
   </div>
 
 <?php if($this->data['grades'] == '[]'): ?>
-  <div class="col mt-5">
+  <div class="col mt-3">
     <h2 class="text-danger font-weight-bold text-center">Ovaj razred jos nema ocena!</h2>
   </div>
 <?php else: ?>
 
 
-<div class="row mt-5 tabela" style="height:80vh">
-    <div class="col-md-11 mx-auto mb-4" id="razred"></div>
+<div class="row mt-2 tabela" style="height:80vh">
+    <div class="col-md-11 mx-auto mb-3" id="razred"></div>
 </div>  
 
   <!-- Chart code -->

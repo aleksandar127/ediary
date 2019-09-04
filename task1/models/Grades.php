@@ -51,7 +51,8 @@ class Grades{
     }
 
     //add final grade
-    public static function final_grade($id, $subject_id, $grade){
+    public static function final_grade($id, $subject_id, $grade)
+    {
         $query = DB::$conn->prepare('SELECT id from subjects_has_grades where subjects_id=? and grades=? ');
         $query->execute([$subject_id,$grade]);
         $subject = $query->fetch(PDO::FETCH_ASSOC);
@@ -85,7 +86,7 @@ class Grades{
 
 
     public static function average_class_grades($class, $high_low) {
-        $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(students.id) AS prosecna_ocena, subjects.name AS predmet 
+        $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
             FROM subjects_has_grades shg
             JOIN subjects ON shg.subjects_id = subjects.id 
             JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
@@ -101,7 +102,7 @@ class Grades{
 
     public static function average_school_grades()
     {
-        $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(students.id) AS prosecna_ocena, subjects.name AS predmet 
+        $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
             FROM subjects_has_grades shg
             JOIN subjects ON shg.subjects_id = subjects.id 
             JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 

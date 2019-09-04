@@ -18,18 +18,20 @@
 	
 </head>
 <body>
-	<div class="wrapper">
-		<header>
+
+
+<div class="wrapper">
+<header class="fixed-top">
 
 
 
 <div class="container-fluid">
 
   	<div class="row py-2">
-<a href="<?php  echo URLROOT; ?>/director/index" type="btn" class="btn btn-dark nav-link home font-weight-bold"><i class="fas fa-user"></i> Director</a>
+<a href="<?php  echo URLROOT; ?>/director/index" type="btn" class="btn btn-dark nav-link links font-weight-bold menu-btn"><span><i class="fas fa-user"></i></span> Director</a>
         <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle nav-link home font-weight-bold" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-chart-bar"></i> Statistika
+            <button class="btn btn-dark dropdown-toggle nav-link links font-weight-bold menu-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span><i class="fas fa-chart-bar"></i></span> Statistika
             </button>
              
 
@@ -73,7 +75,7 @@
               </ul>
  
         </div>
-       <a class="nav-link ml-auto text-light font-weight-bold home" href="<?php echo URLROOT; ?>/director/logout">Logout 
+       <a type="btn" class="btn btn-dark nav-link links font-weight-bold menu-btn ml-auto" href="<?php echo URLROOT; ?>/director/logout">Izloguj se 
        	<span class="ml-1"><i class="fas fa-sign-out-alt"></i></span></a>
    
     			

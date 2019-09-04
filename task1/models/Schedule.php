@@ -4,7 +4,8 @@ class Schedule
 {
 
     //get schedule for professor
-    public static function get_schedule_for_professor(){
+    public static function get_schedule_for_professor()
+    {
         $query = DB::$conn->prepare('select schedule.day_in_week,schedule.lesson_no,class.name from schedule join subjects on subjects.id=schedule.subjects_id join users on users.id=subjects.users_id join class on class.id=schedule.class_id where users.id=?');
         $query->execute([$_COOKIE['id']]);
         $schedule = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -13,7 +14,8 @@ class Schedule
     }
 
     //get schedule for teacher
-    public static function get_schedule_for_teacher(){
+    public static function get_schedule_for_teacher()
+    {
         $query = DB::$conn->prepare('SELECT schedule.day_in_week,schedule.lesson_no,subjects.name FROM schedule JOIN subjects ON subjects.id=schedule.subjects_id  JOIN class ON class.id=schedule.class_id WHERE class.users_id=?');
         $query->execute([$_COOKIE['id']]);
         $schedule = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -28,5 +30,12 @@ class Schedule
         return $schedule;
     }
 
+    public static function make_schedule($day, $lesson_no, $subject_id, $class_id)
+    {
+        $query = "insert into schedule (day_in_week, lesson_no, subjects_id, class_id) values (?,?,?,?)";
+        $query= DB::$conn->prepare($query);
+        $res = $query->execute([$day, $lesson_no, $subject_id, $class_id]);
+        return $res;
+    }
 
 }

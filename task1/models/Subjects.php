@@ -2,6 +2,7 @@
 
 class Subjects
 {
+    //get all subjects according of grade level
     public static function all_subjects($grade)
     {
         $query = DB::$conn->prepare('select s.id, s.name, s.users_id, s.high_low, users.first_name, users.last_name from subjects as s left join users on s.users_id = users.id where high_low=?');
@@ -10,6 +11,7 @@ class Subjects
         return $subjects;
     }
 
+    //get subject by specific id from db
     public static function get_subject_by_id($id)
     {
         $query = DB::$conn->prepare('select s.id, s.name, s.users_id, s.high_low, users.first_name, users.last_name from subjects as s left join users on s.users_id = users.id where s.id=?');
@@ -18,6 +20,7 @@ class Subjects
         return $subject;
     }
 
+    //update subject
     public static function edit($name, $prof_id, $high_low, $id)
     {
         $query = 'update subjects set name=?, users_id=?, high_low=? where id=?';
@@ -32,6 +35,7 @@ class Subjects
         return $res->execute([$id]);
     }
 
+    //add new subject in db
     public static function add_new($sub_name, $prof_id, $high_low)
     {
         $query = "insert into subjects (name, users_id, high_low) values (?,?,?)";
@@ -49,18 +53,13 @@ class Subjects
         return $res;
     }
 
-    //get subject id 
+    //get subject's id 
     public static function get_subject_id(){
         $query = DB::$conn->prepare('Select subjects.id from subjects where subjects.users_id=?');
         $query->execute([$_COOKIE['id']]); 
         $subject = $query->fetch(PDO::FETCH_ASSOC);
         return $subject['id'];
     }
-
-
-
-
-
 
 }
 

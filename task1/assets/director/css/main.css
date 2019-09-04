@@ -1,16 +1,13 @@
 body{
     margin: 0;
     padding: 0;
+    background-color: rgba(0,0,0,0.1);
 }
 
 .home {
     background: transparent;
     font-size: 20px;
     border: none;
-}
-
-.home:hover {
-  
 }
 
 .wrapper > header{
@@ -21,6 +18,11 @@ body{
 .btn-group{
     height: 60px !important;
     font-size: 20px !important;
+}
+
+#skola, #razred {
+    box-shadow: 5px 5px 15px #000;
+    background-color: rgba(150,150,150,0.2);
 }
 
 /*.dropdown-toggle{
@@ -109,4 +111,27 @@ body{
     -webkit-border-radius: 6px 0 6px 6px;
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
+}
+
+.drop {
+    transition: all .6s ease;
+}
+
+.drop:hover {
+    transform: scale(1.1);
+}
+
+.drop-link {
+    color: #000;
+    transition: all .6s ease;
+}
+
+.drop-link:hover {
+    transform: scale(1.2);
+    color: #000;
+    background-color: rgba(170,170,170,0.2);
+}
+
+.dropdown-item:active {
+    background-color: #EEF;
 }

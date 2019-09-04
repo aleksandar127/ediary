@@ -18,7 +18,7 @@ class BaseDirectorController
 	public function avgclass() {
 
 		$view = new View();
-		$grades = Grades::average_class_grades($_GET['class']);
+		$grades = Grades::average_class_grades($_GET['class'], $_GET['high_low']);
 		$view->data['grades'] = $grades;
 		$view->data['class'] = $_GET['class'];
 		

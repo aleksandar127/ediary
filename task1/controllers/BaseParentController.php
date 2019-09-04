@@ -115,10 +115,37 @@ class BaseParentController
 		$view->data['students'] = $students;
 		$view->load_view('parent', 'pages', 'excuse');
 		
-		
-		
+	}
+
+	public function send_excuse(){
+		$student_id=$_POST['student'];
+		$image=$_FILES['excuse'];
+		$extensions= array("jpeg","png","jpg");
+		$file_name=$image['name'];
+		$file_size=$image['size'];
+		$file_tmp=$image['tmp_name'];
+		$file_ext=explode('.',$file_name);
+		$file_ext=end($file_ext);
+		$file_ext=strtolower( $file_ext);
+		$img=getimagesize($image['tmp_name']);
+		$file_type=explode("/",$img['mime']);
+		if(in_array($file_type[1],$extensions)=== false)
+			return false;
+		if($file_size == 0)
+			return false;
+		$file_name=substr($file_name,0,stripos($file_name,"."));
+		$file_name.=time();   
+		$file_name.=".".$file_ext;
+		move_uploaded_file($file_tmp,"assets/access/images/".$file_name);
+		$upload_img=Excuse::send_excuse($student_id,$file_name);
+		if (isset($_SERVER["HTTP_REFERER"])) {
+			header("Location: " . $_SERVER["HTTP_REFERER"]);
+		}
+			
 		
 	}
+
+	
 
 
 

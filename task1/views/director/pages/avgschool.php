@@ -16,7 +16,7 @@
     <h1 class="font-weight-bold">Prosek ocena na nivou skole</h1>
 </div>
 <div class="row mt-5 tabela" style="height:80vh">
-    <div class="col-md-11 mx-auto mb-4" id="skola"></div>
+    <div class="col-md-11 mx-auto mb-4 rounded" id="skola"></div>
 </div> 
 
   <!-- Chart code -->

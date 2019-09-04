@@ -8,6 +8,7 @@ class BaseDirectorController
 		$this->demand = $demand;
 		
 	}
+	
 	public function index()
 	{
 		$view = new View();
@@ -15,7 +16,8 @@ class BaseDirectorController
 	}
 	
 
-	public function avgclass() {
+	public function avgclass()
+	{
 
 		$view = new View();
 		$grades = Grades::average_class_grades($_GET['class'], $_GET['high_low']);
@@ -26,7 +28,8 @@ class BaseDirectorController
 	}
 
 
-	public function avgschool() {
+	public function avgschool() 
+	{
 
 		$view = new View();
 		$grades = Grades::average_school_grades();

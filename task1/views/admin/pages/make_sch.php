@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="POST" action="#">
+    <form method="POST" action="http://localhost/eDiary/task1/admin/save_sch">
         <div class="form-group">
             <label for="class_sch">Odaberite razred za koji pravite raspored:</label>
             <select class="form-control" id="class_sch" name="class_sch">
@@ -9,148 +9,72 @@
                 <?php endforeach;?>
             </select>
         </div>
-        <div class="form-row">
-        <div class="col">
-            <div>Ponedeljak</div>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <!-- fill here with specific data -->
-            </select>
+        <div style="display: none;">
+            <div class="form-row">
+                <div class="col">
+                    <div>Ponedeljak</div>
+                    <select class="form-control" id="monday<?php echo $this->data['counter'];?>">
+                        <!-- fill here with specific data -->
+                    </select>
+                </div>
+                <div class="col">
+                    <div>Utorak</div>
+                    <select class="form-control" id="tuesday<?php echo $this->data['counter'];?>">
+                        <!-- fill here with specific data -->
+                    </select>
+                </div>
+                <div class="col">
+                    <div>Sreda</div>
+                    <select class="form-control" id="wednesday<?php echo $this->data['counter'];?>">
+                        <!-- fill here with specific data -->
+                    </select>
+                </div>
+                <div class="col">
+                    <div>Četvrtak</div>
+                    <select class="form-control" id="thursday<?php echo $this->data['counter'];?>">
+                        <!-- fill here with specific data -->
+                    </select>
+                </div>
+                <div class="col">
+                    <div>Petak</div>
+                    <select class="form-control" id="friday<?php echo $this->data['counter'];?>">
+                        <!-- fill here with specific data -->
+                    </select>
+                </div>
+            </div>
+            <?php for($i = 1; $i < 7; $i++): ?>
+            <?php $this->data['counter']++; ?>
+                <div class="form-row">
+                    <div class="col">
+                        <select class="form-control" id="monday<?php echo $this->data['counter'];?>">
+                        <!-- fill here with specific data -->
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control" id="tuesday<?php echo $this->data['counter'];?>">
+                        <!-- fill here with specific data -->
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control" id="wednesday<?php echo $this->data['counter'];?>">
+                        <!-- fill here with specific data -->
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control" id="thursday<?php echo $this->data['counter'];?>">
+                        <!-- fill here with specific data -->
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select class="form-control" id="friday<?php echo $this->data['counter'];?>">
+                        <!-- fill here with specific data -->
+                        </select>
+                    </div>
+                </div>
+            <?php endfor; ?>
+    
+            <input type="submit" class="btn btn-dark" value="Sačuvaj raspored!">
         </div>
-        <div class="col">
-            <div>Utorak</div>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <div>Sreda</div>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <div>Četvrtak</div>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <div>Petak</div>
-            <select class="form-control" id="exampleFormControlSelect1">
-                <!-- fill here with specific data -->
-            </select>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-            <select class="form-control" id="exampleFormControlSelect1">
-            <!-- fill here with specific data -->
-            </select>
-        </div>
-        <div class="col">
-        <select class="form-control" id="exampleFormControlSelect1">
-           <!-- fill here with specific data -->
-        </select>
-        </div>
-    </div>
-   
-    <input type="submit" class="btn btn-dark" value="Sačuvaj raspored!">
     </form>
 </div>
 

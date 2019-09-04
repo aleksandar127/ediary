@@ -355,16 +355,29 @@ class BaseAdminController
 	{
 		$view = new View();
 
+		$view->data['counter'] = 1;
 		$avl_classes = Classes::classes_db();
 		$view->data['available_classes'] = $avl_classes;
-
-
-
 		$view->load_view('admin', 'pages', 'make_sch');
 	}
 
 	public function fetch_spec_subs()
 	{
+		if($_GET['high_low'] == 0){
+			$low_subjects = Subjects::all_subjects($_GET['high_low']);
+			$low_subjects = json_encode($low_subjects);
+			echo $low_subjects;
+		} elseif($_GET['high_low'] == 1){
+			$high_subjects = Subjects::all_subjects($_GET['high_low']);
+			$high_subjects = json_encode($high_subjects);
+			echo $high_subjects;
+		}
+	}
 
+	public function save_sch()
+	{
+		var_dump($_POST);
+		$class_id = explode(',', $_POST['class_sch'])[0];
+		
 	}
 }

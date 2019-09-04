@@ -23,24 +23,28 @@
                 </tr>
                 <?php foreach($this->data['students'] as $student): ?>
                 <tr>
-                    <td><a href="<?php echo $student['id'];?>"><span> <?php echo $student['first_name'];?> </span> <span> <?php echo $student['last_name'];?> </span> </a></td>
-                    <td> 
-                        <?php
-                            foreach ($this->data['listings'] as $listing){
-                                if($student['id']  == $listing['students_id']){
-                                    echo $listing['grades'] . " | ";
+                    <td><a href="<?php echo $student['id'];?>"><span> <?php echo $student['first_name'];?> </span> <span> <?php echo $student['last_name'];?> </span></a></td>
+                   
+                    <td>
+                    <?php 
+                        foreach($this->data['listings'] as $students => $students_id){
+                            if($student['id']  == $students){
+                                echo "<pre>";
+                                print_r($students_id);
+                                echo "</pre>"; 
                             }
-                        } ?>
+                        }?>
                     </td>
                     <td class="final_grade"> # </td>
-                    <td> 
+                    
+                    
+                    <td> # </td>
                         <?php
-                            foreach ($this->data['listings'] as $listing){
-                                if($student['id']  == $listing['students_id'] && $listing['subjects_id']){
-                                    echo $listing['grades'] . " | ";
-                            }
-                        } ?>
-                    </td>
+                        //     foreach ($this->data['listings'] as $listing){
+                        //         if($student['id']  == $listing['students_id']){
+                        //             echo $listing['grades'] . " | ";
+                        //     }
+                        // } ?>
                     <td class="final_grade"> # </td>
                     <td> # </td>
                     <td class="final_grade"> # </td>

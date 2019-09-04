@@ -30,20 +30,10 @@ class BaseTeacherController{
         $list_gradee = Teacher::grade_listing();
         $view->data['listings'] = $list_gradee;
 
+        echo "<pre>";
+        print_r($list_gradee);
+        echo "</pre>";   
 
-        // echo "<pre>";
-        // echo "LISTA PREDMETA: "; var_dump($all_subjects);
-        // echo "</pre>";
-
-        // echo "<pre>";
-        // echo "LISTING OCENA: "; var_dump($list_gradee);
-        // echo "</pre>";
-        
-        
-
-        
-
-        
         $view->load_view('teacher', 'pages', 'grade');
     }
     public function messages(){
@@ -62,21 +52,23 @@ class BaseTeacherController{
 		echo JSON_encode($messages);
 	}
 
-	public function ajax_is_read(){
+	public function ajax_is_read() {
 		$id = $_GET['id'];
 		$messages = Messages::ajax_is_read($id);
-		if($messages)
-		$response = ['response'=>true];
-		else
-		$response = ['response'=>false];
-		echo JSON_encode($response);
-	}
+		if ($messages)
+        $response = ['response'=>true];
+        
+		else 
+        $response = ['response'=>false];
+        
+        echo JSON_encode($response) ;
+    }
 
 	public function ajax_chat() {
         $id = $_GET['id'];
         $messages = Messages::ajax_chat($id);
         echo JSON_encode($messages);
-	}
+    }
 
 
 	public function ajax_send_message(){

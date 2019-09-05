@@ -21,8 +21,9 @@
                     <th>prosek</th>
                     <th> # </th>
                 </tr>
-                <?php foreach($this->data['listings'] as $id_students => $student):?>
-                
+
+                <?php foreach($this->data['listings'] as $id_students => $student): var_dump($student);?>
+
                 <tr>
                     <td><a href="<?php echo $id_students ?>"><span><?php echo $this->data['students'][$id_students]['first_name'] ?></span> <span><?php echo $this->data['students'][$id_students]['last_name'];?></span></td>
 
@@ -38,7 +39,6 @@
                         }?> 
                     </td>
                     <td class="final_grade"> # </td>
-
                     <?php endforeach; ?>
                     
                     <td>Prosek ucenika</td>

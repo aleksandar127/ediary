@@ -1,5 +1,5 @@
 <br>
-<div class="list-group">
+<div class="list-group col-md-10 mx-auto">
 <?php foreach($this->data['classes'] as $class):
 if($this->data['class']['id']==$class['id'])
    echo "<a class='list-group-item list-group-item-action' style='background-color:gold' href='".URLROOT."/professor/diaryof/".$class['id']." '>".$class['name']."</a>";

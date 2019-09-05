@@ -42,9 +42,14 @@ class Schedule
     {
         $query = 'select class_id from schedule where class_id = ?';
         $query= DB::$conn->prepare($query);
-        $query->execute([$class_id]);
-        $number_of_rows = $query->rowCount(); 
-        return $number_of_rows;
+        $query->execute([$class_id]); 
+        $class_exist = count($query->fetchAll(PDO::FETCH_ASSOC));
+        if ($class_exist == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    
     }
 
     public static function is_class_occupy($day, $lesson_num)

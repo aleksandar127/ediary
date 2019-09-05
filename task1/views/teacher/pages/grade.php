@@ -21,11 +21,11 @@
                     <th>prosek</th>
                     <th> # </th>
                 </tr>
-                <?php foreach($this->data['listings'] as $id => $student): ?>
+                <?php foreach($this->data['listings'] as $id_students => $student):?>
                 
                 <tr>
                     <td>
-                        <?php echo $this->data['students'][$id]['first_name'].$this->data['students'][$id]['last_name']; ?>
+                    <a href="<?php echo $id_students ?>"><span><?php echo $this->data['students'][$id_students]['first_name'] ?></span> <span><?php echo $this->data['students'][$id_students]['last_name'];?></span>
                     </td>
 
 
@@ -34,20 +34,24 @@
                     <td>
                         <?php if(!empty($student[$idPredmeta])) {
                             foreach($student[$idPredmeta] as $idPredmeta => $ocene) {
-                                var_dump($ocene);
+                                echo $ocene . " | ";
                             }
-                        }
-
-                        else {
-                            echo "<td></td>";
-                        }
-
-                        ?> 
+                        }else {
+                            echo " ";
+                        }?> 
                     </td>
+                    <td class="final_grade"> # </td>
 
                     <?php endforeach; ?>
+                    <td>Prosek ucenika</td>
+                    <td id="tdInput">
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/new_grade/'. $id_students;?>"><input type="button" value="Unesi"></a>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/delete_grade/' . $id_students; ?>"><input type="button" value="Obrisi"></a>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/final_grade/' . $id_students; ?>"><input type="button" value="Zakljucivanje ocena"></a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
+                   
             </table>
         </div><!-- end .wrapper -->
     </div><!-- end #table -->

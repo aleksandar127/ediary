@@ -405,9 +405,13 @@ class BaseAdminController
 			var_dump($day_in_week);
 			var_dump($lesson_num);
 			var_dump('class_id: '.$class_id);
-			die;	
-			// $make_sch = Schedule::make_schedule($day_in_week, $lesson_num, $subject_id, $class_id);
-			// var_dump($make_sch);
+			$make_sch = Schedule::make_schedule($day_in_week, $lesson_num, $subject_id, $class_id);
+			var_dump($make_sch);
+			if ($make_sch) {
+				header('Location: http://localhost/eDiary/task1/admin/make_schedule?success=Uspešno ste napravili raspored časova!');
+			} else {
+				echo 'nesto je krenulo po zlu kod pravljenja rasporeda';
+			}
 		}
 	}
 }

@@ -8,6 +8,7 @@
                     <option value="<?php echo $avl_cls['id'].','.$avl_cls['high_low']; ?>"><?php echo $avl_cls['name']; ?></option>
                 <?php endforeach;?>
             </select>
+            <p></p>
         </div>
         <div style="display: none;">
             <div class="form-row">
@@ -83,6 +84,7 @@
             <?php echo $_GET['success']; ?>
         </small>
     <?php endif; ?>
+
 </div>
 
 <script src="http://localhost/eDiary/task1/assets/admin/js/make_schedule.js"></script>

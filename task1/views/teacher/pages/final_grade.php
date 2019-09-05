@@ -1,6 +1,6 @@
 <div id="addGrade">
         <div class="wrapper">
-            <form action="<?php echo 'http://localhost/eDiary/task1/teacher/save_delete_grade/'. $this->data['id_students']['id'];?>" method="POST">
+            <form action="<?php echo 'http://localhost/eDiary/task1/teacher/save_final_grade/' . $this->data['id_students']['id'];?>" method="POST">
                 <table>
                     <tr>
                         <td>Ime ucenika</td>
@@ -33,7 +33,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdSubmit" ><input type="submit" name="add" value="Obrisi ocenu"></td>
+                        <td class="tdSubmit" ><input type="submit" name="add" value="Zakljuci ocenu"></td>
                     </tr> 
                 </table>
             </form>

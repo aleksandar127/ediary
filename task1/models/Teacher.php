@@ -6,14 +6,21 @@ class Teacher{
         $query = DB::$conn->prepare('SELECT students.id, students.first_name, students.last_name FROM class JOIN students ON class.id = students.class_id WHERE class.users_id = ?;');
         $query->execute([$_COOKIE['id']]);
         $students = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $students;
+        foreach($students as $student) {
+            $student_id[$student['id']] = $student;
+        }
+        return $student_id;
     }
 
     public static function get_all_subjects(){
         $query = DB::$conn->prepare('SELECT * FROM subjects WHERE high_low = 0');
         $query->execute();
         $subjects = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $subjects;
+        foreach($subjects as $subject) {
+            $subjects_id[$subject['id']] = $subject;
+        }
+
+        return $subjects_id;
     }
 
     public static function get_students_id($id){
@@ -71,7 +78,7 @@ class Teacher{
     }
 
     public static function grade_listing(){
-        $query = DB::$conn->prepare('SELECT subjects_has_grades.grades, subjects_has_grades_has_students.students_id, subjects_has_grades.subjects_id FROM subjects_has_grades_has_students JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id WHERE subjects_has_grades.subjects_id = 53');
+        $query = DB::$conn->prepare('SELECT subjects_has_grades.grades, subjects_has_grades_has_students.students_id, subjects_has_grades.subjects_id FROM subjects_has_grades_has_students JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id');
         $list_grade = $query->execute();
         $grade = [];
         while($grade_list = $query->fetch(PDO::FETCH_ASSOC)){
@@ -80,5 +87,20 @@ class Teacher{
         return $grade;
     }
 
+    public static function add_final_grade($student_id, $subjects_grade){
+        $query = DB::$conn->prepare('INSERT INTO final_grade (id, student_id, subject_grade) VALUES (NULL, ?, ?)');
+        $final_grade = $query->execute([$id, $subjects_grade]);
+        return $final_grade;
+    }
+
+    public static function update_final_grade($student_id, $subjects_id){
+        $query = DB::$conn->prepare('SELECT final_grade.id from final_grade join subjects_has_grades on subjects_has_grades.id=final_grade.subject_grade  where final_grade.student_id=? and subjects_has_grades.subjects_id=?');
+        $query->execute([$student_id, $subjects_id]);
+        $get_final = $query->fetch(PDO::FETCH_ASSOC);
+
+        $query = DB::$conn->prepare('UPDATE final_grade SET student_id = ?, subject_grade = ? WHERE id = ? LIMIT 1');
+        $final_grade = $query->execute([$student_id, $subject_grade]);
+        return $final_grade;
+    }
 }
 ?>

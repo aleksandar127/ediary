@@ -18,20 +18,11 @@ class Teacher{
         $query = DB::$conn->prepare('SELECT * FROM subjects WHERE high_low = 0');
         $query->execute();
         $subjects = $query->fetchAll(PDO::FETCH_ASSOC);
-
-        return $subjects;
-    }
-
-    public static function get_all_subjectssss(){
-        $query = DB::$conn->prepare('SELECT * FROM subjects WHERE high_low = 0');
-        $query->execute();
-        $subjects = $query->fetchAll(PDO::FETCH_ASSOC);
-
         foreach($subjects as $subject) {
-            $subjectss[$subject['id']] = $subject;
+            $subjects_id[$subject['id']] = $subject;
         }
 
-        return $subjectss;
+        return $subjects_id;
     }
 
     public static function get_students_id($id){
@@ -97,6 +88,8 @@ class Teacher{
         }
         return $grade;
     }
+
+    
 
 }
 ?>

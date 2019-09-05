@@ -27,24 +27,8 @@ class BaseTeacherController{
         }
         $all_subjects = Teacher::get_all_subjects();
         $view->data['subjects'] = $all_subjects;
-
-        $view->data['subjectss'] = Teacher::get_all_subjectssss();
-
         $list_gradee = Teacher::grade_listing();
         $view->data['listings'] = $list_gradee;
-
-        echo "<pre>";
-        print_r($view->data['subjectss']);
-        echo "</pre>";
-
-        echo "<pre>";
-        print_r( $view->data['students']);
-        echo "</pre>";
-
-        echo "<pre>";
-        print_r($view->data['listings']);
-        echo "</pre>";   
-
         $view->load_view('teacher', 'pages', 'grade');
     }
     public function messages(){

@@ -24,17 +24,14 @@
                 <?php foreach($this->data['listings'] as $id_students => $student):?>
                 
                 <tr>
-                    <td>
-                    <a href="<?php echo $id_students ?>"><span><?php echo $this->data['students'][$id_students]['first_name'] ?></span> <span><?php echo $this->data['students'][$id_students]['last_name'];?></span>
-                    </td>
+                    <td><a href="<?php echo $id_students ?>"><span><?php echo $this->data['students'][$id_students]['first_name'] ?></span> <span><?php echo $this->data['students'][$id_students]['last_name'];?></span></td>
 
-
-                    <?php foreach($this->data['subjectss'] as $idPredmeta => $nesto): ?>
-                    
+                    <?php foreach($this->data['subjects'] as $id_subjects => $data_subjects): ?>
+                   
                     <td>
-                        <?php if(!empty($student[$idPredmeta])) {
-                            foreach($student[$idPredmeta] as $idPredmeta => $ocene) {
-                                echo $ocene . " | ";
+                        <?php if(!empty($student[$id_subjects])) {
+                            foreach($student[$id_subjects] as $id_subjects => $grade) {
+                                echo $grade . " | ";
                             }
                         }else {
                             echo " ";
@@ -43,6 +40,7 @@
                     <td class="final_grade"> # </td>
 
                     <?php endforeach; ?>
+                    
                     <td>Prosek ucenika</td>
                     <td id="tdInput">
                     <a href="<?php echo 'http://localhost/eDiary/task1/teacher/new_grade/'. $id_students;?>"><input type="button" value="Unesi"></a>

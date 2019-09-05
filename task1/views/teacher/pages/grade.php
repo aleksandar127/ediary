@@ -1,4 +1,4 @@
-    <div id="table">
+<div id="table">
         <div class="wrapper">
         <?php if(isset($_GET['err'])):?>
         <span style="color:#000;font-size:18px;font-weight:400">
@@ -21,39 +21,35 @@
                     <th>prosek</th>
                     <th> # </th>
                 </tr>
-                <?php foreach($this->data['students'] as $student): ?>
+
+                <?php foreach($this->data['listings'] as $id_students => $student): var_dump($student);?>
+
                 <tr>
-                    <td><a href="<?php echo $student['id'];?>"><span> <?php echo $student['first_name'];?> </span> <span> <?php echo $student['last_name'];?> </span></a></td>
+                    <td><a href="<?php echo $id_students ?>"><span><?php echo $this->data['students'][$id_students]['first_name'] ?></span> <span><?php echo $this->data['students'][$id_students]['last_name'];?></span></td>
+
+                    <?php foreach($this->data['subjects'] as $id_subjects => $data_subjects): ?>
                    
                     <td>
-                    <?php 
-                        foreach($this->data['listings'] as $students_id => $vredostID)
-                            
-                        ?>
+                        <?php if(!empty($student[$id_subjects])) {
+                            foreach($student[$id_subjects] as $id_subjects => $grade) {
+                                echo $grade . " | ";
+                            }
+                        }else {
+                            echo " ";
+                        }?> 
                     </td>
                     <td class="final_grade"> # </td>
+                    <?php endforeach; ?>
                     
-                    
-                    <td> # </td>
-                    <td class="final_grade"> # </td>
-                    <td> # </td>
-                    <td class="final_grade"> # </td>
-                    <td> # </td>
-                    <td class="final_grade"> # </td>
-                    <td> # </td>
-                    <td class="final_grade"> # </td>
-                    <td> # </td>
-                    <td class="final_grade"> # </td>
-                    <td> # </td>
-                    <td class="final_grade"> # </td>
                     <td>Prosek ucenika</td>
                     <td id="tdInput">
-                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/new_grade/'. $student['id'];?>"><input type="button" value="Unesi"></a>
-                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/delete_grade/' . $student['id']; ?>"><input type="button" value="Obrisi"></a>
-                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/final_grade/' . $student['id']; ?>"><input type="button" value="Zakljucivanje ocena"></a>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/new_grade/'. $id_students;?>"><input type="button" value="Unesi"></a>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/delete_grade/' . $id_students; ?>"><input type="button" value="Obrisi"></a>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/final_grade/' . $id_students; ?>"><input type="button" value="Zakljucivanje ocena"></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
+                   
             </table>
         </div><!-- end .wrapper -->
     </div><!-- end #table -->

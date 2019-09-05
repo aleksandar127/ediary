@@ -27,29 +27,8 @@ class BaseTeacherController{
         }
         $all_subjects = Teacher::get_all_subjects();
         $view->data['subjects'] = $all_subjects;
-        $id_subjects = [];
-        foreach($all_subjects as $subjects){
-            $id_subjects []  = $subjects ['id'];
-        }
         $list_gradee = Teacher::grade_listing();
         $view->data['listings'] = $list_gradee;
-
-        echo "<pre>";
-        print_r($all_subjects);
-        echo "</pre>";
-
-        echo "<pre>";
-        print_r($id_students);
-        echo "</pre>";
-
-        echo "<pre>";
-        print_r($id_subjects);
-        echo "</pre>";
-
-        echo "<pre>";
-        print_r($list_gradee);
-        echo "</pre>";   
-
         $view->load_view('teacher', 'pages', 'grade');
     }
     public function messages(){
@@ -177,7 +156,37 @@ class BaseTeacherController{
         $view->data['id_students'] = $students_id;
         $view->load_view('teacher', 'pages', 'final_grade');
     }
+    public function save_final_grade(){
+        $id_students = $this->demand->parts_of_url[5];
+        $name_students = $_POST['first_name'];
+        $last_name_students = $_POST['last_name'];
+        $subjects_id = $_POST['id_subjects'];
+        $grades = $_POST['grade'];
+        $subjects_and_grades = Teacher::get_id_subjects_grade($subjects_id, $grades);
+        $subject_grades['subjects_id'] =  $subjects_and_grades;	
 
+        if($subjects_and_grades){
+            $update_final_grade = Teacher::update_final_grade();
+            if($update_final_grade){
+                echo "Occena postoji ";
+                        // header('Location: http://localhost/eDiary/task1/teacher/grade?success=Uspesno  zakljucena ocena!');
+                        
+                } else{
+                    echo "Ocena je upisana ";
+                        // header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije zakljucena!');
+                }
+        }
+    //     $add_final_grade = Teacher::add_final_grade($id_students, $subjects_and_grades);
+
+    //     if($add_final_grade){
+    //         echo "Bravo! ";
+    //         // header('Location: http://localhost/eDiary/task1/teacher/grade?success=Uspesno  zakljucena ocena!');
+            
+    //     }else{
+    //         echo "Pokusaj opet! ";
+    //         // header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije zakljucena!');
+    //     }
+    }
     public function schedule(){
         $view = new View();
         $all_class = Teacher::get_class();

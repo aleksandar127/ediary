@@ -29,9 +29,8 @@
 
 
 
-
 <video autoplay muted loop id="myVideo">
-  <source src="<?php echo URLROOT; ?>/assets/access/videos/letters.mp4" type="video/mp4">
+  <source src="<?php  echo URLROOT; ?>/assets/access/videos/letters.mp4" type="video/mp4">
 </video>
 
 	<div class="box">

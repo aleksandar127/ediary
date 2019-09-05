@@ -38,4 +38,26 @@ class Schedule
         return $res;
     }
 
+    public static function schedule_exists($class_id)
+    {
+        $query = 'select class_id from schedule where class_id = ?';
+        $query= DB::$conn->prepare($query);
+        $query->execute([$class_id]); 
+        $class_exist = count($query->fetchAll(PDO::FETCH_ASSOC));
+        if ($class_exist == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    
+    }
+
+    public static function is_class_occupy($day, $lesson_num)
+    {
+        $query = DB::$conn->prepare('select subjects_id from schedule where day_in_week = ? and lesson_no = ?');
+        $query->execute([$day, $lesson_num]);
+        $occupy_classes = $query->fetch(PDO::FETCH_ASSOC);
+        return $occupy_classes;
+    }
+
 }

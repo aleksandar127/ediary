@@ -3,7 +3,7 @@
 	<head>
 		<title>Logovanje</title>
 		<meta charset="UTF-8">
-		<link href="style.css" type="text/css" rel="stylesheet">
+		<!-- <link href="style.css" type="text/css" rel="stylesheet"> -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" href="<?php echo URLROOT; ?>/assets/access/css/main.css">
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

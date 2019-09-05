@@ -165,17 +165,14 @@ class BaseTeacherController{
         $subjects_and_grades = Teacher::get_id_subjects_grade($subjects_id, $grades);
         $subject_grades['subjects_id'] =  $subjects_and_grades;	
 
-        // $add_final_grade = Teacher::add_new_grade($id_students, $subjects_and_grades);
+        $add_final_grade = Teacher::add_final_grade($id_students, $subjects_and_grades);
 
-        // if($add_grade){
-        //     header('Location: http://localhost/eDiary/task1/teacher/grade?success=Uspesno  uneta ocena!');
+        if($add_final_grade){
+            header('Location: http://localhost/eDiary/task1/teacher/grade?success=Uspesno  zakljucena ocena!');
             
-        // }else{
-        //     header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije uneta!');
-        // }
-        echo "<pre>";
-        var_dump($_POST);
-        echo "</pre>";
+        }else{
+            header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije zakljucena!');
+        }
     }
     public function schedule(){
         $view = new View();

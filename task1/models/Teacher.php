@@ -6,12 +6,10 @@ class Teacher{
         $query = DB::$conn->prepare('SELECT students.id, students.first_name, students.last_name FROM class JOIN students ON class.id = students.class_id WHERE class.users_id = ?;');
         $query->execute([$_COOKIE['id']]);
         $students = $query->fetchAll(PDO::FETCH_ASSOC);
-
         foreach($students as $student) {
-            $noviniz[$student['id']] = $student;
+            $student_id[$student['id']] = $student;
         }
-
-        return $noviniz;
+        return $student_id;
     }
 
     public static function get_all_subjects(){
@@ -89,9 +87,9 @@ class Teacher{
         return $grade;
     }
 
-    public static function add_final_grade($id, $subjects_gradeid){
-        $query = DB::$conn->prepare('INSERT INTO final_grade (id, students_id, subjects_grade) VALUES (NULL, ?, ?)');
-        $final_grade = $query->execute([$id, $subjects_gradeid]);
+    public static function add_final_grade($id, $subjects_grade){
+        $query = DB::$conn->prepare('INSERT INTO final_grade (id, student_id, subject_grade) VALUES (NULL, ?, ?)');
+        $final_grade = $query->execute([$id, $subjects_grade]);
         return $final_grade;
     }
 }

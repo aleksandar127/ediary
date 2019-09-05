@@ -50,3 +50,10 @@ form{
     position:relative;
     left:300px;
     top:250px;
+}
+
+
+.table-dark th{text-align: center;font-size:40px;}
+.table-dark td{height: 100px;}
+.hasTrue{background-color:silver;text-align:center;font-size:40px;} 
+.lessonNO{width:30px;font-size:40px;}

@@ -27,27 +27,22 @@ class BaseTeacherController{
         }
         $all_subjects = Teacher::get_all_subjects();
         $view->data['subjects'] = $all_subjects;
-        $id_subjects = [];
-        foreach($all_subjects as $subjects){
-            $id_subjects []  = $subjects ['id'];
-        }
+
+        $view->data['subjectss'] = Teacher::get_all_subjectssss();
+
         $list_gradee = Teacher::grade_listing();
         $view->data['listings'] = $list_gradee;
 
         echo "<pre>";
-        print_r($all_subjects);
+        print_r($view->data['subjectss']);
         echo "</pre>";
 
         echo "<pre>";
-        print_r($id_students);
+        print_r( $view->data['students']);
         echo "</pre>";
 
         echo "<pre>";
-        print_r($id_subjects);
-        echo "</pre>";
-
-        echo "<pre>";
-        print_r($list_gradee);
+        print_r($view->data['listings']);
         echo "</pre>";   
 
         $view->load_view('teacher', 'pages', 'grade');

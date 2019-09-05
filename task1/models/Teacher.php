@@ -6,14 +6,32 @@ class Teacher{
         $query = DB::$conn->prepare('SELECT students.id, students.first_name, students.last_name FROM class JOIN students ON class.id = students.class_id WHERE class.users_id = ?;');
         $query->execute([$_COOKIE['id']]);
         $students = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $students;
+
+        foreach($students as $student) {
+            $noviniz[$student['id']] = $student;
+        }
+
+        return $noviniz;
     }
 
     public static function get_all_subjects(){
         $query = DB::$conn->prepare('SELECT * FROM subjects WHERE high_low = 0');
         $query->execute();
         $subjects = $query->fetchAll(PDO::FETCH_ASSOC);
+
         return $subjects;
+    }
+
+    public static function get_all_subjectssss(){
+        $query = DB::$conn->prepare('SELECT * FROM subjects WHERE high_low = 0');
+        $query->execute();
+        $subjects = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($subjects as $subject) {
+            $subjectss[$subject['id']] = $subject;
+        }
+
+        return $subjectss;
     }
 
     public static function get_students_id($id){

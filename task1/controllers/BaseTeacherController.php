@@ -156,7 +156,27 @@ class BaseTeacherController{
         $view->data['id_students'] = $students_id;
         $view->load_view('teacher', 'pages', 'final_grade');
     }
+    public function save_final_grade(){
+        $id_students = $this->demand->parts_of_url[5];
+        $name_students = $_POST['first_name'];
+        $last_name_students = $_POST['last_name'];
+        $subjects_id = $_POST['id_subjects'];
+        $grades = $_POST['grade'];
+        $subjects_and_grades = Teacher::get_id_subjects_grade($subjects_id, $grades);
+        $subject_grades['subjects_id'] =  $subjects_and_grades;	
 
+        // $add_final_grade = Teacher::add_new_grade($id_students, $subjects_and_grades);
+
+        // if($add_grade){
+        //     header('Location: http://localhost/eDiary/task1/teacher/grade?success=Uspesno  uneta ocena!');
+            
+        // }else{
+        //     header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije uneta!');
+        // }
+        echo "<pre>";
+        var_dump($_POST);
+        echo "</pre>";
+    }
     public function schedule(){
         $view = new View();
         $all_class = Teacher::get_class();

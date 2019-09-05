@@ -89,7 +89,10 @@ class Teacher{
         return $grade;
     }
 
-    
-
+    public static function add_final_grade($id, $subjects_gradeid){
+        $query = DB::$conn->prepare('INSERT INTO final_grade (id, students_id, subjects_grade) VALUES (NULL, ?, ?)');
+        $final_grade = $query->execute([$id, $subjects_gradeid]);
+        return $final_grade;
+    }
 }
 ?>

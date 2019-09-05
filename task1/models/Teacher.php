@@ -87,9 +87,19 @@ class Teacher{
         return $grade;
     }
 
-    public static function add_final_grade($id, $subjects_grade){
+    public static function add_final_grade($student_id, $subjects_grade){
         $query = DB::$conn->prepare('INSERT INTO final_grade (id, student_id, subject_grade) VALUES (NULL, ?, ?)');
         $final_grade = $query->execute([$id, $subjects_grade]);
+        return $final_grade;
+    }
+
+    public static function update_final_grade($student_id, $subjects_id){
+        $query = DB::$conn->prepare('SELECT final_grade.id from final_grade join subjects_has_grades on subjects_has_grades.id=final_grade.subject_grade  where final_grade.student_id=? and subjects_has_grades.subjects_id=?');
+        $query->execute([$student_id, $subjects_id]);
+        $get_final = $query->fetch(PDO::FETCH_ASSOC);
+
+        $query = DB::$conn->prepare('UPDATE final_grade SET student_id = ?, subject_grade = ? WHERE id = ? LIMIT 1');
+        $final_grade = $query->execute([$student_id, $subject_grade]);
         return $final_grade;
     }
 }

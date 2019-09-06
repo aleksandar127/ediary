@@ -186,9 +186,9 @@ foreach($this->data['diaries'] as $students):
         echo "&nbsp;&nbsp;";
         echo "<a  class='btn btn-danger' href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
         echo "&nbsp;";
-        echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
+        echo "<input id='ai".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
         echo "&nbsp;";
-        echo "<a   id='a".$br."".$students['id']."' onclick='edit(this.id)' class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
+        echo "<a id='i".$br."".$students['id']."' onclick='edit(this.id);' class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
         echo "&nbsp;&nbsp;";
         $is_equal=true;
         $id=$students['id'];
@@ -231,18 +231,18 @@ foreach($this->data['diaries'] as $students):
   <div class="card-body">
     <div class="row">
         <div class="col-md-6 mb-2">
-            <input class="form-control d-inline" type="number" id="m<?php echo $br.$students['id']?>" type="number" min='1' max='5' value="<?php echo $final_grade; ?>">
+            <input class="form-control d-inline" type="number" id="af<?php echo $br.$students['id']?>" type="number" min='1' max='5' value="<?php echo $final_grade; ?>">
         </div>
         <div class="col-md-6">
-            <a type="btn" class="btn btn-info col-md-10" href="<?php echo URLROOT; ?>/professor/final_grade/<?php echo $students['id']; ?>/<?php echo $subject_id; ?>" onclick="finalGrade(this.id)">Zakljuci</a>
+            <a id="f<?php echo $br.$students['id']; ?>" type="btn" class="btn btn-info col-md-10" href="<?php echo URLROOT; ?>/professor/final_grade/<?php echo $students['id']; ?>/<?php echo $subject_id; ?>" onclick="finalGrade(this.id)">Zakljuci</a>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 mb-2">
-            <input class='form-control' id="o<?php echo $students['id']; ?>" type='number' min='1' max='5'>
+            <input class='form-control' id="au<?php echo $students['id']; ?>" type='number' min='1' max='5'>
         </div>
         <div class="col-md-6">
-            <a type="btn" class="btn btn-primary col-md-10" id="b<?php echo $students['id']; ?>" onclick="newGrade(this.id)" href="<?php echo URLROOT; ?>/professor/new_grade/<?php echo $students['id']; ?>/<?php echo $subject_id; ?>">Unesi</a>
+            <a type="btn" class="btn btn-primary col-md-10" id="u<?php echo $students['id']; ?>" onclick="newGrade(this.id)" href="<?php echo URLROOT; ?>/professor/new_grade/<?php echo $students['id']; ?>/<?php echo $subject_id; ?>">Unesi</a>
         </div>
     </div>
     <div class="row">
@@ -256,10 +256,10 @@ foreach($this->data['diaries'] as $students):
     </div>
     <div class="row">
         <div class="col-md-6 mb-2">
-            <input class="form-control d-inline" type="number" min="1" max="5" id="i<?php echo $br.$students['id'];?>">
+            <input class="form-control d-inline" type="number" min="1" max="5" id="ai<?php echo $br.$students['id'];?>">
         </div>
         <div class="col-md-6">
-            <a type="btn" class="btn btn-success col-md-10 mb-2" href="<?php echo URLROOT; ?>/professor/edit/<?php echo $students['mark']; ?>/<?php echo $subject_id; ?>">Izmeni</a>
+            <a id="i<?php echo $students['id'];?>" type="btn" class="btn btn-success col-md-10 mb-2" href="<?php echo URLROOT; ?>/professor/edit/<?php echo $students['mark']; ?>/<?php echo $subject_id; ?>">Izmeni</a>
         </div>
     </div>
   </div>
@@ -329,15 +329,26 @@ endforeach; ?>
 
 
 <script src="<?php echo URLROOT; ?>/assets/professor/js/diaryof.js"></script>
+
 <script>
 document.body.onclick = function( e ) {
-    // Cross-browser handling
-    var evt = e || window.event,
-        target = evt.target || evt.srcElement;
-    // If the element clicked is an anchor
-    if ( target.nodeName === 'A' && target.className != 'navProf' ) {
-       // Add the confirm box
-        return confirm( 'POTVRDI' );
-    }
+
+// Cross-browser handling
+var evt = e || window.event,
+    target = evt.target || evt.srcElement;
+    var a=document.getElementById(target.id);
+var inp='a'+target.id;
+var inp=document.getElementById(inp).value;
+
+
+// If the element clicked is an anchor
+if ( target.nodeName === 'A' && target.dataset.a !='0' ) {
+    if(inp<1 || inp>5 && a.className!='btn-danger'){
+    alert('Unesite validnu ocenu');
+    return false; 
+}
+   // Add the confirm box
+    return confirm( 'POTVRDI' );
+}
 };
 </script>

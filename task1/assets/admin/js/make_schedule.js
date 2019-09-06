@@ -11,11 +11,11 @@ window.addEventListener('load', () => {
         //checking if select is empty option
         if (option_values[0] == '') {
             form.style = 'display : none';
-            document.querySelector('.err').innerHTML = ''; 
+            document.querySelector('p').innerHTML = ''; 
             pick_class.style = 'border: 1px solid #ced4da';
         } else {
             validate_form(option_values[0], pick_class, form, option_values[1]);
-           
+                
         }
 
 
@@ -39,11 +39,13 @@ function validate_form(class_id, select_class, form_el, high_low) {
                 error_el.classList.add('err');
                 error_el.innerHTML = 'Raspored časova za ovo odeljenje već postoji!'
                 form_el.style = 'display: none';
-                console.log(error_el);
+
             } else if (res == false) {
                 select_class.style = "border: 1px solid #ced4da;";
                 select_class.nextElementSibling.innerHTML = '';
 
+                //validating if lesson is already occupied in that term
+                check_is_class_ocuppied();
 
                 if (high_low.includes("1")) {
                     form_el.style = 'display:block';
@@ -103,21 +105,18 @@ function ajax_call(high_low){
 
 }
 
-function check_is_class_ocuppy(){
+function check_is_class_ocuppied(){
 
-    var sch_selects = document.querySelectorAll('.form-control');
-    console.log(sch_selects);
-    // var xhttp = new XMLHttpRequest();
-    // xhttp.onreadystatechange = function () {
-    //     if (this.readyState == 4 && this.status == 200) {
-    //         var res = JSON.parse(this.responseText);
-
-    //       console.log(res);
-
-    //     }
-    // };
-
-    // xhttp.open("GET", "http://localhost/eDiary/task1/admin/save_sch?high_low=" + high_low, true);
-    // xhttp.send();
+    var cls_selects = document.querySelectorAll('select:not([name="class_sch"])');
+    console.log(cls_selects);
+    cls_selects.forEach(cls_select => {
+        console.log(cls_select.value);
+        cls_select.addEventListener('input', (e) => {
+            console.log(e.target.value);
+            //ovde sad videti kako da uzmem odmah vrednosti i da prosledim ako nije selektovana, nego ova pocetna vrednost
+            
+        });
+    });
+    
 }
 

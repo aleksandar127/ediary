@@ -108,9 +108,9 @@ function ajax_call(high_low){
 function check_is_class_ocuppied(){
 
     var cls_selects = document.querySelectorAll('select:not([name="class_sch"])');
-    console.log(cls_selects);
+    // console.log(cls_selects);
     cls_selects.forEach(cls_select => {
-        console.log(cls_select.value);
+        
         cls_select.addEventListener('input', (e) => {
             console.log(e.target.value);
             //ovde sad videti kako da uzmem odmah vrednosti i da prosledim ako nije selektovana, nego ova pocetna vrednost

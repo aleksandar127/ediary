@@ -3,7 +3,7 @@
 //print_r($this->data['schedule']);
 echo "<br>";
 $days=["","ponedeljak","utorak","sreda","cetvrtak","petak"];
-echo "<table class='table table-dark table-striped scheduleProf'>";
+echo "<table class='table table-bordered table-dark table-hover col-md-8 mx-auto scheduleProf'>";
 for($i=0;$i<8;$i++){
  echo "<tr>";
     for($y=0;$y<6;$y++){
@@ -22,9 +22,9 @@ for($i=0;$i<8;$i++){
           echo "<td class='lessonNO'>#</td>";
         
         else if($i==0 && $y!=0)
-          echo "<th>".next($days)."</th>";
+          echo "<th class='text-center h4 text-warning'>".ucfirst(next($days))."</th>";
         else if($y==0)
-          echo "<td class='lessonNO'>$i</td>";
+          echo "<td class='lessonNO text-info'>$i</td>";
        
         else
           echo "<td>&nbsp;</td>";

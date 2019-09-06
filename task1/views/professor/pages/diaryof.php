@@ -42,38 +42,38 @@
 //         echo substr($sum/$count,0,4);
 //         continue;
 //     endif;
-//     if(($count>0 && $is_equal==false) || $is_equal){
-//         echo substr($sum/$count,0,4);
-//         $sum=0;
-//         $count=0;
-//         echo "<br>";
-//     }
+    // if(($count>0 && $is_equal==false) || $is_equal){
+    //     echo substr($sum/$count,0,4);
+    //     $sum=0;
+    //     $count=0;
+    //     echo "<br>";
+    // }
           
-//     $sum+=$students['grades'];
-//     $count++;
-//     echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
-//     echo "<span style='color:red;font-size:20px;width:150px;display:inline-block;'>";
-//     echo ucfirst($students['first_name'])."<br>".ucfirst($students['last_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-//     echo "</span>";
-//     echo "&nbsp;";
-//     echo "&nbsp;";
-//     $final_grade="";
-//     if(in_array($students['id'], $keys)):
-//         $final_grade=$students_has_finals[$students['id']];
-//     endif;
-//     echo "<input id='m".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5' value='".$final_grade."'></input>";
-//     echo "&nbsp;";
-//     echo "<a href='".URLROOT."/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)' class='btn btn-dark' >Zakljuci</a>";
-//     echo "&nbsp;&nbsp";
-//     echo "<input id='o".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
-//     echo "&nbsp;";
-//     echo "<a  id='b".$students['id']."' onclick='newGrade(this.id)' class='btn btn-primary' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
-//     echo "&nbsp;&nbsp;";
-//     if($students['mark']!=null):        
-//         echo $students['grades'];
-//         echo "&nbsp;&nbsp;";
-//         echo "<a  class='btn btn-danger'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
-//         echo "&nbsp;";
+    // $sum+=$students['grades'];
+    // $count++;
+    // echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
+    // echo "<span style='color:red;font-size:20px;width:150px;display:inline-block;'>";
+    // echo ucfirst($students['first_name'])."<br>".ucfirst($students['last_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    // echo "</span>";
+    // echo "&nbsp;";
+    // echo "&nbsp;";
+    // $final_grade="";
+    // if(in_array($students['id'], $keys)):
+    //     $final_grade=$students_has_finals[$students['id']];
+    // endif;
+    // echo "<input id='m".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5' value='".$final_grade."'></input>";
+    // echo "&nbsp;";
+    // echo "<a href='".URLROOT."/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)' class='btn btn-dark' >Zakljuci</a>";
+    // echo "&nbsp;&nbsp";
+    // echo "<input id='o".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
+    // echo "&nbsp;";
+    // echo "<a  id='b".$students['id']."' onclick='newGrade(this.id)' class='btn btn-primary' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
+    // echo "&nbsp;&nbsp;";
+    // if($students['mark']!=null):        
+    //     echo $students['grades'];
+    //     echo "&nbsp;&nbsp;";
+    //     echo "<a  class='btn btn-danger'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
+    //     echo "&nbsp;";
 //         echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
 //         echo "&nbsp;";
 //         echo "<a  id='a".$br."".$students['id']."' onclick='edit(this.id)'  class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
@@ -91,70 +91,26 @@
 // endforeach;
 ?>
 
-<!-- <script src="<?php // echo URLROOT; ?>/assets/professor/js/diaryof.js"></script>
-<script>
+<!-- <script src="<?php // echo URLROOT; ?>/assets/professor/js/diaryof.js"></script> -->
+<!-- <script>
 document.body.onclick = function( e ) { 
-    // Cross-browser handling
- //   var evt = e || window.event,
- //       target = evt.target || evt.srcElement;
-    // If the element clicked is an anchor
-//    if ( target.nodeName === 'A' && target.className != 'navProf' ) {
-       // Add the confirm box
-//         return confirm( 'POTVRDI' );
-//     }
-// };
-// </script>
+    Cross-browser handling
+   var evt = e || window.event,
+       target = evt.target || evt.srcElement;
+    If the element clicked is an anchor
+   if ( target.nodeName === 'A' && target.className != 'navProf' ) {
+       Add the confirm box
+        return confirm( 'POTVRDI' );
+    }
+};
+</script> -->
 
 
- ***************************************************************** -->
+<!-- ***************************************************************** -->
 
-<!-- <div class="container-fluid">
-<div class="card col-md-4 card-diaryof">
-<div class="card-header">
-    <span class="float-left"><i class="fa fa-user fa-2x"></i></span> <h3 class="card-title text-center">Ucenik: Pera Peric</h3>
-</div>
-  <div class="card-body">
-    <h5 class="card-subtitle mb-4 text-muted">Predmet: Matematika</h5>
-    <div class="row">
-        <div class="col-md-6 mb-2">
-            <input class="form-control d-inline" type="number">
-        </div>
-        <div class="col-md-6">
-            <button class="btn btn-dark col-md-6" type="btn">Zakljuci</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 mb-2">
-            <input class="form-control d-inline" type="number">
-        </div>
-        <div class="col-md-6">
-            <button class="btn btn-primary col-md-6" type="btn">Unesi</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 mb-2">
-            <input class="form-control d-inline" type="number">
-        </div>
-        <div class="col-md-6">
-            <a type="btn" class="btn btn-danger col-md-6" href="#">Izbrisi</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 mb-2">
-            <input class="form-control d-inline" type="number">
-        </div>
-        <div class="col-md-6">
-            <button class="btn btn-success col-md-6" type="btn">Izmeni</button>
-        </div>
-    </div>
-  </div>
-</div>
-</div> -->
-
+<div class="container-fluid">
+    
 <?php
-//print_r($this->data['subject_id']);
-//print_r($this->data['final']);
-//print_r($this->data['diaries']);
 
 $count=0;
 $sum=0;
@@ -169,174 +125,109 @@ foreach($this->data['final'] as $niz):
     $keys=array_keys($students_has_finals);
 endforeach;
     
-echo "<br>";
+// echo "<br>";
 $array_is_long=0;
 
-?>
-<div class="container-fluid">
-
-<?php
 foreach($this->data['diaries'] as $students):
     $array_is_long++;
     if($id==$students['id']):
         $br++;
         $count++;
-    
-        echo $students['grades'];
-        echo "&nbsp;&nbsp;";
-        echo "<a  class='btn btn-danger' href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
-        echo "&nbsp;";
-        echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
-        echo "&nbsp;";
-        echo "<a   id='a".$br."".$students['id']."' onclick='edit(this.id)' class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
-        echo "&nbsp;&nbsp;";
+// echo "<div class='row'>";
+        echo "<span class='col-md-6'>".$students['grades']."</span>";
+      
+        echo "<a class='py-3 btn btn-danger col mr-3'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
+     
+        echo "<input class='form-control col' id='i".$br."".$students['id']."' type='number' ' min='1' max='5'>";
+  
+        echo "<a id='a".$br."".$students['id']."' onclick='edit(this.id)' class='py-3 btn btn-success col mr-3' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
+// echo "</div>";
         $is_equal=true;
         $id=$students['id'];
         $sum+=$students['grades'];
-        echo "</div>";
+       // echo "</div>";
         
         if($array_is_long==count($this->data['diaries']))
-        echo substr($sum/$count,0,4);
+        echo "<div class='col-md-6 bg-light'>".substr($sum/$count,0,4)."</div>";
         continue;
     endif;
     if(($count>0 && $is_equal==false) || $is_equal){
-        echo substr($sum/$count,0,4);
+        echo "<div class='col-md-6 bg-light'>".substr($sum/$count,0,4)."</div>";
         $sum=0;
         $count=0;
-        echo "<br>";
+     //   echo "<br>";
     }
           
     $sum+=$students['grades'];
     $count++;
-?>
-    
+
+    echo "<div class='row bg-secondary p-2'>";
+
+    echo "<div class='col-md-12'>";
+    echo "<div class='col-md-3'>";
+    echo "<h4 class='mr-2 mt-1 col-md-12 text-center'>".ucfirst($students['first_name'])." ".ucfirst($students['last_name']."</h4>");
 
 
-
-        
-
-<?php
     $final_grade="";
     if(in_array($students['id'], $keys)):
         $final_grade=$students_has_finals[$students['id']];
     endif;
-?>
+echo "<div class='col-md-12'>";
+    echo "<input class='form-control col-md-6 d-inline'  id='m".$br."".$students['id']."' type='number' min='1' max='5' value='".$final_grade."'>";
+   
+    echo "<a href='".URLROOT."/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' type='btn' onclick='finalGrade(this.id)' class='form-control col-md-6 btn btn-dark mb-1'>Zakljuci</a>";
+echo "</div>";
 
-<div class="card col-md-4 card-diaryof">
-<div class="card-header">
-<span class="float-left"><i class="fa fa-user fa-2x text-light"></i></span> <h3 class="card-title text-center text-light">Ucenik: <?php
-            echo ucfirst($students['first_name']). " " .ucfirst($students['last_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?>
-</h3>
-</div>
-  <div class="card-body">
-    <div class="row">
-        <div class="col-md-6 mb-2">
-            <input class="form-control d-inline" type="number" id="m<?php echo $br.$students['id']?>" type="number" min='1' max='5' value="<?php echo $final_grade; ?>">
-        </div>
-        <div class="col-md-6">
-            <a type="btn" class="btn btn-info col-md-10" href="<?php echo URLROOT; ?>/professor/final_grade/<?php echo $students['id']; ?>/<?php echo $subject_id; ?>" onclick="finalGrade(this.id)">Zakljuci</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 mb-2">
-            <input class='form-control' id="o<?php echo $students['id']; ?>" type='number' min='1' max='5'>
-        </div>
-        <div class="col-md-6">
-            <a type="btn" class="btn btn-primary col-md-10" id="b<?php echo $students['id']; ?>" onclick="newGrade(this.id)" href="<?php echo URLROOT; ?>/professor/new_grade/<?php echo $students['id']; ?>/<?php echo $subject_id; ?>">Unesi</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 my-2 text-light text-right font-weight-bold">
-            <?php if($students['mark']!=null):        
-        echo $students['grades']; ?>
-        </div>
-        <div class="col-md-6">
-            <a type="btn" class="btn btn-danger col-md-10 mb-2" href="<?php echo URLROOT; ?>/professor/delete/<?php echo $students['mark']; ?>">Izbrisi</a>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 mb-2">
-            <input class="form-control d-inline" type="number" min="1" max="5" id="i<?php echo $br.$students['id'];?>">
-        </div>
-        <div class="col-md-6">
-            <a type="btn" class="btn btn-success col-md-10 mb-2" href="<?php echo URLROOT; ?>/professor/edit/<?php echo $students['mark']; ?>/<?php echo $subject_id; ?>">Izmeni</a>
-        </div>
-    </div>
-  </div>
-</div>
+echo "<div class='col-md-12'>";
+    echo "<input class='form-control col-md-6 d-inline'  id='o".$students['id']."' type='number' min='1' max='5'>";
+  
+    echo "<a type='btn' id='b".$students['id']."' onclick='newGrade(this.id)' class='btn btn-primary form-control col-md-6 mb-1' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
+echo "</div>";
+    
+    
+    if($students['mark']!=null):        
 
-<?php 
-endif;
-
-if($array_is_long==count($this->data['diaries'])){
+echo "<div class='col-md-12'>";     
+        echo "<div class='text-center d-inline-block col-md-6 font-weight-bold bg-light mb-1' style='height:35px;'>".$students['grades']."</div>";
+    
+        echo "<a type='btn' class='btn btn-danger d-inline-block col-md-6 mb-1'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
+echo "</div>";
+        
+echo "<div class='col-md-12'>";        
+        echo "<input class='form-control col-md-6 d-inline' id='i".$br."".$students['id']."' type='number'  min='1' max='5'>";
+      
+        echo "<a id='a".$br."".$students['id']."' onclick='edit(this.id)'  class='form-control btn btn-success col-md-6' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>Izmeni</a>";
+echo "</div>";
+     
+    endif;
+    if($array_is_long==count($this->data['diaries'])){
         $sum=$students['grades'];
         $count=1;
-        echo substr($sum/$count,0,4);
+        echo "<div class='col-md-12'>";     
+        echo "<div class='col-md-6 m-0 bg-light text-center font-weight-bold' style='height:35px;'>".substr($sum/$count,0,4)."</div>";
+        echo "<div>";
     }
   
     $id=$students['id'];
     $is_equal=false;
-
-endforeach; ?>
-
-</div> <!-- End of container-fluid -->
-
-
-
-<?php
-
-//     echo "<div class='card-body'>";
-//     echo "<div class='row'>";
-//     echo "<div class='col-md-6 mb-2'>";
-//     echo "<input class='form-control d-inline' id='m".$br."".$students['id']."' type='number' min='1' max='5' value='".$final_grade."'>";
-// echo "<div>";
-// echo '<div class="col-md-6">';
-//     echo "<a class='btn btn-dark' type='btn' href='".URLROOT."/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)'>Zakljuci</a>";
-// echo "</div>";
-// echo "</div>";
     
+ echo "</div>"; // End od col-md-12
+echo "</div>"; // End of row
 
-// echo "<div class='row'>";
-// echo "<div class='col-md-6 mb-2'>";
-//     echo "<input class='form-control d-inline' id='o".$students['id']."' type='number' min='1' max='5'>";
-// echo "<div>";
-// echo '<div class="col-md-6">';
-//     echo "<a type='button' id='b".$students['id']."' onclick='newGrade(this.id)' class='btn btn-primary' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
-// echo "</div>";
-// echo "</div>"; 
-
-                // if($students['mark']!=null):        
-                //     echo $students['grades'];
-       
-        // echo "<a  class='btn btn-danger'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
-     
-        // echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";    
-        // echo "<a  id='a".$br."".$students['id']."' onclick='edit(this.id)'  class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
-     //   echo "</div>";  // end of card
-//    endif;
-    // if($array_is_long==count($this->data['diaries'])){
-    //     $sum=$students['grades'];
-    //     $count=1;
-    //     echo substr($sum/$count,0,4);
-    // }
-  
-    // $id=$students['id'];
-    // $is_equal=false;
-    
-// endforeach;
+endforeach;
 ?>
 
-
+</div>  <!-- End of container-fluid -->
 
 <script src="<?php echo URLROOT; ?>/assets/professor/js/diaryof.js"></script>
 <script>
-document.body.onclick = function( e ) {
-    // Cross-browser handling
-    var evt = e || window.event,
-        target = evt.target || evt.srcElement;
-    // If the element clicked is an anchor
-    if ( target.nodeName === 'A' && target.className != 'navProf' ) {
-       // Add the confirm box
+document.body.onclick = function( e ) { 
+  //  Cross-browser handling
+   var evt = e || window.event,
+       target = evt.target || evt.srcElement;
+    If the element clicked is an anchor
+   if ( target.nodeName === 'A' && target.className != 'navProf' ) {
+    //   Add the confirm box
         return confirm( 'POTVRDI' );
     }
 };

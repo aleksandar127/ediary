@@ -7,7 +7,7 @@
 	<h2>Login</h2>
 	<form action="access/login" method="POST">
 		<div class="inputBox">
-			<input type="text" name="login_username" required="">
+			<input type="text" name="login_username" required="" autocomplete="off">
 			<label>Username</label>
 		</div>
 		<div class="inputBox">

@@ -133,6 +133,7 @@ foreach($this->data['diaries'] as $students):
     if($id==$students['id']):
         $br++;
         $count++;
+<<<<<<< HEAD
 // echo "<div class='row'>";
         echo "<span class='col-md-6'>".$students['grades']."</span>";
       
@@ -142,6 +143,17 @@ foreach($this->data['diaries'] as $students):
   
         echo "<a id='a".$br."".$students['id']."' onclick='edit(this.id)' class='py-3 btn btn-success col mr-3' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
 // echo "</div>";
+=======
+    
+        echo $students['grades'];
+        echo "&nbsp;&nbsp;";
+        echo "<a  class='btn btn-danger' href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
+        echo "&nbsp;";
+        echo "<input id='ai".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
+        echo "&nbsp;";
+        echo "<a id='i".$br."".$students['id']."' onclick='edit(this.id);' class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
+        echo "&nbsp;&nbsp;";
+>>>>>>> 4a42e7342eb4a2a8811dc5405450bc56d1ed3af7
         $is_equal=true;
         $id=$students['id'];
         $sum+=$students['grades'];
@@ -172,6 +184,7 @@ foreach($this->data['diaries'] as $students):
     if(in_array($students['id'], $keys)):
         $final_grade=$students_has_finals[$students['id']];
     endif;
+<<<<<<< HEAD
 echo "<div class='col-md-12'>";
     echo "<input class='form-control col-md-6 d-inline'  id='m".$br."".$students['id']."' type='number' min='1' max='5' value='".$final_grade."'>";
    
@@ -186,6 +199,55 @@ echo "</div>";
     
     
     if($students['mark']!=null):        
+=======
+?>
+
+<div class="card col-md-4 card-diaryof">
+<div class="card-header">
+<span class="float-left"><i class="fa fa-user fa-2x text-light"></i></span> <h3 class="card-title text-center text-light">Ucenik: <?php
+            echo ucfirst($students['first_name']). " " .ucfirst($students['last_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"; ?>
+</h3>
+</div>
+  <div class="card-body">
+    <div class="row">
+        <div class="col-md-6 mb-2">
+            <input class="form-control d-inline" type="number" id="af<?php echo $br.$students['id']?>" type="number" min='1' max='5' value="<?php echo $final_grade; ?>">
+        </div>
+        <div class="col-md-6">
+            <a id="f<?php echo $br.$students['id']; ?>" type="btn" class="btn btn-info col-md-10" href="<?php echo URLROOT; ?>/professor/final_grade/<?php echo $students['id']; ?>/<?php echo $subject_id; ?>" onclick="finalGrade(this.id)">Zakljuci</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-2">
+            <input class='form-control' id="au<?php echo $students['id']; ?>" type='number' min='1' max='5'>
+        </div>
+        <div class="col-md-6">
+            <a type="btn" class="btn btn-primary col-md-10" id="u<?php echo $students['id']; ?>" onclick="newGrade(this.id)" href="<?php echo URLROOT; ?>/professor/new_grade/<?php echo $students['id']; ?>/<?php echo $subject_id; ?>">Unesi</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 my-2 text-light text-right font-weight-bold">
+            <?php if($students['mark']!=null):        
+        echo $students['grades']; ?>
+        </div>
+        <div class="col-md-6">
+            <a type="btn" class="btn btn-danger col-md-10 mb-2" href="<?php echo URLROOT; ?>/professor/delete/<?php echo $students['mark']; ?>">Izbrisi</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-2">
+            <input class="form-control d-inline" type="number" min="1" max="5" id="ai<?php echo $br.$students['id'];?>">
+        </div>
+        <div class="col-md-6">
+            <a id="i<?php echo $students['id'];?>" type="btn" class="btn btn-success col-md-10 mb-2" href="<?php echo URLROOT; ?>/professor/edit/<?php echo $students['mark']; ?>/<?php echo $subject_id; ?>">Izmeni</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+<?php 
+endif;
+>>>>>>> 4a42e7342eb4a2a8811dc5405450bc56d1ed3af7
 
 echo "<div class='col-md-12'>";     
         echo "<div class='text-center d-inline-block col-md-6 font-weight-bold bg-light mb-1' style='height:35px;'>".$students['grades']."</div>";
@@ -220,7 +282,9 @@ endforeach;
 </div>  <!-- End of container-fluid -->
 
 <script src="<?php echo URLROOT; ?>/assets/professor/js/diaryof.js"></script>
+
 <script>
+<<<<<<< HEAD
 document.body.onclick = function( e ) { 
   //  Cross-browser handling
    var evt = e || window.event,
@@ -230,5 +294,26 @@ document.body.onclick = function( e ) {
     //   Add the confirm box
         return confirm( 'POTVRDI' );
     }
+=======
+document.body.onclick = function( e ) {
+
+// Cross-browser handling
+var evt = e || window.event,
+    target = evt.target || evt.srcElement;
+    var a=document.getElementById(target.id);
+var inp='a'+target.id;
+var inp=document.getElementById(inp).value;
+
+
+// If the element clicked is an anchor
+if ( target.nodeName === 'A' && target.dataset.a !='0' ) {
+    if(inp<1 || inp>5 && a.className!='btn-danger'){
+    alert('Unesite validnu ocenu');
+    return false; 
+}
+   // Add the confirm box
+    return confirm( 'POTVRDI' );
+}
+>>>>>>> 4a42e7342eb4a2a8811dc5405450bc56d1ed3af7
 };
 </script>

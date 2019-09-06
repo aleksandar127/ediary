@@ -382,72 +382,71 @@ class BaseAdminController
 
 	}
 
+	public function are_classes_occupy()
+	{
+		
+	}
+
 
 	public function save_sch()
 	{
 		
 		$class_id = explode(',', $_POST['class_sch'])[0];
 
-		// $is_exist = Schedule::schedule_exists($class_id);
-		// // var_dump($is_exist);
-		// if ($is_exist) {
-		// 	header('Location: http://localhost/eDiary/task1/admin/make_schedule?err=Raspored za ovo odeljenje već postoji! Izmenite ga ili izbrišite pa napravite novi.');
-		// } else {
 
-		// 	//shift first value of array
-		// 	$supergl = $_POST;
-		// 	$new_arr = array_shift($supergl);
+		//shift first value of array
+		$supergl = $_POST;
+		$new_arr = array_shift($supergl);
 
 
 				
-		// 	foreach ($supergl as $key => $value) {
+			foreach ($supergl as $key => $value) {
 
 
-		// 		$day_in_week = substr($key, 0, -1);
-		// 		if ($day_in_week == 'monday') {
-		// 			$day_in_week = "1";
-		// 		} elseif($day_in_week == 'tuesday'){
-		// 			$day_in_week = "2";
-		// 		} elseif($day_in_week == 'wednesday'){
-		// 			$day_in_week = "3";
-		// 		} elseif($day_in_week == 'thursday'){
-		// 			$day_in_week = "4";
-		// 		} elseif($day_in_week == 'friday'){
-		// 			$day_in_week = "5";
-		// 		}
+				$day_in_week = substr($key, 0, -1);
+				if ($day_in_week == 'monday') {
+					$day_in_week = "1";
+				} elseif($day_in_week == 'tuesday'){
+					$day_in_week = "2";
+				} elseif($day_in_week == 'wednesday'){
+					$day_in_week = "3";
+				} elseif($day_in_week == 'thursday'){
+					$day_in_week = "4";
+				} elseif($day_in_week == 'friday'){
+					$day_in_week = "5";
+				}
 				
-		// 		$lesson_num = substr($key, -1);
-		// 		$subject_id = $value;
-		// 		// var_dump($subject_id);
-		// 		// var_dump($day_in_week);
-		// 		// var_dump($lesson_num);
-		// 		// var_dump('class_id: '.$class_id);
+				$lesson_num = substr($key, -1);
+				$subject_id = $value;
+				// var_dump($subject_id);
+				// var_dump($day_in_week);
+				// var_dump($lesson_num);
+				// var_dump('class_id: '.$class_id);
 
-		// 		$is_class_occupy = Schedule::is_class_occupy($day_in_week, $lesson_num);
-		// 		var_dump($is_class_occupy);
-		// 		if ($is_class_occupy == false) {
+				$is_class_occupy = Schedule::is_class_occupy($day_in_week, $lesson_num);
+				$is_class_occupy = json_encode($is_class_occupy);
+				var_dump($is_class_occupy);
+				// if ($is_class_occupy == false) {
 
-					// $make_sch = Schedule::make_schedule($day_in_week, $lesson_num, $subject_id, $class_id);
-		// 			var_dump($make_sch);
-		// 			if ($make_sch) {
-		// 				header('Location: http://localhost/eDiary/task1/admin/make_schedule?success=Uspešno ste napravili raspored časova!');
-		// 			} else {
-		// 				echo 'nesto je krenulo po zlu kod pravljenja rasporeda';
-		// 			}
-		// 		} else {
-		// 			 header('Location: http://localhost/eDiary/task1/admin/make_schedule?err=Ne valja!');
-		// 		}
-		// 		// if ($subject_id == $is_class_occupy['subjects_id']) {
-		// 			// echo 'predmet u tom terminu zauzet';
-		// 			// header('Location: http://localhost/eDiary/task1/admin/make_schedule?err=Ne valja!');
-		// 		// }
+				// 	$make_sch = Schedule::make_schedule($day_in_week, $lesson_num, $subject_id, $class_id);
+				// 	var_dump($make_sch);
+				// 	if ($make_sch) {
+				// 		header('Location: http://localhost/eDiary/task1/admin/make_schedule?success=Uspešno ste napravili raspored časova!');
+				// 	} else {
+				// 		echo 'nesto je krenulo po zlu kod pravljenja rasporeda';
+				// 	}
+				// } else {
+				// 	 header('Location: http://localhost/eDiary/task1/admin/make_schedule?err=Ne valja!');
+				// }
+				// if ($subject_id == $is_class_occupy['subjects_id']) {
+					// echo 'predmet u tom terminu zauzet';
+					// header('Location: http://localhost/eDiary/task1/admin/make_schedule?err=Ne valja!');
+				// }
 			
-		// 		// die;
+				// die;
 				
-		// 	}
+			}
 
-
-		// }
 
 	}
 }

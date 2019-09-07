@@ -50,7 +50,7 @@ class BaseProfessorController
 		$subject_id=$view->data['subject_id'];
 		//show final grades
 		$view->data['final']=Grades::final_grades_show($subject_id,$class_id);
-		$view->load_view('professor', 'pages', 'diaryof');
+		$view->load_view('professor', 'pages', 'test');
 	}
 
 	//delete grade 
@@ -301,8 +301,8 @@ class BaseProfessorController
 		$pdf->line(80,110,300,110);
 		}
 		else
-		
-		$pdf->ezText('     <b>     Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13,[ 'justification'=> 'right']);
+		$pdf-> addText (100,115,14,'Uspeh:<b><i> '.$grade.' ('.$sum/$count.')</i></b>');
+		//$pdf->ezText('     <b>     Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13,[ 'justification'=> 'right']);
 		$pdf->ezSetDy(-15);
 		$pdf-> addText (445,75,10,'DIREKTOR');
 		

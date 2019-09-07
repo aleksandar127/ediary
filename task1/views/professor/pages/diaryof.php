@@ -1,7 +1,7 @@
 <?php
 //print_r($this->data['subject_id']);
-//print_r($this->data['final']);
-//print_r($this->data['diaries']);
+// print_r($this->data['final']);
+// print_r($this->data['diaries']);
 
 // $count=0;
 // $sum=0;
@@ -29,9 +29,9 @@
 //         echo "&nbsp;&nbsp;";
 //         echo "<a  class='btn btn-danger' href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
 //         echo "&nbsp;";
-//         echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
+//         echo "<input id='ai".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
 //         echo "&nbsp;";
-//         echo "<a   id='a".$br."".$students['id']."' onclick='edit(this.id)' class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
+//         echo "<a   id='i".$br."".$students['id']."' onclick='edit(this.id)' class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
 //         echo "&nbsp;&nbsp;";
 //         $is_equal=true;
 //         $id=$students['id'];
@@ -42,41 +42,41 @@
 //         echo substr($sum/$count,0,4);
 //         continue;
 //     endif;
-    // if(($count>0 && $is_equal==false) || $is_equal){
-    //     echo substr($sum/$count,0,4);
-    //     $sum=0;
-    //     $count=0;
-    //     echo "<br>";
-    // }
+//     if(($count>0 && $is_equal==false) || $is_equal){
+//         echo substr($sum/$count,0,4);
+//         $sum=0;
+//         $count=0;
+//         echo "<br>";
+//     }
           
-    // $sum+=$students['grades'];
-    // $count++;
-    // echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
-    // echo "<span style='color:red;font-size:20px;width:150px;display:inline-block;'>";
-    // echo ucfirst($students['first_name'])."<br>".ucfirst($students['last_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-    // echo "</span>";
-    // echo "&nbsp;";
-    // echo "&nbsp;";
-    // $final_grade="";
-    // if(in_array($students['id'], $keys)):
-    //     $final_grade=$students_has_finals[$students['id']];
-    // endif;
-    // echo "<input id='m".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5' value='".$final_grade."'></input>";
-    // echo "&nbsp;";
-    // echo "<a href='".URLROOT."/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)' class='btn btn-dark' >Zakljuci</a>";
-    // echo "&nbsp;&nbsp";
-    // echo "<input id='o".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
-    // echo "&nbsp;";
-    // echo "<a  id='b".$students['id']."' onclick='newGrade(this.id)' class='btn btn-primary' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
-    // echo "&nbsp;&nbsp;";
-    // if($students['mark']!=null):        
-    //     echo $students['grades'];
-    //     echo "&nbsp;&nbsp;";
-    //     echo "<a  class='btn btn-danger'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
-    //     echo "&nbsp;";
-//         echo "<input id='i".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
+//     $sum+=$students['grades'];
+//     $count++;
+//     echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
+//     echo "<span style='color:red;font-size:20px;width:150px;display:inline-block;'>";
+//     echo ucfirst($students['first_name'])."<br>".ucfirst($students['last_name'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+//     echo "</span>";
+//     echo "&nbsp;";
+//     echo "&nbsp;";
+//     $final_grade="";
+//     if(in_array($students['id'], $keys)):
+//         $final_grade=$students_has_finals[$students['id']];
+//     endif;
+//     echo "<input id='af".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5' value='".$final_grade."'></input>";
+//     echo "&nbsp;";
+//     echo "<a href='".URLROOT."/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)' class='btn btn-dark' >Zakljuci</a>";
+//     echo "&nbsp;&nbsp";
+//     echo "<input id='au".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
+//     echo "&nbsp;";
+//     echo "<a  id='u".$students['id']."' onclick='newGrade(this.id)' class='btn btn-primary' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
+//     echo "&nbsp;&nbsp;";
+//     if($students['mark']!=null):        
+//         echo $students['grades'];
+//         echo "&nbsp;&nbsp;";
+//         echo "<a  class='btn btn-danger'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
 //         echo "&nbsp;";
-//         echo "<a  id='a".$br."".$students['id']."' onclick='edit(this.id)'  class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
+//         echo "<input id='ai".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
+//         echo "&nbsp;";
+//         echo "<a  id='i".$br."".$students['id']."' onclick='edit(this.id)'  class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
 //         echo "&nbsp;&nbsp;";
 //     endif;
 //     if($array_is_long==count($this->data['diaries'])){
@@ -89,21 +89,29 @@
 //     $is_equal=false;
     
 // endforeach;
-?>
+// ?>
 
-<!-- <script src="<?php // echo URLROOT; ?>/assets/professor/js/diaryof.js"></script> -->
-<!-- <script>
-document.body.onclick = function( e ) { 
-    Cross-browser handling
-   var evt = e || window.event,
-       target = evt.target || evt.srcElement;
-    If the element clicked is an anchor
-   if ( target.nodeName === 'A' && target.className != 'navProf' ) {
-       Add the confirm box
-        return confirm( 'POTVRDI' );
-    }
-};
-</script> -->
+// <script src="<?php echo URLROOT; ?>/assets/professor/js/diaryof.js"></script>
+//  <script>
+// document.body.onclick = function( e ) {
+
+// // Cross-browser handling
+// var evt = e || window.event,
+//     target = evt.target || evt.srcElement;
+// // If the element clicked is an anchor
+// if ( target.nodeName === 'A' && target.dataset.a !='0' ) {
+//     var a=document.getElementById(target.id);
+//     var inp='a'+target.id;
+//     var inp=document.getElementById(inp).value;
+//     if(inp<1 || inp>5 && a.className!='btn-danger'){
+//         alert('Unesite validnu ocenu');
+//         return false; 
+//     }
+//    // Add the confirm box
+//     return confirm( 'POTVRDI' );
+//     }
+// };
+//  </script>  -->
 
 
 <!-- ***************************************************************** -->
@@ -133,17 +141,6 @@ foreach($this->data['diaries'] as $students):
     if($id==$students['id']):
         $br++;
         $count++;
-<<<<<<< HEAD
-// echo "<div class='row'>";
-        echo "<span class='col-md-6'>".$students['grades']."</span>";
-      
-        echo "<a class='py-3 btn btn-danger col mr-3'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
-     
-        echo "<input class='form-control col' id='i".$br."".$students['id']."' type='number' ' min='1' max='5'>";
-  
-        echo "<a id='a".$br."".$students['id']."' onclick='edit(this.id)' class='py-3 btn btn-success col mr-3' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
-// echo "</div>";
-=======
     
         echo $students['grades'];
         echo "&nbsp;&nbsp;";
@@ -153,7 +150,6 @@ foreach($this->data['diaries'] as $students):
         echo "&nbsp;";
         echo "<a id='i".$br."".$students['id']."' onclick='edit(this.id);' class='btn btn-success' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
         echo "&nbsp;&nbsp;";
->>>>>>> 4a42e7342eb4a2a8811dc5405450bc56d1ed3af7
         $is_equal=true;
         $id=$students['id'];
         $sum+=$students['grades'];
@@ -184,22 +180,6 @@ foreach($this->data['diaries'] as $students):
     if(in_array($students['id'], $keys)):
         $final_grade=$students_has_finals[$students['id']];
     endif;
-<<<<<<< HEAD
-echo "<div class='col-md-12'>";
-    echo "<input class='form-control col-md-6 d-inline'  id='m".$br."".$students['id']."' type='number' min='1' max='5' value='".$final_grade."'>";
-   
-    echo "<a href='".URLROOT."/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' type='btn' onclick='finalGrade(this.id)' class='form-control col-md-6 btn btn-dark mb-1'>Zakljuci</a>";
-echo "</div>";
-
-echo "<div class='col-md-12'>";
-    echo "<input class='form-control col-md-6 d-inline'  id='o".$students['id']."' type='number' min='1' max='5'>";
-  
-    echo "<a type='btn' id='b".$students['id']."' onclick='newGrade(this.id)' class='btn btn-primary form-control col-md-6 mb-1' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
-echo "</div>";
-    
-    
-    if($students['mark']!=null):        
-=======
 ?>
 
 <div class="card col-md-4 card-diaryof">
@@ -247,7 +227,6 @@ echo "</div>";
 
 <?php 
 endif;
->>>>>>> 4a42e7342eb4a2a8811dc5405450bc56d1ed3af7
 
 echo "<div class='col-md-12'>";     
         echo "<div class='text-center d-inline-block col-md-6 font-weight-bold bg-light mb-1' style='height:35px;'>".$students['grades']."</div>";
@@ -261,7 +240,7 @@ echo "<div class='col-md-12'>";
         echo "<a id='a".$br."".$students['id']."' onclick='edit(this.id)'  class='form-control btn btn-success col-md-6' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>Izmeni</a>";
 echo "</div>";
      
-    endif;
+    //endif;
     if($array_is_long==count($this->data['diaries'])){
         $sum=$students['grades'];
         $count=1;
@@ -284,17 +263,6 @@ endforeach;
 <script src="<?php echo URLROOT; ?>/assets/professor/js/diaryof.js"></script>
 
 <script>
-<<<<<<< HEAD
-document.body.onclick = function( e ) { 
-  //  Cross-browser handling
-   var evt = e || window.event,
-       target = evt.target || evt.srcElement;
-    If the element clicked is an anchor
-   if ( target.nodeName === 'A' && target.className != 'navProf' ) {
-    //   Add the confirm box
-        return confirm( 'POTVRDI' );
-    }
-=======
 document.body.onclick = function( e ) {
 
 // Cross-browser handling
@@ -314,6 +282,5 @@ if ( target.nodeName === 'A' && target.dataset.a !='0' ) {
    // Add the confirm box
     return confirm( 'POTVRDI' );
 }
->>>>>>> 4a42e7342eb4a2a8811dc5405450bc56d1ed3af7
 };
 </script>

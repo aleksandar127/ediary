@@ -191,7 +191,7 @@ class BaseTeacherController{
         $view = new View();
         $all_class = Teacher::get_class();
         $view->data['class'] = $all_class;
-		$schedule = Teacher::get_schedule_for_teacher();
+		$schedule = Schedule::get_schedule_for_teacher();
 		$view->data['schedule'] = $schedule;
 		$view->load_view('teacher', 'pages', 'schedule');
 		

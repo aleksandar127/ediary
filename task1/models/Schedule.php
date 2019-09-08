@@ -52,7 +52,7 @@ class Schedule
     
     }
 
-    public static function is_class_occupy($day, $lesson_num)
+    public static function is_subject_occupied($day, $lesson_num)
     {
         $query = DB::$conn->prepare('select subjects_id from schedule where day_in_week = ? and lesson_no = ?');
         $query->execute([$day, $lesson_num]);

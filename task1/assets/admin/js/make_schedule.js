@@ -92,6 +92,7 @@ function ajax_call(high_low){
             var selects = document.querySelectorAll('select:not([name="class_sch"])');
             selects.forEach(sel => {
                 var empty = document.createElement('OPTION');
+                empty.setAttribute("value", "empty");
                 sel.insertAdjacentElement('afterbegin', empty);
             });
 
@@ -114,17 +115,61 @@ function ajax_call(high_low){
 }
 
 function check_is_class_ocuppied(){
+    var submit = document.querySelector('.btn');
+    submit.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('kliknula si');
+    });
 
     var cls_selects = document.querySelectorAll('select:not([name="class_sch"])');
   
     cls_selects.forEach(cls_select => {
         
         cls_select.addEventListener('input', (e) => {
-            console.log(e.target.value);
-            //ovde sad videti kako da uzmem odmah vrednosti i da prosledim ako nije selektovana, nego ova pocetna vrednost
+            var selected_subject = e.target.value;
+            if (selected_subject == 'empty') {
+                console.log('nista');
+                
+            } else {
+
+                var day_in_week = e.target.id.slice(0, -1);
+                var lesson_no = e.target.id.substr(-1, 1);
+                console.log(lesson_no);
+                console.log(e.target.value);
+                
+                if (day_in_week == 'monday') {
+                    day_in_week = "1";
+				} else if(day_in_week == 'tuesday'){
+                    day_in_week = "2";
+				} else if(day_in_week == 'wednesday'){
+                    day_in_week = "3";
+				} else if(day_in_week == 'thursday'){
+                    day_in_week = "4";
+				} else if(day_in_week == 'friday'){
+                    day_in_week = "5";
+				}
+                console.log(day_in_week);
+
+            }
             
         });
     });
     
 }
 
+
+//function for checking which subject is free to be used for schedule
+function ajax_subject_check(day, lesson){
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var res = JSON.parse(this.responseText);
+            console.log(res);
+        }
+    };
+    
+    xhttp.open("GET", "http://localhost/eDiary/task1/admin/is_subject_occupied?day=" + day"&lesson_no="+lesson, true);
+    xhttp.send();
+
+}

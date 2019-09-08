@@ -22,7 +22,7 @@
                 <td><?php echo $low_c['name']; ?></td>
                 <td><?php echo $low_c['first_name'].' '.$low_c['last_name']; ?></td>
                 <td><a class="btn btn-dark" href="<?php echo URLROOT; ?>/admin/edit_class/<?php echo $low_c['id']; ?>">Izmeni odeljenje</a></td>
-                <td><a class="btn btn-danger" href="<?php echo URLROOT; ?>/admin/delete_class/<?php echo $low_c['id'];?>">Izbriši odeljenje</a>
+                <td><a class="btn btn-danger" href="#">Izbriši odeljenje</a>
                 
                 <div class="pop-up" id="pop-up">
                     <p>Are you sure you want to delete this user?</p>
@@ -56,7 +56,7 @@
                 <td><?php echo $high_c['name']; ?></td>
                 <td><?php echo $high_c['first_name'].' '.$high_c['last_name']; ?></td>
                 <td><a class="btn btn-dark" href="<?php echo URLROOT; ?>/admin/edit_class/<?php echo $high_c['id']?>">Izmeni odeljenje</a></td>
-                <td><a class="btn btn-danger" href="<?php echo URLROOT; ?>/admin/delete_class/<?php echo $high_c['id']; ?>">Izbriši odeljenje</a>
+                <td><a class="btn btn-danger" href="#">Izbriši odeljenje</a>
 
                 <div class="pop-up" id="pop-up">
                     <p>Da li ste sigurni da želite da izbrišete ovo odeljenje?</p>

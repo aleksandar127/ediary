@@ -386,7 +386,7 @@ class BaseAdminController
 	{
 		$is_subject_occupied = Schedule::is_subject_occupied($_GET['day'], $_GET['lesson_no']);
 		$is_subject_occupied = json_encode($is_subject_occupied);
-		var_dump($is_subject_occupied);
+		echo($is_subject_occupied);
 	}
 
 

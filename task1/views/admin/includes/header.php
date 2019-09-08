@@ -14,7 +14,7 @@
 	</head>
 		<body>
 		<div class="wrapper">
-			<header class="fixed-top">
+			<header>
 				<ul class="left_nav">
 					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/admin/"><span><i class="fa fa-home"></i></span> Početna strana</a></li>
 					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/admin/users"><span><i class="fa fa-user"></i></span> Korisnici</a></li>

@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
         var form = document.querySelector('.form-group').nextElementSibling;
         var values_of_option = e.target.value;
         var option_values = values_of_option.split(",");
-
+        console.log(option_values);
         //checking if select is empty option
         if (option_values[0] == '') {
             form.style = 'display : none';
@@ -49,10 +49,10 @@ function validate_form(class_id, select_class, form_el, high_low) {
 
                 if (high_low.includes("1")) {
                     form_el.style = 'display:block';
-                    ajax_call(high_low[1]);
+                    ajax_call(high_low);
                 } else if (high_low.includes("0")) {
                     form_el.style = 'display:block';
-                    ajax_call(high_low[1]);
+                    ajax_call(high_low);
                 } else {
                     form_el.style = 'display: none';
                 }  
@@ -69,9 +69,9 @@ function validate_form(class_id, select_class, form_el, high_low) {
 //func. for fetching lessons depending on the class is low or high
 
 function ajax_call(high_low){
-    var select_prof = document.querySelectorAll('select:not([name="class_sch"])');
+    var select_class = document.querySelectorAll('select:not([name="class_sch"])');
   
-    select_prof.forEach(select => {
+    select_class.forEach(select => {
         var select_id = select.id;
         select.setAttribute("name", select_id);
         var is_children = select.children;
@@ -88,8 +88,16 @@ function ajax_call(high_low){
         if (this.readyState == 4 && this.status == 200) {
             var res = JSON.parse(this.responseText);
 
+            //adding first empty option in every select to validate easier
+            var selects = document.querySelectorAll('select:not([name="class_sch"])');
+            selects.forEach(sel => {
+                var empty = document.createElement('OPTION');
+                sel.insertAdjacentElement('afterbegin', empty);
+            });
+
             res.forEach(response => {
                 var options = `<option value="${response['id']}">${response['name']}</option>`;
+                console.log(options);
                 var form_selects = document.querySelectorAll('select:not([name="class_sch"])');
                 form_selects.forEach(select => {
                     select.insertAdjacentHTML('beforeend', options);
@@ -108,7 +116,7 @@ function ajax_call(high_low){
 function check_is_class_ocuppied(){
 
     var cls_selects = document.querySelectorAll('select:not([name="class_sch"])');
-    // console.log(cls_selects);
+  
     cls_selects.forEach(cls_select => {
         
         cls_select.addEventListener('input', (e) => {

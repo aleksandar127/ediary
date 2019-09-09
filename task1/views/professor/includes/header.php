@@ -26,6 +26,6 @@
 			
 		</ul>
 		<ul class="right_nav">
-			<li><a id='logout' class="font-weight-bold menu-link navProf" href="<?php echo URLROOT; ?>/professor/logout">Logout <span><i class="fas fa-sign-out-alt"></i></span></a></li>
+			<li><a id='logout' class="font-weight-bold menu-link navProf" href="<?php echo URLROOT; ?>/professor/logout">Izloguj se <span><i class="fas fa-sign-out-alt"></i></span></a></li>
 		</ul>
 	</header>

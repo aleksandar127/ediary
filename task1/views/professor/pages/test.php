@@ -98,12 +98,15 @@ document.body.onclick = function( e ) {
 // Cross-browser handling
 var evt = e || window.event,
     target = evt.target || evt.srcElement;
+    
 // If the element clicked is an anchor
-if ( target.nodeName === 'A' && target.dataset.a !='0' ) {
+if ( target.nodeName === 'A' && target.dataset.a !=='0' ) {
     var a=document.getElementById(target.id);
+    if(a.className=='btn-danger')
+    return confirm( 'POTVRDI' );
     var inp='a'+target.id;
     var inp=document.getElementById(inp).value;
-    if(inp<1 || inp>5 && a.className!='btn-danger'){
+    if(inp<1 || inp>5 && a.className!=='btn-danger'){
         alert('Unesite validnu ocenu');
         return false; 
     }

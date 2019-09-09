@@ -37,6 +37,8 @@ function finalGrade(id){
     a.href+="/"+i;
 }
 
+
+
 // document.body.onclick = function( e ) {
 
 //     // Cross-browser handling

@@ -5,7 +5,8 @@
 
 </table>
 
-<table  style='border:solid black 3px;display:inline-block;'>
+<table id='open_request_table'>
+<tr><th colspan='4';>ZAKAZIVANJE OTVORENIH VRATA</th></tr>
 <tr><th>IME</th><th>PREDMET</th><th>VREME</th><th>ZAKAZI</th></tr>
 <?php
 //print_r($this->data['open_sent']);
@@ -13,19 +14,20 @@ foreach($this->data['professors'] as $open){
     if($open['title']=='professor' || $open['title']=='teacher')
     $open['title']='razredni';
 
-    echo  '<tr>';
+    echo '<tr>';
     echo '<td>'.$open['last_name'].' '.$open['first_name'].'</td>';
-    echo  '<td>'.$open['title'].'</td>';
-    echo  '<td>'.substr($open['time'],0,-3).'</td>';
-    echo  '<td><a  class="btn btn-success" href="'.URLROOT.'/parent/open_send_request/'.$open['id'].'">ZAKAZI</a></td>';
-    echo  '</tr>';
+    echo '<td>'.$open['title'].'</td>';
+    echo '<td>'.substr($open['time'],0,-3).'</td>';
+    echo '<td><a  class="btn btn-success" href="'.URLROOT.'/parent/open_send_request/'.$open['id'].'">ZAKAZI</a></td>';
+    echo '</tr>';
 }
 
 ?>
 </table>
 
 
-<table style='margin-left:500px;border:solid black 3px;display:inline-block;'>
+<table  id='open_response_table'>
+<tr><th colspan='3';>STATUS OTVORENIH VRATA</th></tr>
 <tr><th>VREME</th><th>IME</th><th>STATUS</th></tr>
 <?php
 foreach($this->data['open_sent'] as $open){

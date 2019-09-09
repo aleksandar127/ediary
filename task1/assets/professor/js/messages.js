@@ -22,8 +22,7 @@ function ajax() {
 			var message_body=a[i]["message"];
 			var date=a[i]["date_and_time"];
       var last_name=a[i]["last_name"];
-			var first_name=a[i]["first_name"];
-      var is_read=a[i]["is_read"];	        
+			var first_name=a[i]["first_name"];        
       p.innerHTML+=message_body;
       p.innerHTML+="<br>";   
       p.innerHTML+=date; 

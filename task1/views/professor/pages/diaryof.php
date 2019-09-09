@@ -229,15 +229,12 @@ foreach($this->data['diaries'] as $students):
 endif;
 
 echo "<div class='col-md-12'>";     
-        echo "<div class='text-center d-inline-block col-md-6 font-weight-bold bg-light mb-1' style='height:35px;'>".$students['grades']."</div>";
-    
-        echo "<a type='btn' class='btn btn-danger d-inline-block col-md-6 mb-1'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
+echo "<div class='text-center d-inline-block col-md-6 font-weight-bold bg-light mb-1' style='height:35px;'>".$students['grades']."</div>";
+echo "<a type='btn' class='btn btn-danger d-inline-block col-md-6 mb-1'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
 echo "</div>";
-        
 echo "<div class='col-md-12'>";        
-        echo "<input class='form-control col-md-6 d-inline' id='i".$br."".$students['id']."' type='number'  min='1' max='5'>";
-      
-        echo "<a id='a".$br."".$students['id']."' onclick='edit(this.id)'  class='form-control btn btn-success col-md-6' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>Izmeni</a>";
+echo "<input class='form-control col-md-6 d-inline' id='i".$br."".$students['id']."' type='number'  min='1' max='5'>";     
+echo "<a id='a".$br."".$students['id']."' onclick='edit(this.id)'  class='form-control btn btn-success col-md-6' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>Izmeni</a>";
 echo "</div>";
      
     //endif;
@@ -271,7 +268,6 @@ var evt = e || window.event,
     var a=document.getElementById(target.id);
 var inp='a'+target.id;
 var inp=document.getElementById(inp).value;
-
 
 // If the element clicked is an anchor
 if ( target.nodeName === 'A' && target.dataset.a !='0' ) {

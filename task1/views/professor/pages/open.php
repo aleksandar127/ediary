@@ -15,7 +15,7 @@
   </div>
 </form>
 </div>
-<table class="table table-striped col-md-6 mx-auto mt-5">
+<table class="table table-striped col-md-6 mx-auto mt-5 open_table_prof">
   <thead>
     <tr>
       <th>IME</th>
@@ -45,14 +45,14 @@ switch($parent['accepted']){
       echo '<td>';
       echo $parent['last_name'].' '.$parent['first_name'];
       echo "</td>";
-      echo "<td class='font-weight-bold'>Potvrdjeno!!</td>";
+      echo "<td class='font-weight-bold open_confirm_prof'>Potvrdjeno!!</td>";
   
       break;
     case 2:
       echo '<td>';
       echo $parent['last_name'].' '.$parent['first_name'];
       echo '</td>';
-      echo "<td class='font-weight-bold'>Odbijeno!!</td>";
+      echo "<td class='font-weight-bold open_reject_prof'>Odbijeno!!</td>";
 
       break;
     default: 

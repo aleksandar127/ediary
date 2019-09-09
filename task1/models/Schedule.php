@@ -60,4 +60,9 @@ class Schedule
         return $occupy_classes;
     }
 
+    public static function get_sch_by_class($class_id)
+    {
+        
+    }
+
 }

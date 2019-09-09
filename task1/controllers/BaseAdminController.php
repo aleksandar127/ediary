@@ -4,11 +4,14 @@
 class BaseAdminController 
 {
 
+	//method for pulling request in this part of logic
 	public function __construct($demand)
 	{
 		$this->demand = $demand;
 		
 	} 
+
+	//default page, home page
 	public function index()
 	{
 		$view = new View();
@@ -16,6 +19,7 @@ class BaseAdminController
 
 	}
 
+	//method for showing page with all users
 	public function users()
 	{
 		$view = new View();
@@ -25,6 +29,7 @@ class BaseAdminController
 
 	}
 
+	//method for showing page of form for updating user in db
 	public function edit_user()
 	{	
 		$view = new View();
@@ -55,6 +60,7 @@ class BaseAdminController
 		
 	}
 
+	//method for deleting user from db
 	public function delete_user()
 	{
 		$user_id = $this->demand->parts_of_url[5];
@@ -67,6 +73,7 @@ class BaseAdminController
 
 	}
 
+	//function for logging out admin
 	public function logout()
 	{
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
@@ -75,7 +82,7 @@ class BaseAdminController
 		
 	}
 
-
+	//method for showing page of form for adding new user in db
 	public function add_user()
 	{
 		$view = new View();
@@ -85,6 +92,7 @@ class BaseAdminController
 		
 	}
 
+	//validating new user before storage in db
 	public function save_user()
 	{
 		$first_name = $_POST['first_name'];
@@ -109,6 +117,7 @@ class BaseAdminController
 
 	}
 
+	//
 	public function subjects()
 	{
 		$view = new View();
@@ -119,6 +128,7 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'subjects');
 	}
 
+	//method for showing page of form for editing existing subject
 	public function edit_subject()
 	{
 		$subject_id = $this->demand->parts_of_url[5];
@@ -158,7 +168,7 @@ class BaseAdminController
 		}
 	}
 
-	//method for adding new subject in db
+	//method for showing page of adding new subject
 	public function add_sub()
 	{
 		$view = new View();
@@ -168,6 +178,7 @@ class BaseAdminController
 		
 	}
 
+	//method for saving new subject in db
 	public function save_sub()
 	{
 		$sub_name = $_POST['subject_name'];
@@ -184,6 +195,7 @@ class BaseAdminController
 		}
 	}
 
+	//method for displaying all available classes
 	public function classes()
 	{
 		$view = new View();
@@ -194,6 +206,7 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'classes');
 	}
 
+	//method for editing 
 	public function edit_class()
 	{
 		$class_id = $this->demand->parts_of_url[5];
@@ -203,6 +216,7 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'edit_class');
 	}
 
+	//method for fetching teachers for low grade, and professors for high grade
 	public function fetch_heads()
 	{
 		if($_GET['high_low'] == 0){
@@ -235,6 +249,7 @@ class BaseAdminController
 
 	}
 
+	//method for deleting class from db
 	public function delete_class()
 	{
 		$class_id = $this->demand->parts_of_url[5];
@@ -246,6 +261,7 @@ class BaseAdminController
 		}
 	}
 
+	//method for showing page with form for adding new class
 	public function add_class()
 	{
 		$view = new View();
@@ -253,6 +269,7 @@ class BaseAdminController
 
 	}
 
+	//validation of class before coming-in db
 	public function save_class()
 	{
 		$class_name = $_POST['name_of_class'];
@@ -287,6 +304,7 @@ class BaseAdminController
 		
 	}
 
+	//fetching all available grades from db
 	public function schedule()
 	{
 		$view = new View();
@@ -297,6 +315,7 @@ class BaseAdminController
 
 	}
 
+	//function for representation schedule of spec class
 	public function show_schedule()
 	{
 		$view = new View();
@@ -361,6 +380,7 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'make_sch');
 	}
 
+	//function for fetching subjects from db depending of high or low grade 
 	public function fetch_spec_subs()
 	{
 		if($_GET['high_low'] == 0){
@@ -374,6 +394,7 @@ class BaseAdminController
 		}
 	}
 
+	//function for checking if schedule for spec. class already exists
 	public function existing_sch()
 	{
 		$is_exist = Schedule::schedule_exists($_GET['class_id']);
@@ -382,6 +403,7 @@ class BaseAdminController
 
 	}
 
+	//function for checking if lesson is occupied in specific time
 	public function is_subject_occupied()
 	{
 		$is_subject_occupied = Schedule::is_subject_occupied($_GET['day'], $_GET['lesson_no']);
@@ -389,66 +411,60 @@ class BaseAdminController
 		echo($is_subject_occupied);
 	}
 
+	//function for storing schedule in db
+	public function save_sch()
+	{
+		var_dump('dora jesi li konacno stigla dovde?');
+		$class_id = explode(',', $_POST['class_sch'])[0];
 
-	// public function save_sch()
-	// {
-		
-	// 	$class_id = explode(',', $_POST['class_sch'])[0];
 
-
-	// 	//shift first value of array
-	// 	$supergl = $_POST;
-	// 	$new_arr = array_shift($supergl);
+		//shift first value of array
+		$supergl = $_POST;
+		$new_arr = array_shift($supergl);
 
 
 				
-	// 		foreach ($supergl as $key => $value) {
+			foreach ($supergl as $key => $value) {
 
 
-	// 			$day_in_week = substr($key, 0, -1);
-	// 			if ($day_in_week == 'monday') {
-	// 				$day_in_week = "1";
-	// 			} elseif($day_in_week == 'tuesday'){
-	// 				$day_in_week = "2";
-	// 			} elseif($day_in_week == 'wednesday'){
-	// 				$day_in_week = "3";
-	// 			} elseif($day_in_week == 'thursday'){
-	// 				$day_in_week = "4";
-	// 			} elseif($day_in_week == 'friday'){
-	// 				$day_in_week = "5";
-	// 			}
+				$day_in_week = substr($key, 0, -1);
+				if ($day_in_week == 'monday') {
+					$day_in_week = "1";
+				} elseif($day_in_week == 'tuesday'){
+					$day_in_week = "2";
+				} elseif($day_in_week == 'wednesday'){
+					$day_in_week = "3";
+				} elseif($day_in_week == 'thursday'){
+					$day_in_week = "4";
+				} elseif($day_in_week == 'friday'){
+					$day_in_week = "5";
+				}
 				
-	// 			$lesson_num = substr($key, -1);
-	// 			$subject_id = $value;
-	// 			// var_dump($subject_id);
-	// 			// var_dump($day_in_week);
-	// 			// var_dump($lesson_num);
-	// 			// var_dump('class_id: '.$class_id);
-
-	// 			$is_class_occupy = Schedule::is_class_occupy($day_in_week, $lesson_num);
-	// 			$is_class_occupy = json_encode($is_class_occupy);
-	// 			var_dump($is_class_occupy);
-	// 			// if ($is_class_occupy == false) {
-
-	// 			// 	$make_sch = Schedule::make_schedule($day_in_week, $lesson_num, $subject_id, $class_id);
-	// 			// 	var_dump($make_sch);
-	// 			// 	if ($make_sch) {
-	// 			// 		header('Location: http://localhost/eDiary/task1/admin/make_schedule?success=Uspešno ste napravili raspored časova!');
-	// 			// 	} else {
-	// 			// 		echo 'nesto je krenulo po zlu kod pravljenja rasporeda';
-	// 			// 	}
-	// 			// } else {
-	// 			// 	 header('Location: http://localhost/eDiary/task1/admin/make_schedule?err=Ne valja!');
-	// 			// }
-	// 			// if ($subject_id == $is_class_occupy['subjects_id']) {
-	// 				// echo 'predmet u tom terminu zauzet';
-	// 				// header('Location: http://localhost/eDiary/task1/admin/make_schedule?err=Ne valja!');
-	// 			// }
+				$lesson_num = substr($key, -1);
+				$subject_id = $value;
 			
-	// 			// die;
+
+				$make_sch = Schedule::make_schedule($day_in_week, $lesson_num, $subject_id, $class_id);
+				var_dump($make_sch);
+				if ($make_sch) {
+					header('Location: http://localhost/eDiary/task1/admin/make_schedule?success=Uspešno ste napravili raspored časova!');
+				} else {
+					echo 'nesto je krenulo po zlu kod pravljenja rasporeda';
+				}
+		
 				
-	// 		}
+			}
+
+	}
 
 
-	// }
+	//method for showing page of form for updating existing schedule 
+	public function edit_sch()
+	{
+		$class_id = $this->demand->parts_of_url[5];
+		$view = new View();
+		
+		
+		$view->load_view('admin', 'pages', 'edit_schedule');
+	}
 }

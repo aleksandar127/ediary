@@ -89,8 +89,8 @@ function ajax_call(high_low){
             var res = JSON.parse(this.responseText);
 
             //adding first empty option in every select to validate easier
-            var selects = document.querySelectorAll('select:not([name="class_sch"])');
-            selects.forEach(sel => {
+            var cls_select = document.querySelectorAll('select:not([name="class_sch"])');
+            cls_select.forEach(sel => {
                 var empty = document.createElement('OPTION');
                 empty.setAttribute("value", "empty");
                 sel.insertAdjacentElement('afterbegin', empty);
@@ -98,7 +98,6 @@ function ajax_call(high_low){
 
             res.forEach(response => {
                 var options = `<option value="${response['id']}">${response['name']}</option>`;
-                console.log(options);
                 var form_selects = document.querySelectorAll('select:not([name="class_sch"])');
                 form_selects.forEach(select => {
                     select.insertAdjacentHTML('beforeend', options);
@@ -118,7 +117,20 @@ function check_is_class_ocuppied(){
     var submit = document.querySelector('.btn');
     submit.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('kliknula si');
+
+
+        cls_selects.forEach(cls_select => {
+
+           var values = cls_select.value;
+           if (values == 'empty') {
+               cls_select.style = 'border: 1px solid red';
+               var err = cls_select.nextElementSibling;
+               err.innerHTML = 'Polje ne može biti prazno!';
+               err.classList.add('err');
+           } 
+        });
+
+        errors_exists();
     });
 
     var cls_selects = document.querySelectorAll('select:not([name="class_sch"])');
@@ -128,16 +140,17 @@ function check_is_class_ocuppied(){
         cls_select.addEventListener('input', (e) => {
             var selected_subject = e.target.value;
             if (selected_subject == 'empty') {
-                console.log('nista');
+                cls_select.style = 'border: 1px solid red';
+                var err = cls_select.nextElementSibling;
+                err.innerHTML = 'Polje ne može biti prazno!';
+                err.classList.add('err');
                 
             } else {
 
                 var day_in_week = e.target.id.slice(0, -1);
                 var lesson_no = e.target.id.substr(-1, 1);
                 var picked_lesson = e.target.value;
-                console.log(picked_lesson);
-                console.log(lesson_no);
-                console.log(e.target.value);
+
                 
                 if (day_in_week == 'monday') {
                     day_in_week = "1";
@@ -150,8 +163,9 @@ function check_is_class_ocuppied(){
 				} else if(day_in_week == 'friday'){
                     day_in_week = "5";
 				}
-                console.log(day_in_week);
+                // console.log(day_in_week);
                 ajax_subject_check(day_in_week, lesson_no, picked_lesson, cls_select);
+
             }
             
         });
@@ -169,7 +183,6 @@ function ajax_subject_check(day, lesson, choosed_lesson, select_field){
             var res = JSON.parse(this.responseText);
 
             if (res['subjects_id'] == choosed_lesson) {
-                console.log('zauzeto');
                 select_field.style = 'border: 1px solid red';
                 var err = select_field.nextElementSibling;
                 err.innerHTML = 'Predmet zauzet!';
@@ -186,4 +199,13 @@ function ajax_subject_check(day, lesson, choosed_lesson, select_field){
     xhttp.open("GET", "http://localhost/eDiary/task1/admin/is_subject_occupied?day="+day+"&lesson_no="+lesson, true);
     xhttp.send();
 
+}
+
+
+function errors_exists(){
+    var errors = document.querySelectorAll('small.err');
+    if (errors.length == 0) {
+        document.querySelector('form').submit();
+    }
+    
 }

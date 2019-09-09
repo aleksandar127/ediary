@@ -53,13 +53,11 @@ body{
 }
 
 
-
 .card-diaryof {
-    box-shadow: 5px 5px 15px #000;
+    box-shadow: 3px 3px 10px #000;
     background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('../images/diary.jpg');
     background-size: cover;
 }
-
 
 
 
@@ -74,6 +72,7 @@ form{
 .clickabile:hover {
     cursor: pointer;
 }
+
 .excuseDiv:hover{transform: scale(3);
     position:relative;
     left:300px;

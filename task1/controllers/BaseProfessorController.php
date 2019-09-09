@@ -50,7 +50,7 @@ class BaseProfessorController
 		$subject_id=$view->data['subject_id'];
 		//show final grades
 		$view->data['final']=Grades::final_grades_show($subject_id,$class_id);
-		$view->load_view('professor', 'pages', 'test');
+		$view->load_view('professor', 'pages', 'diaryof');
 	}
 
 	//delete grade 

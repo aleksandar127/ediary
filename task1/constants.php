@@ -1,6 +1,6 @@
 <?php
 
-define("DBNAME", "primaryschool");
+define("DBNAME", "primaryschool2");
 define("HOST", "localhost");
 define("DBUSERNAME", "root");
 define("DBPASS", "");

@@ -18,7 +18,7 @@
             <td><?php echo $class['name'];?></td>
             <td><a href="<?php echo URLROOT.'/admin/show_schedule/'.$class['id']; ?>" class="btn btn-light">Otvori</a></td>
             <td><?php echo $class['first_name'].' '.$class['last_name'];?></td>
-            <td><a class="btn btn-dark" href="#">Izmeni</a></td>
+            <td><a class="btn btn-dark" href="<?php echo URLROOT.'/admin/edit_sch/'.$class['id']?>">Izmeni</a></td>
             <td><a class="btn btn-danger" href="#">Izbriši</a></td>
         </tr>
     <?php endforeach;?>

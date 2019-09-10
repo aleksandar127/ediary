@@ -59,11 +59,6 @@ body{
     background-size: cover;
 }
 
-.diary-wrapper {
-    box-shadow: 3px 3px 10px #000;
-}
-
-
 form{
     margin-top: 30px;
 }

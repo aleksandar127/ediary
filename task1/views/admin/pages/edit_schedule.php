@@ -4,12 +4,19 @@
                 <div class="col">
                     <div>Ponedeljak</div>
                     <select class="form-control" id="monday<?php echo $this->data['counter'];?>">
-
+                        <!-- todo: ne moze ovako, dovuci sve predmete iz baze a staviti as selected onaj koji je upisan u bazu -->
                         <?php foreach($this->data['sch'] as $sch): ?>
                             <?php if($sch['day_in_week'] == 1 && $sch['lesson_no'] == 1): ?>
+                             <?php foreach($this->data['spec_subs'] as $sub): ?>
+                            <?php if($sub['id'] === $sch['subjects_id']): ?>
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['name']; ?></option>
                             <?php endif; ?>
                         <?php endforeach;?>
+                            <option><?php echo $sub['name'];?></option>
+                                <!-- <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['name']; ?></option> -->
+                            <?php endif; ?>
+                        <?php endforeach;?>
+                       
                     </select>
                     <small></small>
                 </div>

@@ -466,17 +466,16 @@ class BaseAdminController
 		$view->data['counter'] = 1;
 		$schedule = Schedule::get_sch_by_class($class_id);
 		$view->data['sch'] = $schedule;
-		// var_dump($view->data['sch']);
+		var_dump($view->data['sch']);
+
 
 		foreach ($view->data['sch'] as $value) {
 			
 			$subject_id = intval($value['subjects_id']);
 			$high_low = intval($value['high_low']);
 			var_dump($subject_id);
-			var_dump($high_low);
-			$subjects = Subjects::get_specific_subs($high_low, $subject_id);
-			var_dump($subjects);
 		}
+		var_dump($high_low); //sad pogledati 
 		
 		$view->load_view('admin', 'pages', 'edit_schedule');
 	}

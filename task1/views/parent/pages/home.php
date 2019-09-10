@@ -1,7 +1,7 @@
 
 
-<div class="container p-3">
-<div class="col-md-6 text-center bg-info mx-auto p-2">
+
+<div id='wrapper_home_parent'>
 
 
 <?php
@@ -19,7 +19,7 @@ foreach($this->data['grades'] as $subject){
 
     }
     else
-        echo "<br><div class='subject_home_parent font-weight-bold'>".ucfirst($subject['name'])."</div><div class='grades_home_parent'> ".$subject['grades']."</div>";
+        echo "<br><div class='subject_home_parent'>".ucfirst($subject['name'])."</div><div class='grades_home_parent'> ".$subject['grades']."</div>";
 
     
     $sub=$subject['name'];
@@ -29,4 +29,4 @@ foreach($this->data['grades'] as $subject){
 
 ?>
 </div>
-</div>
+

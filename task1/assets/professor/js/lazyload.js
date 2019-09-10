@@ -5,7 +5,7 @@ function lazyload()
 	for(i in div)
 	{                                        //ako je zbir razdaljine div el i vrha dokumenta i 30 izrazeno u px manja od zbira visine prozora i skrol
                                              //pozicije dokumenta od vrha ucitavaju se slike
-		 if(div[i].offsetTop+30 < (window.innerHeight + scrollTop)) 
+		 if(div[i].offsetTop+70 < (window.innerHeight + scrollTop)) 
 		 {
 			var divlazy=div[i];
 			var img=divlazy.firstChild;

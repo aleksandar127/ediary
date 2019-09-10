@@ -27,7 +27,7 @@ foreach($this->data['diaries'] as $students):
         echo "<div style=display:inline-block;font-size:20px;margin-top:10px;>";
         echo $students['grades'];
         echo "&nbsp;&nbsp;";
-        echo "<a  class='btn btn-danger' href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
+        echo "<a  class='btn btn-danger' data-a='delete' href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
         echo "&nbsp;";
         echo "<input id='ai".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
         echo "&nbsp;";
@@ -72,7 +72,7 @@ foreach($this->data['diaries'] as $students):
     if($students['mark']!=null):        
         echo $students['grades'];
         echo "&nbsp;&nbsp;";
-        echo "<a  class='btn btn-danger'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
+        echo "<a  class='btn btn-danger' data-a='delete'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
         echo "&nbsp;";
         echo "<input id='ai".$br."".$students['id']."' type='number' style='width:50px;' min='1' max='5'></input>";
         echo "&nbsp;";
@@ -101,9 +101,10 @@ var evt = e || window.event,
     
 // If the element clicked is an anchor
 if ( target.nodeName === 'A' && target.dataset.a !=='0' ) {
+    if (target.dataset.a ==='delete' ){
+        return confirm( 'POTVRDI' );
+    }
     var a=document.getElementById(target.id);
-    if(a.className=='btn-danger')
-    return confirm( 'POTVRDI' );
     var inp='a'+target.id;
     var inp=document.getElementById(inp).value;
     if(inp<1 || inp>5 && a.className!=='btn-danger'){

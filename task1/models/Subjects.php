@@ -61,5 +61,15 @@ class Subjects
         return $subject['id'];
     }
 
+    //metod for getting all subjects except one specific for low or high grade
+    public static function get_specific_subs($high_low, $subject_id)
+    {
+        $query = DB::$conn->prepare('select * from subjects where high_low = ?  and id != ?');
+        $query->execute([$high_low, $subject_id]); 
+        $subjects = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $subjects;
+
+    }
+
 }
 

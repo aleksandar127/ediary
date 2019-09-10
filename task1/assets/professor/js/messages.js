@@ -6,7 +6,6 @@ function ajax() {
   parents_name.innerHTML='';
     var message= document.getElementById("message");
     message.innerHTML="";
-  // alert('aaa');
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {

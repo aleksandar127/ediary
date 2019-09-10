@@ -76,10 +76,11 @@ form{
     cursor: pointer;
 }
 
-.excuseDiv:hover{transform: scale(3);
-    position:relative;
-    left:300px;
-    top:250px;
+.excuseDiv{
+    margin:auto;
+}
+.excuseDiv:hover{
+  transform: scale(2);
 }
 
 .scheduleProf tr td{width:200px;}

@@ -1,6 +1,6 @@
 <br>
 
-<div style='width:750px;margin:auto;'>
+<div style='width:850px;margin:auto;'>
 <div id="parents_name" class="UsersForChatDiv"></div> <br>
 <div id="message" class="messageChatDiv">
     </div><!-- end #message -->
@@ -18,10 +18,9 @@ endforeach;
                 
                 <div id="chat" >
                     
-                        <textarea id="subject"  name="subject" placeholder="Write something.." ></textarea>
-                        <br>
-                        <button onclick='ajaxSendMessage();'>Posalji</button>
-                        <button onclick='ajax();'>Pregled novih poruka</button>
+                <textarea id="subject" name="subject" placeholder="Write something.." rows="4" style="margin:0 0 5px 0px;width:400px;"></textarea><br>
+                        <button class="btn btn-outline-info" onclick='ajax();' style="margin:0px 10px 0px 35px;">Pregled novih poruka</button>
+                        <button class="btn btn-outline-info" onclick='ajaxSendMessage();'  >Posalji poruku</button>
                     
                 </div>
             </div><!-- end #sendMessage -->

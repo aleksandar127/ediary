@@ -62,7 +62,11 @@ class Schedule
 
     public static function get_sch_by_class($class_id)
     {
-        
+        $query = 'select sch.day_in_week, sch.lesson_no, sch.subjects_id, sch.class_id, sub.name, sub.high_low from schedule as sch join subjects as sub on sch.subjects_id = sub.id where class_id = ?';
+        $query= DB::$conn->prepare($query);
+        $res = $query->execute([$class_id]);
+        $class_sch = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $class_sch; 
     }
 
 }

@@ -33,7 +33,7 @@ echo "<div class='col-md-3 font-weight-bold form-group text-center'>";
         echo "<span class='form-control'>".$students['grades']."</span>";
 echo "</div>";
 echo "<div class='col-md-3 form-group'>";
-        echo "<a  class='btn btn-danger col' href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
+        echo "<a  class='btn btn-danger col' data-a='delete' href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
 echo "</div>";
 ;
 echo "<div class='col-md-3 form-group'>";
@@ -104,7 +104,7 @@ echo "<div class='col-md-3 text-light text-center h4 font-weight-bold'>";
 echo "</div>";
 
 echo "<div class='col-md-3 form-group'>";
-        echo "<a class='btn btn-danger col'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
+        echo "<a class='btn btn-danger col' data-a='delete'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
 echo "</div>";
 
  echo "<div class='col-md-3 form-group'>";
@@ -133,23 +133,4 @@ endforeach;
 ?>
 
 <script src="<?php echo URLROOT; ?>/assets/professor/js/diaryof.js"></script>
- <script>
-document.body.onclick = function( e ) {
 
-// Cross-browser handling
-var evt = e || window.event,
-    target = evt.target || evt.srcElement;
-// If the element clicked is an anchor
-if ( target.nodeName === 'A' && target.dataset.a !='0' ) {
-    var a=document.getElementById(target.id);
-    var inp='a'+target.id;
-    var inp=document.getElementById(inp).value;
-    if(inp<1 || inp>5 && a.className!='btn-danger'){
-        alert('Unesite validnu ocenu');
-        return false; 
-    }
-   // Add the confirm box
-    return confirm( 'POTVRDI' );
-    }
-};
- </script> 

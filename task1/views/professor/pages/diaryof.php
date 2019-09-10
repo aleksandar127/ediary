@@ -3,6 +3,8 @@
 // print_r($this->data['final']);
 // print_r($this->data['diaries']);
 
+echo "<div class='container-fluid'>";
+
 $count=0;
 $sum=0;
 $students_has_finals=[];
@@ -16,8 +18,9 @@ foreach($this->data['final'] as $niz):
     $keys=array_keys($students_has_finals);
 endforeach;
     
-echo "<div class='container-fluid'>";
+
 echo "<div class='col-md-12'>";
+echo "<div class='row'>"; // ??????????
 $array_is_long=0;
 
 foreach($this->data['diaries'] as $students):
@@ -61,7 +64,7 @@ echo "</div>";
           
     $sum+=$students['grades'];
     $count++;
-echo "<div class='col-md-3 card-diaryof p-2 rounded m-2'>";
+echo "<div class='card-body col-md-3 card-diaryof p-2 rounded m-1'>";
 echo "<div class='col-md-12 text-center'>";
 echo "<h3 class='font-weight-bold mb-3 text-warning'><i class='fas fa-user-graduate text-warning mr-2'></i> ";
     echo ucfirst($students['first_name'])." ".ucfirst($students['last_name']);
@@ -93,6 +96,7 @@ echo "</div>";
 
 
 
+
     if($students['mark']!=null):
 echo "<div class='row'>";
 echo "<div class='col-md-3 text-light text-center h4 font-weight-bold'>";
@@ -111,18 +115,21 @@ echo "<div class='form-group col-md-3'>";
         echo "<a class='btn btn-success col'  id='i".$br."".$students['id']."' onclick='edit(this.id)' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>izmeni</a>";
 echo "</div>";
 echo "</div>";
+
         
     endif;
     if($array_is_long==count($this->data['diaries'])){
         $sum=$students['grades'];
         $count=1;
-        echo "<div class='row'><div class='col-md-6 text-light font-weight-bold text-center form-group'>".substr($sum/$count,0,4)."</div></div>";
+        echo "<div class='row'><div class='col-md-12 text-center text-warning'><span class='font-weight-bold h4'>Prosecna ocena je: </span><span class='h5 font-weight-bold'>".substr($sum/$count,0,4)."</span></div></div>";
     }
- //   echo "</div>";
+            //   echo "</div>";
     $id=$students['id'];
     $is_equal=false;
     
 endforeach;
+
+// echo "</div>";
 ?>
 
 <script src="<?php echo URLROOT; ?>/assets/professor/js/diaryof.js"></script>

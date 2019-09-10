@@ -34,7 +34,7 @@ class BaseTeacherController{
         $view->data['show_final_grade'] = $final;
 
         echo "<pre>";
-        echo " lista ZAKLJUCNIH ocena: "; var_dump($final);
+        echo " lista ZAKLJUCNIH ocena: "; print_r($final);
         echo "</pre>";
         echo "<pre>";
         echo " lista ocena: "; var_dump($list_gradee);
@@ -198,8 +198,6 @@ class BaseTeacherController{
 		$schedule = Schedule::get_schedule_for_teacher();
 		$view->data['schedule'] = $schedule;
 		$view->load_view('teacher', 'pages', 'schedule');
-		
-
 	}
 
     public function open(){

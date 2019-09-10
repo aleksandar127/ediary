@@ -16,18 +16,18 @@
                     <th>#</th>
                     <?php foreach($this->data['subjects'] as $subject): ?>
                     <th value="<?php echo $subject['id'];?>"><?php echo $subject['name'];?></th>
-                    <th><?php $subject['id'];?> </th>
+                    <th><?php echo  $subject['id'];?> </th>
                     <?php endforeach; ?>
                     <th>prosek</th>
                     <th> # </th>
                 </tr>
-                <
-                <?php foreach($this->data['listings'] as $student_id => $student): var_dump($student);?>
+
+                <?php foreach($this->data['listings'] as $student_id => $student): ?>
                 
                 <tr>
                     <td><a href="<?php echo $this->data['students'][$student_id]['id']; ?>"><span><?php echo $this->data['students'][$student_id]['first_name']; ?></span> <span><?php echo $this->data['students'][$student_id]['last_name'];?></span></a></td>
 
-                    <?php foreach($this->data['subjects'] as $id_subjects => $data_subjects): ?>
+                    <?php foreach($this->data['subjects'] as $id_subjects => $data_subjects):var_dump($id_subjects) ?>
                     
                     <td>
                         <?php if(!empty($student[$id_subjects])) {
@@ -38,9 +38,23 @@
                             echo " ";
                         }?> 
                     </td>
-                    
-                    
-                    <td class="final_grade"> #
+
+                    <td class="final_grade"><?php 
+                    foreach ($this->data['show_final_grade'] as $key => $value) {
+                        foreach($value as $nesto => $ocene) {
+                            foreach($ocene as $nesto1){
+                                if($student_id == $key){
+                                    if(!empty($value[$nesto])) {
+                                        foreach($value[$nesto] as $nesto => $grade) {
+                                            echo $grade . " | ";
+                                        }
+                                    }else {
+                                        echo " s ";
+                                    }
+                                }
+                            }
+                        }
+                    } ?>
                     </td>
                     <?php endforeach; ?>
                     

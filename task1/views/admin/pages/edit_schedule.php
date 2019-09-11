@@ -148,3 +148,6 @@
         </div>
 
 <script src="http://localhost/eDiary/task1/assets/admin/js/edit_sch.js"></script>
+<?php if($this->data['high_low'] === "1"): ?>
+    <script src="http://localhost/eDiary/task1/assets/admin/js/edit_is_lesson_occup.js"></script>
+<?php endif; ?>

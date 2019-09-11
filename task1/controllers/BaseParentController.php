@@ -40,10 +40,9 @@ class BaseParentController
 		$view->data['parents'] = $parents;
 		$view->load_view('parent', 'pages', 'messages');
 		
-		
-
 	}
 	
+	//get new messages
 	public function ajax(){
 		$messages=Messages::get_new_messages();
 		echo JSON_encode($messages);	
@@ -91,7 +90,7 @@ class BaseParentController
 		$view = new View();
 		//show all posibile appointments
 		$professors=OpenDoor::open_professors();
-		//show status of appointment requests
+		//show status of appointment request
 		$open_sent=OpenDoor::open_response();
 		$view->data['open_sent'] = $open_sent;
 		$view->data['professors'] = $professors;

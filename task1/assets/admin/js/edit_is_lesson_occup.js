@@ -47,22 +47,24 @@ function ajax_subject_check(day, lesson, chosen_lesson, select_field) {
                 
 
             res.forEach(function (item) {
+                let field_valid = true;
                 let occupied_lesson = item.subjects_id; 
                 // console.log('ID: ' + occupied_lesson);
                 if (occupied_lesson === chosen_lesson) {
+                    field_valid = false;
                     console.log('zauzet predmet u tom terminu');
                     select_field.style = 'border: 1px solid red';
                     var err = select_field.nextElementSibling;
                     err.innerHTML = 'Predmet zauzet!';
                     err.classList.add('err');
-                } else {
-                    console.log('NIJE zauzet predmet u tom terminu');
-                    // select_field.style = 'border: 1px solid #ced4da';
-                    // var err = select_field.nextElementSibling;
-                    // err.innerHTML = '';
-                    // err.classList.remove('err');
-
-                }
+                    }// else {
+                //     field_valid = true;
+                // }
+                
+                // if (field_valid === true) {
+                //     console.log('NIJE zauzet predmet u tom terminu');
+                    
+                // }
                 
             });
            

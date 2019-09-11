@@ -23,9 +23,12 @@
 
                 <?php foreach($this->data['listings'] as $student_id => $student): ?>
                 
-                
                 <tr>
-                    <td><a href="<?php echo $this->data['students'][$student_id]['id']; ?>"><span><?php echo $this->data['students'][$student_id]['first_name']; ?></span> <span><?php echo $this->data['students'][$student_id]['last_name'];?></span></a></td>
+                    <td>
+                    <?php if($this->data['students'][$student_id]['id'] == NULL){ echo "bravo"; }else{echo"Evo ne znam ";}?>
+                    <a href="<?php echo $this->data['students'][$student_id]['id']; ?>"><span><?php echo $this->data['students'][$student_id]['first_name']; ?></span> <span><?php echo $this->data['students'][$student_id]['last_name'];?></span></a>
+                    
+                    </td>
 
                     <?php foreach($this->data['subjects'] as $id_subjects => $data_subjects): ?>
                     

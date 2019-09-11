@@ -78,7 +78,7 @@ class Teacher{
     }
 
     public static function grade_listing(){
-        $query = DB::$conn->prepare('SELECT subjects_has_grades.grades, subjects_has_grades_has_students.students_id, subjects_has_grades.subjects_id FROM subjects_has_grades_has_students JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id');
+        $query = DB::$conn->prepare('SELECT students.id, subjects_has_grades.grades, subjects_has_grades_has_students.students_id, subjects_has_grades.subjects_id FROM students LEFT JOIN subjects_has_grades_has_students ON students.id = subjects_has_grades_has_students.students_id LEFT JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id ORDER BY students.id');
         $list_grade = $query->execute();
         $grade = [];
         while($grade_list = $query->fetch(PDO::FETCH_ASSOC)){

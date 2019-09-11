@@ -40,13 +40,17 @@ function ajax_subject_check(day, lesson, choosed_lesson, select_field) {
         if (this.readyState == 4 && this.status == 200) {
             var res = JSON.parse(this.responseText);
 
+            //POGLEDATI
             // for (x in res) {
-            //     res += res[x];
+            //     console.log(x.value);
             // }
                 
-                console.log(res.length);
-        
-            
+
+            res.forEach(function (item) {
+                console.log('ID: ' + item.subjects_id);
+                
+            });
+           
                 
             // }
             // if (res['subjects_id'] == choosed_lesson) {

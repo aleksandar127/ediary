@@ -124,6 +124,8 @@ function ajaxSendMessage(){
   }
   var msg= document.getElementById("subject");
   var message= document.getElementById("subject").value;
+  if(message=='')
+    return;
   var parent=msg.className;
   var id="a"+parent;
   var xhttp = new XMLHttpRequest();

@@ -192,7 +192,8 @@ border-radius: 5px;
 }
 
 #open_request_table {
-	border:solid black 3px;display:inline-block;
+	border:solid black 3px;
+	display:inline-block;
 }
 
 #open_request_table tr:nth-child(even) {

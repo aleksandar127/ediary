@@ -7,6 +7,7 @@ echo "<a class='list-group-item list-group-item-action col-md-12 bg-dark' href='
 else
    echo "<a class='list-group-item list-group-item-action bg-warning col-md-12' href='".URLROOT."/professor/diaryof/".$class['id']." '><i class='fas fa-user-graduate fa-2x text-dark'></i> <span class='h2 ml-2'>".$class['name']."</span></a>";
 endforeach;
+ 
 ?>
 
 </div>

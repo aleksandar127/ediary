@@ -3,6 +3,8 @@
 
 class BaseProfessorController 
 {
+private $grades=[1,2,3,4,5];
+
     public function __construct($demand)
     {
 		$this->demand = $demand;
@@ -67,6 +69,10 @@ class BaseProfessorController
 		$id = $this->demand->parts_of_url[5];
 		$new_grade = $this->demand->parts_of_url[7];
 		$subject_id=$this->demand->parts_of_url[6];
+		if(!in_array($new_grade,$this->grades)){
+			header("Location: ".$_SERVER["HTTP_REFERER"]."?err=Ocena nije validna");
+			die;
+		}
 		$edited=Grades::edit($id,$subject_id,$new_grade);
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
@@ -79,6 +85,10 @@ class BaseProfessorController
 		$id = $this->demand->parts_of_url[5];
 		$new_grade = $this->demand->parts_of_url[7];
 		$subject_id=$this->demand->parts_of_url[6];
+		if(!in_array($new_grade,$this->grades)){
+			header("Location: " . $_SERVER["HTTP_REFERER"]."?err=ocena nije validna");
+			die;
+		}
 		$grade=Grades::new_grade($id,$subject_id,$new_grade);
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
@@ -91,6 +101,10 @@ class BaseProfessorController
 		$id = $this->demand->parts_of_url[5];
 		$final_grade = $this->demand->parts_of_url[7];
 		$subject_id=$this->demand->parts_of_url[6];
+		if(!in_array($final_grade,$this->grades)){
+			header("Location: ".$_SERVER["HTTP_REFERER"]."?err=ocena nije validna");
+			die;
+		}
 		$grade=Grades::final_grade($id,$subject_id,$final_grade);
 		if (isset($_SERVER["HTTP_REFERER"])) {
 			header("Location: " . $_SERVER["HTTP_REFERER"]);
@@ -192,6 +206,10 @@ class BaseProfessorController
 	public function ajax_send_message(){
 		$message=htmlspecialchars(strip_tags($_GET['message']));
 		$id=$_GET['id'];
+		if($id===null){
+			header("Location: http://localhost/eDiary/task1/professor/messages?err=Niste izabrali primaoca");
+			exit();
+		}
 		Messages::ajax_send_message($message,$id);
 		$response=['response'=>'da'];
 		echo JSON_encode($response);
@@ -205,10 +223,7 @@ class BaseProfessorController
 		//get all final grades 
 		$grades=Student::success($id);
 		if($grades==null){
-			if (isset($_SERVER["HTTP_REFERER"])) {
-				header("Location: " . $_SERVER["HTTP_REFERER"]);
-				$_SESSION['success']="Ucenik nije ocenjen";
-			}
+			header("Location: http://localhost/eDiary/task1/professor/index?err=Ucenik nije ocenjen&id=".$id);
 			exit();
 		}
 	

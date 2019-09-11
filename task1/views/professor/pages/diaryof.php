@@ -80,17 +80,17 @@ echo "<div class='col-md-4 form-group'>";
 echo "</div>";
 
 echo "<div class='col-md-4 form-group'>";
-    echo "<a  class='btn btn-primary col' type='btn' href='".URLROOT."/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='finalGrade(this.id)' >Zakljuci</a>";
+    echo "<a  class='btn btn-primary col' type='btn' href='".URLROOT."/professor/final_grade/".$students['id']."/".$subject_id."' id='f".$br."".$students['id']."' onclick='edit(this.id)' >Zakljuci</a>";
 echo "</div>";
 echo "</div>";
 
 
 echo "<div class='row justify-content-center'>";
 echo "<div class='col-md-4 form-group'>";
-    echo "<input class='form-control' id='au".$students['id']."' type='number' min='1' max='5'>";
+echo "<input class='form-control' id='au".$students['id']."' type='number' min='1' max='5'>";
 echo "</div>";
 echo "<div class='col-md-4 form-group'>";
-    echo "<a class='btn btn-info col' id='u".$students['id']."' onclick='newGrade(this.id)' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
+echo "<a class='btn btn-info col' id='u".$students['id']."' onclick='newGrade(this.id)' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
 echo "</div>";
 echo "</div>";
 
@@ -100,19 +100,19 @@ echo "</div>";
     if($students['mark']!=null):
 echo "<div class='row'>";
 echo "<div class='col-md-3 text-light text-center h4 font-weight-bold'>";
-        echo "<span class='form-control'>".$students['grades']."</span>";
+echo "<span class='form-control' font-size:23px;>".$students['grades']."</span>";
 echo "</div>";
 
 echo "<div class='col-md-3 form-group'>";
-        echo "<a class='btn btn-danger col' data-a='delete'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
+echo "<a class='btn btn-danger col' data-a='delete'  href='".URLROOT."/professor/delete/".$students['mark']."'>Izbrisi</a>";
 echo "</div>";
 
  echo "<div class='col-md-3 form-group'>";
-        echo "<input class='form-control' id='ai".$br."".$students['id']."' type='number' min='1' max='5'>";
+echo "<input class='form-control' id='ai".$br."".$students['id']."' type='number' min='1' max='5'>";
 echo "</div>";
 
 echo "<div class='form-group col-md-3'>";
-        echo "<a class='btn btn-success col'  id='i".$br."".$students['id']."' onclick='edit(this.id)' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>Izmeni</a>";
+echo "<a class='btn btn-success col'  id='i".$br."".$students['id']."' onclick='edit(this.id)' href='".URLROOT."/professor/edit/".$students['mark']."/".$subject_id."'>Izmeni</a>";
 echo "</div>";
 echo "</div>";
 

@@ -175,24 +175,30 @@ function check_is_class_ocuppied(){
 
 
 //function for checking which subject is free to be used for schedule
-function ajax_subject_check(day, lesson, choosed_lesson, select_field){
+function ajax_subject_check(day, lesson, chosen_lesson, select_field){
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var res = JSON.parse(this.responseText);
 
-            if (res['subjects_id'] == choosed_lesson) {
-                select_field.style = 'border: 1px solid red';
-                var err = select_field.nextElementSibling;
-                err.innerHTML = 'Predmet zauzet!';
-                err.classList.add('err');
-            } else {
-                select_field.style = 'border: 1px solid #ced4da';
-                var err = select_field.nextElementSibling;
-                err.innerHTML = '';
-                err.classList.remove('err');
-            }
+            res.forEach(function (item) {
+                let occupied_lesson = item.subjects_id; 
+                console.log('ID: ' + occupied_lesson);
+                console.log(occupied_lesson);
+                if (occupied_lesson == chosen_lesson) {
+                    select_field.style = 'border: 1px solid red';
+                    var err = select_field.nextElementSibling;
+                    err.innerHTML = 'Predmet zauzet!';
+                    err.classList.add('err');
+                } else {
+                    select_field.style = 'border: 1px solid #ced4da';
+                    var err = select_field.nextElementSibling;
+                    err.innerHTML = '';
+                    err.classList.remove('err');
+                }
+            })
+           
         }
     }
     

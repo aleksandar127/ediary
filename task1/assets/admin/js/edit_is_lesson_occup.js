@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
 
             // console.log(day_in_week);
             // console.log(lesson_no);
-            // console.log(picked_lesson);
+            console.log(picked_lesson);
 
             ajax_subject_check(day_in_week, lesson_no, picked_lesson, select);
 
@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
 });
 
 //function for checking which subject is free to be used for schedule
-function ajax_subject_check(day, lesson, choosed_lesson, select_field) {
+function ajax_subject_check(day, lesson, chosen_lesson, select_field) {
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -47,7 +47,22 @@ function ajax_subject_check(day, lesson, choosed_lesson, select_field) {
                 
 
             res.forEach(function (item) {
-                console.log('ID: ' + item.subjects_id);
+                let occupied_lesson = item.subjects_id; 
+                // console.log('ID: ' + occupied_lesson);
+                if (occupied_lesson === chosen_lesson) {
+                    console.log('zauzet predmet u tom terminu');
+                    select_field.style = 'border: 1px solid red';
+                    var err = select_field.nextElementSibling;
+                    err.innerHTML = 'Predmet zauzet!';
+                    err.classList.add('err');
+                } else {
+                    console.log('NIJE zauzet predmet u tom terminu');
+                    // select_field.style = 'border: 1px solid #ced4da';
+                    // var err = select_field.nextElementSibling;
+                    // err.innerHTML = '';
+                    // err.classList.remove('err');
+
+                }
                 
             });
            

@@ -9,7 +9,7 @@
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
                                     <?php foreach($sch as $other_subs):?>
                                         <?php if(isset($other_subs['name'])):?>
-                                            <option><?php echo $other_subs['name'];?></option>
+                                            <option  value="<?php echo $other_subs['id'];?>"><?php echo $other_subs['name'];?></option>
                                         <?php endif;?>
                                     <?php endforeach; ?>
                             <?php endif;?>
@@ -26,7 +26,7 @@
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
                                     <?php foreach($sch as $other_subs):?>
                                         <?php if(isset($other_subs['name'])):?>
-                                            <option><?php echo $other_subs['name'];?></option>
+                                            <option  value="<?php echo $other_subs['id'];?>"><?php echo $other_subs['name'];?></option>
                                         <?php endif;?>
                                     <?php endforeach; ?>
                             <?php endif;?>
@@ -43,7 +43,7 @@
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
                                     <?php foreach($sch as $other_subs):?>
                                             <?php if(isset($other_subs['name'])):?>
-                                                <option><?php echo $other_subs['name'];?></option>
+                                                <option value="<?php echo $other_subs['id'];?>"><?php echo $other_subs['name'];?></option>
                                             <?php endif;?>
                                     <?php endforeach; ?>
                             <?php endif; ?>
@@ -60,7 +60,7 @@
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
                                     <?php foreach($sch as $other_subs):?>
                                         <?php if(isset($other_subs['name'])):?>
-                                            <option><?php echo $other_subs['name'];?></option>
+                                            <option value="<?php echo $other_subs['id'];?>"><?php echo $other_subs['name'];?></option>
                                         <?php endif;?>
                                     <?php endforeach; ?>
                             <?php endif; ?>
@@ -77,7 +77,7 @@
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
                                 <?php foreach($sch as $other_subs):?>
                                     <?php if(isset($other_subs['name'])):?>
-                                        <option><?php echo $other_subs['name'];?></option>
+                                        <option value="<?php echo $other_subs['id'];?>"><?php echo $other_subs['name'];?></option>
                                     <?php endif;?>
                                 <?php endforeach; ?>
                             <?php endif; ?>
@@ -98,7 +98,7 @@
                                     <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
                                         <?php foreach($sch as $other_subs):?>
                                             <?php if(isset($other_subs['name'])):?>
-                                                <option><?php echo $other_subs['name'];?></option>
+                                                <option  value="<?php echo $other_subs['id'];?>"><?php echo $other_subs['name'];?></option>
                                             <?php endif;?>
                                         <?php endforeach; ?>
                                 <?php endif; ?>
@@ -114,7 +114,7 @@
                                     <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
                                         <?php foreach($sch as $other_subs):?>
                                             <?php if(isset($other_subs['name'])):?>
-                                                <option><?php echo $other_subs['name'];?></option>
+                                                <option  value="<?php echo $other_subs['id'];?>"><?php echo $other_subs['name'];?></option>
                                             <?php endif;?>
                                         <?php endforeach; ?>
                                 <?php endif; ?>
@@ -130,7 +130,7 @@
                                     <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
                                         <?php foreach($sch as $other_subs):?>
                                             <?php if(isset($other_subs['name'])):?>
-                                                <option><?php echo $other_subs['name'];?></option>
+                                                <option  value="<?php echo $other_subs['id'];?>"><?php echo $other_subs['name'];?></option>
                                             <?php endif;?>
                                         <?php endforeach; ?>
                                 <?php endif; ?>
@@ -146,7 +146,7 @@
                                     <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
                                         <?php foreach($sch as $other_subs):?>
                                             <?php if(isset($other_subs['name'])):?>
-                                                <option><?php echo $other_subs['name'];?></option>
+                                                <option  value="<?php echo $other_subs['id'];?>"><?php echo $other_subs['name'];?></option>
                                             <?php endif;?>
                                         <?php endforeach; ?>
                                 <?php endif; ?>
@@ -162,7 +162,7 @@
                                     <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
                                         <?php foreach($sch as $other_subs):?>
                                             <?php if(isset($other_subs['name'])):?>
-                                                <option><?php echo $other_subs['name'];?></option>
+                                                <option  value="<?php echo $other_subs['id'];?>"><?php echo $other_subs['name'];?></option>
                                             <?php endif;?>
                                         <?php endforeach; ?>
                                 <?php endif; ?>

@@ -56,7 +56,7 @@ class Schedule
     {
         $query = DB::$conn->prepare('select subjects_id from schedule where day_in_week = ? and lesson_no = ?');
         $query->execute([$day, $lesson_num]);
-        $occupy_classes = $query->fetch(PDO::FETCH_ASSOC);
+        $occupy_classes = $query->fetchAll(PDO::FETCH_ASSOC);
         return $occupy_classes;
     }
 

@@ -21,11 +21,49 @@ window.addEventListener('load', () => {
                 day_in_week = "5";
             }
 
+            // console.log(day_in_week);
+            // console.log(lesson_no);
+            // console.log(picked_lesson);
 
-
-
+            ajax_subject_check(day_in_week, lesson_no, picked_lesson, select);
 
         });
        
     });
 });
+
+//function for checking which subject is free to be used for schedule
+function ajax_subject_check(day, lesson, choosed_lesson, select_field) {
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var res = JSON.parse(this.responseText);
+
+            // for (x in res) {
+            //     res += res[x];
+            // }
+                
+                console.log(res.length);
+        
+            
+                
+            // }
+            // if (res['subjects_id'] == choosed_lesson) {
+            //     select_field.style = 'border: 1px solid red';
+            //     var err = select_field.nextElementSibling;
+            //     err.innerHTML = 'Predmet zauzet!';
+            //     err.classList.add('err');
+            // } else {
+            //     select_field.style = 'border: 1px solid #ced4da';
+            //     var err = select_field.nextElementSibling;
+            //     err.innerHTML = '';
+            //     err.classList.remove('err');
+            // }
+        }
+    }
+
+    xhttp.open("GET", "http://localhost/eDiary/task1/admin/is_subject_occupied?day=" + day + "&lesson_no=" + lesson, true);
+    xhttp.send();
+
+}

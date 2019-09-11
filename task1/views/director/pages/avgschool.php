@@ -41,6 +41,7 @@ let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
 categoryAxis.dataFields.category = "predmet";
 categoryAxis.renderer.grid.template.location = 0;
 categoryAxis.renderer.minGridDistance = 30;
+categoryAxis.title.text = "Predmeti";
 
 // categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
 //   if (target.dataItem && target.dataItem.index & 2 == 2) {
@@ -50,9 +51,14 @@ categoryAxis.renderer.minGridDistance = 30;
 // });
 
 var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.min = 0;
+valueAxis.max = 5;
+valueAxis.renderer.minGridDistance = 100;
+valueAxis.title.text = "Prosek ocena";
 
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries());
+
 series.dataFields.valueY = "prosecna_ocena";
 series.dataFields.categoryX = "predmet";
 //series.name = "Visits";

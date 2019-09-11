@@ -166,7 +166,6 @@ class BaseTeacherController{
         $grades = $_POST['grade'];
         $subjects_and_grades = Teacher::get_id_subjects_grade($subjects_id, $grades);
         $subject_grades['subjects_id'] =  $subjects_and_grades;	
-
         $add_final_grade = Teacher::final_grade($id_students, $subjects_id, $subjects_and_grades );
 
         if($add_final_grade){
@@ -176,9 +175,7 @@ class BaseTeacherController{
             header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije zakljucena!');
         }
 
-        echo "<pre>";
-        var_dump();
-        echo "<pre>";
+       
     }
 
     public function schedule(){

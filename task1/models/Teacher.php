@@ -107,10 +107,7 @@ class Teacher{
 
     public static function show_final_grade($class_id){
         $query = DB::$conn->prepare('SELECT subjects_has_grades.grades, final_grade.student_id, subjects_has_grades.subjects_id FROM final_grade JOIN subjects_has_grades ON final_grade.subject_grade = subjects_has_grades.id JOIN students ON students.id = final_grade.student_id WHERE students.class_id = ?');
-        $grades = $query->execute($class_id); 
-        // $final_grade = $query->fetchAll(PDO::FETCH_ASSOC);
-        // return $final_grade;
-
+        $grades = $query->execute($class_id);
         $grade_final = [];
         while($final_grade = $query->fetch(PDO::FETCH_ASSOC)){
         $grade_final[$final_grade['student_id']][$final_grade['subjects_id']][] = $final_grade['grades'];

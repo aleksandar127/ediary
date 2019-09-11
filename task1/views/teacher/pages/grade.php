@@ -16,7 +16,7 @@
                     <th>#</th>
                     <?php foreach($this->data['subjects'] as $subject): ?>
                     <th value="<?php echo $subject['id'];?>"><?php echo $subject['name'];?></th>
-                    <th><?php echo  $subject['id'];?> </th>
+                    <th><?php $subject['id']; ?> </th>
                     <?php endforeach; ?>
                     <th>prosek</th>
                     <th> # </th>
@@ -31,7 +31,7 @@
                     
                     <td>
                         <?php if(!empty($student[$id_subjects])) {
-                            foreach($student[$id_subjects] as $id_subjects => $grade) {
+                            foreach($student[$id_subjects] as $id_subject => $grade) {
                                 echo $grade . " | ";
                             }
                         }else {
@@ -39,22 +39,16 @@
                         }?> 
                     </td>
 
-                    <td class="final_grade"><?php 
-                    foreach ($this->data['show_final_grade'] as $key => $value) {
-                        foreach($value as $nesto => $ocene) {
-                            foreach($ocene as $nesto1){
-                                if($student_id == $key){
-                                    if(!empty($value[$nesto])) {
-                                        foreach($value[$nesto] as $nesto => $grade) {
-                                            echo $grade . " | ";
-                                        }
-                                    }else {
-                                        echo " s ";
-                                    }
-                                }
-                            }
+                    <td class="final_grade"><?php
+                    if(!empty($this->data['show_final_grade'][$student_id][$id_subjects])) {
+                        foreach ($this->data['show_final_grade'][$student_id][$id_subjects] as $key => $value) {
+                            echo $value;
                         }
-                    } ?>
+                    } else {
+                        echo " ";
+                       
+                    }
+                    ?>
                     </td>
                     <?php endforeach; ?>
                     

@@ -29,18 +29,8 @@ class BaseTeacherController{
         $view->data['subjects'] = $all_subjects;
         $list_gradee = Teacher::grade_listing();
         $view->data['listings'] = $list_gradee;
-
         $final = Teacher::show_final_grade($id_class);
         $view->data['show_final_grade'] = $final;
-
-        echo "<pre>";
-        echo " lista ZAKLJUCNIH ocena: "; print_r($final);
-        echo "</pre>";
-        echo "<pre>";
-        echo " lista ocena: "; var_dump($list_gradee);
-        echo "</pre>";
-
-
         $view->load_view('teacher', 'pages', 'grade');
     }
 

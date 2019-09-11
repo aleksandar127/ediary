@@ -27,10 +27,14 @@ class BaseTeacherController{
         $view->data['students'] = $get_students;
         $all_subjects = Teacher::get_all_subjects();
         $view->data['subjects'] = $all_subjects;
-        $list_gradee = Teacher::grade_listing();
+        $list_gradee = Teacher::grade_listing($id_class);
         $view->data['listings'] = $list_gradee;
         $final = Teacher::show_final_grade($id_class);
         $view->data['show_final_grade'] = $final;
+echo "<pre>";
+ echo "<b>"; print_r($list_gradee);
+echo "</pre>";
+
         $view->load_view('teacher', 'pages', 'grade');
     }
 

@@ -465,18 +465,21 @@ class BaseAdminController
 
 		$view->data['counter'] = 1;
 		$schedule = Schedule::get_sch_by_class($class_id);
-		$view->data['sch'] = $schedule;
-		var_dump($view->data['sch']);
 
 
-		foreach ($view->data['sch'] as $value) {
+		$sch = [];
+		foreach ($schedule as $value) {
 			
 			$subject_id = intval($value['subjects_id']);
 			$high_low = intval($value['high_low']);
-			var_dump($subject_id);
+			$other_less = Subjects::get_specific_subs($high_low, $subject_id);
+			
+			//merging array of other subjects with class's existing schedule
+			$other_subjects  = $value + $other_less;
+			$sch[] = $other_subjects;
+			$view->data['sch'] = $sch; 
 		}
-		var_dump($high_low); //sad pogledati 
-		
+		var_dump($view->data['sch']);
 		$view->load_view('admin', 'pages', 'edit_schedule');
 	}
 

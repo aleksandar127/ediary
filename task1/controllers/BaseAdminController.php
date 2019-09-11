@@ -466,7 +466,6 @@ class BaseAdminController
 		$view->data['counter'] = 1;
 		$schedule = Schedule::get_sch_by_class($class_id);
 
-
 		$sch = [];
 		foreach ($schedule as $value) {
 			
@@ -474,12 +473,13 @@ class BaseAdminController
 			$high_low = intval($value['high_low']);
 			$other_less = Subjects::get_specific_subs($high_low, $subject_id);
 			
+
 			//merging array of other subjects with class's existing schedule
 			$other_subjects  = $value + $other_less;
 			$sch[] = $other_subjects;
 			$view->data['sch'] = $sch; 
 		}
-
+		// var_dump($view->data['sch']);
 		//is current working class high or low
 		$high_low = Classes::get_class_by_id($class_id);
 		$view->data['high_low'] = $high_low['high_low'];

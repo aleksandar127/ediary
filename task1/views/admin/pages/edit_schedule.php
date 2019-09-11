@@ -7,8 +7,11 @@
                         <?php foreach($this->data['sch'] as $sch): ?>
                             <?php if($sch['day_in_week'] == 1 && $sch['lesson_no'] == 1): ?>
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
-                                <option value="<?php echo $sch[0]['id'];?>"><?php echo $sch[0]['name'];?></option>
-                                <option value="<?php echo $sch[1]['id'];?>"><?php echo $sch[1]['name'];?></option>
+                                    <?php foreach($sch as $other_subs):?>
+                                        <?php if(isset($other_subs['name'])):?>
+                                            <option><?php echo $other_subs['name'];?></option>
+                                        <?php endif;?>
+                                    <?php endforeach; ?>
                             <?php endif;?>
                         <?php endforeach;?>
                     </select>
@@ -18,11 +21,14 @@
                     <div>Utorak</div>
                     <select class="form-control" id="tuesday<?php echo $this->data['counter'];?>">
 
-                         <?php foreach($this->data['sch'] as $sch): ?>
+                        <?php foreach($this->data['sch'] as $sch): ?>
                             <?php if($sch['day_in_week'] == 2 && $sch['lesson_no'] == 1): ?>
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
-                                <option value="<?php echo $sch[0]['id'];?>"><?php echo $sch[0]['name'];?></option>
-                                <option value="<?php echo $sch[1]['id'];?>"><?php echo $sch[1]['name'];?></option>
+                                    <?php foreach($sch as $other_subs):?>
+                                        <?php if(isset($other_subs['name'])):?>
+                                            <option><?php echo $other_subs['name'];?></option>
+                                        <?php endif;?>
+                                    <?php endforeach; ?>
                             <?php endif;?>
                         <?php endforeach;?>
                     </select>
@@ -35,8 +41,11 @@
                          <?php foreach($this->data['sch'] as $sch): ?>
                             <?php if($sch['day_in_week'] == 3 && $sch['lesson_no'] == 1): ?>
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
-                                <option value="<?php echo $sch[0]['id'];?>"><?php echo $sch[0]['name'];?></option>
-                                <option value="<?php echo $sch[1]['id'];?>"><?php echo $sch[1]['name'];?></option>
+                                    <?php foreach($sch as $other_subs):?>
+                                            <?php if(isset($other_subs['name'])):?>
+                                                <option><?php echo $other_subs['name'];?></option>
+                                            <?php endif;?>
+                                    <?php endforeach; ?>
                             <?php endif; ?>
                         <?php endforeach;?>
                     </select>
@@ -49,8 +58,11 @@
                          <?php foreach($this->data['sch'] as $sch): ?>
                             <?php if($sch['day_in_week'] == 4 && $sch['lesson_no'] == 1): ?>
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
-                                <option value="<?php echo $sch[0]['id'];?>"><?php echo $sch[0]['name'];?></option>
-                                <option value="<?php echo $sch[1]['id'];?>"><?php echo $sch[1]['name'];?></option>
+                                    <?php foreach($sch as $other_subs):?>
+                                        <?php if(isset($other_subs['name'])):?>
+                                            <option><?php echo $other_subs['name'];?></option>
+                                        <?php endif;?>
+                                    <?php endforeach; ?>
                             <?php endif; ?>
                         <?php endforeach;?>
                     </select>
@@ -63,8 +75,11 @@
                          <?php foreach($this->data['sch'] as $sch): ?>
                             <?php if($sch['day_in_week'] == 5 && $sch['lesson_no'] == 1): ?>
                                 <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
-                                <option value="<?php echo $sch[0]['id'];?>"><?php echo $sch[0]['name'];?></option>
-                                <option value="<?php echo $sch[1]['id'];?>"><?php echo $sch[1]['name'];?></option>
+                                <?php foreach($sch as $other_subs):?>
+                                    <?php if(isset($other_subs['name'])):?>
+                                        <option><?php echo $other_subs['name'];?></option>
+                                    <?php endif;?>
+                                <?php endforeach; ?>
                             <?php endif; ?>
                         <?php endforeach;?>
                     </select>
@@ -81,8 +96,11 @@
                             <?php foreach($this->data['sch'] as $sch): ?>
                                 <?php if($sch['day_in_week'] == 1 && $sch['lesson_no'] == $this->data['counter']): ?>
                                     <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
-                                    <option value="<?php echo $sch[0]['id'];?>"><?php echo $sch[0]['name'];?></option>
-                                    <option value="<?php echo $sch[1]['id'];?>"><?php echo $sch[1]['name'];?></option>
+                                        <?php foreach($sch as $other_subs):?>
+                                            <?php if(isset($other_subs['name'])):?>
+                                                <option><?php echo $other_subs['name'];?></option>
+                                            <?php endif;?>
+                                        <?php endforeach; ?>
                                 <?php endif; ?>
                             <?php endforeach;?>
                             </select>
@@ -94,8 +112,11 @@
                             <?php foreach($this->data['sch'] as $sch): ?>
                                 <?php if($sch['day_in_week'] == 2 && $sch['lesson_no'] == $this->data['counter']): ?>
                                     <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
-                                    <option value="<?php echo $sch[0]['id'];?>"><?php echo $sch[0]['name'];?></option>
-                                    <option value="<?php echo $sch[1]['id'];?>"><?php echo $sch[1]['name'];?></option>
+                                        <?php foreach($sch as $other_subs):?>
+                                            <?php if(isset($other_subs['name'])):?>
+                                                <option><?php echo $other_subs['name'];?></option>
+                                            <?php endif;?>
+                                        <?php endforeach; ?>
                                 <?php endif; ?>
                             <?php endforeach;?>
                             </select>
@@ -107,8 +128,11 @@
                             <?php foreach($this->data['sch'] as $sch): ?>
                                 <?php if($sch['day_in_week'] == 3 && $sch['lesson_no'] == $this->data['counter']): ?>
                                     <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
-                                    <option value="<?php echo $sch[0]['id'];?>"><?php echo $sch[0]['name'];?></option>
-                                    <option value="<?php echo $sch[1]['id'];?>"><?php echo $sch[1]['name'];?></option>
+                                        <?php foreach($sch as $other_subs):?>
+                                            <?php if(isset($other_subs['name'])):?>
+                                                <option><?php echo $other_subs['name'];?></option>
+                                            <?php endif;?>
+                                        <?php endforeach; ?>
                                 <?php endif; ?>
                             <?php endforeach;?>
                             </select>
@@ -120,8 +144,11 @@
                             <?php foreach($this->data['sch'] as $sch): ?>
                                 <?php if($sch['day_in_week'] == 4 && $sch['lesson_no'] == $this->data['counter']): ?>
                                     <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
-                                    <option value="<?php echo $sch[0]['id'];?>"><?php echo $sch[0]['name'];?></option>
-                                    <option value="<?php echo $sch[1]['id'];?>"><?php echo $sch[1]['name'];?></option>
+                                        <?php foreach($sch as $other_subs):?>
+                                            <?php if(isset($other_subs['name'])):?>
+                                                <option><?php echo $other_subs['name'];?></option>
+                                            <?php endif;?>
+                                        <?php endforeach; ?>
                                 <?php endif; ?>
                             <?php endforeach;?>
                             </select>
@@ -133,8 +160,11 @@
                             <?php foreach($this->data['sch'] as $sch): ?>
                                 <?php if($sch['day_in_week'] == 5 && $sch['lesson_no'] == $this->data['counter']): ?>
                                     <option value="<?php echo $sch['subjects_id'];?>" selected><?php echo $sch['selected_sub']; ?></option>
-                                    <option value="<?php echo $sch[0]['id'];?>"><?php echo $sch[0]['name'];?></option>
-                                    <option value="<?php echo $sch[1]['id'];?>"><?php echo $sch[1]['name'];?></option>
+                                        <?php foreach($sch as $other_subs):?>
+                                            <?php if(isset($other_subs['name'])):?>
+                                                <option><?php echo $other_subs['name'];?></option>
+                                            <?php endif;?>
+                                        <?php endforeach; ?>
                                 <?php endif; ?>
                             <?php endforeach;?>
                             </select>

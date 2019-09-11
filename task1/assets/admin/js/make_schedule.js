@@ -162,8 +162,8 @@ function check_is_class_ocuppied(){
                     day_in_week = "4";
 				} else if(day_in_week == 'friday'){
                     day_in_week = "5";
-				}
-                // console.log(day_in_week);
+                }
+                
                 ajax_subject_check(day_in_week, lesson_no, picked_lesson, cls_select);
 
             }

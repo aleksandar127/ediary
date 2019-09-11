@@ -479,7 +479,12 @@ class BaseAdminController
 			$sch[] = $other_subjects;
 			$view->data['sch'] = $sch; 
 		}
-		var_dump($view->data['sch']);
+
+		//is current working class high or low
+		$high_low = Classes::get_class_by_id($class_id);
+		$view->data['high_low'] = $high_low['high_low'];
+
+
 		$view->load_view('admin', 'pages', 'edit_schedule');
 	}
 

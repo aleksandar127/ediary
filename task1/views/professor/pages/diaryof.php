@@ -90,7 +90,7 @@ echo "<div class='col-md-4 form-group'>";
 echo "<input class='form-control' id='au".$students['id']."' type='number' min='1' max='5'>";
 echo "</div>";
 echo "<div class='col-md-4 form-group'>";
-echo "<a class='btn btn-info col' id='u".$students['id']."' onclick='newGrade(this.id)' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
+echo "<a class='btn btn-info col' id='u".$students['id']."' onclick='edit(this.id)' href='".URLROOT."/professor/new_grade/".$students['id']."/".$subject_id."'>Unesi</a>";
 echo "</div>";
 echo "</div>";
 

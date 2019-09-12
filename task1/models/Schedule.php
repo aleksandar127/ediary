@@ -62,13 +62,19 @@ class Schedule
 
     public static function get_sch_by_class($class_id)
     {
-        $query = 'select sch.day_in_week, sch.lesson_no, sch.subjects_id, sch.class_id, sub.name as selected_sub, sub.high_low from schedule as sch join subjects as sub on sch.subjects_id = sub.id where class_id = ?';
+        $query = 'select sch.id as spec_row, sch.day_in_week, sch.lesson_no, sch.subjects_id, sch.class_id, sub.name as selected_sub, sub.high_low from schedule as sch join subjects as sub on sch.subjects_id = sub.id where class_id = ?';
         $query= DB::$conn->prepare($query);
         $res = $query->execute([$class_id]);
         $class_sch = $query->fetchAll(PDO::FETCH_ASSOC);
         return $class_sch; 
     }
 
-
+    //method for updating existing schedule of spec. grade
+    public static function edit_sch($day, $lesson, $subject, $class, $id)
+    {
+        $query = 'update schedule set day_in_week = ?, lesson_no = ?, subjects_id = ?, class_id = ? where id = ?';
+        $res=  DB::$conn->prepare($query);
+        return $res->execute([$day, $lesson, $subject, $class, $id]);
+    }
   
 }

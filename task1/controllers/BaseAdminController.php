@@ -324,6 +324,7 @@ class BaseAdminController
 		$class = Classes::get_class_by_id($class_id);
 		$view->data['class'] = $class;
 
+	
 		$view->data['counter'] = 1;
 		$first_week_classes = [];
 		$second_week_classes = [];
@@ -463,6 +464,7 @@ class BaseAdminController
 		$class_id = $this->demand->parts_of_url[5];
 		$view = new View();
 
+		$view->data['class_id'] = $class_id;
 		$view->data['counter'] = 1;
 		$schedule = Schedule::get_sch_by_class($class_id);
 
@@ -478,9 +480,9 @@ class BaseAdminController
 			$other_subjects  = $value + $other_less;
 			$sch[] = $other_subjects;
 			$view->data['sch'] = $sch; 
+
 		}
-		// var_dump($view->data['sch']);
-		//is current working class high or low
+
 		$high_low = Classes::get_class_by_id($class_id);
 		$view->data['high_low'] = $high_low['high_low'];
 
@@ -490,6 +492,42 @@ class BaseAdminController
 
 	public function save_sch_update()
 	{
-		var_dump($_POST);
+		$sch = $_POST;
+		//pull out class_id from POST superglobal
+		$class_id = array_pop($sch);
+		var_dump($class_id);
+		var_dump($sch);
+
+		foreach ($sch as $day_lesson => $lesson_id) {
+			$day = substr($day_lesson, 0, -1);
+			
+			//u can use and str_replace here
+			if ($day == 'monday') {
+				$day = "1";
+			} elseif($day == 'tuesday'){
+				$day = "2";
+			} elseif($day == 'wednesday'){
+				$day = "3";
+			} elseif($day == 'thursday'){
+				$day = "4";
+			} elseif($day == 'friday'){
+				$day = "5";
+			}
+			
+			$lesson_no = substr($day_lesson, -1);
+			$sub_and_id = explode('/', $lesson_id);
+			$subject_id = $sub_and_id[0];
+			$id = $sub_and_id[1];
+
+
+			$edit_sch = Schedule::edit_sch($day, $lesson_no, $subject_id, $class_id, $id);
+			if ($edit_sch) {
+				header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili raspored časova!');
+			} else {
+					echo 'nesto je krenulo po zlu pri izmeni rasporeda';
+			}
+
+		}
+
 	}
 }

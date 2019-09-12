@@ -7,7 +7,12 @@
                 <?php foreach($this->data['students'] as $student): ?>
 
                 <div class="student">
-					<h3 class="title"><a href="#"></span> <?php echo $student['first_name']; ?> <span> <?php echo $student['last_name'];?></span></a> <a class="btn btn-outline-light font-weight-bold" href="'.URLROOT.'/professor/success/'.$students['id'].'">Svedocanstvo</a></h3>
+					<h3 class="title"><a href="#"></span> <?php echo $student['first_name']; ?> <span> <?php echo $student['last_name'];?></span></a> <a class="btn btn-outline-light font-weight-bold" href="<?php echo URLROOT.'/teacher/success/'.$student['id'].'">Svedocanstvo</a>';
+					if(isset($_GET['err']) && $_GET['id']==$student['id'])
+						echo '<br><span style="color:red;font-size:20px;">'.$_GET['err'].'</span>';
+						echo '</h3>';
+						
+						?>
 				</div>
                 <?php endforeach; ?>
 			</div>

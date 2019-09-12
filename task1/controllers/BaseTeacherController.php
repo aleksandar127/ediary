@@ -31,10 +31,6 @@ class BaseTeacherController{
         $view->data['listings'] = $list_gradee;
         $final = Teacher::show_final_grade($id_class);
         $view->data['show_final_grade'] = $final;
-echo "<pre>";
- echo "<b>"; print_r($list_gradee);
-echo "</pre>";
-
         $view->load_view('teacher', 'pages', 'grade');
     }
 

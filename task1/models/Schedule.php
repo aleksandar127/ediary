@@ -80,8 +80,13 @@ class Schedule
     //method for deleting schedule of specific grade from db
     public static function delete($class_id)
     {
-        $query = 'delete from schedule where class_id=? limit 1';
+        $query = 'delete from schedule where class_id=?';
         $res=  DB::$conn->prepare($query);
-        return $res->execute([$class_id]);
+        $res->execute([$class_id]);
+        if ($res->rowCount()){
+            return true;
+        } else{
+            return false;
+        }
     }
 }

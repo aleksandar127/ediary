@@ -490,6 +490,8 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'edit_schedule');
 	}
 
+
+	//method for saving changes about schedule in db
 	public function save_sch_update()
 	{
 		$sch = $_POST;
@@ -529,5 +531,13 @@ class BaseAdminController
 
 		}
 
+	}
+
+	public function delete_sch()
+	{
+		$class_id = $this->demand->parts_of_url[5];
+		var_dump($class_id);
+		$delete_schedule = Schedule::delete($class_id);
+		var_dump($delete_schedule);
 	}
 }

@@ -229,5 +229,122 @@ echo "</pre>";
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
 		header('Location: http://localhost/eDiary/task1/');
 		die();	
-	}
+    }
+    
+
+//get pdf of student final success R&OS library
+public function success(){
+    $id= $this->demand->parts_of_url[5];
+    $view = new View();
+    //get all final grades 
+    $grades=Student::success($id);
+    if($grades==null){
+        header("Location: http://localhost/eDiary/task1/teacher/index?err=Ucenik nije ocenjen&id=".$id);
+        exit();
+    }
+
+    $_SESSION['success']='';
+    $pdf = new Cezpdf();
+    $pdf->selectFont('Helvetica');
+    $pdf->ezSetMargins(40,40,40,40);
+    $pdf->setLineStyle(1,'round');
+    $pdf->line(72,778,522,778);
+    $pdf->line(72,780,522,780);
+    $pdf->line(72,750,522,750);
+    $pdf->line(144,630,450,630);
+    $pdf->line(144,600,450,600);
+    $pdf->line(72,60,522,60);
+    $pdf->line(420,90,522,90);
+    
+    $pdf->ezText('Republika Srbija',13,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-10);
+    $pdf->ezText('Srednja medicinska skola "Beograd"',16,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-10);
+    
+    $pdf->ezText(' <b>SVEDOCANSTVO</b>',40,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-46);
+    $pdf->ezText(''.ucfirst($grades[0]['first_name']).' '.ucfirst($grades[0]['last_name']).'',16,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-15);
+    $pdf->ezText('Smer: Fizioterapeutski tehnicar',15,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-35);
+    $sum=0;
+    $count=0;
+    $fall=false;
+    $x=550;
+    foreach($grades as $subject){
+        $grade;
+        $sum+=$subject['grades'];
+        $count++;
+        switch($subject['grades']){
+            case 1:
+            $grade='nedovoljan';
+            $fall=true;
+            break;
+            case 2:
+            $grade='dovoljan';
+            break;
+            case 3:
+            $grade='dobar';
+            break;
+            case 4:
+            $grade='vrlo dobar';
+            break;
+            case 5:
+            $grade='odlican';
+            break;
+            default:
+            return;
+        }
+
+    //$pdf->setColor (1,0,0,[0]);
+    $pdf->ezText('         - '.ucfirst($subject['name']),13);
+    $pdf->ezSetDy(+15);
+    $pdf->ezText('<i>'.$grade.'('.$subject['grades'].')</i>           ',13,[ 'justification'=> 'right']);
+    $pdf->line(70,$x,520,$x);
+    $pdf->ezSetDy(-15);
+    $x-=28;
+    }
+    
+    $grade=round($sum/$count);
+    switch($grade){
+        case 1:
+        $grade='nedovoljan';
+        break;
+        case 2:
+        $grade='dovoljan';
+        break;
+        case 3:
+        $grade='dobar';
+        break;
+        case 4:
+        $grade='vrlo dobar';
+        break;
+        case 5:
+        $grade='odlican';
+        break;
+        default:
+        return;
+    }
+    if($fall){
+        $grade='Nedovoljan';
+        $pdf-> addText (100,115,14,'Uspeh:<b><i> '.$grade.'(1)</i></b>');
+    //$pdf->ezText('   <b>      - Uspeh: '.$grade.'(1)</b>',13);
+    $pdf->line(80,110,300,110);
+    }
+    else
+    $pdf-> addText (100,115,14,'Uspeh:<b><i> '.$grade.' ('.$sum/$count.')</i></b>');
+    //$pdf->ezText('     <b>     Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13,[ 'justification'=> 'right']);
+    $pdf->ezSetDy(-15);
+    $pdf-> addText (445,75,10,'DIREKTOR');
+    
+    //$pdf->ezText('DIREKTOR');
+    $pdf->ezStream();
+    
+    
+    
+}
+
+
+
+
 }

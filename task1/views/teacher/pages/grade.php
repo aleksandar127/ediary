@@ -21,17 +21,17 @@
                     <th> # </th>
                 </tr>
 
-                <?php foreach($this->data['listings'] as $student_id => $student):  echo "<pre>"; var_dump($student); echo "</pre>"; ?>
+                <?php foreach($this->data['listings'] as $student_id => $student):?>
                 
                 <tr>
                     <td>
-                    
-                    <?php if($student == NULL): ?>
+
+                   
 
                     <a href="<?php echo $this->data['students'][$student_id]['id']; ?>"><span><?php echo $this->data['students'][$student_id]['first_name']; ?></span> <span><?php echo $this->data['students'][$student_id]['last_name'];?></span></a>
-                    
-                    <?php endif; ?>
 
+                   
+                    
                     </td>
 
                     <?php foreach($this->data['subjects'] as $id_subjects => $data_subjects): ?>

@@ -2,6 +2,7 @@
 
 class Teacher{
 
+    //get all students for teacher
     public static function get_all_students(){
         $query = DB::$conn->prepare('SELECT students.id, students.first_name, students.last_name FROM class JOIN students ON class.id = students.class_id WHERE class.users_id = ?;');
         $query->execute([$_COOKIE['id']]);
@@ -12,6 +13,7 @@ class Teacher{
         return $student_id;
     }
 
+    //get all subjects for teacher
     public static function get_all_subjects(){
         $query = DB::$conn->prepare('SELECT * FROM subjects WHERE high_low = 0');
         $query->execute();
@@ -37,8 +39,9 @@ class Teacher{
         return $subjects_id;
     }
 
+    //get all parents for students
     public static function get_all_parents(){
-        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, students.first_name AS students_first_name,students.last_name AS students_last_name FROM users JOIN students ON users.id = students.users_id join class on class.id=students.class_id where class.users_id=?');
+        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, students.first_name AS students_first_name,students.last_name AS students_last_name FROM users JOIN students ON users.id = students.users_id join class on class.id = students.class_id where class.users_id=?');
         $query->execute([$_COOKIE['id']]);
         $parents = $query->fetchAll(PDO::FETCH_ASSOC);
         return $parents;
@@ -51,6 +54,7 @@ class Teacher{
         return $child;
     }
 
+    //get all class
     public static function get_class(){
         $query = DB::$conn->prepare('SELECT class.id, class.name, users_id FROM class WHERE users_id = ?;');
         $query->execute([$_COOKIE['id']]);
@@ -82,7 +86,7 @@ class Teacher{
         $list_grade = $query->execute($class_id);
         $grade = [];
         while($grade_list = $query->fetch(PDO::FETCH_ASSOC)){
-        $grade[$grade_list['students_id']][$grade_list['subjects_id']][] = $grade_list['grades'];
+        $grade[$grade_list['id']][$grade_list['subjects_id']][] = $grade_list['grades'];
         }
         return $grade;
     }

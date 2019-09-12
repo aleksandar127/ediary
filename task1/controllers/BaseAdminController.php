@@ -463,6 +463,7 @@ class BaseAdminController
 		$class_id = $this->demand->parts_of_url[5];
 		$view = new View();
 
+		$view->data['class_id'] = $class_id;
 		$view->data['counter'] = 1;
 		$schedule = Schedule::get_sch_by_class($class_id);
 
@@ -479,8 +480,7 @@ class BaseAdminController
 			$sch[] = $other_subjects;
 			$view->data['sch'] = $sch; 
 		}
-		// var_dump($view->data['sch']);
-		//is current working class high or low
+	
 		$high_low = Classes::get_class_by_id($class_id);
 		$view->data['high_low'] = $high_low['high_low'];
 
@@ -490,6 +490,29 @@ class BaseAdminController
 
 	public function save_sch_update()
 	{
-		var_dump($_POST);
+		$sch = $_POST;
+		//pull out class_id from POST superglobal
+		$class_id = array_pop($sch);
+		var_dump($class_id);
+		var_dump($sch);
+
+		foreach ($sch as $day_lesson => $lesson_id) {
+			$day = substr($day_lesson, 0, -1);
+			
+			//u can use and str_replace here
+			if ($day_in_week == 'monday') {
+				$day_in_week = "1";
+			} elseif($day_in_week == 'tuesday'){
+				$day_in_week = "2";
+			} elseif($day_in_week == 'wednesday'){
+				$day_in_week = "3";
+			} elseif($day_in_week == 'thursday'){
+				$day_in_week = "4";
+			} elseif($day_in_week == 'friday'){
+				$day_in_week = "5";
+			}
+				
+		}
+
 	}
 }

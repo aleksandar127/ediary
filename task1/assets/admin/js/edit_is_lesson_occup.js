@@ -1,4 +1,6 @@
 window.addEventListener('load', () => {
+    let form = document.querySelector('form');
+    let submit = document.querySelector('.btn');
     let cls_selects = document.querySelectorAll('select:not([name="class_sch"])');
 
     cls_selects.forEach(select => {
@@ -21,14 +23,15 @@ window.addEventListener('load', () => {
                 day_in_week = "5";
             }
 
-            // console.log(day_in_week);
-            // console.log(lesson_no);
-            console.log(picked_lesson);
-
             ajax_subject_check(day_in_week, lesson_no, picked_lesson, select);
 
         });
        
+    });
+    
+    submit.addEventListener('click', (e) => {
+        e.preventDefault();
+        errors_exist(form);
     });
 });
 
@@ -39,52 +42,40 @@ function ajax_subject_check(day, lesson, chosen_lesson, select_field) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var res = JSON.parse(this.responseText);
-
-            //POGLEDATI
-            // for (x in res) {
-            //     console.log(x.value);
-            // }
-                
+            let arr = [];
 
             res.forEach(function (item) {
-                let field_valid = true;
                 let occupied_lesson = item.subjects_id; 
-                // console.log('ID: ' + occupied_lesson);
-                if (occupied_lesson === chosen_lesson) {
-                    field_valid = false;
+                arr.push(occupied_lesson);
+
+                if (arr.includes(chosen_lesson)) {
+        
                     console.log('zauzet predmet u tom terminu');
                     select_field.style = 'border: 1px solid red';
                     var err = select_field.nextElementSibling;
                     err.innerHTML = 'Predmet zauzet!';
                     err.classList.add('err');
-                    }// else {
-                //     field_valid = true;
-                // }
-                
-                // if (field_valid === true) {
-                //     console.log('NIJE zauzet predmet u tom terminu');
-                    
-                // }
+                } else {
+                    select_field.style = 'border: 1px solid #ced4da';
+                    var err = select_field.nextElementSibling;
+                    err.innerHTML = '';
+                    err.classList.remove('err');    
+                }
                 
             });
            
-                
-            // }
-            // if (res['subjects_id'] == choosed_lesson) {
-            //     select_field.style = 'border: 1px solid red';
-            //     var err = select_field.nextElementSibling;
-            //     err.innerHTML = 'Predmet zauzet!';
-            //     err.classList.add('err');
-            // } else {
-            //     select_field.style = 'border: 1px solid #ced4da';
-            //     var err = select_field.nextElementSibling;
-            //     err.innerHTML = '';
-            //     err.classList.remove('err');
-            // }
         }
     }
 
     xhttp.open("GET", "http://localhost/eDiary/task1/admin/is_subject_occupied?day=" + day + "&lesson_no=" + lesson, true);
     xhttp.send();
 
+}
+
+
+function errors_exist(form_el) {
+    var errors = form_el.querySelectorAll('small.err');
+    if (errors.length == 0) {
+        form_el.submit();
+    }
 }

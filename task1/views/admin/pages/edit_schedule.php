@@ -172,7 +172,8 @@
                         </div>
                     </div>
                     <?php endfor; ?>
-                
+                    
+                    <input type="hidden" name="id_of_class" value="<?php echo $this->data['class_id'];?>">
                     <input type="submit" class="btn btn-dark" value="Izmenite raspored!">
                 </div>
         </div>

@@ -180,13 +180,14 @@ function ajax_subject_check(day, lesson, chosen_lesson, select_field){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var res = JSON.parse(this.responseText);
+            let res = JSON.parse(this.responseText);
+            let arr = [];
 
             res.forEach(function (item) {
                 let occupied_lesson = item.subjects_id; 
-                console.log('ID: ' + occupied_lesson);
-                console.log(occupied_lesson);
-                if (occupied_lesson == chosen_lesson) {
+                arr.push(occupied_lesson);
+       
+                if (arr.includes(chosen_lesson)) {
                     select_field.style = 'border: 1px solid red';
                     var err = select_field.nextElementSibling;
                     err.innerHTML = 'Predmet zauzet!';

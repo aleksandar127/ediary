@@ -15,7 +15,7 @@
                         <td id="list_subjects">
                             <select name="id_subjects">
                                 <?php foreach($this->data['subjects'] as $subjects): ?>
-                                <option value="<?php echo $subjects['id'];?>"><?php echo $subjects['name'];?></option>
+                                    <option value="<?php echo $subjects['id'];?>"><?php echo $subjects['name'];?></option>
                                 <?php endforeach; ?>
                             </select> 
                         </td> 

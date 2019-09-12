@@ -1,4 +1,4 @@
-  
+
       <div id="message">
         <div class="wrapper">
             <div id="sendMessage">
@@ -62,12 +62,9 @@
             </div><!-- end #sendMessage -->
             <div id="listUsers">
                 <ul> 
-                    
-                     <?php foreach($this->data['parent'] as $parents): ?>
-                    <li><a href="#"><span><?php echo $parents['first_name']; ?></span> <span><?php echo $parents['last_name']; ?></span> - <?php echo $parents['students_first_name']; ?></a></li>
+                    <?php foreach($this->data['parent'] as $parents): ?>
+                        <li><a href="#"><span><?php echo $parents['first_name']; ?></span> <span><?php echo $parents['last_name']; ?></span> - <?php echo $parents['students_first_name']; ?></a></li>
                     <?php endforeach; ?> 
-                   
-                   
                     <li><a href="#">Marko</a></li>
                 </ul>
             </div><!-- end #listUsers -->

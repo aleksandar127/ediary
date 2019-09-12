@@ -19,10 +19,22 @@
             <td><a href="<?php echo URLROOT.'/admin/show_schedule/'.$class['id']; ?>" class="btn btn-light">Otvori</a></td>
             <td><?php echo $class['first_name'].' '.$class['last_name'];?></td>
             <td><a class="btn btn-dark" href="<?php echo URLROOT.'/admin/edit_sch/'.$class['id']?>">Izmeni</a></td>
-            <td><a class="btn btn-danger" href="#">Izbriši</a></td>
+            <td><a class="btn btn-danger" href="#">Izbriši</a>
+            
+              <div class="pop-up" id="pop-up">
+                <p>Da li ste sigurni da želite da izbrišete raspored za ovo odeljenje?</p>
+                <a class="delete" href="<?php echo URLROOT; ?>/admin/delete_sch/<?php echo $user['id'];?>">Izbriši</a>
+                <a class="cancel">Otkaži</a>
+              </div>
+
+              <div id="overlay"></div>
+            
+            </td>
         </tr>
     <?php endforeach;?>
   </tbody>
 </table>
 
 </div>
+
+<script  src="<?php echo URLROOT; ?>/assets/admin/js/delete_confirm.js"></script>

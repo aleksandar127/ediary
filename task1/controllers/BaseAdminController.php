@@ -324,6 +324,7 @@ class BaseAdminController
 		$class = Classes::get_class_by_id($class_id);
 		$view->data['class'] = $class;
 
+	
 		$view->data['counter'] = 1;
 		$first_week_classes = [];
 		$second_week_classes = [];
@@ -479,8 +480,9 @@ class BaseAdminController
 			$other_subjects  = $value + $other_less;
 			$sch[] = $other_subjects;
 			$view->data['sch'] = $sch; 
+
 		}
-	
+
 		$high_low = Classes::get_class_by_id($class_id);
 		$view->data['high_low'] = $high_low['high_low'];
 
@@ -500,18 +502,31 @@ class BaseAdminController
 			$day = substr($day_lesson, 0, -1);
 			
 			//u can use and str_replace here
-			if ($day_in_week == 'monday') {
-				$day_in_week = "1";
-			} elseif($day_in_week == 'tuesday'){
-				$day_in_week = "2";
-			} elseif($day_in_week == 'wednesday'){
-				$day_in_week = "3";
-			} elseif($day_in_week == 'thursday'){
-				$day_in_week = "4";
-			} elseif($day_in_week == 'friday'){
-				$day_in_week = "5";
+			if ($day == 'monday') {
+				$day = "1";
+			} elseif($day == 'tuesday'){
+				$day = "2";
+			} elseif($day == 'wednesday'){
+				$day = "3";
+			} elseif($day == 'thursday'){
+				$day = "4";
+			} elseif($day == 'friday'){
+				$day = "5";
 			}
-				
+			
+			$lesson_no = substr($day_lesson, -1);
+			$sub_and_id = explode('/', $lesson_id);
+			$subject_id = $sub_and_id[0];
+			$id = $sub_and_id[1];
+
+
+			$edit_sch = Schedule::edit_sch($day, $lesson_no, $subject_id, $class_id, $id);
+			if ($edit_sch) {
+				header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili raspored časova!');
+			} else {
+					echo 'nesto je krenulo po zlu pri izmeni rasporeda';
+			}
+
 		}
 
 	}

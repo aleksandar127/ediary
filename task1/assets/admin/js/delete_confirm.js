@@ -1,7 +1,7 @@
 window.addEventListener('load', () => {
 
 	var pop_up_btn = document.querySelectorAll('.btn-danger');
-	console.log(pop_up_btn);
+	// console.log(pop_up_btn);
 
 	pop_up_btn.forEach(delete_user => {
 

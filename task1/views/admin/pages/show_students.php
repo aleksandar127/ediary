@@ -1,4 +1,6 @@
 <div class="container">
+    <p></p>
+    <h1><?php echo $this->data['title']; ?></h1>
     <table class="table">
     <thead>
         <tr>
@@ -17,7 +19,7 @@
                 <th scope="row"><?php echo $student['id']; ?></th>
                 <td><?php echo $student['student_name']; ?></td>
                 <td><?php echo $student['student_surname']; ?></td>
-                <td><?php echo $student['class_id']; ?></td>
+                <td><?php echo $student['class_name']; ?></td>
                 <td><?php echo $student['parent_name'].' '.$student['parent_surname']; ?></td>
                 <td><a class="btn btn-dark" href="<?php echo URLROOT; ?>/admin/edit_student/<?php echo $student['id'];?>">Izmeni učenika</a></td>
                 <td><a class="btn btn-danger" href="#">Izbriši učenika</a></td>

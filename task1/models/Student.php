@@ -3,9 +3,18 @@
 class Student
 {
     //method for getting students by class
+    public static function get_student_by_id($student_id)
+    {
+        $query = DB::$conn->prepare('select st.id, st.first_name as student_name, st.last_name as student_surname, st.class_id, st.users_id, users.first_name as parent_name, users.last_name as parent_surname, class.name as class_name from students as st join users on st.users_id = users.id join class on st.class_id = class.id where st.id = ?');
+        $query->execute([$student_id]);
+        $student = $query->fetch(PDO::FETCH_ASSOC);
+        return $student;
+    }
+
+    //method for getting students by class
     public static function get_students_by_class($class_id)
     {
-        $query = DB::$conn->prepare('select st.id, st.first_name as student_name, st.last_name as student_surname, st.class_id, st.users_id, users.first_name as parent_name, users.last_name as parent_surname from students as st join users on st.users_id = users.id where class_id = ?');
+        $query = DB::$conn->prepare('select st.id, st.first_name as student_name, st.last_name as student_surname, st.class_id, st.users_id, users.first_name as parent_name, users.last_name as parent_surname, class.name as class_name from students as st join users on st.users_id = users.id join class on st.class_id = class.id where class_id = ?');
         $query->execute([$class_id]);
         $students = $query->fetchAll(PDO::FETCH_ASSOC);
         return $students;

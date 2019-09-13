@@ -533,6 +533,7 @@ class BaseAdminController
 
 	}
 
+	//method for deleting schedule from db
 	public function delete_sch()
 	{
 		$class_id = $this->demand->parts_of_url[5];
@@ -548,6 +549,7 @@ class BaseAdminController
 		}
 	}
 
+	//method for showing view with available grades and path to list of students
 	public function students()
 	{
 		$view = new View();
@@ -559,14 +561,34 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'students');
 	}
 
+	//list of students of specific class
 	public function show_students()
 	{
 		$class_id = $this->demand->parts_of_url[5];
 		$view = new View();
 
+		//prepare title
+		$class = Classes::get_class_by_id($class_id);
+		$view->data['title'] = $class['name'];
+
+		//students from this class
 		$students_info_by_class = Student::get_students_by_class($class_id);
 		$view->data['students_info'] = $students_info_by_class;
-		var_dump($students_info_by_class); 
 		$view->load_view('admin', 'pages', 'show_students');
+	}
+
+	public function edit_student()
+	{
+		$student_id = $this->demand->parts_of_url[5];
+		$view = new View();
+
+		$student = Student::get_student_by_id($student_id);
+		$view->data['student'] = $student;
+
+		//available gades
+		$all_classes = Classes::classes_db();
+		$view->data['all_classes'] = $all_classes;
+
+		$view->load_view('admin', 'pages', 'edit_student');
 	}
 }

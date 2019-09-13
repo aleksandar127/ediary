@@ -54,6 +54,7 @@ class BaseDirectorController
 				}
 			//	else {
 					$view->load_view('director', 'pages', 'avgschool_cache20190913');
+					exit;
  					
 				//}
 		}

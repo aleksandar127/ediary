@@ -4,22 +4,18 @@
 
 
 
+// $timediff = time() - filemtime($cacheFile);
+// echo $timediff;
+
+// if($timediff > (24)){
+//   unlink($cacheFile);
+// }
 
 
-
-if(file_exists($cacheFile)){
-  $timediff = time() - filemtime($cacheFile);
-  echo $timediff;
-
-if($timediff > (24)){
-  unlink($cacheFile);
-}
-else {
-  readfile($cacheFile);
-  exit;
-}
-  
-}
+// if(file_exists($cacheFile)){
+//   readfile($cacheFile);
+//   exit;
+// }
 
 
 ob_start();

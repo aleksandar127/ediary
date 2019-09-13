@@ -146,6 +146,10 @@ function check_is_class_ocuppied(){
                 err.classList.add('err');
                 
             } else {
+                cls_select.style = 'border: 1px solid #ced4da';
+                var err = cls_select.nextElementSibling;
+                err.innerHTML = '';
+                err.classList.remove('err');
 
                 var day_in_week = e.target.id.slice(0, -1);
                 var lesson_no = e.target.id.substr(-1, 1);

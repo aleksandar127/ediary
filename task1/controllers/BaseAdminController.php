@@ -535,15 +535,38 @@ class BaseAdminController
 
 	public function delete_sch()
 	{
-		//TODO: OVDE DODATI U GET USPESNOM ZA KOJE ODELJENJE JE USPESNO IZBRISANO, IMAS VEC FUNCKICJU KOJOM ISCITAVAS INFO O ODELJENJU
 		$class_id = $this->demand->parts_of_url[5];
 
+		$class = Classes::get_class_by_id($class_id);
+		
 		$delete_schedule = Schedule::delete($class_id);
 		if ($delete_schedule) {
-			header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali raspored časova za odeljenje ?!');		
+			header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali raspored časova za odeljenje '.$class['name'].'!');		
 		} else {
 			echo 'ne postoji rapsored za ovo odeljenje';
 			header('Location:  '.$_SERVER['HTTP_REFERER'].'?err=Još uvek ne postoji rasporeded časova za odeljenje koje pokušavate da izbrišete.');
 		}
+	}
+
+	public function students()
+	{
+		$view = new View();
+
+		//available gades
+		$all_classes = Classes::classes_db();
+		$view->data['all_classes'] = $all_classes;
+
+		$view->load_view('admin', 'pages', 'students');
+	}
+
+	public function show_students()
+	{
+		$class_id = $this->demand->parts_of_url[5];
+		$view = new View();
+
+		$students_info_by_class = Student::get_students_by_class($class_id);
+		$view->data['students_info'] = $students_info_by_class;
+		var_dump($students_info_by_class); 
+		$view->load_view('admin', 'pages', 'show_students');
 	}
 }

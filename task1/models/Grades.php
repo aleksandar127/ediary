@@ -86,6 +86,7 @@ class Grades{
     }
 
 
+        // Average grades for each class
     public static function average_class_grades($class, $high_low) {
         $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
             FROM subjects_has_grades shg
@@ -101,6 +102,7 @@ class Grades{
     }
 
 
+        // Average grades of all subjects
     public static function average_school_grades()
     {
         $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 

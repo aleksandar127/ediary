@@ -237,6 +237,7 @@ table{
 #table table .final_grade{
 	font-size: 40px;
 	text-align: center;
+	color: black;
 }
 #objects table th{
 	font-size:34px;
@@ -555,4 +556,3 @@ tr:nth-child(even){
 #footer a:active {
 	color: #000;
 }
-

@@ -1,21 +1,24 @@
 <br>
+<div style="margin-bottom:120px;">
+<h1 style="text-align:center;margin-bottom:30px;font-size:60px;">Opravdanja</h1>
 <?php
 $counter=0;
 //print_r($this->data['excuses']);
 foreach($this->data['excuses'] as $excuse):
     $counter++;
-    echo '<div class="excuseDiv" style="height:300px;width:300px;object-fit:contain;">'; 
+    echo '<div class="excuseDiv" style="width:600px;object-fit:contain;">'; 
     if($counter>3){
-    echo '<img style="max-height:100%;max-width:100%;" data-src="../assets/access/images/'.$excuse['image'].'"></img><br>';
-    echo $excuse['last_name'].' '.$excuse['first_name'];
+    echo '<img style="width:600px;" data-src="../assets/access/images/'.$excuse['image'].'"></img><figcaption>'.$excuse['last_name'].' '.$excuse['first_name'].'</figcaption><br>';
+    
     }
     else{
-    echo '<img style="max-height:100%;max-width:100%;" src="../assets/access/images/'.$excuse['image'].'" data-src="../assets/access/images/'.$excuse['image'].'"></img><br>';
+    echo '<figure><img style=width:600px;" src="../assets/access/images/'.$excuse['image'].'" data-src="../assets/access/images/'.$excuse['image'].'"></img><figcaption>'.$excuse['last_name'].' '.$excuse['first_name'].'</figcaption></figure>';
     }
-    echo $excuse['last_name'].' '.$excuse['first_name'];
+    
     echo '</div>';
 endforeach;
 
 
 ?>
+</div>
 <script src="<?php echo URLROOT; ?>/assets/professor/js/lazyload.js"></script>

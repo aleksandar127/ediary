@@ -28,13 +28,47 @@ class BaseDirectorController
 	}
 
 
+	// public function avgschool() 
+	// {
+	// 	$view = new View();
+	// 	$grades = Grades::average_school_grades();
+	// 	$view->data['grades'] = $grades;
+	// 	$view->load_view('director', 'pages', 'avgschool');
+	// }
+
+
+
 	public function avgschool() 
 	{
-
 		$view = new View();
-		$grades = Grades::average_school_grades();
-		$view->data['grades'] = $grades;
-		$view->load_view('director', 'pages', 'avgschool');
+
+		$cacheFile = sprintf("views/director/pages/avgschool_cache%s.php", date("Ymd"));
+
+		if(file_exists($cacheFile)) {
+
+			 $timediff = time() - filemtime($cacheFile);
+			 echo $timediff;
+/////////
+			if($timediff > (24)) {
+				unlink($cacheFile);
+				}
+			//	else {
+					$view->load_view('director', 'pages', 'avgschool_cache20190913');
+					exit;
+ 					
+				//}
+		}
+		else {
+			$grades = Grades::average_school_grades();
+			$view->data['grades'] = $grades;
+			$view->load_view('director', 'pages', 'avgschool');
+		}
+		
+			
+			
+		
+
+		
 	}
 
 	public function logout()
@@ -44,4 +78,9 @@ class BaseDirectorController
 		die();
 		
 	}
+
+
+
+
+
 }

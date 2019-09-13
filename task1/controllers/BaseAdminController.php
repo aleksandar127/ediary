@@ -324,6 +324,7 @@ class BaseAdminController
 		$class = Classes::get_class_by_id($class_id);
 		$view->data['class'] = $class;
 
+	
 		$view->data['counter'] = 1;
 		$first_week_classes = [];
 		$second_week_classes = [];
@@ -414,7 +415,6 @@ class BaseAdminController
 	//function for storing schedule in db
 	public function save_sch()
 	{
-		var_dump('dora jesi li konacno stigla dovde?');
 		$class_id = explode(',', $_POST['class_sch'])[0];
 
 
@@ -463,8 +463,132 @@ class BaseAdminController
 	{
 		$class_id = $this->demand->parts_of_url[5];
 		$view = new View();
-		
-		
+
+		$view->data['class_id'] = $class_id;
+		$view->data['counter'] = 1;
+		$schedule = Schedule::get_sch_by_class($class_id);
+
+		$sch = [];
+		foreach ($schedule as $value) {
+			
+			$subject_id = intval($value['subjects_id']);
+			$high_low = intval($value['high_low']);
+			$other_less = Subjects::get_specific_subs($high_low, $subject_id);
+			
+
+			//merging array of other subjects with class's existing schedule
+			$other_subjects  = $value + $other_less;
+			$sch[] = $other_subjects;
+			$view->data['sch'] = $sch; 
+
+		}
+
+		$high_low = Classes::get_class_by_id($class_id);
+		$view->data['high_low'] = $high_low['high_low'];
+
+
 		$view->load_view('admin', 'pages', 'edit_schedule');
+	}
+
+
+	//method for saving changes about schedule in db
+	public function save_sch_update()
+	{
+		$sch = $_POST;
+		//pull out class_id from POST superglobal
+		$class_id = array_pop($sch);
+		var_dump($class_id);
+		var_dump($sch);
+
+		foreach ($sch as $day_lesson => $lesson_id) {
+			$day = substr($day_lesson, 0, -1);
+			
+			//u can use and str_replace here
+			if ($day == 'monday') {
+				$day = "1";
+			} elseif($day == 'tuesday'){
+				$day = "2";
+			} elseif($day == 'wednesday'){
+				$day = "3";
+			} elseif($day == 'thursday'){
+				$day = "4";
+			} elseif($day == 'friday'){
+				$day = "5";
+			}
+			
+			$lesson_no = substr($day_lesson, -1);
+			$sub_and_id = explode('/', $lesson_id);
+			$subject_id = $sub_and_id[0];
+			$id = $sub_and_id[1];
+
+
+			$edit_sch = Schedule::edit_sch($day, $lesson_no, $subject_id, $class_id, $id);
+			if ($edit_sch) {
+				header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili raspored časova!');
+			} else {
+					echo 'nesto je krenulo po zlu pri izmeni rasporeda';
+			}
+
+		}
+
+	}
+
+	//method for deleting schedule from db
+	public function delete_sch()
+	{
+		$class_id = $this->demand->parts_of_url[5];
+
+		$class = Classes::get_class_by_id($class_id);
+		
+		$delete_schedule = Schedule::delete($class_id);
+		if ($delete_schedule) {
+			header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali raspored časova za odeljenje '.$class['name'].'!');		
+		} else {
+			echo 'ne postoji rapsored za ovo odeljenje';
+			header('Location:  '.$_SERVER['HTTP_REFERER'].'?err=Još uvek ne postoji rasporeded časova za odeljenje koje pokušavate da izbrišete.');
+		}
+	}
+
+	//method for showing view with available grades and path to list of students
+	public function students()
+	{
+		$view = new View();
+
+		//available gades
+		$all_classes = Classes::classes_db();
+		$view->data['all_classes'] = $all_classes;
+
+		$view->load_view('admin', 'pages', 'students');
+	}
+
+	//list of students of specific class
+	public function show_students()
+	{
+		$class_id = $this->demand->parts_of_url[5];
+		$view = new View();
+
+		//prepare title
+		$class = Classes::get_class_by_id($class_id);
+		$view->data['title'] = $class['name'];
+
+		//students from this class
+		$students_info_by_class = Student::get_students_by_class($class_id);
+		$view->data['students_info'] = $students_info_by_class;
+		$view->load_view('admin', 'pages', 'show_students');
+	}
+
+	public function edit_student()
+	{
+		$student_id = $this->demand->parts_of_url[5];
+		$view = new View();
+
+		$student = Student::get_student_by_id($student_id);
+		$view->data['student'] = $student;
+
+		//available gades
+		$all_classes = Classes::classes_db();
+		$view->data['all_classes'] = $all_classes;
+
+		$view->load_view('admin', 'pages', 'edit_student');
 	}
 }

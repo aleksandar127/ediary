@@ -56,13 +56,37 @@ class Schedule
     {
         $query = DB::$conn->prepare('select subjects_id from schedule where day_in_week = ? and lesson_no = ?');
         $query->execute([$day, $lesson_num]);
-        $occupy_classes = $query->fetch(PDO::FETCH_ASSOC);
+        $occupy_classes = $query->fetchAll(PDO::FETCH_ASSOC);
         return $occupy_classes;
     }
 
     public static function get_sch_by_class($class_id)
     {
-        
+        $query = 'select sch.id as spec_row, sch.day_in_week, sch.lesson_no, sch.subjects_id, sch.class_id, sub.name as selected_sub, sub.high_low from schedule as sch join subjects as sub on sch.subjects_id = sub.id where class_id = ?';
+        $query= DB::$conn->prepare($query);
+        $res = $query->execute([$class_id]);
+        $class_sch = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $class_sch; 
     }
 
+    //method for updating existing schedule of spec. grade
+    public static function edit_sch($day, $lesson, $subject, $class, $id)
+    {
+        $query = 'update schedule set day_in_week = ?, lesson_no = ?, subjects_id = ?, class_id = ? where id = ?';
+        $res=  DB::$conn->prepare($query);
+        return $res->execute([$day, $lesson, $subject, $class, $id]);
+    }
+    
+    //method for deleting schedule of specific grade from db
+    public static function delete($class_id)
+    {
+        $query = 'delete from schedule where class_id=?';
+        $res=  DB::$conn->prepare($query);
+        $res->execute([$class_id]);
+        if ($res->rowCount()){
+            return true;
+        } else{
+            return false;
+        }
+    }
 }

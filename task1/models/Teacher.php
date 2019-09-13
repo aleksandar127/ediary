@@ -2,6 +2,7 @@
 
 class Teacher{
 
+    //get all students for teacher
     public static function get_all_students(){
         $query = DB::$conn->prepare('SELECT students.id, students.first_name, students.last_name FROM class JOIN students ON class.id = students.class_id WHERE class.users_id = ?;');
         $query->execute([$_COOKIE['id']]);
@@ -12,6 +13,7 @@ class Teacher{
         return $student_id;
     }
 
+    //get all subjects for teacher
     public static function get_all_subjects(){
         $query = DB::$conn->prepare('SELECT * FROM subjects WHERE high_low = 0');
         $query->execute();
@@ -23,6 +25,7 @@ class Teacher{
         return $subjects_id;
     }
 
+    //get students 
     public static function get_students_id($id){
         $query = DB::$conn->prepare('SELECT students.id, students.first_name, students.last_name FROM students WHERE students.id = ?;');
         $query->execute([$id]);
@@ -37,8 +40,9 @@ class Teacher{
         return $subjects_id;
     }
 
+    //get all parents for students
     public static function get_all_parents(){
-        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, students.first_name AS students_first_name,students.last_name AS students_last_name FROM users JOIN students ON users.id = students.users_id join class on class.id=students.class_id where class.users_id=?');
+        $query = DB::$conn->prepare('SELECT users.id, users.first_name, users.last_name, students.first_name AS students_first_name,students.last_name AS students_last_name FROM users JOIN students ON users.id = students.users_id join class on class.id = students.class_id where class.users_id=?');
         $query->execute([$_COOKIE['id']]);
         $parents = $query->fetchAll(PDO::FETCH_ASSOC);
         return $parents;
@@ -51,6 +55,7 @@ class Teacher{
         return $child;
     }
 
+    //get all class
     public static function get_class(){
         $query = DB::$conn->prepare('SELECT class.id, class.name, users_id FROM class WHERE users_id = ?;');
         $query->execute([$_COOKIE['id']]);
@@ -77,12 +82,12 @@ class Teacher{
         return $delete_grade;
     }
 
-    public static function grade_listing(){
-        $query = DB::$conn->prepare('SELECT subjects_has_grades.grades, subjects_has_grades_has_students.students_id, subjects_has_grades.subjects_id FROM subjects_has_grades_has_students JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id');
-        $list_grade = $query->execute();
+    public static function grade_listing($class_id){
+        $query = DB::$conn->prepare('SELECT students.id, students.first_name, subjects_has_grades.grades, subjects_has_grades_has_students.students_id, subjects_has_grades.subjects_id FROM students LEFT JOIN subjects_has_grades_has_students ON students.id = subjects_has_grades_has_students.students_id LEFT JOIN subjects_has_grades ON subjects_has_grades_has_students.subjects_has_grades_id = subjects_has_grades.id WHERE students.class_id = ? ORDER BY students.id');
+        $list_grade = $query->execute($class_id);
         $grade = [];
         while($grade_list = $query->fetch(PDO::FETCH_ASSOC)){
-        $grade[$grade_list['students_id']][$grade_list['subjects_id']][] = $grade_list['grades'];
+        $grade[$grade_list['id']][$grade_list['subjects_id']][] = $grade_list['grades'];
         }
         return $grade;
     }
@@ -107,10 +112,7 @@ class Teacher{
 
     public static function show_final_grade($class_id){
         $query = DB::$conn->prepare('SELECT subjects_has_grades.grades, final_grade.student_id, subjects_has_grades.subjects_id FROM final_grade JOIN subjects_has_grades ON final_grade.subject_grade = subjects_has_grades.id JOIN students ON students.id = final_grade.student_id WHERE students.class_id = ?');
-        $grades = $query->execute($class_id); 
-        // $final_grade = $query->fetchAll(PDO::FETCH_ASSOC);
-        // return $final_grade;
-
+        $grades = $query->execute($class_id);
         $grade_final = [];
         while($final_grade = $query->fetch(PDO::FETCH_ASSOC)){
         $grade_final[$final_grade['student_id']][$final_grade['subjects_id']][] = $final_grade['grades'];

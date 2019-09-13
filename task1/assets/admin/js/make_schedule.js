@@ -146,6 +146,10 @@ function check_is_class_ocuppied(){
                 err.classList.add('err');
                 
             } else {
+                cls_select.style = 'border: 1px solid #ced4da';
+                var err = cls_select.nextElementSibling;
+                err.innerHTML = '';
+                err.classList.remove('err');
 
                 var day_in_week = e.target.id.slice(0, -1);
                 var lesson_no = e.target.id.substr(-1, 1);
@@ -162,8 +166,8 @@ function check_is_class_ocuppied(){
                     day_in_week = "4";
 				} else if(day_in_week == 'friday'){
                     day_in_week = "5";
-				}
-                // console.log(day_in_week);
+                }
+                
                 ajax_subject_check(day_in_week, lesson_no, picked_lesson, cls_select);
 
             }
@@ -175,24 +179,31 @@ function check_is_class_ocuppied(){
 
 
 //function for checking which subject is free to be used for schedule
-function ajax_subject_check(day, lesson, choosed_lesson, select_field){
+function ajax_subject_check(day, lesson, chosen_lesson, select_field){
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var res = JSON.parse(this.responseText);
+            let res = JSON.parse(this.responseText);
+            let arr = [];
 
-            if (res['subjects_id'] == choosed_lesson) {
-                select_field.style = 'border: 1px solid red';
-                var err = select_field.nextElementSibling;
-                err.innerHTML = 'Predmet zauzet!';
-                err.classList.add('err');
-            } else {
-                select_field.style = 'border: 1px solid #ced4da';
-                var err = select_field.nextElementSibling;
-                err.innerHTML = '';
-                err.classList.remove('err');
-            }
+            res.forEach(function (item) {
+                let occupied_lesson = item.subjects_id; 
+                arr.push(occupied_lesson);
+       
+                if (arr.includes(chosen_lesson)) {
+                    select_field.style = 'border: 1px solid red';
+                    var err = select_field.nextElementSibling;
+                    err.innerHTML = 'Predmet zauzet!';
+                    err.classList.add('err');
+                } else {
+                    select_field.style = 'border: 1px solid #ced4da';
+                    var err = select_field.nextElementSibling;
+                    err.innerHTML = '';
+                    err.classList.remove('err');
+                }
+            })
+           
         }
     }
     

@@ -3,9 +3,9 @@
 class BaseTeacherController{
     public function __construct($demand){
 		$this->demand = $demand;
-	
     }
     
+    //home page
 	public function index(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -15,6 +15,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'home');
     }
 
+    //show all grade 
     public function grade(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -27,66 +28,55 @@ class BaseTeacherController{
         $view->data['students'] = $get_students;
         $all_subjects = Teacher::get_all_subjects();
         $view->data['subjects'] = $all_subjects;
-        $list_gradee = Teacher::grade_listing();
+        $list_gradee = Teacher::grade_listing($id_class);
         $view->data['listings'] = $list_gradee;
-
         $final = Teacher::show_final_grade($id_class);
         $view->data['show_final_grade'] = $final;
-
-        echo "<pre>";
-        echo " lista ZAKLJUCNIH ocena: "; var_dump($final);
-        echo "</pre>";
-        echo "<pre>";
-        echo " lista ocena: "; var_dump($list_gradee);
-        echo "</pre>";
-
-
         $view->load_view('teacher', 'pages', 'grade');
     }
 
-    public function messages(){
+    public function messages(){ 
         $view = new View();
         $all_class = Teacher::get_class();
         $view->data['class'] = $all_class;
 		$messages = Messages::get_new_messages();
 		$parents = Teacher::get_all_parents();
-		$view->data['all_messages'] = $messages;
-		$view->data['parents'] = $parents;
-		$view->load_view('teacher', 'pages', 'messages');
+		$view->data['all_messages'] = $messages; 
+		$view->data['parents'] = $parents; 
+		$view->load_view('teacher', 'pages', 'messages'); 
     }
-    
+
 	public function ajax(){
-		$messages = Messages::get_new_messages();
-		echo JSON_encode($messages);
-	}
-
-	public function ajax_is_read() {
-		$id = $_GET['id'];
-		$messages = Messages::ajax_is_read($id);
-		if ($messages)
-        $response = ['response'=>true];
-        
-		else 
-        $response = ['response'=>false];
-        
-        echo JSON_encode($response) ;
+		$messages = Messages::get_new_messages(); 
+        echo JSON_encode($messages); 
+    } 
+ 
+	public function ajax_is_read(){
+		$id = $_GET['id']; 
+        $messages = Messages::ajax_is_read($id);
+        if($messages){
+            $response = ['response'=>true];
+        }else{
+            $response = ['response'=>false];
+        }
+        echo JSON_encode($response);
     }
 
-	public function ajax_chat() {
-        $id = $_GET['id'];
-        $messages = Messages::ajax_chat($id);
-        echo JSON_encode($messages);
+	public function ajax_chat(){
+        $id = $_GET['id']; 
+        $messages = Messages::ajax_chat($id); 
+        echo JSON_encode($messages); 
+    } 
+
+	public function ajax_send_message(){ 
+		$message = htmlspecialchars(strip_tags($_GET['message'])); 
+		$id = $_GET['id']; 
+		Messages::ajax_send_message($message,$id); 
+		$response = ['response' => 'da']; 
+        echo JSON_encode($response);
     }
 
-
-	public function ajax_send_message(){
-		$message = htmlspecialchars(strip_tags($_GET['message']));
-		$id = $_GET['id'];
-		Messages::ajax_send_message($message,$id);
-		$response = ['response'=>'da'];
-		echo JSON_encode($response);
-	}
-
+    //method from show subjects
     public function objects(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -157,6 +147,7 @@ class BaseTeacherController{
         }
     }
 
+    //sohow the final grade
     public function final_grade(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -168,6 +159,8 @@ class BaseTeacherController{
         $view->data['id_students'] = $students_id;
         $view->load_view('teacher', 'pages', 'final_grade');
     }
+
+    //save the final grade
     public function save_final_grade(){
         $id_students = $this->demand->parts_of_url[5];
         $name_students = $_POST['first_name'];
@@ -184,61 +177,167 @@ class BaseTeacherController{
             
         }else{
             header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije zakljucena!');
-        }
-
-        echo "<pre>";
-        var_dump();
-        echo "<pre>";
+        }  
     }
 
-    public function schedule(){
-        $view = new View();
-        $all_class = Teacher::get_class();
-        $view->data['class'] = $all_class;
-		$schedule = Schedule::get_schedule_for_teacher();
-		$view->data['schedule'] = $schedule;
-		$view->load_view('teacher', 'pages', 'schedule');
-		
+    public function schedule(){ 
+        $view = new View(); 
+        $all_class = Teacher::get_class(); 
+        $view->data['class'] = $all_class; 
+		$schedule = Schedule::get_schedule_for_teacher(); 
+        $view->data['schedule'] = $schedule; 
+        $view->load_view('teacher', 'pages', 'schedule');
+    }
 
-	}
+    public function open(){ 
+        $view = new View(); 
+        $all_class = Teacher::get_class(); 
+        $view->data['class'] = $all_class; 
+		$open_doors = OpenDoor::open(); 
+		$view->data['open'] = $open_doors; 
+        $view->load_view('teacher', 'pages', 'open');
+    }
 
-    public function open(){
-        $view = new View();
-        $all_class = Teacher::get_class();
-        $view->data['class'] = $all_class;
-		$open_doors = OpenDoor::open();
-		$view->data['open'] = $open_doors;
-		$view->load_view('teacher', 'pages', 'open');
-	}
-
-	public function open_yes(){
-		$id = $this->demand->parts_of_url[5];
-		$open_doors = OpenDoor::open_yes($id);
-		if(isset($_SERVER["HTTP_REFERER"])) {
+	public function open_yes(){ 
+		$id = $this->demand->parts_of_url[5]; 
+		$open_doors = OpenDoor::open_yes($id); 
+		if(isset($_SERVER["HTTP_REFERER"])){
 			header ("Location:" . $_SERVER["HTTP_REFERER"]);
-		}
-	}
+        }
+    }
 
-	public function open_no(){
-		$id = $this->demand->parts_of_url[5];
-		$open_doors=OpenDoor::open_no($id);
-		if (isset($_SERVER["HTTP_REFERER"])) {
-			header("Location: " . $_SERVER["HTTP_REFERER"]);
-		}
-	}
+	public function open_no(){ 
+		$id = $this->demand->parts_of_url[5]; 
+        $open_doors=OpenDoor::open_no($id);
+		if (isset($_SERVER["HTTP_REFERER"])){ 
+			header("Location: " . $_SERVER["HTTP_REFERER"]); 
+        }
+    }
 
 	public function open_create(){
 		$time = str_replace('T',' ',$_GET['date']);
 		$time .= ":00";
 		$open_create = OpenDoor::open_create($time);
-		if(isset($_SERVER["HTTP_REFERER"])) {
+		if(isset($_SERVER["HTTP_REFERER"])){
 			header ("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
     }
 
-    public function logout(){
-		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
-		header('Location: http://localhost/eDiary/task1/');
-		die();	
-	}
+
+
+//get pdf of student final success R&OS library
+public function success(){
+    $id= $this->demand->parts_of_url[5];
+    $view = new View();
+    //get all final grades 
+    $grades=Student::success($id);
+    if($grades==null){
+        header("Location: http://localhost/eDiary/task1/teacher/index?err=Ucenik nije ocenjen&id=".$id);
+        exit();
+    }
+
+    $_SESSION['success']='';
+    $pdf = new Cezpdf();
+    $pdf->selectFont('Helvetica');
+    $pdf->ezSetMargins(40,40,40,40);
+    $pdf->setLineStyle(1,'round');
+    $pdf->line(72,778,522,778);
+    $pdf->line(72,780,522,780);
+    $pdf->line(72,750,522,750);
+    $pdf->line(144,630,450,630);
+    $pdf->line(144,600,450,600);
+    $pdf->line(72,60,522,60);
+    $pdf->line(420,90,522,90);
+    
+    $pdf->ezText('Republika Srbija',13,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-10);
+    $pdf->ezText('Srednja medicinska skola "Beograd"',16,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-10);
+    
+    $pdf->ezText(' <b>SVEDOCANSTVO</b>',40,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-46);
+    $pdf->ezText(''.ucfirst($grades[0]['first_name']).' '.ucfirst($grades[0]['last_name']).'',16,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-15);
+    $pdf->ezText('Smer: Fizioterapeutski tehnicar',15,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-35);
+    $sum=0;
+    $count=0;
+    $fall=false;
+    $x=550;
+    foreach($grades as $subject){
+        $grade;
+        $sum+=$subject['grades'];
+        $count++;
+        switch($subject['grades']){
+            case 1:
+            $grade='nedovoljan';
+            $fall=true;
+            break;
+            case 2:
+            $grade='dovoljan';
+            break;
+            case 3:
+            $grade='dobar';
+            break;
+            case 4:
+            $grade='vrlo dobar';
+            break;
+            case 5:
+            $grade='odlican';
+            break;
+            default:
+            return;
+        }
+
+    //$pdf->setColor (1,0,0,[0]);
+    $pdf->ezText('         - '.ucfirst($subject['name']),13);
+    $pdf->ezSetDy(+15);
+    $pdf->ezText('<i>'.$grade.'('.$subject['grades'].')</i>           ',13,[ 'justification'=> 'right']);
+    $pdf->line(70,$x,520,$x);
+    $pdf->ezSetDy(-15);
+    $x-=28;
+    }
+    
+    $grade=round($sum/$count);
+    switch($grade){
+        case 1:
+        $grade='nedovoljan';
+        break;
+        case 2:
+        $grade='dovoljan';
+        break;
+        case 3:
+        $grade='dobar';
+        break;
+        case 4:
+        $grade='vrlo dobar';
+        break;
+        case 5:
+        $grade='odlican';
+        break;
+        default:
+        return;
+    }
+    if($fall){
+        $grade='Nedovoljan';
+        $pdf-> addText (100,115,14,'Uspeh:<b><i> '.$grade.'(1)</i></b>');
+    //$pdf->ezText('   <b>      - Uspeh: '.$grade.'(1)</b>',13);
+    $pdf->line(80,110,300,110);
+    }
+    else
+    $pdf-> addText (100,115,14,'Uspeh:<b><i> '.$grade.' ('.$sum/$count.')</i></b>');
+    //$pdf->ezText('     <b>     Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13,[ 'justification'=> 'right']);
+    $pdf->ezSetDy(-15);
+    $pdf-> addText (445,75,10,'DIREKTOR');
+    
+    //$pdf->ezText('DIREKTOR');
+    $pdf->ezStream();
+}
+
+public function logout(){
+    $access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
+    header('Location: '.URLROOT.'/');
+    die();	
+}
+
 }

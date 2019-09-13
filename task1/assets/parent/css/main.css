@@ -133,19 +133,20 @@ form{
     width:350px;
     margin-bottom:3px;
     border: 3px double rgba(4,15,53,0.47);
-border-radius: 5px;
+    border-radius: 5px;
     
 }
 
 .usersChatHeader{
     display:inline-block;
-    position:fixed;
-    height:400px;
+	height:500px;
 	overflow:auto;
+	border-radius:5px;
+	
 	
 }
 .messageChatDiv{display:inline-block;
-    width:400px;
+	width:400px;
     padding:10px;
     min-height:500px;
     max-height:500px;
@@ -153,10 +154,11 @@ border-radius: 5px;
     margin-right:10px;
 	border: 14px ridge rgba(4,15,53,0.39);
 	border-radius: 5px;
+	
     
 }
 
-.UsersForChatDiv{
+.UsersForChatDiv{ 
 display:inline-block;
 width:400px;
 min-height:50px;
@@ -168,9 +170,7 @@ padding-top:10px;
 border-radius: 5px;
 }
 
-textarea{
-	width:300px;
-}
+
 
 .newMessage{
     background-color:silver;
@@ -192,7 +192,8 @@ textarea{
 }
 
 #open_request_table {
-	border:solid black 3px;display:inline-block;
+	border:solid black 3px;
+	display:inline-block;
 }
 
 #open_request_table tr:nth-child(even) {
@@ -255,6 +256,27 @@ display:inline-block;
 	margin-bottom:20px;
 	border-radius:20px;
 }
+
+.notification {
+	animation: notify 2s ease;
+	transition: all .5s ease;
+}
+
+@keyframes notify {
+	0% {
+		transform: translateY(200px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+.notification:hover {
+	transform: scale(1.05);
+}
+
 
 .newMessage{
 	padding:5px;

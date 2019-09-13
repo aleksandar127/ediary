@@ -1,5 +1,5 @@
 body{
-    margin: 80px 0 0 0;
+    margin: 60px 0 0 0;
     padding: 0;
     background-color: rgb(255,255,255);
 }
@@ -11,6 +11,7 @@ body{
     height: 60px;
     background-color: rgba(0, 0, 0, 0.85);
 }
+
 .left_nav{
     float: left;
     height: 100%;
@@ -55,14 +56,9 @@ body{
 
 .card-diaryof {
     box-shadow: 3px 3px 10px #000;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('../images/diary.jpg');
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.95)) /* url('../images/diary.jpg') */;
     background-size: cover;
 }
-
-.diary-wrapper {
-    box-shadow: 3px 3px 10px #000;
-}
-
 
 form{
     margin-top: 30px;
@@ -76,10 +72,11 @@ form{
     cursor: pointer;
 }
 
-.excuseDiv:hover{transform: scale(3);
-    position:relative;
-    left:300px;
-    top:250px;
+.excuseDiv{
+    margin:auto;
+}
+.excuseDiv:hover{
+  transform: scale(2);
 }
 
 .scheduleProf tr td{width:200px;}
@@ -105,14 +102,13 @@ form{
     width:350px;
     margin-bottom:3px;
     border: 3px double rgba(4,15,53,0.47);
-
+    border-radius: 5px;
     
 }
 
 .usersChatHeader{
     display:inline-block;
-    position:fixed;
-    height:400px;
+    height:500px;
     overflow:auto;
     border-radius:5px;
 }
@@ -140,9 +136,7 @@ padding-top:2px;
 border-radius: 5px;
 }
 
-textarea{
-    width:300px;
-}
+
 
 .newMessage{
     background-color:silver;

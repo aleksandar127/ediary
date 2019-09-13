@@ -46,27 +46,26 @@ class BaseDirectorController
 
 		if(file_exists($cacheFile)) {
 
-			$timediff = time() - filemtime($cacheFile);
-			echo $timediff;
-
+			 $timediff = time() - filemtime($cacheFile);
+			 echo $timediff;
+/////////
 			if($timediff > (24)) {
 				unlink($cacheFile);
 				}
-				else {
+			//	else {
 					$view->load_view('director', 'pages', 'avgschool_cache20190913');
  					
-				}
-
+				//}
 		}
 		else {
-			
 			$grades = Grades::average_school_grades();
 			$view->data['grades'] = $grades;
 			$view->load_view('director', 'pages', 'avgschool');
 		}
-
+		
 			
-
+			
+		
 
 		
 	}

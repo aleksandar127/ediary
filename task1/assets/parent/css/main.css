@@ -257,6 +257,22 @@ display:inline-block;
 	border-radius:20px;
 }
 
+.notification {
+	animation: notify 3s ease;
+}
+
+@keyframes notify {
+		0% {
+			transform: translateX(-200px);
+			opacity: 0;
+		}
+		100% {
+			transform: translateX(0px);
+			opacity: 1;
+		}
+		
+
+
 .newMessage{
 	padding:5px;
 }

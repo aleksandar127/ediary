@@ -1,15 +1,12 @@
 window.addEventListener('load', () => {
 
 	var pop_up_btn = document.querySelectorAll('.btn-danger');
-	// console.log(pop_up_btn);
 
 	pop_up_btn.forEach(delete_user => {
 
-		console.log(delete_user);
 		delete_user.addEventListener('click', (e) => {
-
 			e.preventDefault();
-            console.log(e.target);
+
             var pop_up_div = e.target.nextElementSibling;
 			var overlay = pop_up_div.nextElementSibling;
 			

@@ -490,6 +490,8 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'edit_schedule');
 	}
 
+
+	//method for saving changes about schedule in db
 	public function save_sch_update()
 	{
 		$sch = $_POST;
@@ -529,5 +531,19 @@ class BaseAdminController
 
 		}
 
+	}
+
+	public function delete_sch()
+	{
+		//TODO: OVDE DODATI U GET USPESNOM ZA KOJE ODELJENJE JE USPESNO IZBRISANO, IMAS VEC FUNCKICJU KOJOM ISCITAVAS INFO O ODELJENJU
+		$class_id = $this->demand->parts_of_url[5];
+
+		$delete_schedule = Schedule::delete($class_id);
+		if ($delete_schedule) {
+			header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali raspored časova za odeljenje ?!');		
+		} else {
+			echo 'ne postoji rapsored za ovo odeljenje';
+			header('Location:  '.$_SERVER['HTTP_REFERER'].'?err=Još uvek ne postoji rasporeded časova za odeljenje koje pokušavate da izbrišete.');
+		}
 	}
 }

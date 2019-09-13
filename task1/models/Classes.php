@@ -77,7 +77,7 @@ class Classes
 
     }
 
-    //get professor's class
+   // get professor's class
     public static function get_my_class(){
         $query = DB::$conn->prepare('select id,name from class where users_id=?');
         $query->execute([$_COOKIE['id']]); 

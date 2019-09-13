@@ -17,12 +17,10 @@ endforeach;
     <div id="sendMessage">
                 
                 <div id="chat" >
-                    
                         <textarea id="subject"  name="subject" placeholder="Write something.." style="width:300px;"></textarea>
                         <br>
                         <button onclick='ajaxSendMessage();'>Posalji</button>
                         <button onclick='ajax();'>Pregled novih poruka</button>
-                    
                 </div>
             </div><!-- end #sendMessage -->
 

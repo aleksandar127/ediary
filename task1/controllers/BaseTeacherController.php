@@ -3,9 +3,9 @@
 class BaseTeacherController{
     public function __construct($demand){
 		$this->demand = $demand;
-	
     }
     
+    //home page
 	public function index(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -15,6 +15,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'home');
     }
 
+    //show all grade 
     public function grade(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -34,49 +35,48 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'grade');
     }
 
-    public function messages(){
+    public function messages(){ 
         $view = new View();
         $all_class = Teacher::get_class();
         $view->data['class'] = $all_class;
 		$messages = Messages::get_new_messages();
 		$parents = Teacher::get_all_parents();
-		$view->data['all_messages'] = $messages;
-		$view->data['parents'] = $parents;
-		$view->load_view('teacher', 'pages', 'messages');
+		$view->data['all_messages'] = $messages; 
+		$view->data['parents'] = $parents; 
+		$view->load_view('teacher', 'pages', 'messages'); 
     }
-    
+
 	public function ajax(){
-		$messages = Messages::get_new_messages();
-		echo JSON_encode($messages);
-	}
-
-	public function ajax_is_read() {
-		$id = $_GET['id'];
-		$messages = Messages::ajax_is_read($id);
-		if ($messages)
-        $response = ['response'=>true];
-        
-		else 
-        $response = ['response'=>false];
-        
-        echo JSON_encode($response) ;
+		$messages = Messages::get_new_messages(); 
+        echo JSON_encode($messages); 
+    } 
+ 
+	public function ajax_is_read(){
+		$id = $_GET['id']; 
+        $messages = Messages::ajax_is_read($id);
+        if($messages){
+            $response = ['response'=>true];
+        }else{
+            $response = ['response'=>false];
+        }
+        echo JSON_encode($response);
     }
 
-	public function ajax_chat() {
-        $id = $_GET['id'];
-        $messages = Messages::ajax_chat($id);
-        echo JSON_encode($messages);
+	public function ajax_chat(){
+        $id = $_GET['id']; 
+        $messages = Messages::ajax_chat($id); 
+        echo JSON_encode($messages); 
+    } 
+
+	public function ajax_send_message(){ 
+		$message = htmlspecialchars(strip_tags($_GET['message'])); 
+		$id = $_GET['id']; 
+		Messages::ajax_send_message($message,$id); 
+		$response = ['response' => 'da']; 
+        echo JSON_encode($response);
     }
 
-
-	public function ajax_send_message(){
-		$message = htmlspecialchars(strip_tags($_GET['message']));
-		$id = $_GET['id'];
-		Messages::ajax_send_message($message,$id);
-		$response = ['response'=>'da'];
-		echo JSON_encode($response);
-	}
-
+    //method from show subjects
     public function objects(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -147,6 +147,7 @@ class BaseTeacherController{
         }
     }
 
+    //sohow the final grade
     public function final_grade(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -158,6 +159,8 @@ class BaseTeacherController{
         $view->data['id_students'] = $students_id;
         $view->load_view('teacher', 'pages', 'final_grade');
     }
+
+    //save the final grade
     public function save_final_grade(){
         $id_students = $this->demand->parts_of_url[5];
         $name_students = $_POST['first_name'];
@@ -166,6 +169,7 @@ class BaseTeacherController{
         $grades = $_POST['grade'];
         $subjects_and_grades = Teacher::get_id_subjects_grade($subjects_id, $grades);
         $subject_grades['subjects_id'] =  $subjects_and_grades;	
+
         $add_final_grade = Teacher::final_grade($id_students, $subjects_id, $subjects_and_grades );
 
         if($add_final_grade){
@@ -173,60 +177,53 @@ class BaseTeacherController{
             
         }else{
             header('Location:http://localhost/eDiary/task1/teacher/new_grade?err=Ocena nije zakljucena!');
-        }
-
-       
+        }  
     }
 
-    public function schedule(){
-        $view = new View();
-        $all_class = Teacher::get_class();
-        $view->data['class'] = $all_class;
-		$schedule = Schedule::get_schedule_for_teacher();
-		$view->data['schedule'] = $schedule;
-		$view->load_view('teacher', 'pages', 'schedule');
-	}
+    public function schedule(){ 
+        $view = new View(); 
+        $all_class = Teacher::get_class(); 
+        $view->data['class'] = $all_class; 
+		$schedule = Schedule::get_schedule_for_teacher(); 
+        $view->data['schedule'] = $schedule; 
+        $view->load_view('teacher', 'pages', 'schedule');
+    }
 
-    public function open(){
-        $view = new View();
-        $all_class = Teacher::get_class();
-        $view->data['class'] = $all_class;
-		$open_doors = OpenDoor::open();
-		$view->data['open'] = $open_doors;
-		$view->load_view('teacher', 'pages', 'open');
-	}
+    public function open(){ 
+        $view = new View(); 
+        $all_class = Teacher::get_class(); 
+        $view->data['class'] = $all_class; 
+		$open_doors = OpenDoor::open(); 
+		$view->data['open'] = $open_doors; 
+        $view->load_view('teacher', 'pages', 'open');
+    }
 
-	public function open_yes(){
-		$id = $this->demand->parts_of_url[5];
-		$open_doors = OpenDoor::open_yes($id);
-		if(isset($_SERVER["HTTP_REFERER"])) {
+	public function open_yes(){ 
+		$id = $this->demand->parts_of_url[5]; 
+		$open_doors = OpenDoor::open_yes($id); 
+		if(isset($_SERVER["HTTP_REFERER"])){
 			header ("Location:" . $_SERVER["HTTP_REFERER"]);
-		}
-	}
+        }
+    }
 
-	public function open_no(){
-		$id = $this->demand->parts_of_url[5];
-		$open_doors=OpenDoor::open_no($id);
-		if (isset($_SERVER["HTTP_REFERER"])) {
-			header("Location: " . $_SERVER["HTTP_REFERER"]);
-		}
-	}
+	public function open_no(){ 
+		$id = $this->demand->parts_of_url[5]; 
+        $open_doors=OpenDoor::open_no($id);
+		if (isset($_SERVER["HTTP_REFERER"])){ 
+			header("Location: " . $_SERVER["HTTP_REFERER"]); 
+        }
+    }
 
 	public function open_create(){
 		$time = str_replace('T',' ',$_GET['date']);
 		$time .= ":00";
 		$open_create = OpenDoor::open_create($time);
-		if(isset($_SERVER["HTTP_REFERER"])) {
+		if(isset($_SERVER["HTTP_REFERER"])){
 			header ("Location: " . $_SERVER["HTTP_REFERER"]);
 		}
     }
 
-    public function logout(){
-		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
-		header('Location: http://localhost/eDiary/task1/');
-		die();	
-    }
-    
+
 
 //get pdf of student final success R&OS library
 public function success(){
@@ -335,12 +332,12 @@ public function success(){
     
     //$pdf->ezText('DIREKTOR');
     $pdf->ezStream();
-    
-    
-    
 }
 
-
-
+public function logout(){
+    $access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
+    header('Location: '.URLROOT.'/');
+    die();	
+}
 
 }

@@ -1,26 +1,3 @@
-<?php 
-
- $cacheFile = sprintf("views/director/pages/avgschool_cache%s.php", date("Ymd"));
-
-
-
-// $timediff = time() - filemtime($cacheFile);
-// echo $timediff;
-
-// if($timediff > (24)){
-//   unlink($cacheFile);
-// }
-
-
-if(file_exists($cacheFile)){
-  readfile($cacheFile);
-  exit;
-}
-
-
-ob_start();
-
-?>
 
 <div class="col-md-12 text-center my-4">
     <h1 class="font-weight-bold">Prosek ocena na nivou skole</h1>
@@ -41,8 +18,7 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("skola", am4charts.XYChart);
 
 // Add data
-chart.data = <?php echo $this->data['grades']; ?>
-
+chart.data = [{"prosecna_ocena":"4.2500","predmet":"Biologija"},{"prosecna_ocena":"3.8571","predmet":"Engleski"},{"prosecna_ocena":"4.2857","predmet":"Fizicko"},{"prosecna_ocena":"3.0000","predmet":"Fizika"},{"prosecna_ocena":"3.7500","predmet":"Geografija"},{"prosecna_ocena":"3.2500","predmet":"Hemija"},{"prosecna_ocena":"4.0000","predmet":"Istorija"},{"prosecna_ocena":"4.4286","predmet":"Likovno"},{"prosecna_ocena":"3.1429","predmet":"Matematika"},{"prosecna_ocena":"4.6667","predmet":"Muzicko"},{"prosecna_ocena":"3.6667","predmet":"Priroda i Drustvo"},{"prosecna_ocena":"4.0000","predmet":"Srpski"}]
 //console.log(chart.data)
 
 // Create axes
@@ -97,15 +73,3 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 }); // end am4core.ready()
 </script>
 
-<?php 
-
-$content = ob_get_contents();
-ob_end_clean();
-
-$handle = fopen($cacheFile, "w");
-fwrite($handle, $content);
-fclose($handle);
-
-echo $content;
-
-?>

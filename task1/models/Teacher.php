@@ -25,6 +25,7 @@ class Teacher{
         return $subjects_id;
     }
 
+    //get students 
     public static function get_students_id($id){
         $query = DB::$conn->prepare('SELECT students.id, students.first_name, students.last_name FROM students WHERE students.id = ?;');
         $query->execute([$id]);

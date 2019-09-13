@@ -258,19 +258,24 @@ display:inline-block;
 }
 
 .notification {
-	animation: notify 3s ease;
+	animation: notify 2s ease;
+	transition: all .5s ease;
 }
 
 @keyframes notify {
-		0% {
-			transform: translateX(-200px);
-			opacity: 0;
-		}
-		100% {
-			transform: translateX(0px);
-			opacity: 1;
-		}
-		
+	0% {
+		transform: translateY(200px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0px);
+		opacity: 1;
+	}
+}
+
+.notification:hover {
+	transform: scale(1.05);
+}
 
 
 .newMessage{

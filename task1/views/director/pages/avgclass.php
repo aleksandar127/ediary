@@ -1,20 +1,3 @@
-<?php
-
-// $param = '7/1';
-
-// $sql = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(students.id) AS prosecna_ocena, subjects.name AS predmet FROM subjects_has_grades shg
-//   JOIN subjects ON shg.subjects_id = subjects.id 
-//   JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
-//   JOIN students ON shghs.students_id = students.id 
-//   JOIN class ON students.class_id = class.id 
-//   WHERE class.name = ? GROUP BY subjects.name');
-// $sql->execute([$param]);
-// $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-// $json = json_encode($result);
-
-// $grades = Grades::average_class_grades('7/1');
-// var_dump($grades)
-?>
 
 
   <div class="col-md-12 text-center my-3">

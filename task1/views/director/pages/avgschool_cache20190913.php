@@ -18,7 +18,7 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("skola", am4charts.XYChart);
 
 // Add data
-chart.data = [{"prosecna_ocena":"4.2500","predmet":"Biologija"},{"prosecna_ocena":"3.8571","predmet":"Engleski"},{"prosecna_ocena":"4.2857","predmet":"Fizicko"},{"prosecna_ocena":"3.0000","predmet":"Fizika"},{"prosecna_ocena":"3.7500","predmet":"Geografija"},{"prosecna_ocena":"3.2500","predmet":"Hemija"},{"prosecna_ocena":"4.0000","predmet":"Istorija"},{"prosecna_ocena":"4.4286","predmet":"Likovno"},{"prosecna_ocena":"3.1429","predmet":"Matematika"},{"prosecna_ocena":"4.6667","predmet":"Muzicko"},{"prosecna_ocena":"3.6667","predmet":"Priroda i Drustvo"},{"prosecna_ocena":"4.0000","predmet":"Srpski"}]
+chart.data = [{"prosecna_ocena":"4.2500","predmet":"biologija"},{"prosecna_ocena":"3.8571","predmet":"engleski"},{"prosecna_ocena":"4.2857","predmet":"fizicko"},{"prosecna_ocena":"3.0000","predmet":"fizika"},{"prosecna_ocena":"3.7500","predmet":"geografija"},{"prosecna_ocena":"3.5000","predmet":"hemija"},{"prosecna_ocena":"4.0000","predmet":"istorija"},{"prosecna_ocena":"4.4286","predmet":"likovno"},{"prosecna_ocena":"3.1429","predmet":"matematika"},{"prosecna_ocena":"4.6667","predmet":"muzicko"},{"prosecna_ocena":"3.6667","predmet":"priroda_drustvo"},{"prosecna_ocena":"4.0000","predmet":"srpski"}]
 //console.log(chart.data)
 
 // Create axes

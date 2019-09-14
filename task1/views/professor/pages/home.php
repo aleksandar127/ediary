@@ -18,7 +18,7 @@
 
 foreach($this->data['students'] as $students){
     echo "<tr>";
-    echo '<td class="text-center font-weight-bold">'.$students['last_name'].' '.$students['first_name'].'</td>';
+    echo '<td class="text-center font-weight-bold">'.ucfirst($students['last_name']).' '.ucfirst($students['first_name']).'</td>';
 	echo '<td class="text-center"><a class="btn btn-outline-light font-weight-bold" href="'.URLROOT.'/professor/success/'.$students['id'].'">Svedocanstvo</a>';
 	
 	if(isset($_GET['err']) && $_GET['id']==$students['id'])

@@ -12,7 +12,7 @@
 //print_r($this->data['open_sent']);
 foreach($this->data['professors'] as $open){
     if($open['title']=='professor' || $open['title']=='teacher')
-    $open['title']='razredni';
+        $open['title']='razredni';
 
     echo '<tr>';
     echo '<td>'.$open['last_name'].' '.$open['first_name'].'</td>';
@@ -31,6 +31,8 @@ foreach($this->data['professors'] as $open){
 <tr><th>VREME</th><th>IME</th><th>STATUS</th></tr>
 <?php
 foreach($this->data['open_sent'] as $open){
+    if($open[4]=='professor' || $open[4]=='teacher')
+        $open[4]='razredni';
     $status="ZAHTEV POSLAT";
     $color="silver";
     echo  '<tr>';

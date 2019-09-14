@@ -1,7 +1,7 @@
 <br>
 <div class="container">
-<?php if($this->data['open']!=null): ?>
-   <h1 class="text-center">Otvorena vrata: <span class="h4"><?php echo substr($this->data['open'][0]['time'],0,-3); ?>h</span></h1>
+<?php if($this->data['time']!=null): ?>
+   <h1 class="text-center">Otvorena vrata: <span class="h4"><?php echo substr($this->data['time'],0,-3); ?>h</span></h1>
 <?php endif; ?>
 
 <div class="col-md-12">

@@ -95,7 +95,8 @@ class Classes
 
     //get all classes for professor
     public static function class_info(){
-        $query = DB::$conn->prepare('Select class.id,class.name from class join users_has_class on class.id=users_has_class.class_id join users on users.id=users_has_class.users_id where users.id=? ');
+        $query = DB::$conn->prepare('Select distinct class.id,class.name from class join schedule on schedule.class_id=class.id join subjects on subjects.id=schedule.subjects_id join users on users.id=subjects.users_id where users.id=?');
+        // $query = DB::$conn->prepare('Select class.id,class.name from class join users_has_class on class.id=users_has_class.class_id join users on users.id=users_has_class.users_id where users.id=? ');
         $query->execute([$_COOKIE['id']]); 
         $classes = $query->fetchAll(PDO::FETCH_ASSOC);
         return $classes;

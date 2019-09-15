@@ -6,7 +6,7 @@ echo 'Otvorena vrata: '.substr($this->data['open'][0]['time'],0,-3).'h';
 ?>
 
 </h1>
-<form action="http://localhost/eDiary/task1/professor/open_create"  method='get'>
+<form action="http://localhost/eDiary/task1/teacher/open_create"  method='get'>
   Zakazi otvorena vrata: <input type="datetime-local" name="date" id="date"><br>
  
   <input type="submit" value="Zakazi">

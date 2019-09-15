@@ -19,7 +19,13 @@
         <div class="form-group">
             <label for="class_picker">Da li želite da prebacite učenika u drugo odeljenje?</label>
             <select class="form-control" id="class_picker">
-                <option value="<?php echo $this->data['student']['class_id']; ?>" selected><?php echo $this->data['student']['class_name'];?></option>
+                <?php foreach ($this->data['all_classes'] as $class) : ?>
+                    <?php if($class['name'] == $this->data['student']['class_name']): ?>
+                        <option value="<?php echo $class['id']; ?>" selected><?php echo $class['name'];?></option>
+                    <?php else: ?>
+                        <option value="<?php echo $class['id']; ?>"><?php echo $class['name']; ?></option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </select>
         </div>
         <button type="submit" class="btn btn-dark">Izmeni</button>  

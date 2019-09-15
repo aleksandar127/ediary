@@ -1,4 +1,14 @@
+<?php
 
+$class = str_replace('/', '-', $_GET['class']);
+
+$cacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
+			$class, date("Ymd"));
+
+
+ob_start();
+
+?>
 
   <div class="col-md-12 text-center my-3">
     <h1 class="font-weight-bold">Prosek ocena za <span class="text-black"><?php echo isset($this->data['class']) ? $this->data['class'] : null; ?></span></h1>
@@ -79,3 +89,17 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 }); // end am4core.ready()
 </script>
 <?php endif; ?>
+
+
+<?php 
+
+$content = ob_get_contents();
+ob_end_clean();
+
+$handle = fopen($cacheFile, "w");
+fwrite($handle, $content);
+fclose($handle);
+
+echo $content;
+
+?>

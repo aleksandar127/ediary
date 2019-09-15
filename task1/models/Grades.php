@@ -23,6 +23,12 @@ class Grades{
     {
         $query = DB::$conn->prepare('delete from subjects_has_grades_has_students where id=? limit 1');
         $deleted=$query->execute([$id]); 
+
+        // Ako se izbrise ocena, obrisi cache fajlove..
+        foreach (glob('views/director/pages/cache/*') as $cache) {
+            unlink($cache);
+        }
+
         return $deleted;
     }
 
@@ -36,6 +42,12 @@ class Grades{
         
         $query = DB::$conn->prepare('update  subjects_has_grades_has_students set subjects_has_grades_id=?  where id=? limit 1');
         $deleted=$query->execute([$subject_grade_id,$id]); 
+
+        // Ako se izmeni ocena, izbrisi cache fajlove..
+        foreach (glob('views/director/pages/cache/*') as $cache) {
+            unlink($cache);
+        }
+
         return $deleted;
     }
 
@@ -48,6 +60,12 @@ class Grades{
         $subject_grade_id=$subject['id'];
         $query = DB::$conn->prepare('insert into subjects_has_grades_has_students  (students_id,subjects_has_grades_id) values (?,?)');
         $grade=$query->execute([$id,$subject_grade_id]); 
+
+        // Ako se unese nova ocena, izbrisi cache fajlove..
+        foreach (glob('views/director/pages/cache/*') as $cache) {
+            unlink($cache);
+        }
+
         return $grade;
     }
 
@@ -66,11 +84,21 @@ class Grades{
         if($final){
             $query = DB::$conn->prepare('update final_grade  set student_id=?,subject_grade=? where id=? limit 1');
             $grade=$query->execute([$id,$subject_grade_id,$final]); 
+
+            // Ako se izmeni ocena, obrisi cache fajlove..
+             foreach (glob('views/director/pages/cache/*') as $cache) {
+            unlink($cache);
+        }
             return $grade;
         }
         else{ 
             $query = DB::$conn->prepare('insert into final_grade (id,student_id,subject_grade) values (null,?,?)');
             $grade=$query->execute([$id,$subject_grade_id]); 
+
+            // Ako se unese nova ocena, ozbrisi cache fajlove..
+            foreach (glob('views/director/pages/cache/*') as $cache) {
+            unlink($cache);
+        }
             return $grade;
         }
     }
@@ -86,23 +114,7 @@ class Grades{
     }
 
 
-        // Average grades for each class
-    public static function average_class_grades($class, $high_low) {
-        $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
-            FROM subjects_has_grades shg
-            JOIN subjects ON shg.subjects_id = subjects.id 
-            JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
-            JOIN students ON shghs.students_id = students.id 
-            JOIN class ON students.class_id = class.id 
-            WHERE class.name = ? AND class.high_low = ? GROUP BY subjects.name');
-        $query->execute([$class, $high_low]);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        $json = json_encode($result);
-        return $json;
-    }
-
-
-        // Average grades of all subjects
+        // Prosek ocena za sve predmete na nivou skole..
     public static function average_school_grades()
     {
         $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
@@ -117,6 +129,24 @@ class Grades{
     $json = json_encode($result);
     return $json;
     }
+
+
+
+    // Prosek ocena za svako odeljenje posebno..
+    public static function average_class_grades($class, $high_low) {
+        $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
+            FROM subjects_has_grades shg
+            JOIN subjects ON shg.subjects_id = subjects.id 
+            JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
+            JOIN students ON shghs.students_id = students.id 
+            JOIN class ON students.class_id = class.id 
+            WHERE class.name = ? AND class.high_low = ? GROUP BY subjects.name');
+        $query->execute([$class, $high_low]);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $json = json_encode($result);
+        return $json;
+    }
+
 
 
 

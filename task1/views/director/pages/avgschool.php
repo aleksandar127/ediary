@@ -1,21 +1,6 @@
 <?php 
 
- $cacheFile = sprintf("views/director/pages/avgschool_cache%s.php", date("Ymd"));
-
-
-
-// $timediff = time() - filemtime($cacheFile);
-// echo $timediff;
-
-// if($timediff > (24)){
-//   unlink($cacheFile);
-// }
-
-
-// if(file_exists($cacheFile)){
-//   readfile($cacheFile);
-//   exit;
-// }
+ $cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
 
 
 ob_start();

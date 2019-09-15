@@ -43,28 +43,6 @@ private $grades=[1,2,3,4,5];
 	
 	}
 
-
-
-	// public function diary()
-	// {
-	// 	$view = new View();
-		//get all classes for professor
-		// $all_classes = Classes::class_info();
-		// $view->data['classes'] = $all_classes;
-		// $class = Classes::get_my_class();
-		// $view->data['class'] = $class;
-
-	// 	$file = "diary_cache". date("Ymd");
-	// 	if($file) {
-	// 	$view->load_view('professor', 'pages', 'diary_cache20190912');
-	// 	}
-	// 	else {
-	// 		$view->load_view('professor', 'pages', 'diary');
-	// 	}
-
-	// }
-
-
 	
 	//get diary of class for subject
 	public function diaryof(){

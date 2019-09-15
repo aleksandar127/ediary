@@ -5,14 +5,20 @@ class Grades{
     //get diary of selected class    
     public static function get_diary($class_id)
         {
-          
-            $query = DB::$conn->prepare('Select class.id as class_id,students.id,students.first_name,students.last_name,subjects_has_grades.grades,subjects_has_grades_has_students.id as mark from students join subjects_has_grades_has_students on students.id=subjects_has_grades_has_students.students_id join subjects_has_grades on 
+            $query = DB::$conn->prepare(' Select class.id as class_id,students.id,students.first_name,students.last_name,subjects_has_grades.grades,subjects_has_grades_has_students.id as mark from students join subjects_has_grades_has_students on students.id=subjects_has_grades_has_students.students_id join subjects_has_grades on 
             subjects_has_grades.id=subjects_has_grades_has_students.subjects_has_grades_id join subjects on subjects.id=subjects_has_grades.subjects_id join class on class.id=students.class_id where  subjects.users_id=? and students.class_id=?
             union
-            Select class.id as class_id,students.id,students.first_name,students.last_name,subjects_has_grades.grades,subjects_has_grades_has_students.id as mark from students left join subjects_has_grades_has_students on students.id=subjects_has_grades_has_students.students_id left join subjects_has_grades on 
+            Select class.id as class_id,students.id,students.first_name,students.last_name,subjects_has_grades.grades,subjects_has_grades_has_students.id as mark from students left join subjects_has_grades_has_students on students.id=subjects_has_grades_has_students.students_id and subjects_has_grades_has_students.id not in(select subjects_has_grades_has_students.id from subjects_has_grades_has_students join subjects_has_grades on subjects_has_grades_has_students.subjects_has_grades_id=subjects_has_grades.id join subjects on subjects.id=subjects_has_grades.subjects_id where subjects.users_id !=?) left join subjects_has_grades on 
             subjects_has_grades.id=subjects_has_grades_has_students.subjects_has_grades_id left join subjects on subjects.id=subjects_has_grades.subjects_id left join class on class.id=students.class_id where  students.id not in(Select students.id from students join subjects_has_grades_has_students on students.id=subjects_has_grades_has_students.students_id join subjects_has_grades on 
             subjects_has_grades.id=subjects_has_grades_has_students.subjects_has_grades_id join subjects on subjects.id=subjects_has_grades.subjects_id join class on class.id=students.class_id where  subjects.users_id=? and students.class_id=?) and  students.class_id=? order by last_name,first_name,id');
-           $query->execute([$_COOKIE['id'],$class_id,$_COOKIE['id'],$class_id,$class_id]); 
+          
+            // $query = DB::$conn->prepare('Select class.id as class_id,students.id,students.first_name,students.last_name,subjects_has_grades.grades,subjects_has_grades_has_students.id as mark from students join subjects_has_grades_has_students on students.id=subjects_has_grades_has_students.students_id join subjects_has_grades on 
+            // subjects_has_grades.id=subjects_has_grades_has_students.subjects_has_grades_id join subjects on subjects.id=subjects_has_grades.subjects_id join class on class.id=students.class_id where  subjects.users_id=? and students.class_id=?
+            // union
+            // Select class.id as class_id,students.id,students.first_name,students.last_name,subjects_has_grades.grades,subjects_has_grades_has_students.id as mark from students left join subjects_has_grades_has_students on students.id=subjects_has_grades_has_students.students_id left join subjects_has_grades on 
+            // subjects_has_grades.id=subjects_has_grades_has_students.subjects_has_grades_id left join subjects on subjects.id=subjects_has_grades.subjects_id left join class on class.id=students.class_id where  students.id not in(Select students.id from students join subjects_has_grades_has_students on students.id=subjects_has_grades_has_students.students_id join subjects_has_grades on 
+            // subjects_has_grades.id=subjects_has_grades_has_students.subjects_has_grades_id join subjects on subjects.id=subjects_has_grades.subjects_id join class on class.id=students.class_id where  subjects.users_id=? and students.class_id=?) and  students.class_id=? order by last_name,first_name,id');
+           $query->execute([$_COOKIE['id'],$class_id,$_COOKIE['id'],$_COOKIE['id'],$class_id,$class_id]); 
             $class = $query->fetchAll(PDO::FETCH_ASSOC);
             return $class;
 

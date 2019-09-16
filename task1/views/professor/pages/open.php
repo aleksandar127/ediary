@@ -35,7 +35,7 @@ foreach($this->data['open'] as $parent):
 switch($parent['accepted']){
     case 0:
       echo '<td>';
-      echo $parent['last_name'].' '.$parent['first_name'];
+      echo ucfirst($parent['last_name']).' '.ucfirst($parent['first_name']);
       echo "</td>";
       echo "<td><a href='".URLROOT."/professor/open_yes/".$parent['user_open_id']."'  class='btn btn-success' >Potvrdi</a>";
       echo "<a href='".URLROOT."/professor/open_no/".$parent['user_open_id']."'  class='btn btn-danger' >Odbij</a>";
@@ -43,14 +43,14 @@ switch($parent['accepted']){
       break;
     case 1:
       echo '<td>';
-      echo $parent['last_name'].' '.$parent['first_name'];
+      echo ucfirst($parent['last_name']).' '.ucfirst($parent['first_name']);
       echo "</td>";
       echo "<td class='font-weight-bold open_confirm_prof'>Potvrdjeno!!</td>";
   
       break;
     case 2:
       echo '<td>';
-      echo $parent['last_name'].' '.$parent['first_name'];
+      echo ucfirst($parent['last_name']).' '.ucfirst($parent['first_name']);
       echo '</td>';
       echo "<td class='font-weight-bold open_reject_prof'>Odbijeno!!</td>";
 

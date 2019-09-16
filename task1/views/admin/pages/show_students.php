@@ -1,6 +1,7 @@
 <div class="container">
     <p></p>
     <h1><?php echo $this->data['title']; ?></h1>
+    <a  class="btn btn-success" href="http://localhost/eDiary/task1/admin/add_puple/<?php echo $this->data['class'];?>">Dodaj novog učenika</a>
     <table class="table">
     <thead>
         <tr>
@@ -22,9 +23,22 @@
                 <td><?php echo $student['class_name']; ?></td>
                 <td><?php echo $student['parent_name'].' '.$student['parent_surname']; ?></td>
                 <td><a class="btn btn-dark" href="<?php echo URLROOT; ?>/admin/edit_student/<?php echo $student['id'];?>">Izmeni učenika</a></td>
-                <td><a class="btn btn-danger" href="#">Izbriši učenika</a></td>
+                <td><a class="btn btn-danger" href="#">Izbriši učenika</a>
+                
+                <div class="pop-up" id="pop-up">
+                <p>Are you sure you want to delete this user?</p>
+                <a class="delete" href="<?php echo URLROOT; ?>/admin/delete_student/<?php echo $student['id']; ?>">Izbriši</a>
+                <a class="cancel">Otkaži</a>
+                </div>
+
+                <div id="overlay"></div>
+                
+                
+                </td>
             </tr>
         <?php endforeach;?>
     </tbody>
     </table>
 </div>
+
+<script src="<?php echo URLROOT; ?>/assets/admin/js/delete_confirm.js"></script>

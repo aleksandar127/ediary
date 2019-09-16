@@ -18,7 +18,7 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("skola", am4charts.XYChart);
 
 // Add data
-chart.data = [{"prosecna_ocena":"4.2500","predmet":"biologija"},{"prosecna_ocena":"3.8571","predmet":"engleski"},{"prosecna_ocena":"4.2857","predmet":"fizicko"},{"prosecna_ocena":"3.0000","predmet":"fizika"},{"prosecna_ocena":"3.7500","predmet":"geografija"},{"prosecna_ocena":"3.5000","predmet":"hemija"},{"prosecna_ocena":"4.0000","predmet":"istorija"},{"prosecna_ocena":"4.4286","predmet":"likovno"},{"prosecna_ocena":"3.1429","predmet":"matematika"},{"prosecna_ocena":"4.6667","predmet":"muzicko"},{"prosecna_ocena":"3.6667","predmet":"priroda_drustvo"},{"prosecna_ocena":"4.0000","predmet":"srpski"}]
+chart.data = [{"prosecna_ocena":"3.5625","predmet":"biologija"},{"prosecna_ocena":"3.8750","predmet":"engleski jezik"},{"prosecna_ocena":"4.9200","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"2.8750","predmet":"fizika"},{"prosecna_ocena":"4.0625","predmet":"geografija"},{"prosecna_ocena":"2.8182","predmet":"hemija"},{"prosecna_ocena":"4.3333","predmet":"likovno vaspitanje"},{"prosecna_ocena":"3.5636","predmet":"matematika"},{"prosecna_ocena":"4.2857","predmet":"Muzi\u010dko vaspitanje"},{"prosecna_ocena":"3.4444","predmet":"srpski jezik"},{"prosecna_ocena":"4.2500","predmet":"Svet oko nas"}]
 //console.log(chart.data)
 
 // Create axes

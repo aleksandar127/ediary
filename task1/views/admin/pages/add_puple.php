@@ -5,18 +5,22 @@
         <div class="form-group">
             <label for="puple_n">Ime:</label>
             <input type="text" class="form-control" id="puple_n" name="puple_n" placeholder="Petar">
+            <p></p>
         </div>
         <div class="form-group">
             <label for="puple_s">Prezime:</label>
             <input type="text" class="form-control" id="puple_s" name="puple_s" placeholder="Petrović">
+            <p></p>
         </div>
         <div class="form-group">
             <label for="puple_n">Ime roditelja:</label>
             <input type="text" class="form-control" id="puple_n" name="parent_n" placeholder="Petar">
+            <p></p>
         </div>
         <div class="form-group">
             <label for="puple_s">Prezime roditelja:</label>
             <input type="text" class="form-control" id="puple_s" name="parent_s" placeholder="Petrović">
+            <p></p>
         </div>
         <div class="form-group">
             <label for="parent_usr">Unesi username koji ce roditelj koristiti:</label>

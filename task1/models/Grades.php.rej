@@ -1,9 +1,0 @@
-diff a/task1/models/Grades.php b/task1/models/Grades.php	(rejected hunks)
-@@ -24,7 +24,6 @@
-         $query = DB::$conn->prepare('delete from subjects_has_grades_has_students where id=? limit 1');
-         $deleted=$query->execute([$id]); 
- 
--            unlink($cache);
-         // Ako se izbrise ocena, obrisi cache fajl..
-         $cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
-         unlink($cacheFile);

@@ -5,7 +5,7 @@
 
 </table>
 
-<table id='open_request_table' style='min-height:200px;'>
+<table id='open_request_table'>
 <tr><th colspan='4';>ZAKAZIVANJE OTVORENIH VRATA</th></tr>
 <tr><th>IME</th><th>PREDMET</th><th>VREME</th><th>ZAKAZI</th></tr>
 <?php
@@ -26,13 +26,13 @@ foreach($this->data['professors'] as $open){
 </table>
 
 
-<table  id='open_response_table' style='min-height:200px;'>
+<table  id='open_response_table'>
 <tr><th colspan='3';>STATUS OTVORENIH VRATA</th></tr>
 <tr><th>VREME</th><th>IME</th><th>STATUS</th></tr>
 <?php
 foreach($this->data['open_sent'] as $open){
-    if($open[4]=='teacher')
-        $open[4]='učitelj';
+    if($open[4]=='teacher' || $open[4]=='professor')
+        $open[4]='razredni';
     $status="ZAHTEV POSLAT";
     $color="silver";
     echo  '<tr>';

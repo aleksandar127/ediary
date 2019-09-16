@@ -194,7 +194,8 @@ border-radius: 5px;
 #open_request_table {
 	border:solid black 3px;
 	display:inline-block;
-	min-height:300px;
+	height:600px;
+	overflow:scroll;
 }
 
 #open_request_table tr:nth-child(even) {
@@ -224,7 +225,8 @@ border-radius: 5px;
 margin-left:200px;
 border:solid black 3px;
 display:inline-block;
-min-height:300px;
+height:600px;
+overflow:scroll;
 }
 #open_response_table tr{
 	text-align:center;

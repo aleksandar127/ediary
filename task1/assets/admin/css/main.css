@@ -171,3 +171,12 @@ form{
 	color: #ffa500;
 }
 
+.remove_form{
+	cursor: pointer;
+}
+.add{
+	width:40px; 
+	color:#fff;
+	cursor: pointer;
+}
+

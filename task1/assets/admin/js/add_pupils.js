@@ -1,30 +1,75 @@
 window.addEventListener('load', () => {
-    let inputs = document.querySelectorAll('input');
-    console.log(inputs);
+    //Variables
+    // let inputs = document.querySelectorAll('input');
+    let btn_submit = document.querySelectorAll('.btn-dark');
     let add_more = document.querySelector('.add');
-    console.log(add_more);
+    let inside_form = document.querySelector('.row');
+    let html = `
+    <div class="row">
+    <div class="form-group">
+            <label for="puple_n">Ime:</label>
+            <input type="text" class="form-control" id="puple_n" name="puple_n" placeholder="Petar">
+            <p></p>
+        </div>
+        <div class="form-group">
+            <label for="puple_s">Prezime:</label>
+            <input type="text" class="form-control" id="puple_s" name="puple_s" placeholder="Petrović">
+            <p></p>
+        </div>
+        <div class="form-group">
+            <label for="puple_n">Ime roditelja:</label>
+            <input type="text" class="form-control" id="puple_n" name="parent_n" placeholder="Petar">
+            <p></p>
+        </div>
+        <div class="form-group">
+            <label for="puple_s">Prezime roditelja:</label>
+            <input type="text" class="form-control" id="puple_s" name="parent_s" placeholder="Petrović">
+            <p></p>
+        </div>
+        <div class="form-group">
+            <label for="parent_usr">Username roditelja:</label>
+            <input type="text" class="form-control" id="parent_usr" name="parent_username" placeholder="mikica">
+            <p></p>
+        </div>
+
+        <div class="form-group">
+            <label for="pass">Generisati šifru roditelja:</label>
+            <input type="text" class="form-control" id="pass" name="parent_pass" placeholder="123456">
+            <p></p>
+        </div>
+
+        <div class="form-group">
+            <label for="re_pass">Potvrditi šifru:</label>
+            <input type="text" class="form-control" id="re_pass" name="parent_re_pass" placeholder="123456">
+            <p></p>
+        </div>
+        <a class="remove_form">&#10006;</a>
+        </div>`;
+    let max_rows = 19;
+    let x = 1;
 
     add_more.addEventListener('click', (e) => {
-        let form = document.querySelectorAll('.form-group');
-        console.log(form);
 
+        if (x <= max_rows) {
+            inside_form.insertAdjacentHTML('afterend', html);
+            x++;    
+        }
+
+
+
+
+       
+        let remove_form = document.querySelector('.remove_form');
+        remove_form.addEventListener('click', (e) => {
+            let remove_pec_fields = remove_form.parentNode.remove();
+            x--;
+        });
     });
 
-    inputs.forEach(input => {
-        // console.log(input);
-        input.addEventListener('focus', (e) => {
-            // e.target.style.background = 'pink';   
-            // console.log(e.target.value); 
-        });
-        
-        input.addEventListener('blur', (e) => {
-            // e.target.style.background = 'red';    
-            console.log(e.target.value); 
-            console.log(e.target.name); 
-            
-        });
+    
+  
 
-    });
+
 
 });
 
@@ -42,3 +87,27 @@ function display_error(field, key){
     error_el.classList.add('err');
 
 }
+
+
+
+
+
+
+
+
+
+  // inputs.forEach(input => {
+    //     // console.log(input);
+    //     input.addEventListener('focus', (e) => {
+    //         // e.target.style.background = 'pink';   
+    //         // console.log(e.target.value); 
+    //     });
+        
+    //     input.addEventListener('blur', (e) => {
+    //         // e.target.style.background = 'red';    
+    //         console.log(e.target.value); 
+    //         console.log(e.target.name); 
+            
+    //     });
+
+    // });

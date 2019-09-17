@@ -641,6 +641,11 @@ class BaseAdminController
 
 	public function save_new_pupils()
 	{
-		var_dump($_POST);
+		$parent_name = $_POST['parent_n'];
+		$parent_surname = $_POST['parent_s'];
+
+		foreach ($parent_surname as $key => $value) {
+			echo $key.' : '.$value.'<br>';
+		}
 	}
 }

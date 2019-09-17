@@ -176,7 +176,10 @@ form{
 }
 .add{
 	width:40px; 
-	color:#fff;
+	color:#fff !important;
 	cursor: pointer;
+}
+.aditional_row{
+	width: 100% !important;
 }
 

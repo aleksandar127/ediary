@@ -44,138 +44,34 @@ a:active {
 	color:#696969;
 }
 
-#headerTop{
-	background-color: #000;
-}
-
 .wrapper{
 	margin: 0 auto;
 	color: #5F5E5E;
 	overflow:hidden;
-	width: 1350px;
 	text-align: center;
 }
 
-#contact{
-	float: left;
-	padding: 10px;
-}
-#contact .fas{
-	margin: 0 0 0 10px;
-}
-
-#network{
-	float: right;
-	font-size: 16px;
-	padding: 10px;
-}
-#network a{
-	padding: 0 5px 0 5px;
-}
-
-#header .wrapper{
-	overflow: hidden;
-	border-bottom:1px solid black;
-}
-#header #logo{
-	float: left;	
-}
-#header #logo img{
-	width: 100px;
-}
-#header .wrapper #class{
-	float:right;
-  	color:black;
-  	font-weight: bold;
-	font-size: 50px;
-	padding: 0 3px;
-	margin: 0;
-	text-align: center;
-}
-#header .wrapper #class p{
-	color:#000;
-	padding-bottom: 8px;
-	
-}
-#header .wrapper #class #logoutP{
-	border-top: 1px solid #000;
-	
-}
-#header .wrapper #class a{
-	color:#000;
-	display: block;
-	padding: 10px 0 2px 0;
-	font-size: 22px;
-	font-weight: normal;
-}
-#header .wrapper #class a:hover{
-	text-decoration: underline;
-}
-#navigation .wrapper{
-	overflow:hidden;
-	border-bottom:1px solid black;
-}
-#navigation #nav{
-	font-weight:700;
-}
-#navigation #nav ul{
-	list-style:none;
-	margin:0;
-	padding:0;
-}
-#navigation #nav ul li{
-	float:left;
-	width: 200px;
-}
-#navigation #nav ul li a{
-	padding:10px;
-	font-size:20px;
-	height:50px;
-	display:block;
-	line-height:50px;
-	transition:0.5s all ease;
-	text-decoration:none;
-	color:black;
-	text-transform:uppercase;
-	letter-spacing:1px;
-}
-#navigation #nav ul a:link
-#navigation #nav ul a:visited{
-	text-decoration:none;
-	color:#FFF;
-	background-color:#e84e1b;
-	transition:0.2s all ease;
-}
-#navigation #nav ul a:hover{
-	background:#000000;
-	color:#FFF;
-}
-#navigation #nav ul a:active{
-	background:#696969;
-	color:#FFF;
-	border-bottom:3px solid #FFF;
-}
-#teachers h2{
-	color:#000;
-}
 #teachers .student{
-	border-bottom:1px solid black;
-	text-align:left;
-	
+	text-transform: capitalize;
 }
-#teachers h2{
-	font-size:44px;
+#teachers h1{
+	color:#000;
+}
+#teachers .name_student{
+	font-weight: bold;
+	text-transform: capitalize;
+	text-align: center;
+}
+#teachers .table th{
+	border:none;
 }
 #teachers a:link,
 #teachers a:visited{
 	text-decoration:none;
-	color:black;
+	color:#FFF;
 }
 #teachers a:hover{
-	color:#AE3D00;
-}
-#teachers a:active{
-	color:#CC2A00;
+	color:#000;
 }
 table{
 	border-collapse:collapse;
@@ -205,7 +101,12 @@ table{
 #table table tr th::first-letter{
 	text-transform: uppercase;
 }
-#table a:link,
+#table p{
+	color:#000;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+/* #table a:link,
 #table a:visited{
 	text-decoration:none;
 	color: #000;
@@ -217,7 +118,7 @@ table{
 }
 #table a:active{
 	color:#CC2A00;
-}
+} */
 #table input{
 	padding: 5px;
 	margin:5px;
@@ -248,13 +149,13 @@ table{
 	border-left:none;
 	border-top:none;
 }
-td, th{
+#objects td, th{
 	border:1px solid #000;
 	text-align:left;
 	padding:8px;
 	width:70px;
 }
-th{
+#objects th{
 	transform: rotate(-90deg);
 	-webkit-transform: rotate(-90deg);
 	height: 200px;
@@ -262,7 +163,25 @@ th{
 	text-align: center;
 }
   
-tr:nth-child(even){
+#objects tr:nth-child(even){
+	background-color:rgba(0, 0, 0, 0.45);
+	color:#FFF;
+}
+#table td, th{
+	border:1px solid #000;
+	text-align:left;
+	padding:8px;
+	width:70px;
+}
+#table th{
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	height: 200px;
+	padding: 0px;
+	text-align: center;
+}
+  
+#table tr:nth-child(even){
 	background-color:rgba(0, 0, 0, 0.45);
 	color:#FFF;
 }

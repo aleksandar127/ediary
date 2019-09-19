@@ -227,7 +227,7 @@ private $grades=[1,2,3,4,5];
 		//get all final grades 
 		$grades=Student::success($id);
 		if($grades==null){
-			header("Location: http://localhost/eDiary/task1/professor/index?err=Ucenik nije ocenjen&id=".$id);
+			header("Location: http://localhost/eDiary/task1/professor/index?err=Ucenik nije ocenjen!&id=".$id);
 			exit();
 		}
 	

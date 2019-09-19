@@ -60,7 +60,7 @@ window.addEventListener('load', () => {
 
        //when click on 'x' sign remove specific fields from form
         let remove_form = document.querySelectorAll('.remove_form');
-        console.log(remove_form);
+        // console.log(remove_form);
         remove_form.forEach(remove => {
             remove.addEventListener('click', (e) => {
                 let remove_pec_fields = remove.parentNode.remove();
@@ -78,15 +78,27 @@ window.addEventListener('load', () => {
 
 });
 
+
 function validate_previous_fields(){
+    let names_arr = {};
     let inputs = document.querySelectorAll('input');
-    console.log(inputs);
-    inputs.forEach(input => {
-        let field_valid = true;
-        let i_value = input.value.trim();
-        let i_name = input.name;
-        // console.log(input.value +'/'+ input.name);
-    });
+    for (var i = 0; i < inputs.length; i+=1) {
+            
+            let name = inputs[i].name;
+            let value = inputs[i].value;
+            names_arr[name] = value;
+          
+            
+        }
+        console.log(names_arr);
+    // inputs.forEach(input => {
+    //     let field_valid = true;
+    //     let i_value = input.value.trim();
+    //     let i_name = input.name;
+    //     names_arr[i_name] = i_value;
+    //     // console.log(input.name +' : '+ input.value); 
+    // });
+
 }
 
 function display_error(field, key){

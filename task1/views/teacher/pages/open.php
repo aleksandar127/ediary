@@ -1,5 +1,5 @@
 <br>
-<div class="container">
+<div>
 <?php if($this->data['time']!=null): ?>
    <h1 class="text-center">Otvorena vrata: <span class="h4"><?php echo substr($this->data['time'],0,-3); ?>h</span></h1>
 <?php endif; ?>

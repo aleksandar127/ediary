@@ -3,11 +3,13 @@ window.addEventListener('load', () => {
     let btn_submit = document.querySelectorAll('.btn-dark');
     let add_more = document.querySelector('.add');
     let inside_form = document.querySelector('.row');
+    let counter = 1;
+    console.log(counter);
     let html = `
     <div class="row aditional_row">
     <div class="form-group">
             <label for="puple_n">Ime:</label>
-            <input type="text" class="form-control" id="puple_n" name="puple_n[]" placeholder="Petar">
+            <input type="text" class="form-control" id="puple_n" name="puple_n${counter}[]" placeholder="Petar">
             <p></p>
         </div>
         <div class="form-group">
@@ -44,13 +46,16 @@ window.addEventListener('load', () => {
         </div>
         <a class="remove_form">&#10006;</a>
         </div>`;
+      
     let max_rows = 19;
     let x = 1;
 
     //when click on add more btn, validate existing fields than add more inputs for more pupils
     add_more.addEventListener('click', (e) => {
         validate_previous_fields();
+          console.log(counter);
         if (x <= max_rows) {
+            counter++; //OVDE VIDETI KAKKO DA NAMETIM KAUNTER U SVAKOJ ITERACIJI DA BUDE DRUGACIJI
             inside_form.insertAdjacentHTML('beforeend', html);
             x++;    
         }
@@ -80,24 +85,25 @@ window.addEventListener('load', () => {
 
 
 function validate_previous_fields(){
-    let names_arr = {};
+    // let names_arr = {};
     let inputs = document.querySelectorAll('input');
-    for (var i = 0; i < inputs.length; i+=1) {
+    inputs.forEach(input => {
+        let name = input.name;
+        console.log(name);
+        let value = input.value.trim();
+        // names_arr[name] = value;
+      
+        if (value == '') {
+            field_valid = false;
+            display_error(input, 'required');
             
-            let name = inputs[i].name;
-            let value = inputs[i].value;
-            names_arr[name] = value;
-          
-            
+        } else {
+            remove_error(input);
         }
-        console.log(names_arr);
-    // inputs.forEach(input => {
-    //     let field_valid = true;
-    //     let i_value = input.value.trim();
-    //     let i_name = input.name;
-    //     names_arr[i_name] = i_value;
-    //     // console.log(input.name +' : '+ input.value); 
-    // });
+    });
+            
+        
+      
 
 }
 
@@ -113,8 +119,18 @@ function display_error(field, key){
     var error_el = document.querySelector('[name="' + field.name + '"] + p');
     error_el.innerText = errors_lookup[key];
     error_el.classList.add('err');
+    // console.log(error_el);
 
 }
 
+
+function remove_error(field) {
+
+    field.style = "border: 1px solid rgb(206, 212, 218)";
+    var error_el = document.querySelector('[name="' + field.name + '"] + p');
+    error_el.innerText = '';
+    error_el.classList.remove('err');
+    console.log(error_el);
+}
 
 

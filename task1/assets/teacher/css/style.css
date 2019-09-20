@@ -485,3 +485,19 @@ table{
 	text-align: center;
 	font-size: 30px;
 }
+
+
+.open_table_prof tr td{
+    text-align:center;
+}
+.open_table_prof tr th{
+    text-align:center;
+}
+
+.open_confirm_prof{
+    background-color: rgb(155, 252, 159);
+}
+
+.open_reject_prof{
+    background-color: rgb(252, 180, 180);
+}

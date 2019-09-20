@@ -79,13 +79,23 @@ form{
   transform: scale(2);
 }
 
-.scheduleProf tr td{width:200px;}
+.scheduleProf tr td{
+    text-align: center;
+    font-size: 40px;
+    
+}
+.scheduleProf tr th{
+    text-align: center;
+    font-size: 40px;
+    width:200px;
+}
+
 
 
 .hasTrue {
     background-color: rgba(0,0,0,0.2);
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 

@@ -475,3 +475,13 @@ table{
 #footer a:active {
 	color: #000;
 }
+
+.scheduleTeacher tr td{ 
+	text-align: center;
+	font-size: 23px;
+}
+
+.scheduleTeacher tr th{ 
+	text-align: center;
+	font-size: 30px;
+}

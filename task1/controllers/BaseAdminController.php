@@ -497,8 +497,6 @@ class BaseAdminController
 		$sch = $_POST;
 		//pull out class_id from POST superglobal
 		$class_id = array_pop($sch);
-		var_dump($class_id);
-		var_dump($sch);
 
 		foreach ($sch as $day_lesson => $lesson_id) {
 			$day = substr($day_lesson, 0, -1);

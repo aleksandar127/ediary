@@ -4,7 +4,6 @@ window.addEventListener('load', () => {
     submit.addEventListener('click', (e) => {
         e.preventDefault();
         var form = document.querySelector('form');
-        // console.log(form);
         validate_form(form);
         errors_exist(form);
     });
@@ -18,7 +17,7 @@ window.addEventListener('load', () => {
             ajax_call(1);
         } else if (e.target.value == 0) {
             remove_error(pick_class);
-            console.log('nizi');
+            // console.log('nizi');
             ajax_call(0);
         } else {
             display_error(pick_class, 'not_selected');

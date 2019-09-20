@@ -6,16 +6,16 @@ window.addEventListener('load', () => {
     let counter = 1;
     let max_rows = 19;
     let x = 1;
+    let psw_value = null;
 
     //when click on add more btn, validate existing fields than add more inputs for more pupils
     add_more.addEventListener('click', (e) => {
         e.preventDefault();
 
         validate_previous_fields();
-
         let html = `
         <div class="row aditional_row">
-        <div class="form-group">
+            <div class="form-group">
                 <label for="puple_n">Ime:</label>
                 <input type="text" class="form-control" id="puple_n" name="puple_n${counter}" placeholder="Petar">
                 <p></p>
@@ -51,16 +51,17 @@ window.addEventListener('load', () => {
                 <label for="re_pass">Potvrditi šifru:</label>
                 <input type="text" class="form-control" id="re_pass" name="parent_re_pass${counter}" placeholder="123456">
                 <p></p>
-        </div>
+            </div>
         <a class="remove_form">&#10006;</a>
         </div>`;
-
-        if (x <= max_rows) {
-            counter++;  
-            inside_form.insertAdjacentHTML('beforeend', html);
-            x++;    
+        var errors = document.querySelectorAll('p.err');
+        if (errors.length == 0) {
+            if (x <= max_rows) {
+                counter++;  
+                inside_form.insertAdjacentHTML('beforeend', html);
+                x++;    
+            }
         }
-
 
 
 
@@ -127,18 +128,20 @@ function validate_previous_fields(){
                     }
                     break;
                 case 'parent_s':
-                    if (value.length < 6) {
+                    if (value.length < 4) {
                         field_valid = false;
-                        display_error(input, 'minlength-psw');
+                        display_error(input, 'minlength');
                     }  
                     break;
                 case 'parent_usr':
-                    if (value.length < 6) {
+                    if (value.length < 4) {
                         field_valid = false;
-                        display_error(input, 'minlength-psw');
+                        display_error(input, 'minlength');
                     }  
                     break;
                 case 'pass':
+                    // console.log(pass_name);
+                    psw_value = input.value;
                     if (value.length < 6) {
                         field_valid = false;
                         display_error(input, 'minlength-psw');
@@ -146,19 +149,20 @@ function validate_previous_fields(){
                     break;
                     
                 case 're_pass':
-                //     if (value.length < 6) {
-                //         field_valid = false;
-                //         display_error(input, 'minlength-psw');
-                //     } else if (field_valid) {
-                //         var psw_value = inputs[3].value;
-                //         var re_psw_value = inputs[4].value;
-                //         if (re_psw_value !== psw_value) {
-                //             display_error(input, 'password-not-match');
-                //         } else {
-                //             console.log('iste su sifre');
-                //         }
-                //     }
-                //     break;
+                    if (value.length < 6) {
+                        field_valid = false;
+                        display_error(input, 'minlength-psw');
+                    } else if (field_valid) {
+                        let re_psw_value = input.value;
+                        console.log(re_psw_value);
+                        console.log(psw_value);
+                        if (re_psw_value !== psw_value) {
+                            display_error(input, 'password-not-match');
+                        } else {
+                            console.log('iste su sifre');
+                        }
+                    }
+                    break;
                 } 
         }
     });
@@ -191,11 +195,6 @@ function remove_error(field) {
     error_el.classList.remove('err');
 }
 
-function errors_exists(form_el) {
-    var errors = document.querySelectorAll('p.err');
-    if (errors.length == 0) {
-        form_el.submit();
-    }
-}
+
 
 

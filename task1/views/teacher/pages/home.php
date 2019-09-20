@@ -5,7 +5,7 @@
 					<h1 class="text-center mb-4 font-weight-bold text"><?php echo $class['name'] ?> </h1>
 				<?php endforeach; ?>
                 	
-				<table class="table table-hover table-dark table-striped col-md-8 mx-auto table-home">
+				<table class="table table-hover table-dark table-striped  mx-auto table-home">
 					<tr>
 						<th class="text-warning text-center h4 font-weight-bold"><i class="fa fa-user"></i> Ime</th>
 						<th class="text-warning text-center h4 font-weight-bold"><i class="fas fa-file-alt"></i> Svedocanstvo</th>

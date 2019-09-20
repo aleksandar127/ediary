@@ -43,7 +43,7 @@ class BaseTeacherController{
 		$parents = Teacher::get_all_parents();
 		$view->data['all_messages'] = $messages; 
 		$view->data['parents'] = $parents; 
-		$view->load_view('teacher', 'pages', 'messages'); 
+		$view->load_view('teacher', 'pages', 'message'); 
     }
 
 	public function ajax(){

@@ -8,23 +8,20 @@
     <?php
 foreach($this->data['parents'] as $parents):
     
-   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."' class='clickabile' style='border:1px solid black;background-color:#d1ede8;width:350px;margin-bottom:3px;'>Roditelj: ".$parents['first_name']." ".$parents['first_name']." Ucenik: ".$parents['students_first_name']." ".$parents['students_last_name']."<br> </div>";
+   echo  "<div onclick='chat(this.id)' id='p".$parents['id']."' class='clickabile' style='border:1px solid black;background-color:#d1ede8;width:350px;margin-bottom:3px;'>Roditelj: ".$parents['first_name']." Ucenik: ".$parents['students_first_name']." ".$parents['students_last_name']."<br> </div>";
 
 endforeach;
 
     ?>
     </div>
     <div id="sendMessage">
-                
                 <div id="chat" >
-                        <textarea id="subject"  name="subject" placeholder="Write something.." style="width:300px;"></textarea>
-                        <br>
-                        <button onclick='ajaxSendMessage();'>Posalji</button>
-                        <button onclick='ajax();'>Pregled novih poruka</button>
+                    <textarea id ="subject" name="subject" placeholder ="Write something.." rows="4"></textarea><br>
+                    <button onclick='ajaxSendMessage();'>Posalji</button>
+                    <button onclick='ajax();'>Pregled novih poruka</button>
                 </div>
             </div><!-- end #sendMessage -->
-
- </div>  
+    </div>  
 
 <?php
 

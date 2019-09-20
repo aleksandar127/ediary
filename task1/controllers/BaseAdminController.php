@@ -497,8 +497,6 @@ class BaseAdminController
 		$sch = $_POST;
 		//pull out class_id from POST superglobal
 		$class_id = array_pop($sch);
-		var_dump($class_id);
-		var_dump($sch);
 
 		foreach ($sch as $day_lesson => $lesson_id) {
 			$day = substr($day_lesson, 0, -1);
@@ -641,11 +639,10 @@ class BaseAdminController
 
 	public function save_new_pupils()
 	{
-		$parent_name = $_POST['parent_n'];
-		$parent_surname = $_POST['parent_s'];
-
-		foreach ($parent_surname as $key => $value) {
-			echo $key.' : '.$value.'<br>';
-		}
+		$arr = $_POST;
+		$arr1 = array_chunk($arr, 7, true);
+		
+		var_dump($arr1);
+	
 	}
 }

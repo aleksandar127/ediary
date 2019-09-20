@@ -192,6 +192,8 @@ class BaseTeacherController{
     public function open(){ 
         $view = new View(); 
         $all_class = Teacher::get_class(); 
+        $time=OpenDoor::open_professors_time();
+		$view->data['time'] = $time;
         $view->data['class'] = $all_class; 
 		$open_doors = OpenDoor::open(); 
 		$view->data['open'] = $open_doors; 

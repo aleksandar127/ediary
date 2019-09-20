@@ -56,7 +56,7 @@ switch($parent['accepted']){
 
       break;
     default: 
-       return;
+      return;
 }
 
 echo '</tr>';

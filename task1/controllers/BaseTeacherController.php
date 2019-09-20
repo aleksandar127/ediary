@@ -1,11 +1,12 @@
 <?php 
 include_once 'Creport.php';
 class BaseTeacherController{
+
     public function __construct($demand){
 		$this->demand = $demand;
     }
     
-    //home page
+    //show home page
 	public function index(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -35,22 +36,26 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'grade');
     }
 
+    ////display messages view
     public function messages(){ 
         $view = new View();
         $all_class = Teacher::get_class();
         $view->data['class'] = $all_class;
+        //show new message
 		$messages = Messages::get_new_messages();
 		$parents = Teacher::get_all_parents();
 		$view->data['all_messages'] = $messages; 
 		$view->data['parents'] = $parents; 
-		$view->load_view('teacher', 'pages', 'message'); 
+		$view->load_view('teacher', 'pages', 'messages'); 
     }
 
+    //ajax response for new messages
 	public function ajax(){
 		$messages = Messages::get_new_messages(); 
         echo JSON_encode($messages); 
     } 
  
+    //change message status
 	public function ajax_is_read(){
 		$id = $_GET['id']; 
         $messages = Messages::ajax_is_read($id);
@@ -62,12 +67,14 @@ class BaseTeacherController{
         echo JSON_encode($response);
     }
 
+    //show all messages from one parent
 	public function ajax_chat(){
         $id = $_GET['id']; 
         $messages = Messages::ajax_chat($id); 
         echo JSON_encode($messages); 
     } 
 
+    //send message
 	public function ajax_send_message(){ 
 		$message = htmlspecialchars(strip_tags($_GET['message'])); 
 		$id = $_GET['id']; 
@@ -86,6 +93,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'objects');
     }
 
+    //show new grade
     public function new_grade(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -98,6 +106,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'new_grade');
     }
 
+    //save the new grade
     public function save_new_grade(){
         $id_students = $this->demand->parts_of_url[5];
         $name_students = $_POST['first_name'];
@@ -117,6 +126,7 @@ class BaseTeacherController{
         }
     }
 
+    //delete grade for za student
     public function delete_grade(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -129,6 +139,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'delete_grade');
     }
 
+    //save the deleted rating
     public function save_delete_grade(){
         $id_students = $this->demand->parts_of_url[5];
         $name_students = $_POST['first_name'];
@@ -180,6 +191,7 @@ class BaseTeacherController{
         }  
     }
 
+    //show teacher schedule
     public function schedule(){ 
         $view = new View(); 
         $all_class = Teacher::get_class(); 
@@ -189,6 +201,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'schedule');
     }
 
+    //display open door page 
     public function open(){ 
         $view = new View(); 
         $all_class = Teacher::get_class(); 
@@ -200,6 +213,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'open');
     }
 
+    //confirm appointment
 	public function open_yes(){ 
 		$id = $this->demand->parts_of_url[5]; 
 		$open_doors = OpenDoor::open_yes($id); 
@@ -208,6 +222,7 @@ class BaseTeacherController{
         }
     }
 
+    //reject appointment
 	public function open_no(){ 
 		$id = $this->demand->parts_of_url[5]; 
         $open_doors=OpenDoor::open_no($id);
@@ -216,6 +231,7 @@ class BaseTeacherController{
         }
     }
 
+    //create appointment
 	public function open_create(){
 		$time = str_replace('T',' ',$_GET['date']);
 		$time .= ":00";

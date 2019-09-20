@@ -46,7 +46,7 @@
 //print_r($this->data['schedule']);
 echo "<br>";
 $days=["","ponedeljak","utorak","sreda","cetvrtak","petak"];
-echo "<table class='table table-bordered table-dark table-hover col-md-8 mx-auto scheduleTeacher'>";
+echo "<table class='table table-bordered table-dark table-hover col-md-10 mx-auto scheduleTeacher'>";
 for($i=0;$i<8;$i++){
 echo "<tr>";
     for($y=0;$y<6;$y++){

@@ -183,3 +183,9 @@ form{
 	width: 100% !important;
 }
 
+.wrapper > h1,
+.wrapper > a,
+.wrapper > form > button{
+	margin-left: 5%;
+}
+

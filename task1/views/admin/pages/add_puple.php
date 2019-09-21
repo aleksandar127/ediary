@@ -1,6 +1,7 @@
 <p></p>
 <h1><?php echo $this->data['title'];?></h1>
 <a class="btn btn-success add">&#43;</a>
+
     <form action="<?php echo URLROOT; ?>/admin/save_new_pupils" method="POST">
    
     <div class="row">
@@ -42,8 +43,8 @@
             <p></p>
     </div>
    
-  </div>
-        <button type="submit" class="btn btn-dark">Dodaj učenika/e</button>
+    </div>
+    <button type="submit" class="btn btn-dark">Dodaj učenika/e</button>
     </form>
 
 <script src="<?php echo URLROOT; ?>/assets/admin/js/add_pupils.js"></script>

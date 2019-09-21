@@ -645,4 +645,12 @@ class BaseAdminController
 		var_dump($arr1);
 	
 	}
+
+	//method for fetching user by username written in form input from db, to check if already exists when adding new pupils and their parents
+	public function fetch_user_by_username()
+	{
+		$user = Users::get_user_by_username($_GET['username']);
+		$user = json_encode($user);
+		echo $user;
+	}
 }

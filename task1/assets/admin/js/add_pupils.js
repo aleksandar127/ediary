@@ -138,9 +138,11 @@ function validate_previous_fields(){
                         field_valid = false;
                         display_error(input, 'minlength');
                     }  
+                    ajax_call(input.value, input);
+                    
+                    console.log(input.value);
                     break;
                 case 'pass':
-                    // console.log(pass_name);
                     psw_value = input.value;
                     if (value.length < 6) {
                         field_valid = false;
@@ -154,12 +156,10 @@ function validate_previous_fields(){
                         display_error(input, 'minlength-psw');
                     } else if (field_valid) {
                         let re_psw_value = input.value;
-                        console.log(re_psw_value);
-                        console.log(psw_value);
                         if (re_psw_value !== psw_value) {
                             display_error(input, 'password-not-match');
                         } else {
-                            console.log('iste su sifre');
+                            // console.log('iste su sifre');
                         }
                     }
                     break;
@@ -175,6 +175,7 @@ function validate_previous_fields(){
 function display_error(field, key){
     var errors_lookup = {
         'required': 'This field is required',
+        'username-exists': 'Username exists',
         'minlength': 'Type at least 4 characters.',
         'minlength-psw': 'Type at least 6 characters.',
         'password-not-match': 'Passwords doesn\'t match.'
@@ -193,6 +194,24 @@ function remove_error(field) {
     var error_el = document.querySelector('[name="' + field.name + '"] + p');
     error_el.innerText = '';
     error_el.classList.remove('err');
+}
+
+function ajax_call(username, field){
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var res = JSON.parse(this.responseText);
+            if (typeof res === 'object') {
+                display_error(field, 'username-exists');
+            }
+
+        }
+    };
+
+    xhttp.open("GET", "http://localhost/eDiary/task1/admin/fetch_user_by_username?username="+ username, true);
+    xhttp.send();
+
 }
 
 

@@ -12,10 +12,16 @@ window.addEventListener('load', () => {
 			
 			pop_up_div.classList.add('active');
 			overlay.classList.add('active');
-			let tables = document.querySelectorAll('.d-flex');
-			console.log(tables);
+			let tables = document.querySelectorAll('.d-flex'); 
+			let cards = document.querySelectorAll('.card'); 
+			console.log(cards);
+
 			tables.forEach(table => {
 				table.style = 'position : unset !important';
+			});
+
+			cards.forEach(card => {
+				card.style = 'position : unset !important';
 			});
 
 			var cancel_btn = pop_up_div.querySelector('.cancel');

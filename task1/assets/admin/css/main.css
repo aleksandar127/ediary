@@ -190,5 +190,12 @@ form{
 }
 
 /* STYLYSH PARENT NEWS */
+.card-deck{
+	margin: 10px;
+}
 
+.card .btn{
+	width: 15% !important;
+	margin-left: 15px;
+}
 

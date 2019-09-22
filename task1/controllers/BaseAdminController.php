@@ -657,6 +657,15 @@ class BaseAdminController
 	public function messages()
 	{
 		$view = new View();
+		
+		$notifications = News::notifications();
+		$view->data['notifications'] = $notifications;
+		// var_dump($view->data['notifications']);
 		$view->load_view('admin', 'pages', 'messages');
+	}
+
+	public function delete_notification()
+	{
+		echo 'sad ga brisi';
 	}
 }

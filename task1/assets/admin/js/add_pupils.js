@@ -1,6 +1,7 @@
 window.addEventListener('load', () => {
     //Variables
-    let btn_submit = document.querySelectorAll('.btn-dark');
+    let form = document.querySelector('form');
+    let btn_submit = document.querySelector('.btn-dark');
     let add_more = document.querySelector('.add');
     let inside_form = document.querySelector('.row');
     let counter = 1;
@@ -54,8 +55,9 @@ window.addEventListener('load', () => {
             </div>
         <a class="remove_form">&#10006;</a>
         </div>`;
-        var errors = document.querySelectorAll('p.err');
-        if (errors.length == 0) {
+        let errors = document.querySelectorAll('p.err');
+        console.log(errors);
+        if (errors.length === 0) {
             if (x <= max_rows) {
                 counter++;  
                 inside_form.insertAdjacentHTML('beforeend', html);
@@ -77,7 +79,19 @@ window.addEventListener('load', () => {
        
     });
 
-    
+    btn_submit.addEventListener('click', (e) => {
+        e.preventDefault();
+        validate_previous_fields();
+        let all_p_els = document.querySelectorAll('p');
+        // errors_exists(form);
+        all_p_els.forEach(p => {
+            console.log(p.classList);
+           if (p.classList.contains("err")) {
+               console.log('imas gresku');
+           }//  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        });
+
+    });
   
 
 
@@ -86,16 +100,13 @@ window.addEventListener('load', () => {
 
 
 function validate_previous_fields(){
-    // let names_arr = {};
+
     let inputs = document.querySelectorAll('input');
     inputs.forEach(input => {
         let field_valid = true;
         let name = input.name;
-        // console.log(name);
         let value = input.value.trim();
         let id = input.id;
-        // console.log(id);
-        // names_arr[name] = value;
       
         if (value == '') {
             field_valid = false;
@@ -137,10 +148,14 @@ function validate_previous_fields(){
                     if (value.length < 4) {
                         field_valid = false;
                         display_error(input, 'minlength');
-                    }  
+                    } else if(field_valid){
+                        ajax_call(input.value, input);
+                        if (input.nextElementSibling.classList === 'err') {
+                            errors.length = 1;
+                        }
+                    }
                     break;
                 case 'pass':
-                    // console.log(pass_name);
                     psw_value = input.value;
                     if (value.length < 6) {
                         field_valid = false;
@@ -154,17 +169,17 @@ function validate_previous_fields(){
                         display_error(input, 'minlength-psw');
                     } else if (field_valid) {
                         let re_psw_value = input.value;
-                        console.log(re_psw_value);
-                        console.log(psw_value);
                         if (re_psw_value !== psw_value) {
                             display_error(input, 'password-not-match');
                         } else {
-                            console.log('iste su sifre');
+                            // console.log('iste su sifre');
                         }
                     }
                     break;
                 } 
         }
+        
+        
     });
             
         
@@ -172,9 +187,28 @@ function validate_previous_fields(){
 
 }
 
+
+function ajax_call(username, field){
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var res = JSON.parse(this.responseText);
+            if (typeof res === 'object') {
+               display_error(field, 'username-exists');
+            }
+        }
+    };
+
+    xhttp.open("GET", "http://localhost/eDiary/task1/admin/fetch_user_by_username?username="+ username, true);
+    xhttp.send();
+
+}
+
 function display_error(field, key){
     var errors_lookup = {
         'required': 'This field is required',
+        'username-exists': 'Username exists',
         'minlength': 'Type at least 4 characters.',
         'minlength-psw': 'Type at least 6 characters.',
         'password-not-match': 'Passwords doesn\'t match.'
@@ -193,6 +227,14 @@ function remove_error(field) {
     var error_el = document.querySelector('[name="' + field.name + '"] + p');
     error_el.innerText = '';
     error_el.classList.remove('err');
+}
+
+
+function errors_exists(form_el) {
+    var errors = document.querySelectorAll('p.err');
+    if (errors.length === 0) {
+        form_el.submit();
+    } 
 }
 
 

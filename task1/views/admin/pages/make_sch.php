@@ -85,7 +85,7 @@
             <?php endfor; ?>
     
             <input type="submit" class="btn btn-dark" value="Sačuvaj raspored!">
-        </div>
+    </div>
     </form>
 
     

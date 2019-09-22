@@ -4,6 +4,7 @@ window.addEventListener('load', () => {
 
     //on select class, validating 
     pick_class.addEventListener('input', (e) => {
+       
         var form = document.querySelector('.form-group').nextElementSibling;
         var values_of_option = e.target.value;
         var option_values = values_of_option.split(",");
@@ -24,7 +25,7 @@ window.addEventListener('load', () => {
 });
 
 
-//function for validating form for making schedule, first checking does sch for specigic class already exists, than does specigic lesson is already taken in some other schedule
+//function for validating form for making schedule, first checking does sch for specific class already exists, than does specigic lesson is already taken in some other schedule
 
 function validate_form(class_id, select_class, form_el, high_low) {
 
@@ -44,13 +45,17 @@ function validate_form(class_id, select_class, form_el, high_low) {
                 select_class.style = "border: 1px solid #ced4da;";
                 select_class.nextElementSibling.innerHTML = '';
 
-                //validating if lesson is already occupied in that term
-                check_is_class_ocuppied();
+                
 
                 if (high_low.includes("1")) {
+                    console.log('visi razred');
                     form_el.style = 'display:block';
                     ajax_call(high_low);
+                    //validating if lesson is already occupied in that term
+                    check_is_class_ocuppied();
                 } else if (high_low.includes("0")) {
+                    console.log('nizi razred');
+                   
                     form_el.style = 'display:block';
                     ajax_call(high_low);
                 } else {

@@ -8,7 +8,7 @@
     <?php
 foreach($this->data['parents'] as $parents):
     
-     echo  "<div onclick='chat(this.id)' id='p".$parents['id']."' class='clickabile usersChat' >Roditelj: ".$parents['first_name']." ".$parents['last_name']."<br> Ucenik: ".$parents['students_first_name']." ".$parents['students_last_name']."<br> </div>";
+     echo  "<div onclick='chat(this.id)' id='p".$parents['id']."' class='clickabile usersChat' >Roditelj: ".ucfirst($parents['first_name'])." ".ucfirst($parents['last_name'])."<br> Ucenik: ".ucfirst($parents['students_first_name'])." ".ucfirst($parents['students_last_name'])."<br> </div>";
 
 endforeach;
 

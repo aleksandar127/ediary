@@ -190,6 +190,12 @@ form{
 }
 
 /* STYLYSH PARENT NEWS */
+
+.nots{
+	background-color: rgba(0, 0, 0, 0.4);
+	padding: 10px;
+	margin: 5px;
+}
 .card-deck{
 	margin: 10px;
 }

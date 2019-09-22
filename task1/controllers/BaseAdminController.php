@@ -654,18 +654,37 @@ class BaseAdminController
 		echo $user;
 	}
 
-	public function messages()
+	public function notifications()
 	{
 		$view = new View();
 		
 		$notifications = News::notifications();
 		$view->data['notifications'] = $notifications;
 		// var_dump($view->data['notifications']);
-		$view->load_view('admin', 'pages', 'messages');
+		$view->load_view('admin', 'pages', 'notifications');
+	}
+
+	public function save_notification()
+	{
+		var_dump($_POST);
+		$notification = $_POST['parent_news'];
+		$add = News::add_notification($notification);
+		if ($add) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste dodali novo obaveštenje!');
+		} else {
+			echo 'nesto puca kod dodavanja novog obavestenja za roditelje';
+		}
 	}
 
 	public function delete_notification()
 	{
-		echo 'sad ga brisi';
+		$notificaton_id = $this->demand->parts_of_url[5];
+		$delete = News::delete_notification_by_id($notificaton_id);
+		var_dump($delete);
+		if ($delete) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali obaveštenje!');
+		} else {
+			echo 'nesto ne valja kod brisanja obavestenja';
+		}
 	}
 }

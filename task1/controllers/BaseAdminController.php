@@ -653,4 +653,10 @@ class BaseAdminController
 		$user = json_encode($user);
 		echo $user;
 	}
+
+	public function messages()
+	{
+		$view = new View();
+		$view->load_view('admin', 'pages', 'messages');
+	}
 }

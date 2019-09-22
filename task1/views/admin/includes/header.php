@@ -22,6 +22,7 @@
 					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/admin/classes"><span><i class="fas fa-graduation-cap"></i></span> Odeljenja</a></li>
 					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/admin/schedule"><span><i class="fas fa-clipboard-list"></i></span> Raspored časova</a></li>
 					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/admin/students"><span><i class="fas fa-user-graduate"></i></span> Učenici</a></li>
+					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/admin/messages"><span><i class="fas fa-envelope-open"></i></span> Obaveštenja</a></li>
 				</ul>
 				<ul class="right_nav">
 					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/admin/logout">Izloguj se <span><i class="fas fa-sign-out-alt"></i></i></a></li>

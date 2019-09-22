@@ -3,7 +3,6 @@
         <div class="wrapper">
             <div id="sendMessage">
                 <div id="scroll">
-                <!-- <div id="parents" style="display:inline-block;position:fixed;height:400px;overflow:auto;"> -->
                     <div class="container">
                         <p>Hello. How are you today?</p>
                         <span class="time-right">11:00</span>
@@ -12,7 +11,7 @@
                         <p>Hey! I'm fine. Thanks for asking!</p>
                         <span class="time-left">11:01</span>
                     </div>
-                </div>
+                </div><!-- end #scroll -->
                 <div id="chat">
                     <textarea id ="subject" name="subject" placeholder ="Write something.." rows="4"></textarea><br>
                     <button onclick='ajaxSendMessage();'>Posalji</button>

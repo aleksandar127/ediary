@@ -225,13 +225,13 @@ table{
 	height:50px;
 	padding: 5px 0;
 }
-#message #sendMessage {
+#messagee #sendMessage {
 	width: 665px;
 	padding-right:5px;
 	float: left;
 	margin-top: 5px;
 }
-#message #scroll{
+#messagee #scroll{
 	height: 450px;
 	padding-right: 10px;
 	overflow-x: hidden;
@@ -285,20 +285,20 @@ table{
 	float: left;
 	color: #000;
 }
-#message #chat{
+#messagee #chat{
 	margin-top:10px;
 	width: 670px;
 }
-#message #subject{
+#messagee #subject{
 	width: 660px;
-	overflow: hidden;
+	/* overflow: hidden; */
 	height: 150px;
 	resize: none;
 }
-#message #sendMessage #chat button{
-	float: left;
+#messagee #sendMessage #chat button{
 	font-size:20px;
 	margin-right: 5px;
+	float:left;
 }
 #listUsers{
 	float: right;

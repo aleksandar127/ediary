@@ -1,9 +1,10 @@
 <br>
 <div class="container" style='width:850px;margin:auto;'>
     
-<div id="parents_name" class="p-2 UsersForChatDiv"></div> <br>
-<div id="message" class="messageChatDiv">
-</div><!-- end #message -->
+    <div id="parents_name" class="p-2 UsersForChatDiv">
+    </div> <br>
+    <div id="message" class="messageChatDiv">
+    </div><!-- end #message -->
    
     <div id="parents" class="usersChatHeader">
     

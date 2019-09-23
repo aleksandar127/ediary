@@ -1,13 +1,10 @@
 
-  <div class="col-md-12 text-center my-3">
-    <h1 class="font-weight-bold">Prosek ocena za <span class="text-black">7/1</span></h1>
-  </div>
-
-
-
-<div class="row mt-2 tabela" style="height:80vh">
-    <div class="col-md-11 mx-auto mb-3" id="razred"></div>
-</div>  
+<div class="col-md-12 text-center my-4">
+    <h1 class="font-weight-bold">Prosek ocena na nivou skole</h1>
+</div>
+<div class="row mt-5 tabela" style="height:80vh">
+    <div class="col-md-11 mx-auto mb-4 rounded" id="skola"></div>
+</div> 
 
   <!-- Chart code -->
 <script>
@@ -18,10 +15,10 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 // Create chart instance
-var chart = am4core.create("razred", am4charts.XYChart);
+var chart = am4core.create("skola", am4charts.XYChart);
 
 // Add data
-chart.data = [{"prosecna_ocena":"4.2500","predmet":"biologija"},{"prosecna_ocena":"4.5000","predmet":"engleski"},{"prosecna_ocena":"4.7500","predmet":"fizicko"},{"prosecna_ocena":"3.0000","predmet":"fizika"},{"prosecna_ocena":"3.7500","predmet":"geografija"},{"prosecna_ocena":"3.5000","predmet":"hemija"},{"prosecna_ocena":"4.0000","predmet":"istorija"},{"prosecna_ocena":"4.5000","predmet":"likovno"},{"prosecna_ocena":"3.2500","predmet":"matematika"},{"prosecna_ocena":"4.0000","predmet":"srpski"}]
+chart.data = [{"prosecna_ocena":"3.5625","predmet":"biologija"},{"prosecna_ocena":"3.8750","predmet":"engleski jezik"},{"prosecna_ocena":"4.9200","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"2.8750","predmet":"fizika"},{"prosecna_ocena":"4.0625","predmet":"geografija"},{"prosecna_ocena":"2.8182","predmet":"hemija"},{"prosecna_ocena":"4.3333","predmet":"likovno vaspitanje"},{"prosecna_ocena":"3.5636","predmet":"matematika"},{"prosecna_ocena":"4.2857","predmet":"muzi\u010dko vaspitanje"},{"prosecna_ocena":"3.4444","predmet":"srpski jezik"},{"prosecna_ocena":"4.2500","predmet":"Svet oko nas"}]
 //console.log(chart.data)
 
 // Create axes
@@ -31,6 +28,8 @@ categoryAxis.dataFields.category = "predmet";
 categoryAxis.renderer.grid.template.location = 0;
 categoryAxis.renderer.minGridDistance = 30;
 categoryAxis.title.text = "Predmeti";
+
+
 
 // categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
 //   if (target.dataItem && target.dataItem.index & 2 == 2) {
@@ -46,8 +45,11 @@ valueAxis.renderer.minGridDistance = 100;
 valueAxis.title.text = "Prosek ocena";
 
 
+valueAxis.numberFormatter.numberFormat = "#.00";
+
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries());
+
 series.dataFields.valueY = "prosecna_ocena";
 series.dataFields.categoryX = "predmet";
 //series.name = "Visits";
@@ -56,7 +58,6 @@ series.columns.template.fillOpacity = .8;
 series.columns.template.column.cornerRadiusTopLeft = 10;
 series.columns.template.column.cornerRadiusTopRight = 10;
 series.columns.template.column.fillOpacity = 0.8;
-
 
 var hoverState = series.columns.template.column.states.create("hover");
 hoverState.properties.cornerRadiusTopLeft = 0;
@@ -71,5 +72,4 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 });
 }); // end am4core.ready()
 </script>
-
 

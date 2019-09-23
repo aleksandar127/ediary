@@ -1,6 +1,6 @@
 
   <div class="col-md-12 text-center my-3">
-    <h1 class="font-weight-bold">Prosek ocena za <span class="text-black">3/1</span></h1>
+    <h1 class="font-weight-bold">Prosek ocena za <span class="text-black">7/1</span></h1>
   </div>
 
 
@@ -21,7 +21,7 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("razred", am4charts.XYChart);
 
 // Add data
-chart.data = [{"prosecna_ocena":"3.0000","predmet":"engleski"},{"prosecna_ocena":"3.6667","predmet":"fizicko"},{"prosecna_ocena":"4.3333","predmet":"likovno"},{"prosecna_ocena":"3.0000","predmet":"matematika"},{"prosecna_ocena":"4.6667","predmet":"muzicko"},{"prosecna_ocena":"3.6667","predmet":"priroda_drustvo"},{"prosecna_ocena":"4.0000","predmet":"srpski"}]
+chart.data = [{"prosecna_ocena":"3.5000","predmet":"biologija"},{"prosecna_ocena":"4.2500","predmet":"engleski jezik"},{"prosecna_ocena":"5.0000","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"3.0000","predmet":"fizika"},{"prosecna_ocena":"4.5000","predmet":"geografija"},{"prosecna_ocena":"3.1250","predmet":"hemija"},{"prosecna_ocena":"4.7500","predmet":"likovno vaspitanje"},{"prosecna_ocena":"3.7778","predmet":"matematika"},{"prosecna_ocena":"4.4000","predmet":"muzi\u010dko vaspitanje"},{"prosecna_ocena":"3.5000","predmet":"srpski jezik"}]
 //console.log(chart.data)
 
 // Create axes

@@ -35,7 +35,7 @@ class BaseDirectorController
 		if(file_exists($cacheFile)) {
 
 		$timeDiff = time() - filemtime($cacheFile);
-		echo $timeDiff;
+		// echo $timeDiff;
 			// Izbrisi fajl ako je stariji od 12 sati..
 			if($timeDiff > (60 * 60 * 12)) {
 				unlink($cacheFile);
@@ -75,7 +75,7 @@ class BaseDirectorController
 		if(file_exists($cacheFile)) {
 
 		$timeDiff = time() - filemtime($cacheFile);
-		echo $timeDiff;
+		// echo $timeDiff;
 			// Izbrisi fajl ako je stariji od 12 sati..
 			if($timeDiff > (60 * 60 * 12)) {
 				unlink($cacheFile);

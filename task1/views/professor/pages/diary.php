@@ -1,23 +1,3 @@
-<?php 
-
-// $cacheFile = sprintf("views/professor/pages/diary_cache%s.php", date("Ymd"));
-
-//  $timediff = time() - filemtime($cacheFile); 
-//   // echo $timediff;
-//  if($timediff > (24 * 60)) {
-//  	unlink($cacheFile);
-//  }
-
-
-// if(file_exists($cacheFile)) {
-
-// 	readfile($cacheFile);
-// 	exit;
-// }
-
-// ob_start();
-
-?>
 
 <br>
 <div class="container">
@@ -30,20 +10,8 @@ else
 endforeach;
  
 
+
 ?>
 
 </div>
 </div>
-
-<?php 
-
-// $content = ob_get_contents();
-// ob_end_clean();
-
-// $fp = fopen($cacheFile, "w");
-// fwrite($fp, $content);
-// fclose($fp);
-
-// echo $content;
-
-?>

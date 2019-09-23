@@ -18,10 +18,12 @@ function ajax() {
             var id=a[i]["id"];
             var user=a[i]["user"];
             user="p"+user;
-			var message_body=a[i]["message"];
-			var date=a[i]["date_and_time"];
-      var last_name=a[i]["last_name"];
-			var first_name=a[i]["first_name"];
+            var message_body=a[i]["message"];
+            var date=a[i]["date_and_time"];
+            var last_name=a[i]["last_name"];
+            var first_name=a[i]["first_name"];
+            last_name=last_name.charAt(0).toUpperCase() + last_name.slice(1);
+            first_name=first_name.charAt(0).toUpperCase() + first_name.slice(1);
             var is_read=a[i]["is_read"];	        
             p.innerHTML+=message_body;
             p.innerHTML+="<br>";   

@@ -329,7 +329,7 @@ private $grades=[1,2,3,4,5];
 		$pdf->line(80,110,300,110);
 		}
 		else
-		$pdf-> addText (100,115,14,'Uspeh:<b> '.$grade.' ('.round($sum/$count).')</b>');
+		$pdf-> addText (100,115,14,'Uspeh:<b> '.$grade.' ('.sprintf('%0.2f',($sum/$count)).')</b>');
 		//$pdf->ezText('     <b>     Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13,[ 'justification'=> 'right']);
 		$pdf->ezSetDy(-15);
 		$pdf->addText (445,75,10,'DIREKTOR');

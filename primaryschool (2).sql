@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 16, 2019 at 08:58 AM
--- Server version: 5.7.23
--- PHP Version: 7.2.10
+-- Generation Time: Sep 23, 2019 at 08:16 AM
+-- Server version: 5.7.19
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -402,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   PRIMARY KEY (`id`),
   KEY `fk_terms_subjects1_idx` (`subjects_id`),
   KEY `class_id_idx` (`class_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=260 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=287 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `schedule`
@@ -664,7 +664,31 @@ INSERT INTO `schedule` (`id`, `day_in_week`, `lesson_no`, `subjects_id`, `class_
 (256, '4', 6, 54, 28),
 (257, '5', 6, 52, 28),
 (258, '1', 7, 67, 28),
-(259, '2', 7, 66, 28);
+(259, '2', 7, 66, 28),
+(260, '3', 7, 62, 19),
+(262, '4', 7, 62, 19),
+(263, '5', 7, 62, 19),
+(264, '4', 7, 59, 21),
+(265, '3', 7, 59, 21),
+(266, '5', 7, 59, 21),
+(267, '4', 7, 57, 25),
+(268, '3', 7, 57, 25),
+(269, '5', 7, 59, 25),
+(270, '3', 7, 57, 26),
+(271, '4', 7, 57, 26),
+(272, '5', 7, 58, 26),
+(273, '3', 7, 63, 24),
+(274, '4', 7, 63, 24),
+(275, '5', 7, 63, 24),
+(278, '3', 7, 54, 22),
+(279, '4', 7, 54, 22),
+(280, '5', 7, 54, 22),
+(281, '3', 7, 53, 27),
+(282, '4', 7, 53, 27),
+(283, '5', 7, 53, 27),
+(284, '3', 7, 52, 28),
+(285, '4', 7, 52, 28),
+(286, '5', 7, 52, 28);
 
 -- --------------------------------------------------------
 
@@ -879,7 +903,7 @@ CREATE TABLE IF NOT EXISTS `subjects_has_grades_has_students` (
   PRIMARY KEY (`id`),
   KEY `fk_subjects_has_grades_has_students_students1_idx` (`students_id`),
   KEY `fk_subjects_has_grades_has_students_subjects_has_grades1_idx` (`subjects_has_grades_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=301 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=309 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `subjects_has_grades_has_students`
@@ -1159,7 +1183,15 @@ INSERT INTO `subjects_has_grades_has_students` (`students_id`, `subjects_has_gra
 (50, 123, 297),
 (48, 122, 298),
 (44, 124, 299),
-(45, 123, 300);
+(45, 123, 300),
+(21, 69, 301),
+(22, 85, 302),
+(23, 99, 303),
+(26, 73, 304),
+(27, 68, 305),
+(32, 84, 306),
+(37, 68, 307),
+(39, 95, 308);
 
 -- --------------------------------------------------------
 
@@ -1185,28 +1217,28 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `cookie`, `roles_id`) VALUES
-(3, 'Isidora', 'Nikolic', 'isica', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '092abcd231aa6aca0aa828a8be915eb0', 2),
-(4, 'Aleksandar', 'Matematika', 'acika', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', '7175c0c08defd337dc03a2a4246034cb', 1),
-(9, 'Milojko', 'PetrovicU', 'milojko', '$2y$10$yCDXnAYsvg.Wqu76lqRyPundxe7ARn2aQ8lh6LSNqj8GOwwLcsvN6', '6742781eafc63edb4786bc84ca1cc110', 3),
-(14, 'Silvana', 'OstojicR', 'silkica', '$2y$10$yxmWGGqDIQRbkVbGUahSWOliYrMRDSpjSkPXd1KQE0gOB8eO3p6mq', '3db6a7e84771d5ae4500ed24b8225fd9', 4),
-(16, 'Nenad', 'direktor', 'nenad', '$2y$10$yCDXnAYsvg.Wqu76lqRyPundxe7ARn2aQ8lh6LSNqj8GOwwLcsvN6', '85dfc237321c29b05c1d4c9c2c8c654a', 5),
-(17, 'Nemanja', 'Hemija', 'nemanja', '$2y$10$Ui6Y1zJv4P7mZD7Mp2zexeeRA8ju9A1ZkQkhY8A1E4h1RVQixtew6', 'c96a02980164220e4a4d4b3c1eae39a1', 1),
-(18, 'Pavaroti', 'muzičko', 'pavaroti', '$2y$10$MTEn.sCGyO3TYjGstsTS5udr367huv.x1nyDm/djyJNAA5xl6Vpzy', '5095f62e414d60230a616c94b44d35f8', 1),
-(19, 'marijan', 'DespotovićU', 'marijan', '$2y$10$wGxnU/ZCmkd1XZUw7XOF2OC9CimXeykfAb1usXId2S1ZH2.i2lJd2', 'bd5c23c065a09ffd5b2882e533c1a03b', 3),
-(20, 'Miki', 'srpski', 'miki', '$2y$10$48zaEXaFfJhGc6hP2AzjoOW64kZXKp.k0Nt7CM99IbtbGDbFXTPqy', '06c101a76e5ac0d32ff69d46d32d86a1', 1),
-(21, 'ana', 'likovno', 'anaana', '$2y$10$Y7JlDsB8uFUbBMIVYpSg5e9OVed98Uak3dSfouGUmt.vbIo6nO/6C', 'dc6a1ed4a3a90ea3c85781a79f71fa70', 1),
-(22, 'mile', 'geos', 'mile', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '0cb3011f52ef740199cabb639756271e', 1),
-(23, 'Momčilo', 'fizičko', 'momčilo', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '3ffd894b2f1e3465f4792f7bd831e41c', 1),
-(24, 'mileva', 'fizika', 'mileva', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '96db03124d0bd55df5907ee0170b746c', 1),
-(25, 'John', 'engleski', 'john', '$2y$10$riWbu1sqZ4KGcSFgX2TzjOR4suYNXriA7U6AyXuO5lE4qJi87ZzqK', 'c0e6077fc2a480169e2be28ca07ca8a0', 1),
-(26, 'jelena', 'JovanovićU', 'jelena', '$2y$10$guzziuEjI2xdiNzhXeGC/enYLTqGiaRb8VCRdC0Bqq1vsa1Q3DVqO', '3aab1117e08c855efcc051ca5dfc1222', 3),
-(27, 'Marija', 'petkovićU', 'marija', '$2y$10$xNwCRVWn9nnHFcDQI70GbOmLqLhNuYTCUBDirro1pYycWiLYmmjp.', '764cbef1dd4ca8ffe79890ccfaa7a2c1', 3),
+(3, 'Isidora', 'Nikolic', 'isica', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', 'd70107c649e184a15aeaaefbf055e76e', 2),
+(4, 'Aleksandar', 'Matematika', 'acika', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', 'd6b9af22b9010c61d38650599161e660', 1),
+(9, 'Milojko', 'Petrovic', 'milojko', '$2y$10$yCDXnAYsvg.Wqu76lqRyPundxe7ARn2aQ8lh6LSNqj8GOwwLcsvN6', '4f062e88559b91f96af440daff0cd3f6', 3),
+(14, 'Silvana', 'Ostojic', 'silkica', '$2y$10$yxmWGGqDIQRbkVbGUahSWOliYrMRDSpjSkPXd1KQE0gOB8eO3p6mq', 'fb975fb64d88fba9627aa4d78fcef73e', 4),
+(16, 'Nenad', 'nikolić', 'nenad', '$2y$10$yCDXnAYsvg.Wqu76lqRyPundxe7ARn2aQ8lh6LSNqj8GOwwLcsvN6', '85dfc237321c29b05c1d4c9c2c8c654a', 5),
+(17, 'Nemanja', 'Hemija', 'stanković', '$2y$10$Ui6Y1zJv4P7mZD7Mp2zexeeRA8ju9A1ZkQkhY8A1E4h1RVQixtew6', '4b28c750766f5e3b180ae5f157c2e262', 1),
+(18, 'Pavaroti', 'jovanović', 'pavaroti', '$2y$10$MTEn.sCGyO3TYjGstsTS5udr367huv.x1nyDm/djyJNAA5xl6Vpzy', '5095f62e414d60230a616c94b44d35f8', 1),
+(19, 'marijan', 'Despotović', 'marijan', '$2y$10$wGxnU/ZCmkd1XZUw7XOF2OC9CimXeykfAb1usXId2S1ZH2.i2lJd2', '64ab0e5c0fd5f73d74de00006f0e4106', 3),
+(20, 'Miki', 'jugović', 'miki', '$2y$10$48zaEXaFfJhGc6hP2AzjoOW64kZXKp.k0Nt7CM99IbtbGDbFXTPqy', '06c101a76e5ac0d32ff69d46d32d86a1', 1),
+(21, 'ana', 'stanojković', 'anaana', '$2y$10$Y7JlDsB8uFUbBMIVYpSg5e9OVed98Uak3dSfouGUmt.vbIo6nO/6C', 'e9d8b29f16ced20b03a7ebd4ce71fabe', 1),
+(22, 'mile', 'rakić', 'mile', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '0cb3011f52ef740199cabb639756271e', 1),
+(23, 'Momčilo', 'martać', 'momčilo', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '569a078a1ba06170a5fa32fdb72e7243', 1),
+(24, 'mileva', 'mihajlović', 'mileva', '$2y$10$BdM2tOY4sNp0qiFOfyqyyu.cEr4XJVmKwtfC15/xgT0CKv35iXq6O', '96db03124d0bd55df5907ee0170b746c', 1),
+(25, 'danijela', 'milić', 'danijela', '$2y$10$riWbu1sqZ4KGcSFgX2TzjOR4suYNXriA7U6AyXuO5lE4qJi87ZzqK', 'c0e6077fc2a480169e2be28ca07ca8a0', 1),
+(26, 'jelena', 'Jovanović', 'jelena', '$2y$10$guzziuEjI2xdiNzhXeGC/enYLTqGiaRb8VCRdC0Bqq1vsa1Q3DVqO', '3aab1117e08c855efcc051ca5dfc1222', 3),
+(27, 'Marija', 'petković', 'marija', '$2y$10$xNwCRVWn9nnHFcDQI70GbOmLqLhNuYTCUBDirro1pYycWiLYmmjp.', '764cbef1dd4ca8ffe79890ccfaa7a2c1', 3),
 (28, 'Miloš', 'Micić', 'miloš', '$2y$10$KDEStQRQQrmpL6YNw6vaCeGIq9et9Um/pb/yCiLunlAKvxBkuZP0a', '31a80aab1b0f49181cc2ded3c0076553', 4),
 (29, 'Predrag', 'Jokić', 'predrag', '$2y$10$wX0k.QylZf5dAhkzm0ndTOhQdHhoeFDATCcIudSeavA2HzvrYPzzC', '648ad6120b1c8cc5d94ae402c469bf13', 4),
 (30, 'Dragan', 'smiljanić', 'dragan', '$2y$10$5zgV0lXfM1/K.c9fBEb06u0j4kLl.lW0hT39kNPYHomt9O2V7Yj5O', 'fbeaf674091f809aabbeb49500b2011b', 1),
 (31, 'Marina', 'lukić', 'marina', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 4),
 (32, 'nevena', 'banović', 'nevena', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 4),
-(33, 'milica', 'lukić', 'milica', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 4),
+(33, 'milica', 'lukić', 'milica', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', 'b6877d84f5a9eb8b2f8d3dd94ee2f872', 4),
 (34, 'tamara', 'nedeljković', 'tamara', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 4),
 (35, 'svetlana', 'matić', 'svetlana', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 4),
 (36, 'anja', 'jovanović', 'anja', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 4),
@@ -1222,6 +1254,31 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `username`, `password`, `c
 (46, 'feđa', 'raspopović', 'feđa', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 4),
 (47, 'ognjen', 'ivanović', 'ognjen', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 4),
 (48, 'marica', 'erović', 'marica', '$2y$10$jtwHKh5tZixgASTiuTjHmuBh901kR7zmlEwH3x9Tea7RZGr3TADAm', NULL, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_has_class`
+--
+
+DROP TABLE IF EXISTS `users_has_class`;
+CREATE TABLE IF NOT EXISTS `users_has_class` (
+  `users_id` int(11) NOT NULL,
+  `class_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  KEY `fk_users_has_class_class1_idx` (`class_id`),
+  KEY `fk_users_has_class_users1_idx` (`users_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+--
+-- Dumping data for table `users_has_class`
+--
+
+INSERT INTO `users_has_class` (`users_id`, `class_id`, `id`) VALUES
+(4, 20, 1),
+(4, 22, 2),
+(5, 22, 3);
 
 -- --------------------------------------------------------
 
@@ -1318,6 +1375,13 @@ ALTER TABLE `subjects_has_grades_has_students`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `roles` FOREIGN KEY (`roles_id`) REFERENCES `role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `users_has_class`
+--
+ALTER TABLE `users_has_class`
+  ADD CONSTRAINT `fk_users_has_class_class1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_users_has_class_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `users_has_open`

@@ -82,19 +82,9 @@ window.addEventListener('load', () => {
     btn_submit.addEventListener('click', (e) => {
         e.preventDefault();
         validate_previous_fields();
-        let all_p_els = document.querySelectorAll('p');
-        // errors_exists(form);
-        all_p_els.forEach(p => {
-            console.log(p.classList);
-           if (p.classList.contains("err")) {
-               console.log('imas gresku');
-           }//  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        });
+        errors_exists(form); 
 
     });
-  
-
-
 
 });
 
@@ -150,9 +140,6 @@ function validate_previous_fields(){
                         display_error(input, 'minlength');
                     } else if(field_valid){
                         ajax_call(input.value, input);
-                        if (input.nextElementSibling.classList === 'err') {
-                            errors.length = 1;
-                        }
                     }
                     break;
                 case 'pass':
@@ -200,7 +187,7 @@ function ajax_call(username, field){
         }
     };
 
-    xhttp.open("GET", "http://localhost/eDiary/task1/admin/fetch_user_by_username?username="+ username, true);
+    xhttp.open("GET", "http://localhost/eDiary/task1/admin/fetch_user_by_username?username="+ username, false);
     xhttp.send();
 
 }

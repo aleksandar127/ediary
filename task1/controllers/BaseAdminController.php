@@ -642,7 +642,13 @@ class BaseAdminController
 		$arr = $_POST;
 		$arr1 = array_chunk($arr, 7, true);
 		
-		var_dump($arr1);
+		// var_dump($arr1);
+		foreach($arr1 as $key => $value){
+			var_dump($value);
+			foreach($value as $hehe){
+				var_dump($hehe);
+			}
+		}
 	
 	}
 
@@ -654,16 +660,17 @@ class BaseAdminController
 		echo $user;
 	}
 
+	//method for showing page with working and reading notifications for parents 
 	public function notifications()
 	{
 		$view = new View();
 		
 		$notifications = News::notifications();
 		$view->data['notifications'] = $notifications;
-		// var_dump($view->data['notifications']);
 		$view->load_view('admin', 'pages', 'notifications');
 	}
 
+	//method for storing new notification in db
 	public function save_notification()
 	{
 		var_dump($_POST);
@@ -676,6 +683,7 @@ class BaseAdminController
 		}
 	}
 
+	//method for deleting notifications for parents from db
 	public function delete_notification()
 	{
 		$notificaton_id = $this->demand->parts_of_url[5];

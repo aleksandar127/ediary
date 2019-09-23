@@ -634,22 +634,36 @@ class BaseAdminController
 		$view = new View();
 		$class = Classes::get_class_by_id($class_id);
 		$view->data['title'] = $class['name'];
+		$view->data['class_id'] = $class_id;
 		$view->load_view('admin', 'pages', 'add_puple');
 	}
 
 	public function save_new_pupils()
 	{
+		$class_id = $this->demand->parts_of_url[5];
 		$arr = $_POST;
 		$arr1 = array_chunk($arr, 7, true);
 		
-		// var_dump($arr1);
-		foreach($arr1 as $key => $value){
-			var_dump($value);
-			foreach($value as $hehe){
-				var_dump($hehe);
+		foreach($arr1 as $k => $student_info_arr){
+			
+			foreach($student_info_arr as $key => $student){
+				$k = substr($key, 0, -1);
+				var_dump($k);
+				if ($k === 'puple_n') {
+					$pupil_name = $student;
+					var_dump($pupil_name);
+				} elseif($k === 'puple_s'){
+					$pupil_surname = $student;
+					var_dump($pupil_surname);
+				}
+				// $pupil_name = $student_info_arr['puple_n'];
+				// var_dump($student);
+				// var_dump($class_id);
 			}
+			
+
 		}
-	
+			
 	}
 
 	//method for fetching user by username written in form input from db, to check if already exists when adding new pupils and their parents

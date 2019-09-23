@@ -71,6 +71,30 @@ class Student
         return true;
     }
 
+    //method for adding new students to specific class in db
+    public static function add_students($parent_name, $parent_surname, $parent_username, $parent_role, $student_n, $student_s, $class_id)
+    {
+      try {  
+            DB::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            DB::$conn->beginTransaction();
+            $query = DB::$conn->prepare("insert into users (first_name, last_name, username, password, roles_id) values (?, ?, ?, ?, ?)");
+            $query->execute([$parent_name, $parent_surname, $parent_username, $parent_role]); 
+            $parent_id = DB::$conn->lastInsertId(); 
+
+            $query =  DB::$conn->prepare("insert into students (first_name, last_name, class_id, users_id) values (?, ?, ?, ?)");
+            $query->execute([ $student_n, $student_s, $class_id, $parent_id]); 
+            DB::$conn->commit();
+        
+        } catch (Exception $e) {
+            DB::$conn->rollBack();
+            echo "Failed: " . $e->getMessage();
+            return false;
+        }
+        return true;
+
+    }
+
     //method for deleting puple from db
     public static function delete_puple($puple_id)
     {

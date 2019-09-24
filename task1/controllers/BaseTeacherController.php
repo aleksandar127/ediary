@@ -1,5 +1,5 @@
 <?php 
-include_once 'Creport.php';
+
 class BaseTeacherController{
 
     public function __construct($demand){
@@ -245,6 +245,7 @@ class BaseTeacherController{
 
 //get pdf of student final success R&OS library
 public function success(){
+    include_once 'Creport.php';
     $id= $this->demand->parts_of_url[5];
     $view = new View();
     //get all final grades 

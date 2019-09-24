@@ -72,18 +72,18 @@ class Student
     }
 
     //method for adding new students to specific class in db
-    public static function add_students($parent_name, $parent_surname, $parent_username, $parent_role, $student_n, $student_s, $class_id)
+    public static function add_students($parent_name, $parent_surname, $parent_username, $parent_pass, $parent_role, $student_n, $student_s, $class_id)
     {
       try {  
             DB::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             DB::$conn->beginTransaction();
             $query = DB::$conn->prepare("insert into users (first_name, last_name, username, password, roles_id) values (?, ?, ?, ?, ?)");
-            $query->execute([$parent_name, $parent_surname, $parent_username, $parent_role]); 
+            $query->execute([$parent_name, $parent_surname, $parent_username, $parent_pass, $parent_role]); 
             $parent_id = DB::$conn->lastInsertId(); 
 
             $query =  DB::$conn->prepare("insert into students (first_name, last_name, class_id, users_id) values (?, ?, ?, ?)");
-            $query->execute([ $student_n, $student_s, $class_id, $parent_id]); 
+            $query->execute([$student_n, $student_s, $class_id, $parent_id]); 
             DB::$conn->commit();
         
         } catch (Exception $e) {
@@ -95,12 +95,34 @@ class Student
 
     }
 
-    //method for deleting puple from db
+    //method for deleting puple from db and their parents from users if parent hasn't more kids
     public static function delete_puple($puple_id)
     {
-        $query = 'delete from students where id=? limit 1';
-        $res=  DB::$conn->prepare($query);
-        return $res->execute([$puple_id]);
+        try {  
+            DB::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            DB::$conn->beginTransaction();
+            $query = DB::$conn->prepare("select users_id from students where id = ?");
+            $query->execute([$puple_id]);
+            $parent_id = DB::$conn->lastInsertId(); 
+
+            $query =  DB::$conn->prepare("insert into students (first_name, last_name, class_id, users_id) values (?, ?, ?, ?)");
+            $query->execute([$student_n, $student_s, $class_id, $parent_id]); 
+            DB::$conn->commit();
+        
+        } catch (Exception $e) {
+            DB::$conn->rollBack();
+            echo "Failed: " . $e->getMessage();
+            return false;
+        }
+        return true;
+     
     }
 
 }
+
+
+
+//    $query = 'delete from students where id=? limit 1';
+//         $res=  DB::$conn->prepare($query);
+//         return $res->execute([$puple_id]);

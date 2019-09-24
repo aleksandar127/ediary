@@ -1,51 +1,12 @@
 
-    <div id="table_schedule">
-        <div class="wrapper">
-            
-<?php $days=["","ponedeljak","utorak","sreda","cetvrtak","petak"]; ?>
-            <table>
-                    <tr>
-                        <th> # </th>
-                        <th>Ponedeljak</th>
-                        <th>Utorak</th>
-                        <th>Sreda</th>
-                        <th>Cetvrtak</th>
-                        <th>Petak</th>
-                    </tr>
-                    <tr>
-                        <td>1. cas</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                    </tr>
-                    <tr>
-                        <td>2. cas</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                    </tr>
-                    <tr>
-                        <td>3. cas</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                        <td>#</td>
-                    </tr>
-            </table>
-        </div><!-- end .wrapper -->
-    </div><!-- end #table_schedule -->
 
 
-<?php
+    <?php
 
+//print_r($this->data['schedule']);
 echo "<br>";
 $days=["","ponedeljak","utorak","sreda","cetvrtak","petak"];
-echo "<table class='table table-bordered table-dark table-hover col-md-8 mx-auto scheduleTeacher'>";
+echo "<table class='table table-bordered table-dark table-hover col-md-10 mx-auto scheduleTeacher'>";
 for($i=0;$i<8;$i++){
 echo "<tr>";
     for($y=0;$y<6;$y++){

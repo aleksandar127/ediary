@@ -22,7 +22,7 @@ ob_start();
 
 
 <div class="row mt-2 tabela" style="height:80vh">
-    <div class="col-md-11 mx-auto mb-3" id="razred"></div>
+    <div class="col-md-11 mx-auto mb-3" id="class"></div>
 </div>  
 
   <!-- Chart code -->
@@ -34,7 +34,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 // Create chart instance
-var chart = am4core.create("razred", am4charts.XYChart);
+var chart = am4core.create("class", am4charts.XYChart);
 
 // Add data
 chart.data = <?php echo $this->data['grades']; ?>

@@ -26,11 +26,11 @@ class Grades{
         $query = DB::$conn->prepare('delete from subjects_has_grades_has_students where id=? limit 1');
         $deleted=$query->execute([$id]); 
 
-         // Ako se unese nova ocena, izbrisi cache fajl na nivou skole..
+         // If grade is deleted, delete cache file on the school level..
         $schoolCacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
         unlink($schoolCacheFile);
 
-        // Ako se unese nova ocena, izbrisi cache fajl na nivou odeljenja..
+        // If grade is deleted, delete cache file for classes..
         $classCacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
             $class, date("Ymd"));
         foreach (glob("views/director/pages/cache/avgclass_cache*") as $cache) {
@@ -53,11 +53,11 @@ class Grades{
         $query = DB::$conn->prepare('update  subjects_has_grades_has_students set subjects_has_grades_id=?  where id=? limit 1');
         $deleted=$query->execute([$subject_grade_id,$id]); 
 
-         // Ako se unese nova ocena, izbrisi cache fajl na nivou skole..
+         // If new grade is inserted, delete cache file on the school level..
         $schoolCacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
         unlink($schoolCacheFile);
 
-        // Ako se unese nova ocena, izbrisi cache fajl na nivou odeljenja..
+        // If new grade is inserted, delete cache file for classes..
         $classCacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
             $class, date("Ymd"));
         foreach (glob("views/director/pages/cache/avgclass_cache*") as $cache) {
@@ -79,11 +79,11 @@ class Grades{
         $query = DB::$conn->prepare('insert into subjects_has_grades_has_students (students_id,subjects_has_grades_id) values (?,?)');
         $grade=$query->execute([$id,$subject_grade_id]); 
 
-        // Ako se unese nova ocena, izbrisi cache fajl na nivou skole..
+        // If new grade is inserted, delete cache file on the school level..
         $schoolCacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
         unlink($schoolCacheFile);
 
-        // Ako se unese nova ocena, izbrisi cache fajl na nivou odeljenja..
+        // If new grade is inserted, delete cache file for classes..
         $classCacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
             $class, date("Ymd"));
         foreach (glob("views/director/pages/cache/avgclass_cache*") as $cache) {
@@ -111,11 +111,11 @@ class Grades{
             $query = DB::$conn->prepare('update final_grade  set student_id=?,subject_grade=? where id=? limit 1');
             $grade=$query->execute([$id,$subject_grade_id,$final]); 
 
-             // Ako se unese nova ocena, izbrisi cache fajl na nivou skole..
+             // If new grade is inserted, delete cache file on the school level..
         $schoolCacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
         unlink($schoolCacheFile);
 
-        // Ako se unese nova ocena, izbrisi cache fajl na nivou odeljenja..
+        // If new grade is inserted, delete cache file for classes..
         $classCacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
             $class, date("Ymd"));
         foreach (glob("views/director/pages/cache/avgclass_cache*") as $cache) {
@@ -130,11 +130,11 @@ class Grades{
             $query = DB::$conn->prepare('insert into final_grade (id,student_id,subject_grade) values (null,?,?)');
             $grade=$query->execute([$id,$subject_grade_id]); 
             
-             // Ako se unese nova ocena, izbrisi cache fajl na nivou skole..
+             // If new grade is inserted, delete cache file on the school level..
         $schoolCacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
         unlink($schoolCacheFile);
 
-        // Ako se unese nova ocena, izbrisi cache fajl na nivou odeljenja..
+        // If new grade is inserted, delete cache file for classes..
         $classCacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
             $class, date("Ymd"));
         foreach (glob("views/director/pages/cache/avgclass_cache*") as $cache) {
@@ -158,7 +158,7 @@ class Grades{
     }
 
 
-        // Prosek ocena za sve predmete na nivou skole..
+        // Average grades for all subjects on the school level..
     public static function average_school_grades()
     {
         $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
@@ -176,7 +176,7 @@ class Grades{
 
 
 
-    // Prosek ocena za svako odeljenje posebno..
+    // Average grades for selected class..
     public static function average_class_grades($class, $high_low)
     {
         $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
@@ -190,6 +190,21 @@ class Grades{
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         $json = json_encode($result);
         return $json;
+    }
+
+
+    public static function export()
+    {
+        $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
+            FROM subjects_has_grades shg
+            JOIN subjects ON shg.subjects_id = subjects.id 
+            JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
+            JOIN students ON shghs.students_id = students.id 
+            JOIN class ON students.class_id = class.id 
+            GROUP BY subjects.name');
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
 

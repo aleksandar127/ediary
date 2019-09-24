@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class BaseTeacherController{
     public function __construct($demand){

@@ -1,52 +1,6 @@
 @charset "UTF-8";
 /* CSS Document */
 
-body {
-	margin:0;
-	padding:0;
-	font-size:14px;
-	font-family: 'Roboto', Arial, sans-serif;
-	color:#363636;
-	font-weight:300;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-weight:900;
-	margin:1em 0 0.5em;
-	color:#696969;
-}
-
-h1 { font-size:3em;}
-h2 { font-size:2.2em;}
-h3 { font-size:2em;}
-h4 { font-size:1.6em;}
-h5 { font-size:1.4em;}
-h6 { font-size:1.2em;}
-
-p {
-	margin:0.3em 0 0.5em;
-}
-
-img {
-	vertical-align:bottom;
-	max-width:100%;
-}
-
-a:link,
-a:visited {
-	text-decoration:none;
-	color:#696969;
-}
-a:hover {
-	color:#FFFFFF;
-}
-a:active {
-	color:#696969;
-}
-
-#headerTop{
-	background-color: #000;
-}
 
 .wrapper{
 	margin: 0 auto;
@@ -177,6 +131,13 @@ a:active {
 #teachers a:active{
 	color:#CC2A00;
 }
+#teachers tr{
+	margin: 0 auto;
+	color: #5F5E5E;
+	overflow:hidden;
+	width: 1350px;
+	text-align: center;
+}
 table{
 	border-collapse:collapse;
 	width:100%;
@@ -248,13 +209,13 @@ table{
 	border-left:none;
 	border-top:none;
 }
-td, th{
+#table td, th{
 	border:1px solid #000;
 	text-align:left;
 	padding:8px;
 	width:70px;
 }
-th{
+#table th{
 	transform: rotate(-90deg);
 	-webkit-transform: rotate(-90deg);
 	height: 200px;
@@ -262,7 +223,7 @@ th{
 	text-align: center;
 }
   
-tr:nth-child(even){
+#table tr:nth-child(even){
 	background-color:rgba(0, 0, 0, 0.45);
 	color:#FFF;
 }

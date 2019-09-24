@@ -22,13 +22,15 @@ function ajax() {
 			      var date=a[i]["date_and_time"];
             var last_name=a[i]["last_name"];
 			      var first_name=a[i]["first_name"];
-            var is_read=a[i]["is_read"];	        
+            var is_read=a[i]["is_read"];
+            	
+            p.innerHTML+=last_name+" "; 
+            p.innerHTML+=first_name; 
+            p.innerHTML+="<br>"; 
             p.innerHTML+=message_body;
             p.innerHTML+="<br>";   
             p.innerHTML+=date; 
-            p.innerHTML+="<br>";   
-            p.innerHTML+=last_name+" "; 
-            p.innerHTML+=first_name;   
+            p.innerHTML+="<br>";    
             div.setAttribute('data-id',user);
             //div.setAttribute('class',user); 
             div.setAttribute('class','clickabile'); 
@@ -85,13 +87,15 @@ function chat(id) {
         var p=document.createElement("p");
         var msg_id=a[i]["id"];
 		    var message_body=a[i]["message"];
-		    var date=a[i]["date_and_time"];
-        var is_read=a[i]["is_read"];	        
-        p.innerHTML+=message_body;	        
-        p.innerHTML+="<br><br>";
-        p.innerHTML+=date;
-        div.setAttribute('style',"background-color:silver;border-radius:10px;min-height:50px;width:200px;margin-top:5px; ");
-        p.setAttribute('style', "font-size:18px;");
+        p.innerHTML+=message_body;	     
+        p.innerHTML+="<br>";
+        var p1=document.createElement("p");
+        var date=a[i]["date_and_time"];
+        var is_read=a[i]["is_read"];
+        p1.innerHTML+=date;
+        div.setAttribute('style',"background-color:red;border-radius:10px;width:200px; ");
+        p.setAttribute('style', "font-size:20px;border-bottom:1px solid #000;");
+        p1.setAttribute('style', "font-size:14px;float:right;margin:0;padding:2px;font-weight:bold;font-style:italic;");
         if(a[i]["from_user"]==id){
           div.setAttribute('onclick','isRead(this.id)');
           div.setAttribute('style',"background-color:silver;border-radius:10px;min-height:50px;width:200px;margin-top:5px;margin-left:70px;");
@@ -106,6 +110,7 @@ function chat(id) {
         }
           div.setAttribute('id','d'+msg_id);
           div.append(p);
+          div.append(p1);
           message.append(div);
       };
      

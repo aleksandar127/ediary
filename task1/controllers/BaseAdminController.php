@@ -497,8 +497,6 @@ class BaseAdminController
 		$sch = $_POST;
 		//pull out class_id from POST superglobal
 		$class_id = array_pop($sch);
-		var_dump($class_id);
-		var_dump($sch);
 
 		foreach ($sch as $day_lesson => $lesson_id) {
 			$day = substr($day_lesson, 0, -1);
@@ -566,6 +564,7 @@ class BaseAdminController
 	{
 		$class_id = $this->demand->parts_of_url[5];
 		$view = new View();
+		$view->data['class'] = $class_id;
 
 		//prepare title
 		$class = Classes::get_class_by_id($class_id);
@@ -577,6 +576,7 @@ class BaseAdminController
 		$view->load_view('admin', 'pages', 'show_students');
 	}
 
+	//method for showing page with form for edit infos about puple
 	public function edit_student()
 	{
 		$student_id = $this->demand->parts_of_url[5];
@@ -590,5 +590,123 @@ class BaseAdminController
 		$view->data['all_classes'] = $all_classes;
 
 		$view->load_view('admin', 'pages', 'edit_student');
+	}
+
+	//method for saving changes about puple in db
+	public function save_puple_edit()
+	{
+		$student_id = $this->demand->parts_of_url[5];
+		$student_name = $_POST['student_name'];
+		$student_surname = $_POST['student_surname'];
+		$class_id = $_POST['class_picker'];
+		$parent_id = $_POST['parent_id'];
+		$parent_name = $_POST['parent_name'];
+		$parent_surname = $_POST['parent_surname'];
+
+		$update = Student::edit_student($student_name, $student_surname, $class_id, $parent_id, $student_id, $parent_name, $parent_surname);
+
+
+		if ($update) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili informacije o ovom učeniku!');
+		} else {
+			echo 'nesto ne valja pri editovanju ucenika';
+		}
+	}
+
+	//method for deleting student
+	public function delete_student()
+	{
+		$student_id = $this->demand->parts_of_url[5];
+		$delete = Student::delete_puple($student_id);
+		var_dump($delete);
+		if ($delete) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika!');
+		} else {
+			echo 'nesto je poslo po zlu pri brisanju ucenika iz baze';
+		}
+
+	}
+
+	//method for adding new puple to specific grade in bd
+	public function add_puple()
+	{
+		$class_id = $this->demand->parts_of_url[5];
+		$view = new View();
+		$class = Classes::get_class_by_id($class_id);
+		$view->data['title'] = $class['name'];
+		$view->data['class_id'] = $class_id;
+		$view->load_view('admin', 'pages', 'add_puple');
+	}
+
+	public function save_new_pupils()
+	{
+		$class_id = $this->demand->parts_of_url[5];
+		$arr = $_POST;
+		$arr1 = array_chunk($arr, 7, true);
+		
+		foreach($arr1 as $k => $student_info_arr){
+			
+			foreach($student_info_arr as $key => $student){
+				$k = substr($key, 0, -1);
+				var_dump($k);
+				if ($k === 'puple_n') {
+					$pupil_name = $student;
+					var_dump($pupil_name);
+				} elseif($k === 'puple_s'){
+					$pupil_surname = $student;
+					var_dump($pupil_surname);
+				}
+				// $pupil_name = $student_info_arr['puple_n'];
+				// var_dump($student);
+				// var_dump($class_id);
+			}
+			
+
+		}
+			
+	}
+
+	//method for fetching user by username written in form input from db, to check if already exists when adding new pupils and their parents
+	public function fetch_user_by_username()
+	{
+		$user = Users::get_user_by_username($_GET['username']);
+		$user = json_encode($user);
+		echo $user;
+	}
+
+	//method for showing page with working and reading notifications for parents 
+	public function notifications()
+	{
+		$view = new View();
+		
+		$notifications = News::notifications();
+		$view->data['notifications'] = $notifications;
+		$view->load_view('admin', 'pages', 'notifications');
+	}
+
+	//method for storing new notification in db
+	public function save_notification()
+	{
+		var_dump($_POST);
+		$notification = $_POST['parent_news'];
+		$add = News::add_notification($notification);
+		if ($add) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste dodali novo obaveštenje!');
+		} else {
+			echo 'nesto puca kod dodavanja novog obavestenja za roditelje';
+		}
+	}
+
+	//method for deleting notifications for parents from db
+	public function delete_notification()
+	{
+		$notificaton_id = $this->demand->parts_of_url[5];
+		$delete = News::delete_notification_by_id($notificaton_id);
+		var_dump($delete);
+		if ($delete) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali obaveštenje!');
+		} else {
+			echo 'nesto ne valja kod brisanja obavestenja';
+		}
 	}
 }

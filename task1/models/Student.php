@@ -48,6 +48,59 @@ class Student
 
     }
 
+    public static function edit_student($puple_name, $puple_surname, $class_id, $users_id, $puple_id, $parent_name, $parent_surname)
+    {
+        try {  
+            DB::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            DB::$conn->beginTransaction();
+            $query = DB::$conn->prepare("update students set first_name=?, last_name=?, class_id=? where id=?");
+            $query->execute([$puple_name, $puple_surname, $class_id, $puple_id]); 
+            $parent_id = $users_id;
+
+            $query =  DB::$conn->prepare("update users set first_name=?, last_name=? where id=?");
+            $query->execute([$parent_name, $parent_surname, $parent_id]);
+            
+            DB::$conn->commit();
+        
+        } catch (Exception $e) {
+            DB::$conn->rollBack();
+            echo "Failed: " . $e->getMessage();
+            return false;
+        }
+        return true;
+    }
+
+    //method for adding new students to specific class in db
+    public static function add_students($parent_name, $parent_surname, $parent_username, $parent_role, $student_n, $student_s, $class_id)
+    {
+      try {  
+            DB::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            DB::$conn->beginTransaction();
+            $query = DB::$conn->prepare("insert into users (first_name, last_name, username, password, roles_id) values (?, ?, ?, ?, ?)");
+            $query->execute([$parent_name, $parent_surname, $parent_username, $parent_role]); 
+            $parent_id = DB::$conn->lastInsertId(); 
+
+            $query =  DB::$conn->prepare("insert into students (first_name, last_name, class_id, users_id) values (?, ?, ?, ?)");
+            $query->execute([ $student_n, $student_s, $class_id, $parent_id]); 
+            DB::$conn->commit();
+        
+        } catch (Exception $e) {
+            DB::$conn->rollBack();
+            echo "Failed: " . $e->getMessage();
+            return false;
+        }
+        return true;
+
+    }
+
+    //method for deleting puple from db
+    public static function delete_puple($puple_id)
+    {
+        $query = 'delete from students where id=? limit 1';
+        $res=  DB::$conn->prepare($query);
+        return $res->execute([$puple_id]);
+    }
 
 }

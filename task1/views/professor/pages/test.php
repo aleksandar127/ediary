@@ -1,7 +1,4 @@
 <?php
-//print_r($this->data['subject_id']);
-// print_r($this->data['final']);
-// print_r($this->data['diaries']);
 
 $count=0;
 $sum=0;

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <?php
 
+=======
+<?php 
+include_once 'Creport.php';
+>>>>>>> fe690545ac9f747dc6d4ae0f0206361538d0ce43
 class BaseTeacherController{
     public function __construct($demand){
 		$this->demand = $demand;
@@ -43,7 +48,7 @@ class BaseTeacherController{
 		$parents = Teacher::get_all_parents();
 		$view->data['all_messages'] = $messages; 
 		$view->data['parents'] = $parents; 
-		$view->load_view('teacher', 'pages', 'messages'); 
+		$view->load_view('teacher', 'pages', 'message'); 
     }
 
 	public function ajax(){
@@ -192,6 +197,8 @@ class BaseTeacherController{
     public function open(){ 
         $view = new View(); 
         $all_class = Teacher::get_class(); 
+        $time=OpenDoor::open_professors_time();
+		$view->data['time'] = $time;
         $view->data['class'] = $all_class; 
 		$open_doors = OpenDoor::open(); 
 		$view->data['open'] = $open_doors; 
@@ -232,34 +239,41 @@ public function success(){
     //get all final grades 
     $grades=Student::success($id);
     if($grades==null){
-        header("Location: http://localhost/eDiary/task1/teacher/index?err=Ucenik nije ocenjen&id=".$id);
+        header("Location: http://localhost/eDiary/task1/teacher/index?err=Ucenik nije ocenjen! & id= " . $id);
         exit();
     }
 
-    $_SESSION['success']='';
-    $pdf = new Cezpdf();
-    $pdf->selectFont('Helvetica');
+    //$pdf = new Cezpdf();
+        
+    $pdf = new Creport('a4', 'portrait');
+    $mainFont ='FreeSerif';
+    $family = array(
+        'b'=> $mainFont . 'Bold'
+    );
+    $pdf->setFontFamily($mainFont,$family);
+    // select a font and use font subsetting
+    $pdf->selectFont($mainFont, '', 1, true);
     $pdf->ezSetMargins(40,40,40,40);
     $pdf->setLineStyle(1,'round');
     $pdf->line(72,778,522,778);
     $pdf->line(72,780,522,780);
     $pdf->line(72,750,522,750);
     $pdf->line(144,630,450,630);
-    $pdf->line(144,600,450,600);
+    //$pdf->line(144,600,450,600);
     $pdf->line(72,60,522,60);
     $pdf->line(420,90,522,90);
     
     $pdf->ezText('Republika Srbija',13,[ 'justification'=> 'center']);
-    $pdf->ezSetDy(-10);
-    $pdf->ezText('Srednja medicinska skola "Beograd"',16,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-7);
+    $pdf->ezText('Osnovna škola "Svetozar Marković"',16,[ 'justification'=> 'center']);
     $pdf->ezSetDy(-10);
     
-    $pdf->ezText(' <b>SVEDOCANSTVO</b>',40,[ 'justification'=> 'center']);
-    $pdf->ezSetDy(-46);
+    $pdf->ezText(' <b>SVEDOČANSTVO</b>',40,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-23);
     $pdf->ezText(''.ucfirst($grades[0]['first_name']).' '.ucfirst($grades[0]['last_name']).'',16,[ 'justification'=> 'center']);
-    $pdf->ezSetDy(-15);
-    $pdf->ezText('Smer: Fizioterapeutski tehnicar',15,[ 'justification'=> 'center']);
-    $pdf->ezSetDy(-35);
+    $pdf->ezSetDy(-8);
+    $pdf->ezText('',15,[ 'justification'=> 'center']);
+    $pdf->ezSetDy(-25);
     $sum=0;
     $count=0;
     $fall=false;
@@ -283,7 +297,7 @@ public function success(){
             $grade='vrlo dobar';
             break;
             case 5:
-            $grade='odlican';
+            $grade='odličan';
             break;
             default:
             return;
@@ -291,11 +305,11 @@ public function success(){
 
     //$pdf->setColor (1,0,0,[0]);
     $pdf->ezText('         - '.ucfirst($subject['name']),13);
-    $pdf->ezSetDy(+15);
+    $pdf->ezSetDy(+19);
     $pdf->ezText('<i>'.$grade.'('.$subject['grades'].')</i>           ',13,[ 'justification'=> 'right']);
     $pdf->line(70,$x,520,$x);
-    $pdf->ezSetDy(-15);
-    $x-=28;
+    $pdf->ezSetDy(-12);
+    $x-=32;
     }
     
     $grade=round($sum/$count);
@@ -313,19 +327,19 @@ public function success(){
         $grade='vrlo dobar';
         break;
         case 5:
-        $grade='odlican';
+        $grade='odličan';
         break;
         default:
         return;
     }
     if($fall){
         $grade='Nedovoljan';
-        $pdf-> addText (100,115,14,'Uspeh:<b><i> '.$grade.'(1)</i></b>');
+        $pdf-> addText (100,115,14,'Uspeh:<b> '.$grade.'(1)</b>');
     //$pdf->ezText('   <b>      - Uspeh: '.$grade.'(1)</b>',13);
     $pdf->line(80,110,300,110);
     }
     else
-    $pdf-> addText (100,115,14,'Uspeh:<b><i> '.$grade.' ('.$sum/$count.')</i></b>');
+    $pdf-> addText (100,115,14,'Uspeh:<b> '.$grade.' ('.sprintf('%0.2f',($sum/$count)).')</b>');
     //$pdf->ezText('     <b>     Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13,[ 'justification'=> 'right']);
     $pdf->ezSetDy(-15);
     $pdf-> addText (445,75,10,'DIREKTOR');

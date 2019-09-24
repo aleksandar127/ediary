@@ -161,8 +161,8 @@ form{
 .UsersForChatDiv{ 
 display:inline-block;
 width:400px;
-min-height:50px;
-max-height:50px;
+min-height:70px;
+max-height:70px;
 overflow:auto;
 background:#cac2ff;
 text-align:center;
@@ -194,6 +194,8 @@ border-radius: 5px;
 #open_request_table {
 	border:solid black 3px;
 	display:inline-block;
+	height:600px;
+	overflow:scroll;
 }
 
 #open_request_table tr:nth-child(even) {
@@ -223,6 +225,8 @@ border-radius: 5px;
 margin-left:200px;
 border:solid black 3px;
 display:inline-block;
+height:600px;
+overflow:scroll;
 }
 #open_response_table tr{
 	text-align:center;

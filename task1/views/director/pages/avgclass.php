@@ -1,21 +1,14 @@
 <?php
 
-// $param = '7/1';
+$class = str_replace('/', '-', $_GET['class']);
 
-// $sql = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(students.id) AS prosecna_ocena, subjects.name AS predmet FROM subjects_has_grades shg
-//   JOIN subjects ON shg.subjects_id = subjects.id 
-//   JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
-//   JOIN students ON shghs.students_id = students.id 
-//   JOIN class ON students.class_id = class.id 
-//   WHERE class.name = ? GROUP BY subjects.name');
-// $sql->execute([$param]);
-// $result = $sql->fetchAll(PDO::FETCH_ASSOC);
-// $json = json_encode($result);
+$cacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
+			$class, date("Ymd"));
 
-// $grades = Grades::average_class_grades('7/1');
-// var_dump($grades)
+
+ob_start();
+
 ?>
-
 
   <div class="col-md-12 text-center my-3">
     <h1 class="font-weight-bold">Prosek ocena za <span class="text-black"><?php echo isset($this->data['class']) ? $this->data['class'] : null; ?></span></h1>
@@ -96,3 +89,17 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 }); // end am4core.ready()
 </script>
 <?php endif; ?>
+
+
+<?php 
+
+$content = ob_get_contents();
+ob_end_clean();
+
+$handle = fopen($cacheFile, "w");
+fwrite($handle, $content);
+fclose($handle);
+
+echo $content;
+
+?>

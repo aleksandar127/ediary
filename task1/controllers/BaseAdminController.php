@@ -617,13 +617,16 @@ class BaseAdminController
 	public function delete_student()
 	{
 		$student_id = $this->demand->parts_of_url[5];
-		$delete = Student::delete_puple($student_id);
+		$parent_id = Student::get_parent_id($student_id);
+		$parent_id = $parent_id['users_id'];
+		var_dump($parent_id);
+		$delete = Student::delete_puple($student_id, $parent_id);
 		var_dump($delete);
-		if ($delete) {
-			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika!');
-		} else {
-			echo 'nesto je poslo po zlu pri brisanju ucenika iz baze';
-		}
+		// if ($delete) {
+		// 	header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika!');
+		// } else {
+		// 	echo 'nesto je poslo po zlu pri brisanju ucenika iz baze';
+		// }
 
 	}
 

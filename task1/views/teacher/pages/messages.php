@@ -17,9 +17,9 @@
         </div><!-- end #sendMessage -->
         <div id="listUsers">
                 <ul> 
-                    <div id="parents" style="display:inline-block;overflow:auto;">
+                    <div id="parents" style=" display:inline-block;overflow:auto;">
                     <?php foreach($this->data['parents'] as $parents):
-                     echo  "<li><div onclick='chat(this.id)' id='p".$parents['id']."' class='clickabile' style='color:black;width:650px;text-transform: capitalize;'> <b>Roditelj:</b> ". $parents['first_name'] . " " . $parents['last_name'] . "<br><b>Ucenik:</b>  ".$parents['students_first_name']." ".$parents['students_last_name']."<br> </div></li>"; 
+                     echo  "<li><div onclick='chat(this.id)' id='p".$parents['id']."' class='clickabile' style='color:#000;width:650px;text-transform: capitalize;'> <b>Roditelj:</b> ". $parents['first_name'] . " " . $parents['last_name'] . "<br><b>Ucenik:</b>  ".$parents['students_first_name']." ".$parents['students_last_name']."<br> </div></li>"; 
 endforeach; ?>
        </ul>
     </div><!-- end .wrapper -->

@@ -13,33 +13,40 @@ function ajax() {
      for(i in a)
 		{ 
           
-            var div=document.createElement("div");
-            var p=document.createElement("p");
-            var id=a[i]["id"];
-            var user=a[i]["user"];
-            user="p"+user;
-			var message_body=a[i]["message"];
-			var date=a[i]["date_and_time"];
-      var last_name=a[i]["last_name"];
-			var first_name=a[i]["first_name"];
-            var is_read=a[i]["is_read"];	        
+            var div = document.createElement("div");
+            var p = document.createElement("p");
+            var parentName = document.createElement("p");
+            var data_time = document.createElement("p");
+
+            var id = a[i]["id"];
+            var user = a[i]["user"];
+            user = "p"+user;
+            var message_body = a[i]["message"];
+            var date = a[i]["date_and_time"];
+            var last_name = a[i]["last_name"];
+			      var first_name = a[i]["first_name"];
+            var is_read = a[i]["is_read"];	
+            parentName.innerHTML+=last_name+" "; 
+            parentName.innerHTML+=first_name; 
+            p.innerHTML+="<br>"; 
             p.innerHTML+=message_body;
             p.innerHTML+="<br>";   
-            p.innerHTML+=date; 
-            p.innerHTML+="<br>";  
-            p.innerHTML+="<b>";   
-            p.innerHTML+=last_name+" "; 
-            p.innerHTML+=first_name;   
+            data_time.innerHTML+=date; 
+            data_time.innerHTML+="<br>";    
             div.setAttribute('data-id',user);
             //div.setAttribute('class',user); 
             div.setAttribute('class','clickabile'); 
-            div.setAttribute('style',"background-color:#f1f1f1;color:#000;padding:15px;border:1px solid #000;border-radius:10px;margin-top:5px;");
+            div.setAttribute('style',"background-color:#f1f1f1;color:#000;padding:8px;border-bottom: 4px solid rgba(4,15,53,0.47);border-right: 4px solid rgba(4,15,53,0.47);border-radius:10px;margin-top:8px;overflow: hidden;");
+            parentName.setAttribute('style', "text-transform:capitalize;margin:0;border-bottom:1px solid #000;text-align: center;font-size:20px;font-weight:bold;");
+            p.setAttribute('style', 'font-size:22px;border-bottom:1px solid black;');
+            data_time.setAttribute('style', 'font-size:14px;float:right;margin:0;padding:2px;font-weight:bold;font-style:italic;');
             div.setAttribute('onclick',"isRead(this.id)");
             div.setAttribute('onclick',"chat(this.dataset.id)");
             div.setAttribute('id','c'+id);
+            div.append(parentName);
             div.append(p);
+            div.append(data_time);
             message.prepend(div);
-			
 			
         };
     }
@@ -80,42 +87,42 @@ function chat(id) {
    message.innerHTML="";
    var xhttp = new XMLHttpRequest();
    xhttp.onreadystatechange = function() {
-     if (this.readyState == 4 && this.status == 200) {
+    if (this.readyState == 4 && this.status == 200) {
       var a=JSON.parse(this.responseText);
-      for(i in a)
-		{  
-            
-            var div=document.createElement("div");
-            var p=document.createElement("p");
-            var msg_id=a[i]["id"];
-		      	var message_body=a[i]["message"];
-		      	var date=a[i]["date_and_time"];
-            var is_read=a[i]["is_read"];	        
-            p.innerHTML+=message_body;
-            p.innerHTML+=date;      
-            div.setAttribute('style',"background-color:silver;border-radius:10px;min-height:50px;width:200px;margin-top:5px; ");
-           
-            if(a[i]["from_user"]==id){
-            div.setAttribute('onclick','isRead(this.id)');
-            div.setAttribute('style',"background-color:silver;border-radius:10px;min-height:50px;width:200px;margin-top:5px;margin-left:70px;");
-            if(is_read==0){
+      for(i in a){  
+        var div=document.createElement("div");
+        var p=document.createElement("p");
+        var msg_id=a[i]["id"];
+		    var message_body=a[i]["message"];
+        p.innerHTML+=message_body;	     
+        p.innerHTML+="<br>";
+        var p1=document.createElement("p");
+        var date=a[i]["date_and_time"];
+        var is_read=a[i]["is_read"];
+        p1.innerHTML+=date;
+        div.setAttribute('style',"background-color:red;border-radius:10px;width:200px; ");
+        p.setAttribute('style', "font-size:20px;border-bottom:1px solid #000;");
+        p1.setAttribute('style', "font-size:12px;float:right;margin:0;padding:2px;font-weight:bold;font-style:italic;");
+        if(a[i]["from_user"]==id){
+          div.setAttribute('onclick','isRead(this.id)');
+          div.setAttribute('style',"background-color:silver;border-radius:10px;;width:200px;margin-top:5px;margin-left:70px;");
+          if(is_read==0){
+              //za dolazne i odlazne poruke
             div.setAttribute('class','clickabile');
             div.setAttribute('style',"background-color:#dedede;border:1px solid #000;border-radius:10px;width:400px;margin:5px 0;padding:15px;float:right;");
-            }
-            }
-            else{
-            div.setAttribute('style',"color:#000;padding:15px;border:1px solid #000;border-radius:10px;width:400px;margin-top:5px;float:left;");
-            
-            }
-            div.setAttribute('id','d'+msg_id);
-            div.append(p);
-            message.append(div);
-           
-			
-        };
+          }
+        }else{
+          div.setAttribute('style',"background-color:rgba(0,0,0,0.25);color:#000;padding:15px;border:1px solid #000;border-radius:10px;width:400px;margin-top:5px;float:left;");
+ 
+        }
+          div.setAttribute('id','d'+msg_id);
+          div.append(p);
+          div.append(p1);
+          message.append(div);
+      };
      
-     }
-   };
+      }
+    };
    xhttp.open("GET", "http://localhost/eDiary/task1/teacher/ajax_chat?id="+id, true);
    xhttp.send();
  }

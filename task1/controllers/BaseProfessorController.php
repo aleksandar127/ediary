@@ -249,7 +249,6 @@ private $grades=[1,2,3,4,5];
 		$pdf->line(72,780,522,780);
 		$pdf->line(72,750,522,750);
 		$pdf->line(144,630,450,630);
-		//$pdf->line(144,600,450,600);
 		$pdf->line(72,60,522,60);
 		$pdf->line(420,90,522,90);
 		
@@ -325,17 +324,13 @@ private $grades=[1,2,3,4,5];
 		if($fall){
 			$grade='Nedovoljan';
 			$pdf-> addText (100,115,14,'Uspeh:<b> '.$grade.'(1)</b>');
-		//$pdf->ezText('   <b>      - Uspeh: '.$grade.'(1)</b>',13);
-		$pdf->line(80,110,300,110);
+			$pdf->line(80,110,300,110);
 		}
 		else
-		$pdf-> addText (100,115,14,'Uspeh:<b> '.$grade.' ('.sprintf('%0.2f',($sum/$count)).')</b>');
-		//$pdf->ezText('     <b>     Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13,[ 'justification'=> 'right']);
-		$pdf->ezSetDy(-15);
-		$pdf->addText (445,75,10,'DIREKTOR');
-		
-		//$pdf->ezText('DIREKTOR');
-		$pdf->ezStream();
+			$pdf-> addText (100,115,14,'Uspeh:<b> '.$grade.' ('.sprintf('%0.2f',($sum/$count)).')</b>');
+			$pdf->ezSetDy(-15);
+			$pdf->addText (445,75,10,'DIREKTOR');
+			$pdf->ezStream();
 		
 		
 		

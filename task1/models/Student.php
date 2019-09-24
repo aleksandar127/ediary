@@ -95,19 +95,31 @@ class Student
 
     }
 
+    //method for taing parent id of spec student
+    public static function get_parent_id($child_id)
+    {
+        $query = DB::$conn->prepare("select users_id from students where id = ?");
+        $query->execute([$child_id]);
+        $parent_id = $query->fetch(PDO::FETCH_ASSOC);
+        return $parent_id;
+
+    }
     //method for deleting puple from db and their parents from users if parent hasn't more kids
-    public static function delete_puple($puple_id)
+    public static function delete_puple($puple_id, $parent_id)
     {
         try {  
             DB::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            DB::$conn->beginTransaction();
-            $query = DB::$conn->prepare("select users_id from students where id = ?");
-            $query->execute([$puple_id]);
-            $parent_id = DB::$conn->lastInsertId(); 
+            // DB::$conn->beginTransaction();
+            // $query = DB::$conn->prepare("select users_id from students where id = ?");
+            // $query->execute([$puple_id]);
+            // $parent_id = $query->fetch(PDO::FETCH_ASSOC);
+            // return $parent_id;
 
-            $query =  DB::$conn->prepare("insert into students (first_name, last_name, class_id, users_id) values (?, ?, ?, ?)");
-            $query->execute([$student_n, $student_s, $class_id, $parent_id]); 
+            $stmt = DB::$conn->prepare("select * from students where users_id = ?");
+            $stmt->execute([$parent_id]);
+            $children = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $children;
             DB::$conn->commit();
         
         } catch (Exception $e) {

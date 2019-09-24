@@ -1,8 +1,6 @@
 @charset "UTF-8";
 /* CSS Document */
 
-<<<<<<< HEAD
-=======
 body {
 	margin:0;
 	padding:0;
@@ -45,7 +43,6 @@ a:hover {
 a:active {
 	color:#696969;
 }
->>>>>>> fe690545ac9f747dc6d4ae0f0206361538d0ce43
 
 .wrapper{
 	margin: 0 auto;
@@ -79,13 +76,6 @@ a:active {
 }
 #teachers a:hover{
 	color:#000;
-}
-#teachers tr{
-	margin: 0 auto;
-	color: #5F5E5E;
-	overflow:hidden;
-	width: 1350px;
-	text-align: center;
 }
 table{
 	border-collapse:collapse;
@@ -163,21 +153,13 @@ table{
 	border-left:none;
 	border-top:none;
 }
-<<<<<<< HEAD
-#table td, th{
-=======
 #objects td, th{
->>>>>>> fe690545ac9f747dc6d4ae0f0206361538d0ce43
 	border:1px solid #000;
 	text-align:left;
 	padding:8px;
 	width:70px;
 }
-<<<<<<< HEAD
-#table th{
-=======
 #objects th{
->>>>>>> fe690545ac9f747dc6d4ae0f0206361538d0ce43
 	transform: rotate(-90deg);
 	-webkit-transform: rotate(-90deg);
 	height: 200px;
@@ -185,11 +167,7 @@ table{
 	text-align: center;
 }
   
-<<<<<<< HEAD
-#table tr:nth-child(even){
-=======
 #objects tr:nth-child(even){
->>>>>>> fe690545ac9f747dc6d4ae0f0206361538d0ce43
 	background-color:rgba(0, 0, 0, 0.45);
 	color:#FFF;
 }
@@ -247,13 +225,17 @@ table{
 	height:50px;
 	padding: 5px 0;
 }
-#message #sendMessage {
+#messagee #sendMessage {
 	width: 665px;
 	padding-right:5px;
 	float: left;
 	margin-top: 5px;
+	clear: both;
 }
-#message #scroll{
+#messagee #scroll{
+	clear: both;
+	text-align: center;
+	border-top:1px solid #000;
 	height: 450px;
 	padding-right: 10px;
 	overflow-x: hidden;
@@ -276,12 +258,12 @@ table{
 }
 
 .container {
-	border: 2px solid #dedede;
-	background-color: #f1f1f1;
+	border: 1px solid #dedede;
 	border-radius: 5px;
 	padding: 10px;
-	margin: 10px 0;
 	text-align: left;
+	margin-top:5px;
+	margin-bottom: 5px;
   }
 .container p{
 	color:#000;
@@ -307,20 +289,22 @@ table{
 	float: left;
 	color: #000;
 }
-#message #chat{
+#messagee #chat{
 	margin-top:10px;
 	width: 670px;
 }
-#message #subject{
+#messagee #subject{
 	width: 660px;
-	overflow: hidden;
 	height: 150px;
+	float:left;
 	resize: none;
 }
-#message #sendMessage #chat button{
-	float: left;
-	font-size:20px;
+#messagee #sendMessage #chat button{
+	font-size: 20px;
 	margin-right: 5px;
+	margin-top: 5px;
+
+	float:left;
 }
 #listUsers{
 	float: right;

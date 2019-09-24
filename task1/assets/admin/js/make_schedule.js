@@ -15,8 +15,7 @@ window.addEventListener('load', () => {
             document.querySelector('p').innerHTML = ''; 
             pick_class.style = 'border: 1px solid #ced4da';
         } else {
-            validate_form(option_values[0], pick_class, form, option_values[1]);
-                
+            validate_form(option_values[0], pick_class, form, option_values[1]);         
         }
 
 
@@ -45,7 +44,6 @@ function validate_form(class_id, select_class, form_el, high_low) {
                 select_class.style = "border: 1px solid #ced4da;";
                 select_class.nextElementSibling.innerHTML = '';
 
-                
 
                 if (high_low.includes("1")) {
                     console.log('visi razred');

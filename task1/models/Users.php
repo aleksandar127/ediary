@@ -70,4 +70,12 @@ class Users
         $user = $query->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
+
+    public static function get_role_id_by_name($role_name)
+    {
+        $query = DB::$conn->prepare('select id from role where name = ?');
+        $query->execute([$role_name]);
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+        return $user;
+    }
 }

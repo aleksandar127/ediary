@@ -22,3 +22,6 @@ foreach (glob('./classes/*') as $class_name) {
 
 $demand = new Demand();
 $router = new Router($demand);
+
+
+//TODO: BRISANJE UCENIKA I LANCANO, POPRAVITI RASPORED VALIDACIJU

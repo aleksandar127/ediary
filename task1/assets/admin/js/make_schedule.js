@@ -15,8 +15,7 @@ window.addEventListener('load', () => {
             document.querySelector('p').innerHTML = ''; 
             pick_class.style = 'border: 1px solid #ced4da';
         } else {
-            validate_form(option_values[0], pick_class, form, option_values[1]);
-                
+            validate_form(option_values[0], pick_class, form, option_values[1]);         
         }
 
 
@@ -45,25 +44,25 @@ function validate_form(class_id, select_class, form_el, high_low) {
                 select_class.style = "border: 1px solid #ced4da;";
                 select_class.nextElementSibling.innerHTML = '';
 
-                
 
-                if (high_low.includes("1")) {
+                if (high_low === "1") {
                     console.log('visi razred');
                     form_el.style = 'display:block';
                     ajax_call(high_low);
                     //validating if lesson is already occupied in that term
-                    check_is_class_ocuppied();
-                } else if (high_low.includes("0")) {
+                    check_is_class_ocuppied(high_low);
+                } else if (high_low === "0") {
                     console.log('nizi razred');
                    
                     form_el.style = 'display:block';
                     ajax_call(high_low);
+                    check_is_class_ocuppied(high_low);
                 } else {
                     form_el.style = 'display: none';
                 }  
             } 
         }
-    };
+    }; 
 
     xhttp.open("GET", "http://localhost/eDiary/task1/admin/existing_sch?class_id=" + class_id, true);
     xhttp.send();
@@ -118,67 +117,82 @@ function ajax_call(high_low){
 
 }
 
-function check_is_class_ocuppied(){
-    var submit = document.querySelector('.btn');
-    submit.addEventListener('click', (e) => {
-        e.preventDefault();
+function check_is_class_ocuppied(high_low){
+    if (high_low === "0") {
+        var cls_selects = document.querySelectorAll('select:not([name="class_sch"])');
+        cls_selects.forEach(sl => {
+            sl.removeEventListener('input', (e) => {
+                ajax_subject_check('1', '1', 'haha', sl);
+            });
+        });
+        console.log('hahaha');
+        return;
+    } else {
 
+        var submit = document.querySelector('.btn');
+        submit.addEventListener('click', (e) => {
+            e.preventDefault();
+
+
+            cls_selects.forEach(cls_select => {
+
+                var values = cls_select.value;
+                if (values == 'empty') {
+                    cls_select.style = 'border: 1px solid red';
+                    var err = cls_select.nextElementSibling;
+                    err.innerHTML = 'Polje ne može biti prazno!';
+                    err.classList.add('err');
+                }
+            });
+
+            errors_exists();
+        });
+
+        var cls_selects = document.querySelectorAll('select:not([name="class_sch"])');
 
         cls_selects.forEach(cls_select => {
 
-           var values = cls_select.value;
-           if (values == 'empty') {
-               cls_select.style = 'border: 1px solid red';
-               var err = cls_select.nextElementSibling;
-               err.innerHTML = 'Polje ne može biti prazno!';
-               err.classList.add('err');
-           } 
-        });
+            console.log(cls_select);
+            cls_select.addEventListener('input', (e) => {
+                var selected_subject = e.target.value;
+                if (selected_subject == 'empty') {
+                    cls_select.style = 'border: 1px solid red';
+                    var err = cls_select.nextElementSibling;
+                    err.innerHTML = 'Polje ne može biti prazno!';
+                    err.classList.add('err');
 
-        errors_exists();
-    });
+                } else {
+                    cls_select.style = 'border: 1px solid #ced4da';
+                    var err = cls_select.nextElementSibling;
+                    err.innerHTML = '';
+                    err.classList.remove('err');
 
-    var cls_selects = document.querySelectorAll('select:not([name="class_sch"])');
-  
-    cls_selects.forEach(cls_select => {
-        
-        cls_select.addEventListener('input', (e) => {
-            var selected_subject = e.target.value;
-            if (selected_subject == 'empty') {
-                cls_select.style = 'border: 1px solid red';
-                var err = cls_select.nextElementSibling;
-                err.innerHTML = 'Polje ne može biti prazno!';
-                err.classList.add('err');
-                
-            } else {
-                cls_select.style = 'border: 1px solid #ced4da';
-                var err = cls_select.nextElementSibling;
-                err.innerHTML = '';
-                err.classList.remove('err');
+                    var day_in_week = e.target.id.slice(0, -1);
+                    var lesson_no = e.target.id.substr(-1, 1);
+                    var picked_lesson = e.target.value;
 
-                var day_in_week = e.target.id.slice(0, -1);
-                var lesson_no = e.target.id.substr(-1, 1);
-                var picked_lesson = e.target.value;
 
-                
-                if (day_in_week == 'monday') {
-                    day_in_week = "1";
-				} else if(day_in_week == 'tuesday'){
-                    day_in_week = "2";
-				} else if(day_in_week == 'wednesday'){
-                    day_in_week = "3";
-				} else if(day_in_week == 'thursday'){
-                    day_in_week = "4";
-				} else if(day_in_week == 'friday'){
-                    day_in_week = "5";
+                    if (day_in_week == 'monday') {
+                        day_in_week = "1";
+                    } else if (day_in_week == 'tuesday') {
+                        day_in_week = "2";
+                    } else if (day_in_week == 'wednesday') {
+                        day_in_week = "3";
+                    } else if (day_in_week == 'thursday') {
+                        day_in_week = "4";
+                    } else if (day_in_week == 'friday') {
+                        day_in_week = "5";
+                    }
+
+                    ajax_subject_check(day_in_week, lesson_no, picked_lesson, cls_select);
                 }
                 
-                ajax_subject_check(day_in_week, lesson_no, picked_lesson, cls_select);
-
-            }
+            });
             
         });
-    });
+
+    }
+   
     
 }
 

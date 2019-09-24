@@ -617,13 +617,21 @@ class BaseAdminController
 	public function delete_student()
 	{
 		$student_id = $this->demand->parts_of_url[5];
+		$parent_id = Student::get_parent_id($student_id);
+		$parent_id = $parent_id['users_id'];
+		var_dump($parent_id);
 		$delete = Student::delete_puple($student_id);
 		var_dump($delete);
-		if ($delete) {
-			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika!');
-		} else {
-			echo 'nesto je poslo po zlu pri brisanju ucenika iz baze';
+		$children = Student::get_children($parent_id);
+		var_dump($children);
+		if (empty($children)) {
+			echo 'ovde obrisi roditelja sa tim id-em';
 		}
+		// if ($delete) {
+		// 	header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika!');
+		// } else {
+		// 	echo 'nesto je poslo po zlu pri brisanju ucenika iz baze';
+		// }
 
 	}
 
@@ -640,28 +648,30 @@ class BaseAdminController
 
 	public function save_new_pupils()
 	{
+		$role_id = Users:: get_role_id_by_name("parent");
 		$class_id = $this->demand->parts_of_url[5];
 		$arr = $_POST;
 		$arr1 = array_chunk($arr, 7, true);
-		
+		$new = [];
 		foreach($arr1 as $k => $student_info_arr){
-			
 			foreach($student_info_arr as $key => $student){
 				$k = substr($key, 0, -1);
-				var_dump($k);
-				if ($k === 'puple_n') {
-					$pupil_name = $student;
-					var_dump($pupil_name);
-				} elseif($k === 'puple_s'){
-					$pupil_surname = $student;
-					var_dump($pupil_surname);
-				}
-				// $pupil_name = $student_info_arr['puple_n'];
-				// var_dump($student);
-				// var_dump($class_id);
+				$new[$k] = $student; 
 			}
 			
-
+				$name = $new['puple_n'];
+				$surname = $new['puple_s'];
+				$parent_n = $new['parent_n'];
+				$parent_s = $new['parent_s'];
+				$parent_usr = $new['parent_username'];
+				$parent_pass = $new['parent_pass'];
+				$enc_pass = password_hash($parent_pass, PASSWORD_BCRYPT);
+				$add = Student::add_students($parent_n, $parent_s, $parent_usr, $enc_pass, $role_id['id'], $name, $surname, $class_id);
+				if ($add) {
+					header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste dodali učenika/e!');
+				} else {
+					echo 'nesto puca kod dodavanja novih ucenika u odeljenje';
+				}
 		}
 			
 	}
@@ -702,7 +712,6 @@ class BaseAdminController
 	{
 		$notificaton_id = $this->demand->parts_of_url[5];
 		$delete = News::delete_notification_by_id($notificaton_id);
-		var_dump($delete);
 		if ($delete) {
 			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali obaveštenje!');
 		} else {

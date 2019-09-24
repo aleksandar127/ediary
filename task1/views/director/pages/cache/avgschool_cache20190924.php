@@ -1,11 +1,3 @@
-<?php 
-
- $cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
-
-
-ob_start();
-
-?>
 
 <div class="col-md-12 text-center my-4 d-flex justify-content-center">
     <h1 class="font-weight-bold">Prosek ocena na nivou skole</h1>
@@ -31,8 +23,15 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("school", am4charts.XYChart);
 
 // Add data
-chart.data = <?php echo $this->data['grades']; ?>
-
+<<<<<<< HEAD
+chart.data = [{"prosecna_ocena":"3.5625","predmet":"biologija"},{"prosecna_ocena":"3.8750","predmet":"engleski jezik"},{"prosecna_ocena":"4.8966","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"2.8750","predmet":"fizika"},{"prosecna_ocena":"4.0625","predmet":"geografija"},{"prosecna_ocena":"2.8529","predmet":"hemija"},{"prosecna_ocena":"4.3333","predmet":"likovno vaspitanje"},{"prosecna_ocena":"3.5254","predmet":"matematika"},{"prosecna_ocena":"4.3421","predmet":"muzi\u010dko vaspitanje"},{"prosecna_ocena":"3.3636","predmet":"srpski jezik"},{"prosecna_ocena":"4.2500","predmet":"Svet oko nas"}]
+=======
+<<<<<<< HEAD
+chart.data = [{"prosecna_ocena":"3.5625","predmet":"biologija"},{"prosecna_ocena":"3.8750","predmet":"engleski jezik"},{"prosecna_ocena":"4.8966","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"2.8750","predmet":"fizika"},{"prosecna_ocena":"4.0625","predmet":"geografija"},{"prosecna_ocena":"2.8529","predmet":"hemija"},{"prosecna_ocena":"4.3333","predmet":"likovno vaspitanje"},{"prosecna_ocena":"3.5000","predmet":"matematika"},{"prosecna_ocena":"4.3421","predmet":"muzi\u010dko vaspitanje"},{"prosecna_ocena":"3.3636","predmet":"srpski jezik"},{"prosecna_ocena":"4.2500","predmet":"Svet oko nas"}]
+=======
+chart.data = [{"prosecna_ocena":"4.2500","predmet":"Biologija"},{"prosecna_ocena":"3.8571","predmet":"Engleski"},{"prosecna_ocena":"4.2857","predmet":"Fizicko"},{"prosecna_ocena":"3.0000","predmet":"Fizika"},{"prosecna_ocena":"3.7500","predmet":"Geografija"},{"prosecna_ocena":"3.2500","predmet":"Hemija"},{"prosecna_ocena":"4.0000","predmet":"Istorija"},{"prosecna_ocena":"4.4286","predmet":"Likovno"},{"prosecna_ocena":"3.1429","predmet":"Matematika"},{"prosecna_ocena":"4.6667","predmet":"Muzicko"},{"prosecna_ocena":"3.6667","predmet":"Priroda i Drustvo"},{"prosecna_ocena":"4.0000","predmet":"Srpski"}]
+>>>>>>> 5479b2508d32371a2c323d3105103930cafce03e
+>>>>>>> 7314a2a7e163e0efac2df36506a4813f692e123a
 //console.log(chart.data)
 
 // Create axes
@@ -87,15 +86,3 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 }); // end am4core.ready()
 </script>
 
-<?php 
-
-$content = ob_get_contents();
-ob_end_clean();
-
-$handle = fopen($cacheFile, "w");
-fwrite($handle, $content);
-fclose($handle);
-
-echo $content;
-
-?>

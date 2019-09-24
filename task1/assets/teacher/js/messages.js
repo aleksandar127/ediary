@@ -18,23 +18,22 @@ function ajax() {
             var id=a[i]["id"];
             var user=a[i]["user"];
             user="p"+user;
-            var message_body=a[i]["message"];
-            var date=a[i]["date_and_time"];
-            var last_name=a[i]["last_name"];
-            var first_name=a[i]["first_name"];
-            last_name=last_name.charAt(0).toUpperCase() + last_name.slice(1);
-            first_name=first_name.charAt(0).toUpperCase() + first_name.slice(1);
+			var message_body=a[i]["message"];
+			var date=a[i]["date_and_time"];
+      var last_name=a[i]["last_name"];
+			var first_name=a[i]["first_name"];
             var is_read=a[i]["is_read"];	        
             p.innerHTML+=message_body;
             p.innerHTML+="<br>";   
             p.innerHTML+=date; 
-            p.innerHTML+="<br>";   
+            p.innerHTML+="<br>";  
+            p.innerHTML+="<b>";   
             p.innerHTML+=last_name+" "; 
             p.innerHTML+=first_name;   
             div.setAttribute('data-id',user);
             //div.setAttribute('class',user); 
             div.setAttribute('class','clickabile'); 
-            div.setAttribute('style',"background-color:silver;border-radius:10px;min-height:50px;width:200px;margin-top:5px;");
+            div.setAttribute('style',"background-color:#f1f1f1;color:#000;padding:15px;border:1px solid #000;border-radius:10px;margin-top:5px;");
             div.setAttribute('onclick',"isRead(this.id)");
             div.setAttribute('onclick',"chat(this.dataset.id)");
             div.setAttribute('id','c'+id);
@@ -101,11 +100,11 @@ function chat(id) {
             div.setAttribute('style',"background-color:silver;border-radius:10px;min-height:50px;width:200px;margin-top:5px;margin-left:70px;");
             if(is_read==0){
             div.setAttribute('class','clickabile');
-            div.setAttribute('style',"background-color:#44ff3d;border-radius:10px;min-height:50px;width:200px;margin-top:5px;margin-left:70px;");
+            div.setAttribute('style',"background-color:#dedede;border:1px solid #000;border-radius:10px;width:400px;margin:5px 0;padding:15px;float:right;");
             }
             }
             else{
-            div.setAttribute('style',"background-color:gold;border-radius:10px;min-height:50px;width:200px;margin-top:5px;");
+            div.setAttribute('style',"color:#000;padding:15px;border:1px solid #000;border-radius:10px;width:400px;margin-top:5px;float:left;");
             
             }
             div.setAttribute('id','d'+msg_id);
@@ -125,7 +124,7 @@ function chat(id) {
 function ajaxSendMessage(){
   var parents_name= document.getElementById("parents_name").innerHTML;
   if(parents_name==''){
-    alert('Niste izabrali primaoca');
+    alert('Niste izabrali primaoca!');
   return;}
   var msg= document.getElementById("subject");
   var message= document.getElementById("subject").value;

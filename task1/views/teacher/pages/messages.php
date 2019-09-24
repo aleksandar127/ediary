@@ -1,27 +1,30 @@
-<br>
+<div id="messagee">
+    <div class="wrapper">
 
-<div style='width:750px;margin:auto;'>
-    <div id="parents_name" style="display:inline-block;width:400px;min-height:50px;max-height:50px;overflow:auto;">
-    </div> <br>
-    <div id="message" style="display:inline-block;width:400px;min-height:300px;max-height:300px;overflow:auto;margin-right:10px;">
-    </div><!-- end #message -->
-    <div id="parents" style="display:inline-block;position:fixed;height:400px;overflow:auto;">
-        <?php
-        foreach($this->data['parents'] as $parents):
+        <div id="sendMessage">
+        <div id="parents_name" style="display:inline-block;text-align:left;"></div> <br>
+
+                <div id="scroll">
+                    <div class="container">
+                        <div id="message"></div><!-- end #message -->
+                    </div>
+                </div><!-- end #scroll -->
+                <div id="chat">
+                    <textarea id ="subject" name="subject" placeholder ="Write something.." rows="4"></textarea><br>
+                    <button onclick='ajaxSendMessage();'>Posalji</button>
+                    <button onclick='ajax();'>Pregled novih poruka</button>
+                </div>
+        </div><!-- end #sendMessage -->
+        <div id="listUsers">
+                <ul> 
+                    <div id="parents" style="display:inline-block;overflow:auto;">
+                    <?php foreach($this->data['parents'] as $parents):
+                     echo  "<li><div onclick='chat(this.id)' id='p".$parents['id']."' class='clickabile' style='color:black;width:650px;text-transform: capitalize;'> <b>Roditelj:</b> ". $parents['first_name'] . " " . $parents['last_name'] . "<br><b>Ucenik:</b>  ".$parents['students_first_name']." ".$parents['students_last_name']."<br> </div></li>"; 
+endforeach; ?>
+       </ul>
+    </div><!-- end .wrapper -->
+</div><!-- end #message -->
             
-            echo  "<div onclick='chat(this.id)' id='p".$parents['id']."' class='clickabile' style='border:1px solid black;background-color:#d1ede8;width:350px;margin-bottom:3px;'>Roditelj: ".$parents['first_name']." Ucenik: ".$parents['students_first_name']." ".$parents['students_last_name']."<br> </div>";
-
-        endforeach;
-
-            ?>
-    </div>
-    <div id="sendMessage">
-        <div id="chat" >
-            <textarea id ="subject" name="subject" placeholder ="Write something.." rows="4"></textarea><br>
-            <button onclick='ajaxSendMessage();'>Posalji</button>
-            <button onclick='ajax();'>Pregled novih poruka</button>
-        </div>
-    </div><!-- end #sendMessage -->
-</div>  
+           
 
 <script src="<?php echo URLROOT; ?>/assets/teacher/js/messages.js"></script>

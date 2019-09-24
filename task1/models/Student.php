@@ -105,36 +105,24 @@ class Student
 
     }
     //method for deleting puple from db and their parents from users if parent hasn't more kids
-    public static function delete_puple($puple_id, $parent_id)
+    public static function delete_puple($puple_id)
     {
-        try {  
-            DB::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // DB::$conn->beginTransaction();
-            // $query = DB::$conn->prepare("select users_id from students where id = ?");
-            // $query->execute([$puple_id]);
-            // $parent_id = $query->fetch(PDO::FETCH_ASSOC);
-            // return $parent_id;
-
-            $stmt = DB::$conn->prepare("select * from students where users_id = ?");
-            $stmt->execute([$parent_id]);
-            $children = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $children;
-            DB::$conn->commit();
-        
-        } catch (Exception $e) {
-            DB::$conn->rollBack();
-            echo "Failed: " . $e->getMessage();
-            return false;
-        }
-        return true;
-     
+            $query = 'delete from students where id=? limit 1';
+            $res=  DB::$conn->prepare($query);
+            return $res->execute([$puple_id]);
+            
     }
 
+    public static function get_children($parent_id)
+    {
+        
+        $stmt = DB::$conn->prepare("select * from students where users_id = ?");
+        $stmt->execute([$parent_id]);
+        $children = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $children;
+    }
 }
 
 
 
-//    $query = 'delete from students where id=? limit 1';
-//         $res=  DB::$conn->prepare($query);
-//         return $res->execute([$puple_id]);

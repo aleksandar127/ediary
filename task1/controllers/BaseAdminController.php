@@ -620,8 +620,13 @@ class BaseAdminController
 		$parent_id = Student::get_parent_id($student_id);
 		$parent_id = $parent_id['users_id'];
 		var_dump($parent_id);
-		$delete = Student::delete_puple($student_id, $parent_id);
+		$delete = Student::delete_puple($student_id);
 		var_dump($delete);
+		$children = Student::get_children($parent_id);
+		var_dump($children);
+		if (empty($children)) {
+			echo 'ovde obrisi roditelja sa tim id-em';
+		}
 		// if ($delete) {
 		// 	header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika!');
 		// } else {

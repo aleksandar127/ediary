@@ -44,10 +44,6 @@ a:active {
 	color:#696969;
 }
 
-#headerTop{
-	background-color: #000;
-}
-
 .wrapper{
 	margin: 0 auto;
 	color: #5F5E5E;
@@ -56,126 +52,30 @@ a:active {
 	text-align: center;
 }
 
-#contact{
-	float: left;
-	padding: 10px;
+#teachers .student{
+	text-transform: capitalize;
 }
-#contact .fas{
-	margin: 0 0 0 10px;
+#teachers h1{
+	color:#000;
 }
-
-#network{
-	float: right;
-	font-size: 16px;
-	padding: 10px;
-}
-#network a{
-	padding: 0 5px 0 5px;
-}
-
-#header .wrapper{
-	overflow: hidden;
-	border-bottom:1px solid black;
-}
-#header #logo{
-	float: left;	
-}
-#header #logo img{
-	width: 100px;
-}
-#header .wrapper #class{
-	float:right;
-  	color:black;
-  	font-weight: bold;
-	font-size: 50px;
-	padding: 0 3px;
-	margin: 0;
+#teachers .name_student{
+	font-weight: bold;
+	text-transform: capitalize;
 	text-align: center;
 }
-#header .wrapper #class p{
-	color:#000;
-	padding-bottom: 8px;
-	
+#teachers .table th{
+	border:none;
 }
-#header .wrapper #class #logoutP{
-	border-top: 1px solid #000;
-	
-}
-#header .wrapper #class a{
-	color:#000;
-	display: block;
-	padding: 10px 0 2px 0;
-	font-size: 22px;
-	font-weight: normal;
-}
-#header .wrapper #class a:hover{
-	text-decoration: underline;
-}
-#navigation .wrapper{
-	overflow:hidden;
-	border-bottom:1px solid black;
-}
-#navigation #nav{
-	font-weight:700;
-}
-#navigation #nav ul{
-	list-style:none;
-	margin:0;
-	padding:0;
-}
-#navigation #nav ul li{
-	float:left;
-	width: 200px;
-}
-#navigation #nav ul li a{
-	padding:10px;
-	font-size:20px;
-	height:50px;
-	display:block;
-	line-height:50px;
-	transition:0.5s all ease;
-	text-decoration:none;
-	color:black;
-	text-transform:uppercase;
-	letter-spacing:1px;
-}
-#navigation #nav ul a:link
-#navigation #nav ul a:visited{
-	text-decoration:none;
-	color:#FFF;
-	background-color:#e84e1b;
-	transition:0.2s all ease;
-}
-#navigation #nav ul a:hover{
-	background:#000000;
-	color:#FFF;
-}
-#navigation #nav ul a:active{
-	background:#696969;
-	color:#FFF;
-	border-bottom:3px solid #FFF;
-}
-#teachers h2{
-	color:#000;
-}
-#teachers .student{
-	border-bottom:1px solid black;
-	text-align:left;
-	
-}
-#teachers h2{
-	font-size:44px;
+#teachers .table td{
+	border:none;
 }
 #teachers a:link,
 #teachers a:visited{
 	text-decoration:none;
-	color:black;
+	color:#FFF;
 }
 #teachers a:hover{
-	color:#AE3D00;
-}
-#teachers a:active{
-	color:#CC2A00;
+	color:#000;
 }
 table{
 	border-collapse:collapse;
@@ -205,7 +105,12 @@ table{
 #table table tr th::first-letter{
 	text-transform: uppercase;
 }
-#table a:link,
+#table p{
+	color:#000;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+/* #table a:link,
 #table a:visited{
 	text-decoration:none;
 	color: #000;
@@ -217,11 +122,11 @@ table{
 }
 #table a:active{
 	color:#CC2A00;
-}
+} */
 #table input{
 	padding: 5px;
 	margin:5px;
-	border:1px solid #000;
+	border: 1px solid #000;
 	color: #fff;
 	background-color:rgba(0,0,0, 0.5);
 }
@@ -237,7 +142,7 @@ table{
 #table table .final_grade{
 	font-size: 40px;
 	text-align: center;
-	color: black;
+	color: #000;
 }
 #objects table th{
 	font-size:34px;
@@ -248,13 +153,13 @@ table{
 	border-left:none;
 	border-top:none;
 }
-td, th{
+#objects td, th{
 	border:1px solid #000;
 	text-align:left;
 	padding:8px;
 	width:70px;
 }
-th{
+#objects th{
 	transform: rotate(-90deg);
 	-webkit-transform: rotate(-90deg);
 	height: 200px;
@@ -262,7 +167,25 @@ th{
 	text-align: center;
 }
   
-tr:nth-child(even){
+#objects tr:nth-child(even){
+	background-color:rgba(0, 0, 0, 0.45);
+	color:#FFF;
+}
+/* #table td, th{
+	border:1px solid #000;
+	text-align:left;
+	padding:8px;
+	width:70px;
+}
+#table th{
+	transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	height: 200px;
+	padding: 0px;
+	text-align: center;
+}
+  
+#table tr:nth-child(even){
 	background-color:rgba(0, 0, 0, 0.45);
 	color:#FFF;
 }
@@ -283,7 +206,7 @@ tr:nth-child(even){
 #table tr:nth-child(even){
 	background-color:rgba(0, 0, 0, 0.45);
 	color:#FFF;
-}
+} */
 #objects table td{
 	 text-align:center;
 	 border:none;
@@ -372,9 +295,10 @@ tr:nth-child(even){
 	height: 150px;
 	resize: none;
 }
-#message #sendMessage #chat input[type=submit]{
+#message #sendMessage #chat button{
 	float: left;
 	font-size:20px;
+	margin-right: 5px;
 }
 #listUsers{
 	float: right;
@@ -411,6 +335,7 @@ tr:nth-child(even){
 #listUsers ul li{
 	border-bottom: 1px solid black;
 	padding-top: 5px;
+	text-transform: capitalize;
 }
 #listUsers ul li:hover{
 	padding: 8px;
@@ -440,7 +365,7 @@ tr:nth-child(even){
 	margin: 0 auto;
 }
 #addGrade form table{
-	font-size: 24px;
+	font-size: 18px;
 }
 #addGrade tr:nth-child(even){
 	background-color:rgba(0, 0, 0, 0.45);
@@ -452,20 +377,19 @@ tr:nth-child(even){
 	padding:10px 5px;
 }
 #addGrade table td input{
-	padding: 10px 2px;
+	padding: 8px 5px;
 	border:1px solid #000;
-	font-weight:700;
+	font-weight:bold;
+	text-transform: capitalize;
 }
 #addGrade table #grade select{
 	padding: 5px 10px;
 	border:1px solid #000;	
-	font-weight:700;
+	font-weight:bold;
 }
 #addGrade table #list_subjects select{
 	font-weight:700;
-}
-#addGrade table #list_subjects select::first-child{
-	text-transform:uppercase;
+	text-transform: uppercase;
 }
 #addGrade table #list_subjects select option{
 	font-weight:700;
@@ -492,6 +416,23 @@ tr:nth-child(even){
 #addGrade #list_subjects select{
 	padding: 8px 15px 8px 0;
 	border:1px solid #000;
+}
+#table_schedule table th, td{
+	border:1px solid #000;
+	padding:8px;
+	width:70px;
+}
+#table_schedule table tr td:nth-child(1){
+	font-weight: bold;
+	color: #000;
+}
+#table_schedule table th{
+	color:black;
+	font-weight: bold;
+}
+#table_schedule tr:nth-child(even){
+	background-color:rgba(0, 0, 0, 0.45);
+	color:#FFF;
 }
 #footer{
 	background-color: #000;
@@ -555,4 +496,30 @@ tr:nth-child(even){
 }
 #footer a:active {
 	color: #000;
+}
+
+.scheduleTeacher tr td{ 
+	text-align: center;
+	font-size: 23px;
+}
+
+.scheduleTeacher tr th{ 
+	text-align: center;
+	font-size: 30px;
+}
+
+
+.open_table_prof tr td{
+    text-align:center;
+}
+.open_table_prof tr th{
+    text-align:center;
+}
+
+.open_confirm_prof{
+    background-color: rgb(155, 252, 159);
+}
+
+.open_reject_prof{
+    background-color: rgb(252, 180, 180);
 }

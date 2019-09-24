@@ -42,7 +42,6 @@ class Subjects
         $query= DB::$conn->prepare($query);
         $res = $query->execute([$sub_name, $prof_id, $high_low]);
         $id = intval(DB::$conn->lastInsertId());
-        var_dump($id);
         $x = 1;
         $sql = "insert into subjects_has_grades (subjects_id, grades) values (?, ?)";
         $sql = DB::$conn->prepare($sql);

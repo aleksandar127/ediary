@@ -21,7 +21,9 @@ function ajax() {
 			var message_body=a[i]["message"];
 			var date=a[i]["date_and_time"];
       var last_name=a[i]["last_name"];
-			var first_name=a[i]["first_name"];        
+      var first_name=a[i]["first_name"];  
+      last_name=last_name.charAt(0).toUpperCase() + last_name.slice(1);
+      first_name=first_name.charAt(0).toUpperCase() + first_name.slice(1);     
       p.innerHTML+=message_body;
       p.innerHTML+="<br>";   
       p.innerHTML+=date; 

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 <?php
 
-=======
-<?php 
-include_once 'Creport.php';
->>>>>>> fe690545ac9f747dc6d4ae0f0206361538d0ce43
 class BaseTeacherController{
     public function __construct($demand){
 		$this->demand = $demand;

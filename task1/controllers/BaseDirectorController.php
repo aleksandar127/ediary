@@ -96,6 +96,37 @@ class BaseDirectorController
 
 
 
+	public function export()
+	{
+		 $grades = Grades::export();
+		 $output = '';
+
+		if(isset($_POST['export'])) {
+		$output .= '<table class="table table-bordered">
+			<thead>
+				<th>Prosecna ocena</th>
+				<th>Predmet</th>
+			</thead>
+			<tbody>';
+
+		foreach($grades as $grade){
+			$output .= <<<DELIMETER
+			<tr>
+			<td>{$grade['prosecna_ocena']}</td>
+			<td>{$grade['predmet']}</td>
+			<tr>
+DELIMETER;
+
+		}
+		$output .= "</tbody></table>";
+		header("Content-Type: application/xls");
+		header("Content-Disposition: attachment; filename=download.xls");
+		echo $output;
+	}
+}
+
+
+
 	public function logout()
 	{
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);

@@ -7,11 +7,16 @@ ob_start();
 
 ?>
 
-<div class="col-md-12 text-center my-4">
+<div class="col-md-12 text-center my-4 d-flex justify-content-center">
     <h1 class="font-weight-bold">Prosek ocena na nivou skole</h1>
+    <div class="">
+    <form action="export" method="POST">
+    <input class="btn btn-outline-dark btn-lg mt-1 ml-3" name="export" type="submit" value="Export">
+  </form>
+  </div>
 </div>
 <div class="row mt-5 tabela" style="height:80vh">
-    <div class="col-md-11 mx-auto mb-4 rounded" id="skola"></div>
+    <div class="col-md-11 mx-auto mb-4 rounded" id="school"></div>
 </div> 
 
   <!-- Chart code -->
@@ -23,7 +28,7 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 // Create chart instance
-var chart = am4core.create("skola", am4charts.XYChart);
+var chart = am4core.create("school", am4charts.XYChart);
 
 // Add data
 chart.data = <?php echo $this->data['grades']; ?>

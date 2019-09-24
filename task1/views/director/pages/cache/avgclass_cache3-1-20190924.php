@@ -1,28 +1,12 @@
-<?php
-
-$class = str_replace('/', '-', $_GET['class']);
-
-$cacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
-			$class, date("Ymd"));
-
-
-ob_start();
-
-?>
 
   <div class="col-md-12 text-center my-3">
-    <h1 class="font-weight-bold">Prosek ocena za <span class="text-black"><?php echo isset($this->data['class']) ? $this->data['class'] : null; ?></span></h1>
+    <h1 class="font-weight-bold">Prosek ocena za <span class="text-black">3/1</span></h1>
   </div>
 
-<?php if($this->data['grades'] == '[]'): ?>
-  <div class="col mt-3">
-    <h2 class="text-danger font-weight-bold text-center">Ovaj razred jos nema ocena!</h2>
-  </div>
-<?php else: ?>
 
 
 <div class="row mt-2 tabela" style="height:80vh">
-    <div class="col-md-11 mx-auto mb-3" id="class"></div>
+    <div class="col-md-11 mx-auto mb-3" id="razred"></div>
 </div>  
 
   <!-- Chart code -->
@@ -34,11 +18,10 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 // Create chart instance
-var chart = am4core.create("class", am4charts.XYChart);
+var chart = am4core.create("razred", am4charts.XYChart);
 
 // Add data
-chart.data = <?php echo $this->data['grades']; ?>
-
+chart.data = [{"prosecna_ocena":"3.0000","predmet":"Engleski"},{"prosecna_ocena":"3.6667","predmet":"Fizicko"},{"prosecna_ocena":"4.3333","predmet":"Likovno"},{"prosecna_ocena":"3.0000","predmet":"Matematika"},{"prosecna_ocena":"4.6667","predmet":"Muzicko"},{"prosecna_ocena":"3.6667","predmet":"Priroda i Drustvo"},{"prosecna_ocena":"4.0000","predmet":"Srpski"}]
 //console.log(chart.data)
 
 // Create axes
@@ -88,18 +71,5 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 });
 }); // end am4core.ready()
 </script>
-<?php endif; ?>
 
 
-<?php 
-
-$content = ob_get_contents();
-ob_end_clean();
-
-$handle = fopen($cacheFile, "w");
-fwrite($handle, $content);
-fclose($handle);
-
-echo $content;
-
-?>

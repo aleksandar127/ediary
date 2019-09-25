@@ -5,7 +5,7 @@
 <div class="form-group">
     
 <select class="mdb-select md-form" name="student">
-  <option value="" disabled selected>Izaberi učenika</option>
+  <option value="" disabled selected>Izaberi ucenika</option>
   <?php 
   foreach($this->data['students'] as $student):
   echo '<option value="'.$student['id'].'">'.$student['first_name'].' '.$student['last_name'].'</option>';

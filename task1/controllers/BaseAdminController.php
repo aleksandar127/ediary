@@ -7,8 +7,7 @@ class BaseAdminController
 	//method for pulling request in this part of logic
 	public function __construct($demand)
 	{
-		$this->demand = $demand;
-		
+		$this->demand = $demand;	
 	} 
 
 	//default page, home page
@@ -56,7 +55,9 @@ class BaseAdminController
 
 		if ($edit_user) {
 			// header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili informacije o ovom korisniku.');
-			
+			$_SESSION['msg'] = 'Uspesno bravo mala';
+			header('Location:  '.$_SERVER['HTTP_REFERER'].'');
+			exit();
 
 		} else {
 			echo 'greska kod editovanja korisnika';
@@ -546,7 +547,6 @@ class BaseAdminController
 		if ($delete_schedule) {
 			header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali raspored časova za odeljenje '.$class['name'].'!');		
 		} else {
-			echo 'ne postoji rapsored za ovo odeljenje';
 			header('Location:  '.$_SERVER['HTTP_REFERER'].'?err=Još uvek ne postoji rasporeded časova za odeljenje koje pokušavate da izbrišete.');
 		}
 	}
@@ -633,7 +633,6 @@ class BaseAdminController
 		} else {
 			echo 'ima jos dece';
 		}
-		var_dump($delete_parent);
 		if ($delete && $delete_parent) {
 			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika i roditelja!');
 		} elseif ($delete && !$delete_parent) {

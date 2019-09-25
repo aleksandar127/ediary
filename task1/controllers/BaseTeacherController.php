@@ -225,7 +225,7 @@ class BaseTeacherController{
     //reject appointment
 	public function open_no(){ 
 		$id = $this->demand->parts_of_url[5]; 
-        $open_doors=OpenDoor::open_no($id);
+        $open_doors = OpenDoor::open_no($id);
 		if (isset($_SERVER["HTTP_REFERER"])){ 
 			header("Location: " . $_SERVER["HTTP_REFERER"]); 
         }
@@ -241,22 +241,19 @@ class BaseTeacherController{
 		}
     }
 
-
-
-//get pdf of student final success R&OS library
+//get pdf of student final success R&OS library 
 public function success(){
     include_once 'Creport.php';
-    $id= $this->demand->parts_of_url[5];
+    $id = $this->demand->parts_of_url[5];
     $view = new View();
     //get all final grades 
-    $grades=Student::success($id);
-    if($grades==null){
+    $grades = Student::success($id);
+    if($grades == null){
         header("Location: http://localhost/eDiary/task1/teacher/index?err=Ucenik nije ocenjen! & id= " . $id);
-        exit();
+        exit(); 
     }
 
     //$pdf = new Cezpdf();
-        
     $pdf = new Creport('a4', 'portrait');
     $mainFont ='FreeSerif';
     $family = array(

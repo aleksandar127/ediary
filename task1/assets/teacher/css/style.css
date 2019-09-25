@@ -372,6 +372,7 @@ table{
 }
 #addGrade form table{
 	font-size: 18px;
+	border-top:1px solid #000;
 }
 #addGrade tr:nth-child(even){
 	background-color:rgba(0, 0, 0, 0.45);
@@ -413,6 +414,7 @@ table{
 #addGrade .tdSubmit input:hover{
 	background: #FFF;
 	font-size: 26px;
+	border-radius: 25px;
 }
 #addGrade .tdSubmit input:active{
 	background: #FFF;
@@ -427,6 +429,7 @@ table{
 	border:1px solid #000;
 	padding:8px;
 	width:70px;
+	border:none;
 }
 #table_schedule table tr td:nth-child(1){
 	font-weight: bold;

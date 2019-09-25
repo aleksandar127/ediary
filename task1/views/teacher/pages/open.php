@@ -5,21 +5,21 @@
 <?php endif; ?>
 
 <div class="col-md-12">
-<form action="<?php echo URLROOT; ?>/professor/open_create/"  method='get'>
-  <div class="form-group col-md-4 mx-auto text-center">
-    <label for="date">Zakazi otvorena vrata: </label>
-    <input class="form-control" type="datetime-local" name="date" id="date">
-  </div>
-  <div class="form-group col-md-4 mx-auto">
-    <input class="form-control btn btn-info" type="submit" value="Zakazi">
-  </div>
-</form>
+  <form action="<?php echo URLROOT; ?>/professor/open_create/"  method='get'>
+    <div class="form-group col-md-4 mx-auto text-center">
+      <label for="date">Zakazi otvorena vrata: </label>
+      <input class="form-control" type="datetime-local" name="date" id="date">
+    </div>
+    <div class="form-group col-md-4 mx-auto">
+      <input class="form-control btn btn-info" type="submit" value="Zakazi">
+    </div>
+  </form>
 </div>
 <table class="table table-striped col-md-6 mx-auto mt-5 open_table_prof">
-  <thead>
+  <thead  style="border-bottom:1px solid #000;border-top:1px solid #000;">
     <tr>
-      <th>IME</th>
-      <th>STATUS</th>
+      <th  style="border:none;">IME</th>
+      <th  style="border:none;">STATUS</th>
     </tr>
   </thead>
   <tbody>

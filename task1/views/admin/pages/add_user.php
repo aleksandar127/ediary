@@ -37,15 +37,16 @@
     <button type="submit" class="btn btn-dark">Add User</button>
     </form>
 
-    <?php if(isset($_GET['err'])): ?>
+    <?php if(isset($_SESSION['err'])): ?>
         <small style="color: rgb(255,0,0); font-weight: bold; margin-top: 5px; ">
-            <?php echo $_GET['err']; ?>
+            <?php echo $_SESSION['err']; ?>
         </small>
     <?php endif; ?>
 
-    <?php if(isset($_GET['success'])): ?>
+    <?php if(isset($_SESSION['msg'])): ?>
         <small style="color: green; font-weight: bold; margin-top: 5px; ">
-            <?php echo $_GET['success']; ?>
+            <?php echo $_SESSION['msg']; ?>
+            <?php  unset($_SESSION['msg']);?>
         </small>
     <?php endif; ?>
 </div>

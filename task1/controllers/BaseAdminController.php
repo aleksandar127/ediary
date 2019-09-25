@@ -54,8 +54,7 @@ class BaseAdminController
 		$edit_user = Users::edit($first_name, $last_name, $username, $enc_pass, $role, $user_id);
 
 		if ($edit_user) {
-			// header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili informacije o ovom korisniku.');
-			$_SESSION['msg'] = 'Uspesno bravo mala';
+			$_SESSION['msg'] = 'Uspešno ste izmenili informacije o ovom korisniku.';
 			header('Location:  '.$_SERVER['HTTP_REFERER'].'');
 			exit();
 
@@ -114,9 +113,13 @@ class BaseAdminController
 		} else {
 			$add_new_user = Users::add_new_user($first_name, $last_name, $username, $enc_pass, $role);
 			if ($add_new_user) {
-				header('Location: '.URLROOT.'/admin/add_user?success=Uspešno ste dodali novog korisnika!');
+					$_SESSION['msg'] = 'Uspešno ste dodali novog korisnika!';
+					header('Location:  '.$_SERVER['HTTP_REFERER'].'');
+					exit();
 			} else {
-				header('Location: '.URLROOT.'/admin/add_user?err=Nešto je pošlo po zlu, pokušajte ponovo!');
+				$_SESSION['err'] = 'Nešto je pošlo po zlu, pokušajte ponovo!';
+				header('Location:  '.$_SERVER['HTTP_REFERER'].'');
+				exit();
 			}
 		}
 

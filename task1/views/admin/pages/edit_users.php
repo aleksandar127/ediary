@@ -37,6 +37,7 @@
     <?php if(isset($_SESSION['msg'])): ?>
         <small style="color: green; font-weight: bold; margin-top: 5px;">
             <?php echo $_SESSION['msg']; ?>
+            <?php  unset($_SESSION['msg']);?>
         </small>
     <?php endif; ?>
 </div>

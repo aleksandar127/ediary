@@ -36,7 +36,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'grade');
     }
 
-    ////display messages view
+    //display messages view
     public function messages(){ 
         $view = new View();
         $all_class = Teacher::get_class();

@@ -11,17 +11,11 @@ class BaseAdminController
 		
 	} 
 
-	private function clear_out_get()
-	{
-
-	}
-
 	//default page, home page
 	public function index()
 	{
 		$view = new View();
 		$view->load_view('admin', 'pages', 'home');
-
 	}
 
 	//method for showing page with all users
@@ -37,7 +31,6 @@ class BaseAdminController
 	//method for showing page of form for updating user in db
 	public function edit_user()
 	{	
-					var_dump($_GET);
 		$view = new View();
 		$user_id = $this->demand->parts_of_url[5];
 		$spec_user = Users::get_user_by_id($user_id);
@@ -60,8 +53,11 @@ class BaseAdminController
 		$enc_pass = password_hash($password , PASSWORD_BCRYPT);
 
 		$edit_user = Users::edit($first_name, $last_name, $username, $enc_pass, $role, $user_id);
+
 		if ($edit_user) {
-			header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili informacije o ovom korisniku.');
+			// header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili informacije o ovom korisniku.');
+			
+
 		} else {
 			echo 'greska kod editovanja korisnika';
 		}

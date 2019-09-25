@@ -9,7 +9,7 @@ class BaseParentController
 		
 	}
 
-	
+	//home page for parent
 	public function index()
 	{
 		$view = new View();
@@ -20,7 +20,7 @@ class BaseParentController
 
 	}
 
-
+    //logout
     public function logout()
 	{
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);

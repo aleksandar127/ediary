@@ -33,7 +33,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdSubmit" ><input type="submit" name="add" value="Zakljuci ocenu"></td>
+                        <td class="tdSubmit" style="border:none;"><input type="submit" name="add" value="Zakljuci ocenu"></td>
                     </tr> 
                 </table>
             </form>

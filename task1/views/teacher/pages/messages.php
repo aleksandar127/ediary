@@ -2,7 +2,7 @@
     <div class="wrapper">
 
         <div id="sendMessage">
-        <div id="parents_name" style="display:inline-block;text-align:left;"></div> <br>
+        <div id="parents_name" style="text-transform: capitalize;font-size:20px;display:inline-block;text-align:left;"></div> <br>
 
                 <div id="scroll">
                     <div class="container">

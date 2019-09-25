@@ -105,7 +105,6 @@ class Teacher{
         $get_final = $query->fetch(PDO::FETCH_ASSOC);
         $final_id = $get_final['id'];
 
-        //if6
         if($final_id){
             $query = DB::$conn->prepare('UPDATE final_grade SET student_id = ?, subject_grade = ? WHERE id = ? LIMIT 1');
             $grade = $query->execute([$student_id, $subjects_grade, $final_id]); 

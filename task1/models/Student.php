@@ -107,20 +107,25 @@ class Student
     //method for deleting puple from db and their parents from users if parent hasn't more kids
     public static function delete_puple($puple_id)
     {
-
-            $query = 'delete from students where id=? limit 1';
-            $res=  DB::$conn->prepare($query);
-            return $res->execute([$puple_id]);
+        $query = 'delete from students where id=? limit 1';
+        $res=  DB::$conn->prepare($query);
+        return $res->execute([$puple_id]);
             
     }
 
     public static function get_children($parent_id)
-    {
-        
+    {  
         $stmt = DB::$conn->prepare("select * from students where users_id = ?");
         $stmt->execute([$parent_id]);
         $children = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $children;
+    }
+
+    public static function delete_parent($parent_id)
+    {
+        $query = 'delete from users where id=? limit 1';
+        $res=  DB::$conn->prepare($query);
+        return $res->execute([$parent_id]);
     }
 }
 

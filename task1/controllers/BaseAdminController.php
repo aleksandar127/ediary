@@ -16,7 +16,6 @@ class BaseAdminController
 	{
 		$view = new View();
 		$view->load_view('admin', 'pages', 'home');
-
 	}
 
 	//method for showing page with all users
@@ -54,8 +53,13 @@ class BaseAdminController
 		$enc_pass = password_hash($password , PASSWORD_BCRYPT);
 
 		$edit_user = Users::edit($first_name, $last_name, $username, $enc_pass, $role, $user_id);
+
 		if ($edit_user) {
-			header('Location: '.URLROOT.'/admin/users');
+			// header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izmenili informacije o ovom korisniku.');
+			
+
+		} else {
+			echo 'greska kod editovanja korisnika';
 		}
 		
 	}
@@ -625,13 +629,18 @@ class BaseAdminController
 		$children = Student::get_children($parent_id);
 		var_dump($children);
 		if (empty($children)) {
-			echo 'ovde obrisi roditelja sa tim id-em';
+			$delete_parent = Student::delete_parent($parent_id);
+		} else {
+			echo 'ima jos dece';
 		}
-		// if ($delete) {
-		// 	header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika!');
-		// } else {
-		// 	echo 'nesto je poslo po zlu pri brisanju ucenika iz baze';
-		// }
+		var_dump($delete_parent);
+		if ($delete && $delete_parent) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika i roditelja!');
+		} elseif ($delete && !$delete_parent) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika!');
+		} else {
+			echo 'nesto je poslo po zlu pri brisanju ucenika iz baze';
+		}
 
 	}
 

@@ -1,11 +1,11 @@
 
 
-
+<?php if(isset($_GET['err'])) echo $_GET['err']; ?>
 <form action='<?php echo URLROOT."/parent/send_excuse"?>' method="post" enctype="multipart/form-data" name="myForm" >
 <div class="form-group">
     
 <select class="mdb-select md-form" name="student">
-  <option value="" disabled selected>Izaberi ucenika</option>
+  <option value="" disabled selected>Izaberi učenika</option>
   <?php 
   foreach($this->data['students'] as $student):
   echo '<option value="'.$student['id'].'">'.$student['first_name'].' '.$student['last_name'].'</option>';

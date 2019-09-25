@@ -9,6 +9,8 @@ private $grades=[1,2,3,4,5];
 		$this->demand = $demand;
 		
 	}
+
+	//home page for professor
 	public function index()
 	{
 		$view = new View();
@@ -22,6 +24,7 @@ private $grades=[1,2,3,4,5];
 
 	}
 
+    //logout
 	public function logout()
 	{
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
@@ -29,6 +32,7 @@ private $grades=[1,2,3,4,5];
 		die();
 	}
 
+    //get all diaries 
 	public function diary()
 	{
 		$view = new View();
@@ -37,13 +41,12 @@ private $grades=[1,2,3,4,5];
 		$view->data['classes'] = $all_classes;
 		$class = Classes::get_my_class();
 		$view->data['class'] = $class;
-
 		$view->load_view('professor', 'pages', 'diary');
 	
 	}
 
 	
-	//get diary of class for subject
+	//get selected diary
 	public function diaryof(){
 		$view = new View();
 		$class_id = $this->demand->parts_of_url[5];
@@ -335,7 +338,7 @@ private $grades=[1,2,3,4,5];
 		
 		
 	}
-
+    //show all excuses
 	public function excuse(){
 		$view = new View();
 		$excuses=Excuse::get_excuses();

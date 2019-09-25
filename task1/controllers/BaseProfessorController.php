@@ -338,7 +338,7 @@ private $grades=[1,2,3,4,5];
 		
 		
 	}
-
+    //show all excuses
 	public function excuse(){
 		$view = new View();
 		$excuses=Excuse::get_excuses();

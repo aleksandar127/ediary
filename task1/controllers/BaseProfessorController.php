@@ -9,7 +9,7 @@ private $grades=[1,2,3,4,5];
 		$this->demand = $demand;
 		
 	}
-	
+
 	//home page for professor
 	public function index()
 	{
@@ -41,7 +41,6 @@ private $grades=[1,2,3,4,5];
 		$view->data['classes'] = $all_classes;
 		$class = Classes::get_my_class();
 		$view->data['class'] = $class;
-
 		$view->load_view('professor', 'pages', 'diary');
 	
 	}

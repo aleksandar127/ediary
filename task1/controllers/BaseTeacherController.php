@@ -361,4 +361,13 @@ public function logout(){
     die();	
 }
 
+public function excuse(){
+    $view = new View();
+    $excuses=Excuse::get_excuses();
+    $view->data['excuses'] = $excuses;
+    $view->load_view('teacher', 'pages', 'excuse');
+    
+}
+
+
 }

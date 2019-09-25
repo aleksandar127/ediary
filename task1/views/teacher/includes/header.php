@@ -25,7 +25,7 @@
 				<li><a class="font-weight-bold menu-link navProf" data-a='0' href="http://localhost/eDiary/task1/teacher/messages"><span><i class="fa fa-envelope"></i></span> Poruke</a></li>
 				<li><a class="font-weight-bold menu-link navProf" data-a='0' href="http://localhost/eDiary/task1/teacher/open"><span><i class="fas fa-handshake"></i></span> Otvorena vrata</a></li>
 				<li><a class="font-weight-bold menu-link navProf" data-a='0' href="http://localhost/eDiary/task1/teacher/schedule"><span><i class="fas fa-clipboard-list"></i></span> Raspored casova</a></li>
-				<li><a class="font-weight-bold menu-link navProf" data-a='0' href="http://localhost/eDiary/task1/teacher/excuse"><span><i class="fas fa-clipboard-list"></i></span>Opravdanja</a></li>
+				<li><a class="font-weight-bold menu-link navProf" data-a='0' href="http://localhost/eDiary/task1/teacher/excuse"><span><i class="fas fa-clipboard-list"></i></span> Opravdanja</a></li>
 			</ul>
 				<ul class="right_nav">
 				<li><a id='logout' class="font-weight-bold menu-link navProf" href="<?php echo URLROOT; ?>/teacher/logout">Izloguj se <span><i class="fas fa-sign-out-alt"></i></span></a></li>

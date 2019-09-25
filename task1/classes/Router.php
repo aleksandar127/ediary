@@ -44,7 +44,9 @@ class Router
 				if (method_exists($controller, $method)) {
 					$controller->$method();
 				} else {
-					var_dump('method ' . $method . ' jos uvek nije definisan');
+					// var_dump('method ' . $method . ' jos uvek nije definisan');
+					$view = new View();
+					$view->load_view('404', 'pages', 'index');
 				}
 			}
 		} else {

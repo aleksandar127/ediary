@@ -95,16 +95,16 @@ class BaseDirectorController
 	}
 
 
-
-	public function export()
+		// Export average school grades to .xls file..
+	public function exportSchoolGrades()
 	{
-		 $grades = Grades::export();
+		 $grades = Grades::exportSchool();
 		 $output = '';
 
 		if(isset($_POST['export'])) {
-		$output .= '<table class="table table-bordered">
+		$output .= '<table table-bordered>
 			<thead>
-				<th>Prosecna ocena</th>
+				<th>Ocena</th>
 				<th>Predmet</th>
 			</thead>
 			<tbody>';
@@ -112,18 +112,51 @@ class BaseDirectorController
 		foreach($grades as $grade){
 			$output .= <<<DELIMETER
 			<tr>
-			<td>{$grade['prosecna_ocena']}</td>
 			<td>{$grade['predmet']}</td>
+			<td>{$grade['ocena']}</td>
 			<tr>
 DELIMETER;
 
 		}
 		$output .= "</tbody></table>";
 		header("Content-Type: application/xls");
-		header("Content-Disposition: attachment; filename=download.xls");
+		header("Content-Disposition: attachment; filename=grades.xls");
 		echo $output;
+		}
 	}
-}
+
+
+		// Export class grades to .xls file..
+	public function exportClassGrades()
+	{
+		$class = $_GET['class'];
+		$high_low = $_GET['high_low'];
+		$grades = Grades::exportClass($class, $high_low);
+		 $output = '';
+
+		if(isset($_POST['exportClass'])) {
+		$output .= '<table table-bordered>
+			<thead>
+				<th>Ocena</th>
+				<th>Predmet</th>
+			</thead>
+			<tbody>';
+
+		foreach($grades as $grade){
+			$output .= <<<DELIMETER
+			<tr>
+			<td>{$grade['predmet']}</td>
+			<td>{$grade['ocena']}</td>
+			<tr>
+DELIMETER;
+
+		}
+		$output .= "</tbody></table>";
+		header("Content-Type: application/xls");
+		header("Content-Disposition: attachment; filename=grades{$_GET['class']}.xls");
+		echo $output;
+		}
+	}
 
 
 

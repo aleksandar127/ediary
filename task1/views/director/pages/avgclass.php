@@ -10,9 +10,15 @@ ob_start();
 
 ?>
 
-  <div class="col-md-12 text-center my-3">
+  <div class="col-md-12 text-center my-4 d-flex justify-content-center">
     <h1 class="font-weight-bold">Prosek ocena za <span class="text-black"><?php echo isset($this->data['class']) ? $this->data['class'] : null; ?></span></h1>
+    <div class="">
+    <form action="exportClassGrades?class=<?php echo $_GET['class']; ?>&high_low=<?php echo $_GET['high_low']; ?>" method="POST">
+    <input class="btn btn-outline-dark btn-lg mt-1 ml-3" name="exportClass" type="submit" value="Export Data">
+  </form>
   </div>
+  </div>
+
 
 <?php if($this->data['grades'] == '[]'): ?>
   <div class="col mt-3">
@@ -21,7 +27,7 @@ ob_start();
 <?php else: ?>
 
 
-<div class="row mt-2 tabela" style="height:80vh">
+<div class="row mt-3 tabela" style="height:80vh">
     <div class="col-md-11 mx-auto mb-3" id="class"></div>
 </div>  
 

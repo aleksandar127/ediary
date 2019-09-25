@@ -22,6 +22,7 @@
 			<li><a class="font-weight-bold menu-link navProf" data-a='0' href="<?php echo URLROOT; ?>/professor/messages"><span><i class="fa fa-envelope"></i></span> Poruke</a></li>
 			<li><a class="font-weight-bold menu-link navProf" data-a='0' href="<?php echo URLROOT; ?>/professor/open"><span><i class="fas fa-handshake"></i></span> Otvorena vrata</a></li>
 			<li><a class="font-weight-bold menu-link navProf" data-a='0' href="<?php echo URLROOT; ?>/professor/schedule"><span><i class="fas fa-clipboard-list"></i></span> Raspored</a></li>
+			<li><a class="font-weight-bold menu-link navProf" data-a='0' href="<?php echo URLROOT; ?>/professor/excuse"><span><i class="fas fa-clipboard-list"></i></span> Opravdanja</a></li>
 			
 		</ul>
 		<ul class="right_nav">

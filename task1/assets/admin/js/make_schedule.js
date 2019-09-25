@@ -118,6 +118,12 @@ function ajax_call(high_low){
 
 function check_is_class_ocuppied(high_low){
     if (high_low === "0") {
+        let errs = document.querySelectorAll('small.err');
+        console.log(errs);
+        errs.forEach(error => {
+            error.innerHTML = '';
+            error.previousElementSibling.style = 'border : border: 1px solid #ced4da';
+        });
         let cls_selects = document.querySelectorAll('select:not([name="class_sch"])');  
         cls_selects.forEach(sl => {
             sl.addEventListener('input', (e) => {

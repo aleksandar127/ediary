@@ -7,10 +7,10 @@
         $counter++;
         echo '<div class="excuseDiv" style="width:600px;object-fit:contain;">'; 
         if($counter>3){
-            echo '<img style="width:600px;" data-src="../assets/access/images/'.$excuse['image'].'"></img><figcaption>'.$excuse['last_name'].' '.$excuse['first_name'].'</figcaption><br>';
+            echo '<img style="width:600px;" data-src="../assets/access/images/'.$excuse['image'].'"></img><figcaption><b>'.ucfirst($excuse['last_name']).' '.ucfirst($excuse['first_name']).'</b></figcaption><br>';
         }
         else{
-            echo '<figure><img style=width:600px;" src="../assets/access/images/'.$excuse['image'].'" data-src="../assets/access/images/'.$excuse['image'].'"></img><figcaption>'.$excuse['last_name'].' '.$excuse['first_name'].'</figcaption></figure>';
+            echo '<figure><img style=width:600px;" src="../assets/access/images/'.$excuse['image'].'" data-src="../assets/access/images/'.$excuse['image'].'"></img><figcaption><b>'.ucfirst($excuse['last_name']).' '.ucfirst($excuse['first_name']).'</b></figcaption></figure>';
         }
         
         echo '</div>';

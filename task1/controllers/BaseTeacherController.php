@@ -16,7 +16,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'home');
     }
 
-    //show all grade 
+    //show all grades 
     public function grade(){
         $view = new View();
         $all_class = Teacher::get_class();

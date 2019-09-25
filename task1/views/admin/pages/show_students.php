@@ -2,6 +2,11 @@
     <p></p>
     <h1><?php echo $this->data['title']; ?></h1>
     <a  class="btn btn-success" href="http://localhost/eDiary/task1/admin/add_puple/<?php echo $this->data['class'];?>">Dodaj novog učenika</a>
+        <?php if(isset($_GET['success'])): ?>
+        <small style="color: green; font-weight: bold; margin-top: 5px;">
+            <?php echo $_GET['success']; ?>
+        </small>
+        <?php endif; ?>
     <table class="table">
     <thead>
         <tr>

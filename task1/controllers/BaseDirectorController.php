@@ -60,8 +60,12 @@ class BaseDirectorController
 	{
 		$view = new View();
 
-		$class = str_replace('/', '-', $_GET['class']);
+		// Converting class name (e.g. 7/1 to 7-1) for file creation..
+		$pattern = "/\//";
+		$replacement = "-";
+		$class = preg_replace($pattern, $replacement, $_GET['class']);
 
+		// The path for cache file..
 		$cacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
 			$class, date("Ymd"));
 
@@ -118,10 +122,10 @@ class BaseDirectorController
 DELIMETER;
 
 		}
-		$output .= "</tbody></table>";
-		header("Content-Type: application/xls");
-		header("Content-Disposition: attachment; filename=grades.xls");
-		echo $output;
+			$output .= "</tbody></table>";
+			header("Content-Type: application/xls");
+			header("Content-Disposition: attachment; filename=grades.xls");
+			echo $output;
 		}
 	}
 

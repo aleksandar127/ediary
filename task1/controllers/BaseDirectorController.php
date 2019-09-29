@@ -1,4 +1,7 @@
-<?php 
+<?php
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory; 
 
 class BaseDirectorController
 {
@@ -19,6 +22,11 @@ class BaseDirectorController
 		// Prosek ocena na nivou skole..
 	public function avgschool() 
 	{
+		// include 'Spreadsheet';
+		$spreadsheet = new Spreadsheet();
+		// var_dump($spreadsheet);
+
+
 		$view = new View();
 
 		$cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));

@@ -24,4 +24,3 @@ $demand = new Demand();
 $router = new Router($demand);
 
 
-//TODO: BRISANJE UCENIKA I LANCANO, POPRAVITI RASPORED VALIDACIJU

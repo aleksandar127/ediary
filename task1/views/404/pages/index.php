@@ -7,7 +7,7 @@
 </head>
 <body>
 
-	<a class="button1" href="<?php $_SERVER['HTTP_REFERER'];?>">
+	<a class="button1" href="">
 		<span></span>
 		<span></span>
 		<span></span>
@@ -21,7 +21,7 @@
 	<h1>4</h1>
 
 
-	<a class="button2" href="<?php $_SERVER['HTTP_REFERER'];?>">
+	<a class="button2" href="">
 		<span></span>
 		<span></span>
 		<span></span>

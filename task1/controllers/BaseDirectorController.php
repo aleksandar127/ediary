@@ -22,11 +22,6 @@ class BaseDirectorController
 		// Prosek ocena na nivou skole..
 	public function avgschool() 
 	{
-		
-		//$spreadsheet = new Spreadsheet();
-		// var_dump($spreadsheet);
-
-
 		$view = new View();
 
 		$cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
@@ -107,35 +102,39 @@ class BaseDirectorController
 	}
 
 
-		// Export average school grades to .xls file..
+		// Export average school grades to .xlsx file..
 		public function exportSchoolGrades()
 	{
-		$grades = Grades::exportSchool();
-		// $output = '';
 
-		 $spreadsheet = new Spreadsheet();
-		 $sheet = $spreadsheet->getActiveSheet();
+		// include 'Spreadsheet.php';
+		// include 'Writer\Xlsx.php';
+		// include 'IOFactory.php'; 
+		
+	//	if(isset($_POST['export'])) {
 
-		 
+			$grades = Grades::exportSchool();
+			// var_dump($grades);
 
-		if(isset($_POST['export'])) {
+			$spreadsheet = new Spreadsheet();
+			$sheet = $spreadsheet->getActiveSheet();
+			
+			$sheet->setCellValue('A1', 'Predmet');
+			$sheet->setCellValue('B1', 'Ocena');
+				
+			$row = 2;
 
-				$sheet->setCellValue("A1", "Predmet");
-				$sheet->setCellValue("B1", "Ocena");
+		// foreach($grades as $grade){
+			
+		// 	$sheet->setCellValue('A'.$row, $grade['predmet']);
+        // 	$sheet->setCellValue('B'.$row, $grade['ocena']);
+		// 	$row++;
+		// }
 
-				$row = 2;
-
-		foreach($grades as $grade){
-			$sheet->setCellValue('A'.$row, $grade['predmet']);
-        	$sheet->setCellValue('B'.$row, $grade['ocena']);
-			$row++;
-
-		}
 		$filename = 'grades-'.time().'.xlsx';
 
 		// Redirect output to client..
 		header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-		header('Content-Disposition: attachment;filename="'.$filename.'"');
+		header('Content-Disposition: attachment; filename="'.$filename.'"');
 		header('Cache-Control: max-age=0');
 		// If user IE 9
 		header('Cache-Control: max-age=1');
@@ -144,7 +143,7 @@ class BaseDirectorController
 		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 		$writer->save('php://output');
 		
-		}
+	//	}
 	}
 
 

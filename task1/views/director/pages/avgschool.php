@@ -10,9 +10,11 @@ ob_start();
 <div class="col-md-12 text-center my-4 d-flex justify-content-center">
     <h1 class="font-weight-bold">Prosek ocena na nivou skole</h1>
     <div class="">
-    <form action="exportSchoolGrades" method="POST">
+    <!-- <form action="exportSchoolGrades" method="POST">
     <input class="btn btn-outline-dark btn-lg mt-1 ml-3" name="export" type="submit" value="Export Data">
-  </form>
+  </form> -->
+  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportSchoolGrades'">Export Data</button>
+ 
   </div>
 </div>
 

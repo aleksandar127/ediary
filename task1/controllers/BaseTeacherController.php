@@ -249,7 +249,7 @@ public function success(){
     //get all final grades 
     $grades = Student::success($id);
     if($grades == null){
-        header("Location: http://localhost/eDiary/task1/teacher/index?err=Ucenik nije ocenjen! & id= " . $id);
+        header("Location: http://localhost/eDiary/task1/teacher/index?err = Ucenik nije ocenjen! & id= " . $id);
         exit(); 
     }
 
@@ -357,14 +357,11 @@ public function logout(){
     header('Location: '.URLROOT.'/');
     die();	
 }
-
-public function excuse(){
-    $view = new View();
-    $excuses=Excuse::get_excuses();
-    $view->data['excuses'] = $excuses;
-    $view->load_view('teacher', 'pages', 'excuse');
-    
-}
-
-
-}
+ 
+public function excuse(){ 
+    $view = new View(); 
+    $excuses = Excuse::get_excuses(); 
+    $view->data['excuses'] = $excuses; 
+    $view->load_view('teacher', 'pages', 'excuse'); 
+} 
+} 

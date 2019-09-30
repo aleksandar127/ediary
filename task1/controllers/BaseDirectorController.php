@@ -1,4 +1,7 @@
-<?php 
+<?php
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory; 
 
 class BaseDirectorController
 {
@@ -19,6 +22,11 @@ class BaseDirectorController
 		// Prosek ocena na nivou skole..
 	public function avgschool() 
 	{
+		
+		//$spreadsheet = new Spreadsheet();
+		// var_dump($spreadsheet);
+
+
 		$view = new View();
 
 		$cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
@@ -60,8 +68,12 @@ class BaseDirectorController
 	{
 		$view = new View();
 
-		$class = str_replace('/', '-', $_GET['class']);
+		// Converting class name (e.g. 7/1 to 7-1) for file creation..
+		$pattern = "/\//";
+		$replacement = "-";
+		$class = preg_replace($pattern, $replacement, $_GET['class']);
 
+		// The path for cache file..
 		$cacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
 			$class, date("Ymd"));
 
@@ -96,34 +108,75 @@ class BaseDirectorController
 
 
 		// Export average school grades to .xls file..
-	public function exportSchoolGrades()
+		public function exportSchoolGrades()
 	{
-		 $grades = Grades::exportSchool();
-		 $output = '';
+		$grades = Grades::exportSchool();
+		// $output = '';
+
+		 $spreadsheet = new Spreadsheet();
+		 $sheet = $spreadsheet->getActiveSheet();
+
+		 
 
 		if(isset($_POST['export'])) {
-		$output .= '<table table-bordered>
-			<thead>
-				<th>Ocena</th>
-				<th>Predmet</th>
-			</thead>
-			<tbody>';
+
+				$sheet->setCellValue("A1", "Predmet");
+				$sheet->setCellValue("B1", "Ocena");
+
+				$row = 2;
 
 		foreach($grades as $grade){
-			$output .= <<<DELIMETER
-			<tr>
-			<td>{$grade['predmet']}</td>
-			<td>{$grade['ocena']}</td>
-			<tr>
-DELIMETER;
+			$sheet->setCellValue('A'.$row, $grade['predmet']);
+        	$sheet->setCellValue('B'.$row, $grade['ocena']);
+			$row++;
 
 		}
-		$output .= "</tbody></table>";
-		header("Content-Type: application/xls");
-		header("Content-Disposition: attachment; filename=grades.xls");
-		echo $output;
+		$filename = 'grades-'.time().'.xlsx';
+
+		// Redirect output to client..
+		header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		header('Content-Disposition: attachment;filename="'.$filename.'"');
+		header('Cache-Control: max-age=0');
+		// If user IE 9
+		header('Cache-Control: max-age=1');
+		
+		
+		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+		$writer->save('php://output');
+		
 		}
 	}
+
+
+
+// 	public function exportSchoolGrades()
+// 	{
+// 		 $grades = Grades::exportSchool();
+// 		 $output = '';
+
+// 		if(isset($_POST['export'])) {
+// 		$output .= '<table table-bordered>
+// 			<thead>
+// 				<th>Ocena</th>
+// 				<th>Predmet</th>
+// 			</thead>
+// 			<tbody>';
+
+// 		foreach($grades as $grade){
+// 			$output .= <<<DELIMETER
+// 			<tr>
+// 			<td>{$grade['predmet']}</td>
+// 			<td>{$grade['ocena']}</td>
+// 			<tr>
+// DELIMETER;
+
+// 		}
+// 			$output .= "</tbody></table>";
+// 			header("Content-Type: application/xls");
+// 			header("Content-Disposition: attachment; filename=grades.xls");
+// 			echo $output;
+// 		}
+// 	}
 
 
 		// Export class grades to .xls file..

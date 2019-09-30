@@ -106,44 +106,78 @@ class BaseDirectorController
 		public function exportSchoolGrades()
 	{
 
-		// include 'Spreadsheet.php';
-		// include 'Writer\Xlsx.php';
-		// include 'IOFactory.php'; 
-		
-	//	if(isset($_POST['export'])) {
-
-			$grades = Grades::exportSchool();
-			// var_dump($grades);
-
 			$spreadsheet = new Spreadsheet();
 			$sheet = $spreadsheet->getActiveSheet();
 			
 			$sheet->setCellValue('A1', 'Predmet');
 			$sheet->setCellValue('B1', 'Ocena');
-				
+
+			$grades = Grades::exportSchool();
+
 			$row = 2;
 
-		// foreach($grades as $grade){
+		foreach($grades as $grade){
 			
-		// 	$sheet->setCellValue('A'.$row, $grade['predmet']);
-        // 	$sheet->setCellValue('B'.$row, $grade['ocena']);
-		// 	$row++;
-		// }
+			$sheet->setCellValue('A'.$row, $grade['predmet']);
+        	$sheet->setCellValue('B'.$row, $grade['ocena']);
+			$row++;
+		}
 
-		$filename = 'grades-'.time().'.xlsx';
+		$filename = 'views/director/pages/excel/grades-'.time().'.xlsx';
 
+		$writer = new Xlsx($spreadsheet);
+		
+		$writer->save($filename);
+		header('Location: '.$_SERVER['HTTP_REFERER']);
 		// Redirect output to client..
-		header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-		header('Content-Disposition: attachment; filename="'.$filename.'"');
-		header('Cache-Control: max-age=0');
+		// header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		// header('Content-Disposition: attachment; filename="'.$filename.'"');
+		// header('Cache-Control: max-age=0');
 		// If user IE 9
-		header('Cache-Control: max-age=1');
+		// header('Cache-Control: max-age=1');
+		// $writer->save('php://output');
+	}
+
+
+	public function exportClassGrades()
+	{
+		$class = $_GET['class'];
+		$high_low = $_GET['high_low'];
+		$grades = Grades::exportClass($class, $high_low);
+
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+			
+		$sheet->setCellValue('A1', 'Predmet');
+		$sheet->setCellValue('B1', 'Ocena');
+
+	//	$grades = Grades::exportSchool();
+
+		$row = 2;
+
+		foreach($grades as $grade){
+				
+			$sheet->setCellValue('A'.$row, $grade['predmet']);
+        	$sheet->setCellValue('B'.$row, $grade['ocena']);
+			$row++;
+		}
+
+		$pattern = "/\//";
+		$replacement = ".";
+		$className = preg_replace($pattern, $replacement, $_GET['class']);
+		$filename = "views/director/pages/excel/grades{$className}-".time().".xlsx";
+
+		$writer = new Xlsx($spreadsheet);
 		
-		
-		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-		$writer->save('php://output');
-		
-	//	}
+		$writer->save($filename);
+		header('Location: '.$_SERVER['HTTP_REFERER']);
+		// Redirect output to client..
+		// header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		// header('Content-Disposition: attachment; filename="'.$filename.'"');
+		// header('Cache-Control: max-age=0');
+		// If user IE 9
+		// header('Cache-Control: max-age=1');
+		// $writer->save('php://output');
 	}
 
 
@@ -179,36 +213,36 @@ class BaseDirectorController
 
 
 		// Export class grades to .xls file..
-	public function exportClassGrades()
-	{
-		$class = $_GET['class'];
-		$high_low = $_GET['high_low'];
-		$grades = Grades::exportClass($class, $high_low);
-		 $output = '';
+// 	public function exportClassGrades()
+// 	{
+// 		$class = $_GET['class'];
+// 		$high_low = $_GET['high_low'];
+// 		$grades = Grades::exportClass($class, $high_low);
+// 		 $output = '';
 
-		if(isset($_POST['exportClass'])) {
-		$output .= '<table table-bordered>
-			<thead>
-				<th>Ocena</th>
-				<th>Predmet</th>
-			</thead>
-			<tbody>';
+// 		if(isset($_POST['exportClass'])) {
+// 		$output .= '<table table-bordered>
+// 			<thead>
+// 				<th>Ocena</th>
+// 				<th>Predmet</th>
+// 			</thead>
+// 			<tbody>';
 
-		foreach($grades as $grade){
-			$output .= <<<DELIMETER
-			<tr>
-			<td>{$grade['predmet']}</td>
-			<td>{$grade['ocena']}</td>
-			<tr>
-DELIMETER;
+// 		foreach($grades as $grade){
+// 			$output .= <<<DELIMETER
+// 			<tr>
+// 			<td>{$grade['predmet']}</td>
+// 			<td>{$grade['ocena']}</td>
+// 			<tr>
+// DELIMETER;
 
-		}
-		$output .= "</tbody></table>";
-		header("Content-Type: application/xls");
-		header("Content-Disposition: attachment; filename=grades{$_GET['class']}.xls");
-		echo $output;
-		}
-	}
+// 		}
+// 		$output .= "</tbody></table>";
+// 		header("Content-Type: application/xls");
+// 		header("Content-Disposition: attachment; filename=grades{$_GET['class']}.xls");
+// 		echo $output;
+// 		}
+// 	}
 
 
 
@@ -219,8 +253,6 @@ DELIMETER;
 		die();
 		
 	}
-
-
 
 
 

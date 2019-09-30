@@ -4,6 +4,10 @@ require('./vendor/autoload.php');
 require('./db.php');	
 require('./constants.php');
 
+// require('Spreadsheet.php');
+// require('IOFactory.php');
+// require('Xlsx.php');
+
 $db = new DB();
      
 spl_autoload_register(function($class){

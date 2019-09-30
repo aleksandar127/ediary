@@ -1,6 +1,10 @@
 <style>
 td::first-letter{
     text-transform:uppercase;
+    text-align:left;
+}
+table{
+    text-align: left;
 }
 </style>
 <?php

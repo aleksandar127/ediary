@@ -1,8 +1,4 @@
 <?php
-// use PhpOffice\PhpSpreadsheet\Spreadsheet;
-// use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-// use PhpOffice\PhpSpreadsheet\IOFactory;
-
 require('./vendor/autoload.php');
 
 require('./db.php');	
@@ -21,9 +17,6 @@ foreach (glob('./models/*') as $model_name) {
 foreach (glob('./classes/*') as $class_name) {
 	require($class_name);
 }
-
-// $spreadsheet = new Spreadsheet();
-// var_dump($spreadsheet);
 
 $demand = new Demand();
 $router = new Router($demand);

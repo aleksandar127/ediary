@@ -22,8 +22,8 @@ class BaseDirectorController
 		// Prosek ocena na nivou skole..
 	public function avgschool() 
 	{
-		// include 'Spreadsheet';
-		$spreadsheet = new Spreadsheet();
+		
+		//$spreadsheet = new Spreadsheet();
 		// var_dump($spreadsheet);
 
 
@@ -108,34 +108,75 @@ class BaseDirectorController
 
 
 		// Export average school grades to .xls file..
-	public function exportSchoolGrades()
+		public function exportSchoolGrades()
 	{
-		 $grades = Grades::exportSchool();
-		 $output = '';
+		$grades = Grades::exportSchool();
+		// $output = '';
+
+		 $spreadsheet = new Spreadsheet();
+		 $sheet = $spreadsheet->getActiveSheet();
+
+		 
 
 		if(isset($_POST['export'])) {
-		$output .= '<table table-bordered>
-			<thead>
-				<th>Ocena</th>
-				<th>Predmet</th>
-			</thead>
-			<tbody>';
+
+				$sheet->setCellValue("A1", "Predmet");
+				$sheet->setCellValue("B1", "Ocena");
+
+				$row = 2;
 
 		foreach($grades as $grade){
-			$output .= <<<DELIMETER
-			<tr>
-			<td>{$grade['predmet']}</td>
-			<td>{$grade['ocena']}</td>
-			<tr>
-DELIMETER;
+			$sheet->setCellValue('A'.$row, $grade['predmet']);
+        	$sheet->setCellValue('B'.$row, $grade['ocena']);
+			$row++;
 
 		}
-			$output .= "</tbody></table>";
-			header("Content-Type: application/xls");
-			header("Content-Disposition: attachment; filename=grades.xls");
-			echo $output;
+		$filename = 'grades-'.time().'.xlsx';
+
+		// Redirect output to client..
+		header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+		header('Content-Disposition: attachment;filename="'.$filename.'"');
+		header('Cache-Control: max-age=0');
+		// If user IE 9
+		header('Cache-Control: max-age=1');
+		
+		
+		$writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
+		$writer->save('php://output');
+		
 		}
 	}
+
+
+
+// 	public function exportSchoolGrades()
+// 	{
+// 		 $grades = Grades::exportSchool();
+// 		 $output = '';
+
+// 		if(isset($_POST['export'])) {
+// 		$output .= '<table table-bordered>
+// 			<thead>
+// 				<th>Ocena</th>
+// 				<th>Predmet</th>
+// 			</thead>
+// 			<tbody>';
+
+// 		foreach($grades as $grade){
+// 			$output .= <<<DELIMETER
+// 			<tr>
+// 			<td>{$grade['predmet']}</td>
+// 			<td>{$grade['ocena']}</td>
+// 			<tr>
+// DELIMETER;
+
+// 		}
+// 			$output .= "</tbody></table>";
+// 			header("Content-Type: application/xls");
+// 			header("Content-Disposition: attachment; filename=grades.xls");
+// 			echo $output;
+// 		}
+// 	}
 
 
 		// Export class grades to .xls file..

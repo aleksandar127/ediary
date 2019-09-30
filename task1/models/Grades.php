@@ -195,7 +195,7 @@ class Grades{
 
     public static function exportSchool()
     {
-        $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS ocena, subjects.name AS predmet 
+        $query = DB::$conn->prepare('SELECT FORMAT(SUM(shg.grades) / COUNT(shghs.students_id), 1) AS ocena, subjects.name AS predmet 
             FROM subjects_has_grades shg
             JOIN subjects ON shg.subjects_id = subjects.id 
             JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 

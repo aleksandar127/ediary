@@ -249,7 +249,7 @@ public function success(){
     //get all final grades 
     $grades = Student::success($id);
     if($grades == null){
-        header("Location: http://localhost/eDiary/task1/teacher/index?err = Ucenik nije ocenjen! & id= " . $id);
+        header("Location: http://localhost/eDiary/task1/teacher/index?err=Ucenik nije ocenjen! & id= " . $id);
         exit(); 
     }
 

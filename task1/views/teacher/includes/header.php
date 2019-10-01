@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>eDiary</title>
 <link href="http://localhost/eDiary/task1/assets/teacher/css/style.css" type="text/css" rel="stylesheet">
-<link href="http://localhost/eDiary/task1/assets/teacher/css/https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+<!-- <link href="http://localhost/eDiary/task1/assets/teacher/css/https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet"> -->
 <!-- <link href="http://localhost/eDiary/task1/assets/teacher/css/fa/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 <link href="http://localhost/eDiary/task1/assets/teacher/css/web-fonts-with-css/css/fontawesome-all.min.css" type="text/css" rel="stylesheet"> -->
 

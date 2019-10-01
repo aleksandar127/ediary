@@ -251,7 +251,7 @@ public function success(){
     if($grades == null){
         header("Location: http://localhost/eDiary/task1/teacher/index?err=Ucenik nije ocenjen! & id= " . $id);
         exit(); 
-    }
+    } 
 
     //$pdf = new Cezpdf();
     $pdf = new Creport('a4', 'portrait');

@@ -184,11 +184,11 @@ class BaseDirectorController
 		$pattern = "/\//";
 		$replacement = ".";
 		$className = preg_replace($pattern, $replacement, $_GET['class']);
-		$filePath = "views/director/pages/excel/grades{$className}-".time().".xlsx";
+		$filename = "views/director/pages/excel/grades-".$className.time().".xlsx";
 
 		$writer = new Xlsx($spreadsheet);
 		
-		$writer->save($filePath);
+		$writer->save($filename);
 		header('Location: '.$_SERVER['HTTP_REFERER']);
 		// Redirect output to client..
 		// header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");

@@ -16,7 +16,7 @@ ob_start();
     <!-- <form action="exportClassGrades?class=<?php //echo $_GET['class']; ?>&high_low=<?php //echo $_GET['high_low']; ?>" method="POST">
     <input class="btn btn-outline-dark btn-lg mt-1 ml-3" name="exportClass" type="submit" value="Export Data">
   </form> -->
-  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportClassGrades?class=<?php echo $_GET['class']; ?>&high_low=<?php echo $_GET['high_low']; ?>'">Export Data</button>
+  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportClassGrades?class=<?php echo $_GET['class']; ?>&high_low=<?php echo $_GET['high_low']; ?>'">Save as .xlsx</button>
   </div>
   </div>
 

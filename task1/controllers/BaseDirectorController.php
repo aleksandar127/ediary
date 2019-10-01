@@ -2,6 +2,7 @@
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory; 
+use PhpOffice\PhpSpreadsheet\Helper\Sample;
 
 class BaseDirectorController
 {
@@ -24,8 +25,14 @@ class BaseDirectorController
 	{
 		$view = new View();
 
+		// Create cache dir if not exists..
+		if(!is_dir("views/director/pages/cache")){
+			mkdir("views/director/pages/cache");
+		}
+
+		
+
 		$cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
-	//	echo $cacheFile."<br><hr>";
 
 		// Izbrisi stare cache fajlove iz foldera..
 		 foreach (glob('views/director/pages/cache/avgschool*') as $cache) {
@@ -62,6 +69,11 @@ class BaseDirectorController
 	public function avgclass()
 	{
 		$view = new View();
+
+		// Create cache dir if not exists..
+		if(!is_dir("views/director/pages/cache")){
+			mkdir("views/director/pages/cache");
+		}
 
 		// Converting class name (e.g. 7/1 to 7-1) for file creation..
 		$pattern = "/\//";
@@ -105,7 +117,11 @@ class BaseDirectorController
 		// Export average school grades to .xlsx file..
 		public function exportSchoolGrades()
 	{
-
+			// Create excel dir if not exists..
+			if(!is_dir("views/director/pages/excel")){
+				mkdir("views/director/pages/excel");
+			}
+			
 			$spreadsheet = new Spreadsheet();
 			$sheet = $spreadsheet->getActiveSheet();
 			
@@ -141,6 +157,11 @@ class BaseDirectorController
 
 	public function exportClassGrades()
 	{
+		// Create excel dir if not exists..
+		if(!is_dir("views/director/pages/excel")){
+			mkdir("views/director/pages/excel");
+		}
+
 		$class = $_GET['class'];
 		$high_low = $_GET['high_low'];
 		$grades = Grades::exportClass($class, $high_low);
@@ -243,6 +264,34 @@ class BaseDirectorController
 // 		echo $output;
 // 		}
 // 	}
+
+
+	public function downloadExcel()
+	{
+		if(isset($_GET['filename'])) {
+			header("Content-Disposition: attachment; filename={$_GET['filename']}");
+		}
+		else {
+			return false;
+		}
+	}
+
+	public function deleteExcel()
+	{
+		if(isset($_GET['filename'])) {
+			unlink($_GET['filename']);
+		}
+		else {
+			return false;
+		}
+	}
+
+
+	// public function importExcel()
+	// {
+	// 	$helper = new Sample();
+	// 	var_dump($helper);
+	// }
 
 
 

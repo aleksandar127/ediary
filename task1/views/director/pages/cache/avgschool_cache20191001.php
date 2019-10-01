@@ -5,7 +5,7 @@
     <!-- <form action="exportSchoolGrades" method="POST">
     <input class="btn btn-outline-dark btn-lg mt-1 ml-3" name="export" type="submit" value="Export Data">
   </form> -->
-  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportSchoolGrades'">Export Data</button>
+  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportSchoolGrades'">Save as .xlsx</button>
  
   </div>
 </div>

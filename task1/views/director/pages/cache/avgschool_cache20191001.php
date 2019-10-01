@@ -26,7 +26,7 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("school", am4charts.XYChart);
 
 // Add data
-chart.data = [{"prosecna_ocena":"3.6","predmet":"biologija"},{"prosecna_ocena":"3.9","predmet":"engleski jezik"},{"prosecna_ocena":"4.9","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"2.9","predmet":"fizika"},{"prosecna_ocena":"4.1","predmet":"geografija"},{"prosecna_ocena":"2.9","predmet":"hemija"},{"prosecna_ocena":"4.3","predmet":"likovno vaspitanje"},{"prosecna_ocena":"3.5","predmet":"matematika"},{"prosecna_ocena":"4.3","predmet":"muzi\u010dko vaspitanje"},{"prosecna_ocena":"3.4","predmet":"srpski jezik"},{"prosecna_ocena":"4.3","predmet":"Svet oko nas"}]
+chart.data = [{"prosecna_ocena":"3.6","predmet":"biologija"},{"prosecna_ocena":"3.9","predmet":"engleski jezik"},{"prosecna_ocena":"4.9","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"2.9","predmet":"fizika"},{"prosecna_ocena":"4.1","predmet":"geografija"},{"prosecna_ocena":"2.8","predmet":"hemija"},{"prosecna_ocena":"4.3","predmet":"likovno vaspitanje"},{"prosecna_ocena":"3.6","predmet":"matematika"},{"prosecna_ocena":"4.3","predmet":"muzi\u010dko vaspitanje"},{"prosecna_ocena":"3.4","predmet":"srpski jezik"},{"prosecna_ocena":"4.3","predmet":"Svet oko nas"}]
 //console.log(chart.data)
 
 // Create axes

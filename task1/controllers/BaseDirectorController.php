@@ -20,12 +20,12 @@ class BaseDirectorController
 	}
 	
 
-		// Prosek ocena na nivou skole..
+		// Average school grades..
 	public function avgschool() 
 	{
 		$view = new View();
 
-		// Create cache dir if not exists..
+		// Create cache dir if doesn't exists..
 		if(!is_dir("views/director/pages/cache")){
 			mkdir("views/director/pages/cache");
 		}
@@ -34,7 +34,7 @@ class BaseDirectorController
 
 		$cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
 
-		// Izbrisi stare cache fajlove iz foldera..
+		// Delete old cache files from cache dir..
 		 foreach (glob('views/director/pages/cache/avgschool*') as $cache) {
 	//	 	 echo $cache . "<br>";
 			if($cache != $cacheFile) {
@@ -144,7 +144,7 @@ class BaseDirectorController
 		$writer = new Xlsx($spreadsheet);
 		
 		$writer->save($filename);
-		header('Location: '.$_SERVER['HTTP_REFERER']);
+		header('Location:'.$_SERVER['HTTP_REFERER']);
 		// Redirect output to client..
 		// header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		// header('Content-Disposition: attachment; filename="'.$filename.'"');
@@ -172,8 +172,6 @@ class BaseDirectorController
 		$sheet->setCellValue('A1', 'Predmet');
 		$sheet->setCellValue('B1', 'Ocena');
 
-	//	$grades = Grades::exportSchool();
-
 		$row = 2;
 
 		foreach($grades as $grade){
@@ -186,11 +184,11 @@ class BaseDirectorController
 		$pattern = "/\//";
 		$replacement = ".";
 		$className = preg_replace($pattern, $replacement, $_GET['class']);
-		$filename = "views/director/pages/excel/grades{$className}-".time().".xlsx";
+		$filePath = "views/director/pages/excel/grades{$className}-".time().".xlsx";
 
 		$writer = new Xlsx($spreadsheet);
 		
-		$writer->save($filename);
+		$writer->save($filePath);
 		header('Location: '.$_SERVER['HTTP_REFERER']);
 		// Redirect output to client..
 		// header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -278,8 +276,9 @@ class BaseDirectorController
 
 	public function deleteExcel()
 	{
-		if(isset($_GET['filename'])) {
-			unlink($_GET['filename']);
+		if(isset($_GET['filePath'])) {
+			unlink('views/director/pages/excel/'.$_GET['filePath']);
+			header('Location: '. $_SERVER['HTTP_REFERER']);
 		}
 		else {
 			return false;

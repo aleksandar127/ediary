@@ -17,6 +17,9 @@ class BaseDirectorController
 	{
 		$view = new View();
 		$view->load_view('director', 'pages', 'home');
+		$users = Active::find_by_username('Nenad');
+		echo $users->last_name;
+		
 	}
 	
 
@@ -226,11 +229,10 @@ class BaseDirectorController
 	}
 
 
-	// public function importExcel()
-	// {
-	// 	$helper = new Sample();
-	// 	var_dump($helper);
-	// }
+	public function record()
+	{
+		
+	}
 
 
 

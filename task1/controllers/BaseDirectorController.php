@@ -84,7 +84,7 @@ class BaseDirectorController
 		$cacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
 			$class, date("Ymd"));
 
-		// Izbrisi stare cache fajlove iz foldera za odeljenje..
+		// Delete old cache files..
 		 foreach (glob("views/director/pages/cache/avgclass_cache".$class."*") as $cache) {
 			if($cache != $cacheFile) {
 				unlink($cache);
@@ -95,12 +95,12 @@ class BaseDirectorController
 
 		$timeDiff = time() - filemtime($cacheFile);
 		// echo $timeDiff;
-			// Izbrisi fajl ako je stariji od 12 sati..
+			// Delete file if older than 12 hours..
 			if($timeDiff > (60 * 60 * 12)) {
 				unlink($cacheFile);
 				}
 				else {
-					// Ucitaj validan cache fajl ako postoji..
+					// Load valid cache file if exists..
 					$file = "cache/avgclass_cache".$class."-".date("Ymd");
 					$view->load_view('director', 'pages', $file);
 					exit;
@@ -118,8 +118,8 @@ class BaseDirectorController
 		public function exportSchoolGrades()
 	{
 			// Create excel dir if not exists..
-			if(!is_dir("views/director/pages/excel")){
-				mkdir("views/director/pages/excel");
+			if(!is_dir("views/director/pages/excel/")){
+				mkdir("views/director/pages/excel/");
 			}
 			
 			$spreadsheet = new Spreadsheet();
@@ -139,7 +139,7 @@ class BaseDirectorController
 			$row++;
 		}
 
-		$filename = 'views/director/pages/excel/grades-'.time().'.xlsx';
+		$filename = 'views/director/pages/excel/grades'.time().'.xlsx';
 
 		$writer = new Xlsx($spreadsheet);
 		
@@ -158,7 +158,7 @@ class BaseDirectorController
 	public function exportClassGrades()
 	{
 		// Create excel dir if not exists..
-		if(!is_dir("views/director/pages/excel")){
+		if(!is_dir("excel")){
 			mkdir("views/director/pages/excel");
 		}
 
@@ -184,12 +184,14 @@ class BaseDirectorController
 		$pattern = "/\//";
 		$replacement = ".";
 		$className = preg_replace($pattern, $replacement, $_GET['class']);
-		$filename = "views/director/pages/excel/grades-".$className.time().".xlsx";
+		$filePath = "views/director/pages/excel/grades".$className.time().".xlsx";
+		//$filename = $className.time().".xlsx";
 
 		$writer = new Xlsx($spreadsheet);
 		
-		$writer->save($filename);
+		$writer->save($filePath);
 		header('Location: '.$_SERVER['HTTP_REFERER']);
+		
 		// Redirect output to client..
 		// header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 		// header('Content-Disposition: attachment; filename="'.$filename.'"');
@@ -201,73 +203,11 @@ class BaseDirectorController
 
 
 
-// 	public function exportSchoolGrades()
-// 	{
-// 		 $grades = Grades::exportSchool();
-// 		 $output = '';
-
-// 		if(isset($_POST['export'])) {
-// 		$output .= '<table table-bordered>
-// 			<thead>
-// 				<th>Ocena</th>
-// 				<th>Predmet</th>
-// 			</thead>
-// 			<tbody>';
-
-// 		foreach($grades as $grade){
-// 			$output .= <<<DELIMETER
-// 			<tr>
-// 			<td>{$grade['predmet']}</td>
-// 			<td>{$grade['ocena']}</td>
-// 			<tr>
-// DELIMETER;
-
-// 		}
-// 			$output .= "</tbody></table>";
-// 			header("Content-Type: application/xls");
-// 			header("Content-Disposition: attachment; filename=grades.xls");
-// 			echo $output;
-// 		}
-// 	}
-
-
-		// Export class grades to .xls file..
-// 	public function exportClassGrades()
-// 	{
-// 		$class = $_GET['class'];
-// 		$high_low = $_GET['high_low'];
-// 		$grades = Grades::exportClass($class, $high_low);
-// 		 $output = '';
-
-// 		if(isset($_POST['exportClass'])) {
-// 		$output .= '<table table-bordered>
-// 			<thead>
-// 				<th>Ocena</th>
-// 				<th>Predmet</th>
-// 			</thead>
-// 			<tbody>';
-
-// 		foreach($grades as $grade){
-// 			$output .= <<<DELIMETER
-// 			<tr>
-// 			<td>{$grade['predmet']}</td>
-// 			<td>{$grade['ocena']}</td>
-// 			<tr>
-// DELIMETER;
-
-// 		}
-// 		$output .= "</tbody></table>";
-// 		header("Content-Type: application/xls");
-// 		header("Content-Disposition: attachment; filename=grades{$_GET['class']}.xls");
-// 		echo $output;
-// 		}
-// 	}
-
-
 	public function downloadExcel()
 	{
 		if(isset($_GET['filename'])) {
-			header("Content-Disposition: attachment; filename={$_GET['filename']}");
+			header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+			header("Content-Disposition: attachment;filename={$_GET['filename']}");
 		}
 		else {
 			return false;

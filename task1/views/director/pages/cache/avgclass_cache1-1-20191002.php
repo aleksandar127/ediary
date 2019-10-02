@@ -1,11 +1,11 @@
 
   <div class="col-md-12 text-center my-4 d-flex justify-content-center">
-    <h1 class="font-weight-bold">Prosek ocena za <span class="text-black">4/1</span></h1>
+    <h1 class="font-weight-bold">Prosek ocena za <span class="text-black">1/1</span></h1>
     <div class="">
     <!-- <form action="exportClassGrades?class=&high_low=" method="POST">
     <input class="btn btn-outline-dark btn-lg mt-1 ml-3" name="exportClass" type="submit" value="Export Data">
   </form> -->
-  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportClassGrades?class=4/1&high_low=0'">Save as .xlsx</button>
+  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportClassGrades?class=1/1&high_low=0'">Sačuvaj kao .xlsx</button>
   </div>
   </div>
 
@@ -28,7 +28,7 @@ am4core.useTheme(am4themes_animated);
 var chart = am4core.create("class", am4charts.XYChart);
 
 // Add data
-chart.data = [{"prosecna_ocena":"5.0","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"5.0","predmet":"likovno vaspitanje"},{"prosecna_ocena":"4.5","predmet":"matematika"},{"prosecna_ocena":"4.5","predmet":"muzi\u010dko vaspitanje"},{"prosecna_ocena":"4.3","predmet":"srpski jezik"},{"prosecna_ocena":"4.0","predmet":"Svet oko nas"}]
+chart.data = [{"prosecna_ocena":"5.0","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"4.0","predmet":"likovno vaspitanje"},{"prosecna_ocena":"3.3","predmet":"matematika"},{"prosecna_ocena":"3.7","predmet":"muzi\u010dko vaspitanje"},{"prosecna_ocena":"3.3","predmet":"srpski jezik"},{"prosecna_ocena":"4.0","predmet":"Svet oko nas"}]
 //console.log(chart.data)
 
 // Create axes

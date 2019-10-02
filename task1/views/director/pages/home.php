@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
 	<h1 class="text-center mb-4 font-weight-bold">Prosek ocena u .xls formatu</h1>
 <table class="table table-striped table-hover table-dark table-bordered">
 <thead>

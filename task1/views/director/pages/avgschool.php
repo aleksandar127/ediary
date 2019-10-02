@@ -13,7 +13,7 @@ ob_start();
     <!-- <form action="exportSchoolGrades" method="POST">
     <input class="btn btn-outline-dark btn-lg mt-1 ml-3" name="export" type="submit" value="Export Data">
   </form> -->
-  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportSchoolGrades'">Save as .xlsx</button>
+  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportSchoolGrades'">Sačuvaj kao .xlsx</button>
  
   </div>
 </div>

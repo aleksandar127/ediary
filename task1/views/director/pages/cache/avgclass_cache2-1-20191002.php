@@ -1,18 +1,20 @@
 
-<div class="col-md-12 text-center my-4 d-flex justify-content-center">
-    <h1 class="font-weight-bold">Prosek ocena na nivou skole</h1>
+  <div class="col-md-12 text-center my-4 d-flex justify-content-center">
+    <h1 class="font-weight-bold">Prosek ocena za <span class="text-black">2/1</span></h1>
     <div class="">
-    <!-- <form action="exportSchoolGrades" method="POST">
-    <input class="btn btn-outline-dark btn-lg mt-1 ml-3" name="export" type="submit" value="Export Data">
+    <!-- <form action="exportClassGrades?class=&high_low=" method="POST">
+    <input class="btn btn-outline-dark btn-lg mt-1 ml-3" name="exportClass" type="submit" value="Export Data">
   </form> -->
-  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportSchoolGrades'">Save as .xlsx</button>
- 
+  <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='exportClassGrades?class=2/1&high_low=0'">Sačuvaj kao .xlsx</button>
   </div>
-</div>
+  </div>
+
+
+
 
 <div class="row mt-3 tabela" style="height:80vh">
-    <div class="col-md-11 mx-auto mb-4 rounded" id="school"></div>
-</div> 
+    <div class="col-md-11 mx-auto mb-3" id="class"></div>
+</div>  
 
   <!-- Chart code -->
 <script>
@@ -23,10 +25,10 @@ am4core.useTheme(am4themes_animated);
 // Themes end
 
 // Create chart instance
-var chart = am4core.create("school", am4charts.XYChart);
+var chart = am4core.create("class", am4charts.XYChart);
 
 // Add data
-chart.data = [{"prosecna_ocena":"3.6","predmet":"biologija"},{"prosecna_ocena":"3.9","predmet":"engleski jezik"},{"prosecna_ocena":"4.9","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"2.9","predmet":"fizika"},{"prosecna_ocena":"4.1","predmet":"geografija"},{"prosecna_ocena":"2.8","predmet":"hemija"},{"prosecna_ocena":"4.3","predmet":"likovno vaspitanje"},{"prosecna_ocena":"3.6","predmet":"matematika"},{"prosecna_ocena":"4.3","predmet":"muzi\u010dko vaspitanje"},{"prosecna_ocena":"3.4","predmet":"srpski jezik"},{"prosecna_ocena":"4.3","predmet":"Svet oko nas"}]
+chart.data = [{"prosecna_ocena":"4.8","predmet":"fizi\u010dko vaspitanje"},{"prosecna_ocena":"4.7","predmet":"likovno vaspitanje"},{"prosecna_ocena":"3.7","predmet":"matematika"},{"prosecna_ocena":"5.0","predmet":"muzi\u010dko vaspitanje"},{"prosecna_ocena":"3.4","predmet":"srpski jezik"},{"prosecna_ocena":"4.6","predmet":"Svet oko nas"}]
 //console.log(chart.data)
 
 // Create axes
@@ -36,8 +38,6 @@ categoryAxis.dataFields.category = "predmet";
 categoryAxis.renderer.grid.template.location = 0;
 categoryAxis.renderer.minGridDistance = 30;
 categoryAxis.title.text = "Predmeti";
-
-
 
 // categoryAxis.renderer.labels.template.adapter.add("dy", function(dy, target) {
 //   if (target.dataItem && target.dataItem.index & 2 == 2) {
@@ -53,11 +53,8 @@ valueAxis.renderer.minGridDistance = 100;
 valueAxis.title.text = "Prosek ocena";
 
 
-valueAxis.numberFormatter.numberFormat = "#.00";
-
 // Create series
 var series = chart.series.push(new am4charts.ColumnSeries());
-
 series.dataFields.valueY = "prosecna_ocena";
 series.dataFields.categoryX = "predmet";
 //series.name = "Visits";
@@ -66,6 +63,7 @@ series.columns.template.fillOpacity = .8;
 series.columns.template.column.cornerRadiusTopLeft = 10;
 series.columns.template.column.cornerRadiusTopRight = 10;
 series.columns.template.column.fillOpacity = 0.8;
+
 
 var hoverState = series.columns.template.column.states.create("hover");
 hoverState.properties.cornerRadiusTopLeft = 0;
@@ -80,4 +78,5 @@ series.columns.template.adapter.add("fill", function(fill, target) {
 });
 }); // end am4core.ready()
 </script>
+
 

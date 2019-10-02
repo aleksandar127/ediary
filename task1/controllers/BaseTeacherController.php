@@ -248,7 +248,7 @@ public function success(){
     $view = new View();
     //get all final grades 
     $grades = Student::success($id);
-    if($grades == null){
+    if($grades == null){ 
         header("Location: http://localhost/eDiary/task1/teacher/index?err=Ucenik nije ocenjen! & id= " . $id);
         exit(); 
     } 

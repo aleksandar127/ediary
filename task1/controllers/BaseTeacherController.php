@@ -1,5 +1,5 @@
 <?php 
-include_once 'Creport.php';
+
 class BaseTeacherController{
 
     public function __construct($demand){
@@ -16,7 +16,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'home');
     }
 
-    //show all grade 
+    //show all grades 
     public function grade(){
         $view = new View();
         $all_class = Teacher::get_class();
@@ -36,7 +36,7 @@ class BaseTeacherController{
         $view->load_view('teacher', 'pages', 'grade');
     }
 
-    ////display messages view
+    //display messages view
     public function messages(){ 
         $view = new View();
         $all_class = Teacher::get_class();
@@ -225,7 +225,7 @@ class BaseTeacherController{
     //reject appointment
 	public function open_no(){ 
 		$id = $this->demand->parts_of_url[5]; 
-        $open_doors=OpenDoor::open_no($id);
+        $open_doors = OpenDoor::open_no($id);
 		if (isset($_SERVER["HTTP_REFERER"])){ 
 			header("Location: " . $_SERVER["HTTP_REFERER"]); 
         }
@@ -241,21 +241,19 @@ class BaseTeacherController{
 		}
     }
 
-
-
-//get pdf of student final success R&OS library
+//get pdf of student final success R&OS library 
 public function success(){
-    $id= $this->demand->parts_of_url[5];
+    include_once 'Creport.php';
+    $id = $this->demand->parts_of_url[5];
     $view = new View();
     //get all final grades 
-    $grades=Student::success($id);
-    if($grades==null){
+    $grades = Student::success($id);
+    if($grades == null){ 
         header("Location: http://localhost/eDiary/task1/teacher/index?err=Ucenik nije ocenjen! & id= " . $id);
-        exit();
-    }
+        exit(); 
+    } 
 
     //$pdf = new Cezpdf();
-        
     $pdf = new Creport('a4', 'portrait');
     $mainFont ='FreeSerif';
     $family = array(
@@ -270,7 +268,6 @@ public function success(){
     $pdf->line(72,780,522,780);
     $pdf->line(72,750,522,750);
     $pdf->line(144,630,450,630);
-    //$pdf->line(144,600,450,600);
     $pdf->line(72,60,522,60);
     $pdf->line(420,90,522,90);
     
@@ -346,17 +343,13 @@ public function success(){
     if($fall){
         $grade='Nedovoljan';
         $pdf-> addText (100,115,14,'Uspeh:<b> '.$grade.'(1)</b>');
-    //$pdf->ezText('   <b>      - Uspeh: '.$grade.'(1)</b>',13);
-    $pdf->line(80,110,300,110);
+        $pdf->line(80,110,300,110);
     }
     else
-    $pdf-> addText (100,115,14,'Uspeh:<b> '.$grade.' ('.round($sum/$count).')</b>');
-    //$pdf->ezText('     <b>     Uspeh:       '.$grade.' ('.$sum/$count.')</b>',13,[ 'justification'=> 'right']);
-    $pdf->ezSetDy(-15);
-    $pdf-> addText (445,75,10,'DIREKTOR');
-    
-    //$pdf->ezText('DIREKTOR');
-    $pdf->ezStream();
+        $pdf-> addText (100,115,14,'Uspeh:<b> '.$grade.' ('.sprintf('%0.2f',($sum/$count)).')</b>');
+        $pdf->ezSetDy(-15);
+        $pdf-> addText (445,75,10,'DIREKTOR');
+        $pdf->ezStream();
 }
 
 public function logout(){
@@ -364,5 +357,11 @@ public function logout(){
     header('Location: '.URLROOT.'/');
     die();	
 }
-
-}
+ 
+public function excuse(){ 
+    $view = new View(); 
+    $excuses = Excuse::get_excuses(); 
+    $view->data['excuses'] = $excuses; 
+    $view->load_view('teacher', 'pages', 'excuse'); 
+} 
+} 

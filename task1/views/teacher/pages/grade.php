@@ -54,9 +54,9 @@
                     <?php endforeach; ?>
                     
                     <td id="tdInput">
-                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/new_grade/'. $student_id;?>"><input type="button" value="Unesi"></a>
-                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/delete_grade/' . $student_id; ?>"><input type="button" value="Obrisi"></a>
-                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/final_grade/' . $student_id; ?>"><input type="button" value="Zakljucivanje ocena"></a>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/new_grade/'. $student_id;?>"><input type="button" value="Unesi"></a><hr>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/delete_grade/' . $student_id; ?>"><input type="button" value="Obriši"></a><hr>
+                    <a href="<?php echo 'http://localhost/eDiary/task1/teacher/final_grade/' . $student_id; ?>"><input type="button" value="Zakljuci"></a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

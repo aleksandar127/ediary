@@ -4,11 +4,11 @@
                 <table>
                     <tr>
                         <td>Ime ucenika</td>
-                        <td><input type="text" name="first_name" value="<?php echo $this->data['id_students']['first_name']; ?>" /></td>
+                        <td><input type="text" name="first_name" value="<?php echo $this->data['id_students']['first_name']; ?>" readonly /></td>
                     </tr>
                     <tr>
                         <td>Prezime ucenika</td>
-                        <td><input type="text" name="last_name"  value="<?php echo $this->data['id_students']['last_name'];?>" /> </td>
+                        <td><input type="text" name="last_name"  value="<?php echo $this->data['id_students']['last_name'];?>" readonly /> </td>
                     </tr>
                     <tr>
                         <td>Naziv predmeta</td>
@@ -33,7 +33,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="tdSubmit" ><input type="submit" name="add" value="Zakljuci ocenu"></td>
+                        <td class="tdSubmit" style="border:none;"><input type="submit" name="add" value="Zakljuci ocenu"></td>
                     </tr> 
                 </table>
             </form>

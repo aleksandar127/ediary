@@ -13,7 +13,6 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-weight:900;
 	margin:1em 0 0.5em;
-	color:#696969;
 }
 
 h1 { font-size:3em;}
@@ -230,8 +229,12 @@ table{
 	padding-right:5px;
 	float: left;
 	margin-top: 5px;
+	clear: both;
 }
 #messagee #scroll{
+	clear: both;
+	text-align: center;
+	border-top:1px solid #000;
 	height: 450px;
 	padding-right: 10px;
 	overflow-x: hidden;
@@ -254,12 +257,12 @@ table{
 }
 
 .container {
-	border: 2px solid #dedede;
-	background-color: #f1f1f1;
+	border: 1px solid #dedede;
 	border-radius: 5px;
 	padding: 10px;
-	margin: 10px 0;
 	text-align: left;
+	margin-top:5px;
+	margin-bottom: 5px;
   }
 .container p{
 	color:#000;
@@ -291,13 +294,15 @@ table{
 }
 #messagee #subject{
 	width: 660px;
-	/* overflow: hidden; */
 	height: 150px;
+	float:left;
 	resize: none;
 }
 #messagee #sendMessage #chat button{
-	font-size:20px;
+	font-size: 20px;
 	margin-right: 5px;
+	margin-top: 5px;
+
 	float:left;
 }
 #listUsers{
@@ -366,6 +371,7 @@ table{
 }
 #addGrade form table{
 	font-size: 18px;
+	border-top:1px solid #000;
 }
 #addGrade tr:nth-child(even){
 	background-color:rgba(0, 0, 0, 0.45);
@@ -407,6 +413,7 @@ table{
 #addGrade .tdSubmit input:hover{
 	background: #FFF;
 	font-size: 26px;
+	border-radius: 25px;
 }
 #addGrade .tdSubmit input:active{
 	background: #FFF;
@@ -421,6 +428,7 @@ table{
 	border:1px solid #000;
 	padding:8px;
 	width:70px;
+	border:none;
 }
 #table_schedule table tr td:nth-child(1){
 	font-weight: bold;
@@ -499,7 +507,7 @@ table{
 }
 
 .scheduleTeacher tr td{ 
-	text-align: center;
+	text-align: left;
 	font-size: 23px;
 }
 

@@ -41,7 +41,7 @@ body{
 }
 
 .menu-link:hover>span {
-	color: orange;
+	color: rgb(255,140,0);
 }
 
 

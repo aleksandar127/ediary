@@ -46,5 +46,10 @@
     </div>
     <button type="submit" class="btn btn-dark">Dodaj učenika/e</button>
     </form>
+    <?php if(isset($_GET['success'])): ?>
+        <small style="color: green; font-weight: bold; margin-top: 5px; margin-left:5%;">
+            <?php echo $_GET['success']; ?>
+        </small>
+    <?php endif; ?>
 
 <script src="<?php echo URLROOT; ?>/assets/admin/js/add_pupils.js"></script>

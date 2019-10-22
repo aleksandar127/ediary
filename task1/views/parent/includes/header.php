@@ -23,6 +23,7 @@
 					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/parent/notifications"><span><i class="fas fa-bell"></i></span> Obavestenja</a></li>
 					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/parent/messages"><span><i class="fas fa-envelope"></i></span> Poruke</a></li>
 					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/parent/open"><span><i class="fas fa-handshake"></i></span> Otvorena vrata</a></li>
+					<li><a class="font-weight-bold menu-link" href="<?php echo URLROOT; ?>/parent/excuse"><span><i class="fas fa-handshake"></i></span> Opravdanja</a></li>
 				
 				</ul>
 				<ul class="right_nav">

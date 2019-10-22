@@ -4,7 +4,7 @@
   <source src="<?php  echo URLROOT; ?>/assets/access/videos/letters.mp4" type="video/mp4">
 </video>
 <div class="box">
-	<h2>Login</h2>
+	<h2>Logovanje</h2>
 	<form action="access/login" method="POST">
 		<div class="inputBox">
 			<input type="text" name="login_username" required="" autocomplete="off">

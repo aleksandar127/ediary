@@ -127,7 +127,6 @@ class Cpdf
      * @var string default encoding is IS0-8859-1
      */
     public $targetEncoding = 'ISO-8859-1';
-    
     /**
      * set this to true allows TTF font being parsed as unicode in PDF output.
      * This also converts all text output into utf16_be.
@@ -2935,7 +2934,7 @@ class Cpdf
                 $text = '';
             }
 
-            array_push($result, ['text' => $rest, 'nspaces' => $textLength[4], 'callback' => $info]);
+            array_push($result, ['text' => $rest, 'nspaces' => $textLength[4], 'callback' => null]);
         } else {
             $text = '';
         }
@@ -3004,8 +3003,8 @@ class Cpdf
             return $v['text'];
         }, $parts));
 
-        // only adjust full, when 80 percent of the width is used
-        if (($justification == 'full' && ($orgWidth / 100 * 80) < ($orgWidth - $width)) || $justification != 'full') {
+        // only adjust full, when 90 percent of the width is used
+        if (($justification == 'full' && ($orgWidth / 100 * 90) < ($orgWidth - $width)) || $justification != 'full') {
             $this->adjustWrapText($parsedText, $orgWidth - $width, $orgWidth, $x, $wordSpaceAdjust, $justification);
         }
 
@@ -3079,7 +3078,7 @@ class Cpdf
     {
         $parts = preg_split('/$\R?^/m', $text);
         foreach ($parts as $v) {
-            $this->addText($x, $y, $size, $v, $width, $justification, $angle, $wordSpaceAdjust, $test);
+            $text = $this->addText($x, $y, $size, $v, $width, $justification, $angle, $wordSpaceAdjust, $test);
             $y -= $this->getFontHeight($size);
         }
     }

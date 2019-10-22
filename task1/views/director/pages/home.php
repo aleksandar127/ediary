@@ -1,4 +1,25 @@
-<div style="height: 100vh"></div>
+<!-- <div class="container mb-5">
+	<h1 class="text-center mb-4 font-weight-bold">Prosek ocena u .xls formatu</h1>
+<table class="table table-striped table-hover table-dark table-bordered">
+<thead>
+	<th>Ime fajla</th>
+	<th>Sačuvaj</th>
+	<th>Obriši</th>
+</thead>
+<tbody> -->
+<?php /*
+foreach(glob('views/director/pages/excel/*') as $file) {
+	$filename = explode('/', $file);
+	$filename = end($filename);
+	echo "<tr><td class='text-warning font-weight-bold'>{$filename}</td><td class='file-link'><a class='file-link text-info font-weight-bold' href='downloadExcel?filename=".$filename."'> Sačuvaj</a></td>
+	<td class='file-link'><a class='file-link text-danger font-weight-bold' href='deleteExcel?filePath=".$filename."'> Obriši</a></td></tr>";
+} */
+?>
+
+<!-- </tbody>
+</table>
+</div> -->
+<!-- <button class="btn btn-dark btn-lg mt-1 ml-3" onclick="location.href='importExcel'">Export Data</button> -->
 <!-- <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-3 p-1">

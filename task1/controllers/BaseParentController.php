@@ -9,7 +9,7 @@ class BaseParentController
 		
 	}
 
-	
+	//home page for parent
 	public function index()
 	{
 		$view = new View();
@@ -20,7 +20,7 @@ class BaseParentController
 
 	}
 
-
+    //logout
     public function logout()
 	{
 		$access_destroy = BaseAccessController::logout($_COOKIE['id'], $_COOKIE['loginhash']);
@@ -115,8 +115,16 @@ class BaseParentController
 		$view->load_view('parent', 'pages', 'excuse');
 		
 	}
-
+	
+	//send excuse 
 	public function send_excuse(){
+		$err='';
+		//if student is not selected
+		if($_POST['student'] == false){
+			$err='Izaberite učenika';
+			header("Location: " . $_SERVER["HTTP_REFERER"]."?err=".$err);
+			exit();
+			}
 		$student_id=$_POST['student'];
 		$image=$_FILES['excuse'];
 		$extensions= array("jpeg","png","jpg");
@@ -128,10 +136,19 @@ class BaseParentController
 		$file_ext=strtolower( $file_ext);
 		$img=getimagesize($image['tmp_name']);
 		$file_type=explode("/",$img['mime']);
-		if(in_array($file_type[1],$extensions)=== false)
-			return false;
-		if($file_size == 0)
-			return false;
+		//check mime type
+		if(in_array($file_type[1],$extensions)=== false){
+			$err='izaberite dozvoljeni format(jpg,jpeg,png)';
+			header("Location: " . $_SERVER["HTTP_REFERER"]."?err=".$err);
+			exit();
+		}
+		//check file size
+		if($file_size == 0){
+			$err='došlo je do greške';
+			header("Location: " . $_SERVER["HTTP_REFERER"]."?err=".$err);
+			exit();
+		}
+		//set file name and send
 		$file_name=substr($file_name,0,stripos($file_name,"."));
 		$file_name.=time();   
 		$file_name.=".".$file_ext;

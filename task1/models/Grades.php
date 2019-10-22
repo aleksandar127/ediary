@@ -26,9 +26,24 @@ class Grades{
         $query = DB::$conn->prepare('delete from subjects_has_grades_has_students where id=? limit 1');
         $deleted=$query->execute([$id]); 
 
+<<<<<<< HEAD
         // Ako se izbrise ocena, obrisi cache fajlove..
         $cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
         unlink($cacheFile);
+=======
+         // If grade is deleted, delete cache file on the school level..
+        $schoolCacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
+        unlink($schoolCacheFile);
+
+        // If grade is deleted, delete cache file for classes..
+        $classCacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
+            $class, date("Ymd"));
+        foreach (glob("views/director/pages/cache/avgclass_cache*") as $cache) {
+            if($cache != $classCacheFile) {
+                unlink($cache);
+            }
+        }
+>>>>>>> 1f80ea191263b15b7e74f8d44d565e184a751900
 
         return $deleted;
     }
@@ -44,9 +59,24 @@ class Grades{
         $query = DB::$conn->prepare('update  subjects_has_grades_has_students set subjects_has_grades_id=?  where id=? limit 1');
         $deleted=$query->execute([$subject_grade_id,$id]); 
 
+<<<<<<< HEAD
         // Ako se izmeni ocena, izbrisi cache fajl..
         $cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
         unlink($cacheFile);
+=======
+         // If new grade is inserted, delete cache file on the school level..
+        $schoolCacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
+        unlink($schoolCacheFile);
+
+        // If new grade is inserted, delete cache file for classes..
+        $classCacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
+            $class, date("Ymd"));
+        foreach (glob("views/director/pages/cache/avgclass_cache*") as $cache) {
+            if($cache != $classCacheFile) {
+                unlink($cache);
+            }
+        }
+>>>>>>> 1f80ea191263b15b7e74f8d44d565e184a751900
 
         return $deleted;
     }
@@ -61,9 +91,24 @@ class Grades{
         $query = DB::$conn->prepare('insert into subjects_has_grades_has_students  (students_id,subjects_has_grades_id) values (?,?)');
         $grade=$query->execute([$id,$subject_grade_id]); 
 
+<<<<<<< HEAD
         // Ako se unese nova ocena, izbrisi cache fajl..
         $cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
         unlink($cacheFile);
+=======
+        // If new grade is inserted, delete cache file on the school level..
+        $schoolCacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
+        unlink($schoolCacheFile);
+
+        // If new grade is inserted, delete cache file for classes..
+        $classCacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
+            $class, date("Ymd"));
+        foreach (glob("views/director/pages/cache/avgclass_cache*") as $cache) {
+            if($cache != $classCacheFile) {
+                unlink($cache);
+            }
+        }
+>>>>>>> 1f80ea191263b15b7e74f8d44d565e184a751900
 
         return $grade;
     }
@@ -83,18 +128,51 @@ class Grades{
         if($final){
             $query = DB::$conn->prepare('update final_grade  set student_id=?,subject_grade=? where id=? limit 1');
             $grade=$query->execute([$id,$subject_grade_id,$final]); 
+<<<<<<< HEAD
             // Ako se izmeni ocena, obrisi cache fajl..
              $cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
             unlink($cacheFile);
+=======
+
+             // If new grade is inserted, delete cache file on the school level..
+        $schoolCacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
+        unlink($schoolCacheFile);
+
+        // If new grade is inserted, delete cache file for classes..
+        $classCacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
+            $class, date("Ymd"));
+        foreach (glob("views/director/pages/cache/avgclass_cache*") as $cache) {
+            if($cache != $classCacheFile) {
+                unlink($cache);
+            }
+        }
+
+>>>>>>> 1f80ea191263b15b7e74f8d44d565e184a751900
             return $grade;
         }
         else{ 
             $query = DB::$conn->prepare('insert into final_grade (id,student_id,subject_grade) values (null,?,?)');
             $grade=$query->execute([$id,$subject_grade_id]); 
             
+<<<<<<< HEAD
             // Ako se unese nova ocena, ozbrisi cache fajl..
             $cacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
             unlink($cacheFile);
+=======
+             // If new grade is inserted, delete cache file on the school level..
+        $schoolCacheFile = sprintf("views/director/pages/cache/avgschool_cache%s.php", date("Ymd"));
+        unlink($schoolCacheFile);
+
+        // If new grade is inserted, delete cache file for classes..
+        $classCacheFile = sprintf("views/director/pages/cache/avgclass_cache%s-%s.php", 
+            $class, date("Ymd"));
+        foreach (glob("views/director/pages/cache/avgclass_cache*") as $cache) {
+            if($cache != $classCacheFile) {
+                unlink($cache);
+            }
+        }
+
+>>>>>>> 1f80ea191263b15b7e74f8d44d565e184a751900
             return $grade;
         }
     }
@@ -110,16 +188,16 @@ class Grades{
     }
 
 
-        // Prosek ocena za sve predmete na nivou skole..
+        // Average grades for all subjects on the school level..
     public static function average_school_grades()
     {
-        $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
+        $query = DB::$conn->prepare("SELECT FORMAT(SUM(shg.grades) / COUNT(shghs.students_id), 1) AS prosecna_ocena, subjects.name AS predmet 
             FROM subjects_has_grades shg
             JOIN subjects ON shg.subjects_id = subjects.id 
             JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
             JOIN students ON shghs.students_id = students.id 
             JOIN class ON students.class_id = class.id 
-            GROUP BY subjects.name');
+            GROUP BY subjects.name");
     $query->execute();
     $result = $query->fetchAll(PDO::FETCH_ASSOC);
     $json = json_encode($result);
@@ -128,9 +206,47 @@ class Grades{
 
 
 
+<<<<<<< HEAD
     // Prosek ocena za svako odeljenje posebno..
     public static function average_class_grades($class, $high_low) {
         $query = DB::$conn->prepare('SELECT SUM(shg.grades) / COUNT(shghs.students_id) AS prosecna_ocena, subjects.name AS predmet 
+=======
+    // Average grades for selected class..
+    public static function average_class_grades($class, $high_low)
+    {
+        $query = DB::$conn->prepare("SELECT FORMAT(SUM(shg.grades) / COUNT(shghs.students_id), 1) AS prosecna_ocena, subjects.name AS predmet 
+>>>>>>> 1f80ea191263b15b7e74f8d44d565e184a751900
+            FROM subjects_has_grades shg
+            JOIN subjects ON shg.subjects_id = subjects.id 
+            JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
+            JOIN students ON shghs.students_id = students.id 
+            JOIN class ON students.class_id = class.id 
+            WHERE class.name = ? AND class.high_low = ? GROUP BY subjects.name");
+        $query->execute([$class, $high_low]);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $json = json_encode($result);
+        return $json;
+    }
+
+
+    public static function exportSchool()
+    {
+        $query = DB::$conn->prepare('SELECT FORMAT(SUM(shg.grades) / COUNT(shghs.students_id), 1) AS ocena, subjects.name AS predmet 
+            FROM subjects_has_grades shg
+            JOIN subjects ON shg.subjects_id = subjects.id 
+            JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
+            JOIN students ON shghs.students_id = students.id 
+            JOIN class ON students.class_id = class.id 
+            GROUP BY subjects.name');
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    public static function exportClass($class, $high_low)
+    {
+        $query = DB::$conn->prepare('SELECT FORMAT(SUM(shg.grades) / COUNT(shghs.students_id), 1) AS ocena, subjects.name AS predmet 
             FROM subjects_has_grades shg
             JOIN subjects ON shg.subjects_id = subjects.id 
             JOIN subjects_has_grades_has_students shghs ON shg.id = shghs.subjects_has_grades_id 
@@ -139,8 +255,7 @@ class Grades{
             WHERE class.name = ? AND class.high_low = ? GROUP BY subjects.name');
         $query->execute([$class, $high_low]);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        $json = json_encode($result);
-        return $json;
+        return $result;
     }
 
 

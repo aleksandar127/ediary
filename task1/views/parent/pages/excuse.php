@@ -1,6 +1,6 @@
 
 
-
+<?php if(isset($_GET['err'])) echo $_GET['err']; ?>
 <form action='<?php echo URLROOT."/parent/send_excuse"?>' method="post" enctype="multipart/form-data" name="myForm" >
 <div class="form-group">
     

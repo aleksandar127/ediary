@@ -2,18 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    /*background: url('../images/book2.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;*/
 }
-
-/*#myVideo {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-}*/
 
 .box {
     position: absolute;
@@ -68,7 +57,7 @@ body {
 .box .inputBox input:valid ~ label {
     top: -18px;
     left: 0;
-    color: #03A9F4;
+    color:rgba(255,187,51);
     font-size: 12px;
 }
 
@@ -77,7 +66,7 @@ body {
     border: none;
     outline: none;
     color: #FFF;
-    background: #03A9F4;
+    background: rgba(255,187,51);
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;

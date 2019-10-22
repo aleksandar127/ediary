@@ -7,8 +7,7 @@ class BaseAdminController
 	//method for pulling request in this part of logic
 	public function __construct($demand)
 	{
-		$this->demand = $demand;
-		
+		$this->demand = $demand;	
 	} 
 
 	//default page, home page
@@ -16,7 +15,6 @@ class BaseAdminController
 	{
 		$view = new View();
 		$view->load_view('admin', 'pages', 'home');
-
 	}
 
 	//method for showing page with all users
@@ -54,8 +52,14 @@ class BaseAdminController
 		$enc_pass = password_hash($password , PASSWORD_BCRYPT);
 
 		$edit_user = Users::edit($first_name, $last_name, $username, $enc_pass, $role, $user_id);
+
 		if ($edit_user) {
-			header('Location: '.URLROOT.'/admin/users');
+			$_SESSION['msg'] = 'Uspešno ste izmenili informacije o ovom korisniku.';
+			header('Location:  '.$_SERVER['HTTP_REFERER'].'');
+			exit();
+
+		} else {
+			echo 'greska kod editovanja korisnika';
 		}
 		
 	}
@@ -109,9 +113,13 @@ class BaseAdminController
 		} else {
 			$add_new_user = Users::add_new_user($first_name, $last_name, $username, $enc_pass, $role);
 			if ($add_new_user) {
-				header('Location: '.URLROOT.'/admin/add_user?success=Uspešno ste dodali novog korisnika!');
+					$_SESSION['msg'] = 'Uspešno ste dodali novog korisnika!';
+					header('Location:  '.$_SERVER['HTTP_REFERER'].'');
+					exit();
 			} else {
-				header('Location: '.URLROOT.'/admin/add_user?err=Nešto je pošlo po zlu, pokušajte ponovo!');
+				$_SESSION['err'] = 'Nešto je pošlo po zlu, pokušajte ponovo!';
+				header('Location:  '.$_SERVER['HTTP_REFERER'].'');
+				exit();
 			}
 		}
 
@@ -542,7 +550,6 @@ class BaseAdminController
 		if ($delete_schedule) {
 			header('Location:  '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali raspored časova za odeljenje '.$class['name'].'!');		
 		} else {
-			echo 'ne postoji rapsored za ovo odeljenje';
 			header('Location:  '.$_SERVER['HTTP_REFERER'].'?err=Još uvek ne postoji rasporeded časova za odeljenje koje pokušavate da izbrišete.');
 		}
 	}
@@ -617,9 +624,21 @@ class BaseAdminController
 	public function delete_student()
 	{
 		$student_id = $this->demand->parts_of_url[5];
+		$parent_id = Student::get_parent_id($student_id);
+		$parent_id = $parent_id['users_id'];
+		var_dump($parent_id);
 		$delete = Student::delete_puple($student_id);
 		var_dump($delete);
-		if ($delete) {
+		$children = Student::get_children($parent_id);
+		var_dump($children);
+		if (empty($children)) {
+			$delete_parent = Student::delete_parent($parent_id);
+		} else {
+			echo 'ima jos dece';
+		}
+		if ($delete && $delete_parent) {
+			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika i roditelja!');
+		} elseif ($delete && !$delete_parent) {
 			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali učenika!');
 		} else {
 			echo 'nesto je poslo po zlu pri brisanju ucenika iz baze';
@@ -639,11 +658,40 @@ class BaseAdminController
 
 	public function save_new_pupils()
 	{
+<<<<<<< HEAD
 		$arr = $_POST;
 		$arr1 = array_chunk($arr, 7, true);
 		
 		var_dump($arr1);
 	
+=======
+		$role_id = Users:: get_role_id_by_name("parent");
+		$class_id = $this->demand->parts_of_url[5];
+		$arr = $_POST;
+		$arr1 = array_chunk($arr, 7, true);
+		$new = [];
+		foreach($arr1 as $k => $student_info_arr){
+			foreach($student_info_arr as $key => $student){
+				$k = substr($key, 0, -1);
+				$new[$k] = $student; 
+			}
+			
+				$name = $new['puple_n'];
+				$surname = $new['puple_s'];
+				$parent_n = $new['parent_n'];
+				$parent_s = $new['parent_s'];
+				$parent_usr = $new['parent_username'];
+				$parent_pass = $new['parent_pass'];
+				$enc_pass = password_hash($parent_pass, PASSWORD_BCRYPT);
+				$add = Student::add_students($parent_n, $parent_s, $parent_usr, $enc_pass, $role_id['id'], $name, $surname, $class_id);
+				if ($add) {
+					header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste dodali učenika/e!');
+				} else {
+					echo 'nesto puca kod dodavanja novih ucenika u odeljenje';
+				}
+		}
+			
+>>>>>>> 1f80ea191263b15b7e74f8d44d565e184a751900
 	}
 
 	//method for fetching user by username written in form input from db, to check if already exists when adding new pupils and their parents
@@ -680,7 +728,6 @@ class BaseAdminController
 	{
 		$notificaton_id = $this->demand->parts_of_url[5];
 		$delete = News::delete_notification_by_id($notificaton_id);
-		var_dump($delete);
 		if ($delete) {
 			header('Location: '.$_SERVER['HTTP_REFERER'].'?success=Uspešno ste izbrisali obaveštenje!');
 		} else {
